@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Call de Groupe — 8 Mars 2026</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0e1a;
+            color: #fff;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .slide {
+            display: none;
+            height: 100vh;
+            width: 100vw;
+            padding: 60px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Background glow */
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .slide::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* Slide counter */
+        .slide-counter {
+            position: fixed;
+            bottom: 30px;
+            right: 40px;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.3);
+            font-weight: 500;
+            z-index: 100;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #6366f1);
+            transition: width 0.4s ease;
+            z-index: 100;
+        }
+
+        /* Navigation hint */
+        .nav-hint {
+            position: fixed;
+            bottom: 30px;
+            left: 40px;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.2);
+            z-index: 100;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        h2 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            line-height: 1.2;
+            margin-bottom: 40px;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #3b82f6;
+            margin-bottom: 16px;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.5);
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: #3b82f6;
+        }
+
+        .highlight-purple {
+            color: #818cf8;
+        }
+
+        /* Title slide */
+        .title-slide {
+            text-align: center;
+            align-items: center;
+        }
+
+        .title-slide h1 {
+            font-size: 4rem;
+            background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .title-slide .date {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.35);
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        /* Lists */
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            font-size: 1.25rem;
+            padding: 14px 0;
+            padding-left: 36px;
+            position: relative;
+            color: rgba(255,255,255,0.85);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+
+        .checklist li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: 700;
+        }
+
+        .checklist li strong {
+            color: #fff;
+        }
+
+        .checklist li .new-tag {
+            display: inline-block;
+            background: rgba(34, 197, 94, 0.15);
+            color: #22c55e;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        /* Comparison */
+        .comparison {
+            display: flex;
+            gap: 40px;
+            margin-top: 10px;
+        }
+
+        .comparison-col {
+            flex: 1;
+            padding: 30px;
+            border-radius: 16px;
+            position: relative;
+        }
+
+        .col-before {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .col-after {
+            background: rgba(59, 130, 246, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+        }
+
+        .comparison-col h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .col-before h4 { color: rgba(255,255,255,0.35); }
+        .col-after h4 { color: #3b82f6; }
+
+        .comparison-col .number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 8px;
+        }
+
+        .col-before .number { color: rgba(255,255,255,0.25); }
+        .col-after .number { color: #3b82f6; }
+
+        .comparison-col .label {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* Schedule table */
+        .schedule-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 6px;
+            margin-top: 10px;
+        }
+
+        .schedule-table th {
+            text-align: left;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.3);
+            padding: 0 16px 12px;
+            font-weight: 600;
+        }
+
+        .schedule-table td {
+            padding: 14px 16px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.03);
+            color: rgba(255,255,255,0.8);
+        }
+
+        .schedule-table tr td:first-child {
+            border-radius: 10px 0 0 10px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .schedule-table tr td:last-child {
+            border-radius: 0 10px 10px 0;
+        }
+
+        .schedule-table .new-row td {
+            background: rgba(59, 130, 246, 0.08);
+            border-top: 1px solid rgba(59, 130, 246, 0.15);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.15);
+        }
+
+        .schedule-table .new-row td:first-child {
+            border-left: 1px solid rgba(59, 130, 246, 0.15);
+        }
+
+        .schedule-table .new-row td:last-child {
+            border-right: 1px solid rgba(59, 130, 246, 0.15);
+        }
+
+        .level-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .level-all {
+            background: rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.7);
+        }
+
+        .level-01 {
+            background: rgba(34, 197, 94, 0.12);
+            color: #22c55e;
+        }
+
+        .level-23 {
+            background: rgba(59, 130, 246, 0.12);
+            color: #60a5fa;
+        }
+
+        .level-12 {
+            background: rgba(168, 85, 247, 0.12);
+            color: #a78bfa;
+        }
+
+        .level-new {
+            background: rgba(34, 197, 94, 0.12);
+            color: #22c55e;
+        }
+
+        /* Niveaux cards */
+        .niveaux-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .niveau-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 24px 20px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .niveau-card .n-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+            letter-spacing: -1px;
+        }
+
+        .niveau-card .n-title {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 14px;
+            font-weight: 500;
+        }
+
+        .niveau-card .n-desc {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.4);
+            line-height: 1.5;
+        }
+
+        .n0 { border-color: rgba(148, 163, 184, 0.2); }
+        .n0 .n-number { color: #94a3b8; }
+
+        .n1 { border-color: rgba(34, 197, 94, 0.2); }
+        .n1 .n-number { color: #22c55e; }
+
+        .n2 { border-color: rgba(59, 130, 246, 0.2); }
+        .n2 .n-number { color: #3b82f6; }
+
+        .n3 { border-color: rgba(168, 85, 247, 0.2); }
+        .n3 .n-number { color: #a78bfa; }
+
+        .n4 {
+            border-color: rgba(234, 179, 8, 0.25);
+            background: rgba(234, 179, 8, 0.04);
+        }
+        .n4 .n-number { color: #eab308; }
+
+        /* Access matrix */
+        .access-matrix {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 20px;
+            font-size: 0.95rem;
+        }
+
+        .access-matrix th {
+            text-align: center;
+            padding: 12px 10px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: rgba(255,255,255,0.4);
+            font-weight: 600;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .access-matrix th:first-child {
+            text-align: left;
+        }
+
+        .access-matrix td {
+            padding: 13px 10px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .access-matrix td:first-child {
+            text-align: left;
+            font-weight: 500;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .access-matrix .check {
+            color: #22c55e;
+            font-size: 1.1rem;
+        }
+
+        .access-matrix .cross {
+            color: rgba(255,255,255,0.1);
+            font-size: 1.1rem;
+        }
+
+        .access-matrix tr:hover td {
+            background: rgba(255,255,255,0.02);
+        }
+
+        /* Big text */
+        .big-message {
+            text-align: center;
+            align-items: center;
+        }
+
+        .big-message h2 {
+            font-size: 2.8rem;
+            line-height: 1.3;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .big-message .sub {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.45);
+            margin-top: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        /* Section divider */
+        .section-divider {
+            text-align: center;
+            align-items: center;
+        }
+
+        .section-divider .section-number {
+            font-size: 8rem;
+            font-weight: 800;
+            color: rgba(59, 130, 246, 0.12);
+            line-height: 1;
+            margin-bottom: -10px;
+        }
+
+        /* Upsell teaser */
+        .teaser-box {
+            max-width: 700px;
+            margin: 30px auto 0;
+            background: linear-gradient(135deg, rgba(234, 179, 8, 0.06) 0%, rgba(234, 179, 8, 0.02) 100%);
+            border: 1px solid rgba(234, 179, 8, 0.15);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .teaser-box h2 {
+            font-size: 2rem;
+            margin-bottom: 16px;
+            color: #eab308;
+        }
+
+        .teaser-box p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.55);
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .teaser-box .cta {
+            display: inline-block;
+            background: linear-gradient(135deg, #eab308, #f59e0b);
+            color: #0a0e1a;
+            padding: 12px 32px;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Stats row */
+        .stats-row {
+            display: flex;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            flex: 1;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 28px 24px;
+            text-align: center;
+        }
+
+        .stat-card .stat-value {
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            color: #3b82f6;
+            margin-bottom: 4px;
+        }
+
+        .stat-card .stat-label {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.45);
+        }
+
+        /* Arrow animation */
+        .arrow-down {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .arrow-down span {
+            font-size: 1.5rem;
+            color: rgba(59, 130, 246, 0.4);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .slide { padding: 40px 30px; }
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.6rem; }
+            .title-slide h1 { font-size: 2.5rem; }
+            .niveaux-grid { grid-template-columns: repeat(3, 1fr); }
+            .comparison { flex-direction: column; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="slide-counter" id="slideCounter"></div>
+    <div class="nav-hint">← →  ou clic pour naviguer</div>
+
+    <!-- SLIDE 1 : Title -->
+    <div class="slide title-slide active">
+        <div class="badge">Call de groupe</div>
+        <h1>Les nouveautés de<br>Stratégie 30%</h1>
+        <div class="subtitle">Ce qui change pour vous à partir d'aujourd'hui</div>
+        <div class="date">Dimanche 8 mars 2026</div>
+    </div>
+
+    <!-- SLIDE 2 : Agenda -->
+    <div class="slide">
+        <h3>Au programme</h3>
+        <h2>Ce qu'on va voir ensemble</h2>
+        <ul class="checklist">
+            <li><strong>Le programme V3</strong> — refonte complète des Niveaux 0 à 3</li>
+            <li><strong>Le système de niveaux</strong> — vous savez exactement où vous en êtes</li>
+            <li><strong>Le nouveau planning d'appels</strong> — plus d'appels, mieux ciblés</li>
+            <li><strong>Accès par niveaux</strong> — chaque niveau débloque des appels spécifiques</li>
+            <li><strong>Le Niveau 4</strong> — pour ceux qui veulent aller plus loin</li>
+        </ul>
+    </div>
+
+    <!-- SLIDE 3 : Section divider - Programme V3 -->
+    <div class="slide section-divider">
+        <div class="section-number">01</div>
+        <h2>Le programme V3</h2>
+        <div class="subtitle">Tout a été revu, restructuré, amélioré</div>
+    </div>
+
+    <!-- SLIDE 4 : Programme V3 détails -->
+    <div class="slide">
+        <h3>Programme V3</h3>
+        <h2>Ce qui a changé</h2>
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-value">100+</div>
+                <div class="stat-label">vidéos analysées et réorganisées</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">3</div>
+                <div class="stat-label">niveaux restructurés de fond en comble</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">10+</div>
+                <div class="stat-label">nouveaux modules ajoutés</div>
+            </div>
+        </div>
+        <ul class="checklist" style="margin-top: 30px;">
+            <li><strong>Niveau 1</strong> — nouvel arbre diagnostique interactif pour trouver ton créateur</li>
+            <li><strong>Niveau 3</strong> — pub avancée, closing avec des replays d'appels réels, relation créateur</li>
+            <li>Chaque module revu pour être <strong>plus court, plus actionnable, plus clair</strong></li>
+        </ul>
+    </div>
+
+    <!-- SLIDE 5 : Section divider - Niveaux -->
+    <div class="slide section-divider">
+        <div class="section-number">02</div>
+        <h2>Le système de niveaux</h2>
+        <div class="subtitle">Une roadmap claire de N0 à N4</div>
+    </div>
+
+    <!-- SLIDE 6 : Les 5 niveaux -->
+    <div class="slide">
+        <h3>Progression</h3>
+        <h2>5 niveaux, un chemin clair</h2>
+        <div class="niveaux-grid">
+            <div class="niveau-card n0">
+                <div class="n-number">N0</div>
+                <div class="n-title">Démarrage</div>
+                <div class="n-desc">Tu viens d'arriver.<br>Tu apprends les bases.</div>
+            </div>
+            <div class="niveau-card n1">
+                <div class="n-number">N1</div>
+                <div class="n-title">Prospection</div>
+                <div class="n-desc">Tu cherches et tu signes ton créateur.</div>
+            </div>
+            <div class="niveau-card n2">
+                <div class="n-number">N2</div>
+                <div class="n-title">Lancement</div>
+                <div class="n-desc">Tu lances ton créateur et tu génères tes premières ventes.</div>
+            </div>
+            <div class="niveau-card n3">
+                <div class="n-number">N3</div>
+                <div class="n-title">Scale</div>
+                <div class="n-desc">Tu scales avec les pubs, le copy et une équipe.</div>
+            </div>
+            <div class="niveau-card n4">
+                <div class="n-number">N4</div>
+                <div class="n-title">VSL System</div>
+                <div class="n-desc">Tu passes au tunnel VSL pour exploser tes résultats.</div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 30px; color: rgba(255,255,255,0.4); font-size: 0.95rem;">
+            Tu sais toujours exactement où tu en es et ce que tu dois faire ensuite.
+        </div>
+    </div>
+
+    <!-- SLIDE 7 : Section divider - Appels -->
+    <div class="slide section-divider">
+        <div class="section-number">03</div>
+        <h2>Le nouveau planning d'appels</h2>
+        <div class="subtitle">Plus d'appels, mieux organisés</div>
+    </div>
+
+    <!-- SLIDE 8 : Avant / Après -->
+    <div class="slide">
+        <h3>Appels de groupe</h3>
+        <h2>Avant vs Maintenant</h2>
+        <div class="comparison">
+            <div class="comparison-col col-before">
+                <h4>Avant</h4>
+                <div class="number">6</div>
+                <div class="label">appels par semaine</div>
+                <ul class="checklist" style="margin-top: 20px;">
+                    <li style="font-size: 1rem; padding: 8px 0 8px 28px; border: none;">Tout le monde avait accès à tout</li>
+                    <li style="font-size: 1rem; padding: 8px 0 8px 28px; border: none;">Pas toujours pertinent pour ton niveau</li>
+                </ul>
+            </div>
+            <div class="comparison-col col-after">
+                <h4>Maintenant</h4>
+                <div class="number">7</div>
+                <div class="label">appels par semaine</div>
+                <ul class="checklist" style="margin-top: 20px;">
+                    <li style="font-size: 1rem; padding: 8px 0 8px 28px; border: none;"><strong>Accès par niveaux</strong> — tu vois que ce qui te concerne</li>
+                    <li style="font-size: 1rem; padding: 8px 0 8px 28px; border: none;"><strong>Setting Instagram</strong> ajouté <span class="new-tag" style="display:inline-block;background:rgba(34,197,94,0.15);color:#22c55e;font-size:0.65rem;font-weight:700;padding:2px 6px;border-radius:4px;text-transform:uppercase;letter-spacing:1px;margin-left:4px;">nouveau</span></li>
+                    <li style="font-size: 1rem; padding: 8px 0 8px 28px; border: none;"><strong>2 bienvenues/semaine</strong> — groupes plus petits, plus de place pour tes questions</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 9 : Planning complet -->
+    <div class="slide">
+        <h3>Planning</h3>
+        <h2>Les 7 appels de la semaine</h2>
+        <table class="schedule-table">
+            <thead>
+                <tr>
+                    <th>Jour</th>
+                    <th>Heure</th>
+                    <th>Appel</th>
+                    <th>Accès</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Lundi</td>
+                    <td>18h</td>
+                    <td>Bienvenue</td>
+                    <td><span class="level-badge level-all">Nouveaux</span></td>
+                </tr>
+                <tr>
+                    <td>Lundi</td>
+                    <td>19h</td>
+                    <td>Copywriting</td>
+                    <td><span class="level-badge level-23">N2 — N3</span></td>
+                </tr>
+                <tr class="new-row">
+                    <td>Mardi</td>
+                    <td>18h</td>
+                    <td>Setting Instagram <span class="new-tag">nouveau</span></td>
+                    <td><span class="level-badge level-23">N2 — N3</span></td>
+                </tr>
+                <tr>
+                    <td>Mercredi</td>
+                    <td>18h</td>
+                    <td>Prospection</td>
+                    <td><span class="level-badge level-01">N0 — N1</span></td>
+                </tr>
+                <tr>
+                    <td>Jeudi</td>
+                    <td>18h</td>
+                    <td>Bienvenue + Vente</td>
+                    <td><span class="level-badge level-all">Nouveaux</span> <span class="level-badge level-12">N1 — N2</span></td>
+                </tr>
+                <tr>
+                    <td>Samedi</td>
+                    <td>12h</td>
+                    <td>Systèmes</td>
+                    <td><span class="level-badge level-23">N2 — N3</span></td>
+                </tr>
+                <tr>
+                    <td>Dimanche</td>
+                    <td>15h</td>
+                    <td>Q&A avec Mathéo</td>
+                    <td><span class="level-badge level-all">Tous</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- SLIDE 10 : Accès par niveaux -->
+    <div class="slide">
+        <h3>Accès</h3>
+        <h2>Qui a accès à quoi ?</h2>
+        <table class="access-matrix">
+            <thead>
+                <tr>
+                    <th style="width: 30%;">Appel</th>
+                    <th>N0</th>
+                    <th>N1</th>
+                    <th>N2</th>
+                    <th>N3</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Bienvenue</td>
+                    <td class="check">✓</td>
+                    <td class="check">✓</td>
+                    <td class="check">✓</td>
+                    <td class="check">✓</td>
+                </tr>
+                <tr>
+                    <td>Prospection</td>
+                    <td class="check">✓</td>
+                    <td class="check">✓</td>
+                    <td class="cross">—</td>
+                    <td class="cross">—</td>
+                </tr>
+                <tr>
+                    <td>Vente</td>
+                    <td class="cross">—</td>
+                    <td class="check">✓</td>
+                    <td class="check">✓</td>
+                    <td class="cross">—</td>
+                </tr>
+                <tr>
+                    <td>Copywriting</td>
+                    <td class="cross">—</td>
+                    <td class="cross">—</td>
+                    <td class="check">✓</td>
+                    <td class="check">✓</td>
+                </tr>
+                <tr>
+                    <td>Setting Instagram</td>
+                    <td class="cross">—</td>
+                    <td class="cross">—</td>
+                    <td class="check">✓</td>
+                    <td class="check">✓</td>
+                </tr>
+                <tr>
+                    <td>Systèmes</td>
+                    <td class="cross">—</td>
+                    <td class="cross">—</td>
+                    <td class="check">✓</td>
+                    <td class="check">✓</td>
+                </tr>
+                <tr>
+                    <td>Q&A avec Mathéo</td>
+                    <td class="check">✓</td>
+                    <td class="check">✓</td>
+                    <td class="check">✓</td>
+                    <td class="check">✓</td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="text-align: center; margin-top: 24px; color: rgba(255,255,255,0.35); font-size: 0.9rem;">
+            Tu ne vois que les appels qui correspondent à ton niveau. Pas de bruit, que du pertinent.
+        </div>
+    </div>
+
+    <!-- SLIDE 11 : Section divider - Niveau 4 -->
+    <div class="slide section-divider">
+        <div class="section-number">04</div>
+        <h2>Le Niveau 4</h2>
+        <div class="subtitle">Pour ceux qui veulent passer au niveau supérieur</div>
+    </div>
+
+    <!-- SLIDE 12 : Niveau 4 teaser -->
+    <div class="slide big-message">
+        <div class="teaser-box">
+            <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: rgba(234, 179, 8, 0.6); font-weight: 600; margin-bottom: 16px;">Niveau 4</div>
+            <h2>VSL System</h2>
+            <p>
+                Tu fais déjà 5 000€/mois+ en tant qu'opérateur ?<br>
+                Le Niveau 4 est fait pour toi.<br><br>
+                C'est le programme pour passer de 10K à 30K€/mois<br>avec un tunnel qui tourne en automatique.
+            </p>
+            <div class="cta">Book un appel pour en savoir plus</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 13 : Récap -->
+    <div class="slide">
+        <h3>Récap</h3>
+        <h2>Ce qui change aujourd'hui</h2>
+        <ul class="checklist">
+            <li><strong>Programme V3</strong> — tout a été restructuré, 10+ nouveaux modules, plus actionnable</li>
+            <li><strong>Niveaux</strong> — tu sais exactement où tu en es (N0 à N4)</li>
+            <li><strong>7 appels/semaine</strong> — un de plus, dont le nouveau Setting Instagram</li>
+            <li><strong>Accès par niveaux</strong> — tu vois que les appels pertinents pour toi</li>
+            <li><strong>Niveau 4 — VSL System</strong> — pour ceux qui sont prêts à passer à l'étape d'après</li>
+        </ul>
+    </div>
+
+    <!-- SLIDE 14 : Closing -->
+    <div class="slide title-slide">
+        <h1>Des questions ?</h1>
+        <div class="subtitle" style="margin-top: 16px;">C'est le moment de les poser</div>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const counter = document.getElementById('slideCounter');
+        const progressBar = document.getElementById('progressBar');
+        let current = 0;
+
+        function updateSlide() {
+            slides.forEach((s, i) => s.classList.toggle('active', i === current));
+            counter.textContent = `${current + 1} / ${slides.length}`;
+            progressBar.style.width = `${((current + 1) / slides.length) * 100}%`;
+        }
+
+        function next() { if (current < slides.length - 1) { current++; updateSlide(); } }
+        function prev() { if (current > 0) { current--; updateSlide(); } }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); next(); }
+            if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (e.clientX > window.innerWidth / 2) next();
+            else prev();
+        });
+
+        updateSlide();
+    </script>
+
+</body>
+</html>
