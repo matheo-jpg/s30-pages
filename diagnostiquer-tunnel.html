@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnostiquer ton tunnel — VSL System</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+            padding: 60px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #888;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .disclaimer {
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 20px 28px;
+            background: #111;
+        }
+
+        .disclaimer strong {
+            color: #aaa;
+        }
+
+        /* ANALOGY BANNER */
+        .analogy {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 32px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #0d1b2a 0%, #1b2838 100%);
+            border: 1px solid #1e3a5f40;
+        }
+
+        .analogy-icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+
+        .analogy p {
+            color: #8ab4f8;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* ALERT CARDS */
+        .alert-card {
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .alert-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+        }
+
+        /* Color coding by severity position in funnel */
+        .alert-cpc { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border: 1px solid #2a3a5e; }
+        .alert-cpc::before { background: #7b9ff0; }
+        .alert-cpc .alert-threshold { color: #7b9ff0; }
+
+        .alert-cpl { background: linear-gradient(135deg, #1a1a2e 0%, #1a2840 100%); border: 1px solid #2a4a6e; }
+        .alert-cpl::before { background: #5ba0d9; }
+        .alert-cpl .alert-threshold { color: #5ba0d9; }
+
+        .alert-cpcall { background: linear-gradient(135deg, #1a1a0e 0%, #2d2006 100%); border: 1px solid #f0b42930; }
+        .alert-cpcall::before { background: #f0b429; }
+        .alert-cpcall .alert-threshold { color: #f0b429; }
+
+        .alert-cpcall-cancel { background: linear-gradient(135deg, #1a1508 0%, #2d1a06 100%); border: 1px solid #e8872030; }
+        .alert-cpcall-cancel::before { background: #e88720; }
+        .alert-cpcall-cancel .alert-threshold { color: #e88720; }
+
+        .alert-showup { background: linear-gradient(135deg, #1a0f0a 0%, #2d1206 100%); border: 1px solid #f0652930; }
+        .alert-showup::before { background: #f06529; }
+        .alert-showup .alert-threshold { color: #f06529; }
+
+        .alert-cpa { background: linear-gradient(135deg, #1a0a0a 0%, #2d0f06 100%); border: 1px solid #e53e3e30; }
+        .alert-cpa::before { background: #e53e3e; }
+        .alert-cpa .alert-threshold { color: #e53e3e; }
+
+        .alert-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+            background: rgba(255,255,255,0.06);
+            color: #888;
+        }
+
+        .alert-threshold {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .alert-section-title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #555;
+            margin-bottom: 10px;
+            margin-top: 20px;
+        }
+
+        .alert-causes {
+            list-style: none;
+            margin-bottom: 8px;
+        }
+
+        .alert-causes li {
+            color: #ccc;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 4px;
+        }
+
+        .alert-causes li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #444;
+        }
+
+        .alert-actions {
+            list-style: none;
+        }
+
+        .alert-actions li {
+            color: #fff;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            padding-left: 28px;
+            position: relative;
+            margin-bottom: 6px;
+        }
+
+        .alert-actions li::before {
+            content: attr(data-num);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            font-size: 0.7rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+        }
+
+        .niche-note {
+            margin-top: 16px;
+            padding: 14px 18px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid #ffffff10;
+            color: #888;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 32px;
+            border-radius: 16px;
+            background: #111;
+            border: 1px solid #222;
+        }
+
+        .footer p {
+            color: #888;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .footer strong {
+            color: #fff;
+        }
+
+        /* FUNNEL FLOW */
+        .funnel-flow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+
+        .funnel-step {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            background: #1a1a2e;
+            border: 1px solid #2a3a5e;
+            color: #7b9ff0;
+        }
+
+        .funnel-arrow {
+            color: #333;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .alert-card { padding: 28px 24px; }
+            .alert-threshold { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Diagnostiquer ton tunnel</h1>
+        <p class="subtitle">Pilote ton business avec les datas, pas avec les emotions.</p>
+
+        <div class="analogy">
+            <div class="analogy-icon">🩸</div>
+            <p>Ton tunnel, c'est comme un organisme vivant. Chaque metrique est une valeur sanguine.<br>
+            Si c'est dans les clous, c'est bon. Si c'est en dehors, il y a un probleme a identifier.</p>
+        </div>
+
+        <div class="disclaimer">
+            <strong>Important :</strong> Les chiffres rentrent dans une analyse complete. Selon la niche de ton createur, le prix de l'offre et le marche, tu peux etre en dehors des KPIs standards. Un createur perte de poids mass market a 5€/lead, un createur B2B premium a 20€/lead, les deux sont normaux. <strong>Regarde le tout dans son ensemble, pas une metrique isolee.</strong>
+        </div>
+
+        <div class="funnel-flow">
+            <span class="funnel-step">Pub Meta</span>
+            <span class="funnel-arrow">→</span>
+            <span class="funnel-step">Page capture</span>
+            <span class="funnel-arrow">→</span>
+            <span class="funnel-step">VSL</span>
+            <span class="funnel-arrow">→</span>
+            <span class="funnel-step">iClosed</span>
+            <span class="funnel-arrow">→</span>
+            <span class="funnel-step">Calendrier</span>
+            <span class="funnel-arrow">→</span>
+            <span class="funnel-step">Call</span>
+        </div>
+
+        <!-- CPC -->
+        <div class="alert-card alert-cpc">
+            <span class="alert-badge">Pub Meta</span>
+            <div class="alert-threshold">CPC > 2-3€</div>
+            <div class="alert-section-title">Causes possibles</div>
+            <ul class="alert-causes">
+                <li>Hook pas assez captivant dans ta pub</li>
+                <li>Mauvaise promesse</li>
+                <li>CTA trop tard dans la video</li>
+            </ul>
+            <div class="alert-section-title">Actions</div>
+            <ul class="alert-actions">
+                <li data-num="1">Ameliorer ton hook en priorite</li>
+                <li data-num="2">Revoir la promesse de ta pub</li>
+                <li data-num="3">Avancer le CTA dans les premieres secondes</li>
+            </ul>
+        </div>
+
+        <!-- CPL -->
+        <div class="alert-card alert-cpl">
+            <span class="alert-badge">Page de capture</span>
+            <div class="alert-threshold">CPL > 15-20€ (mass market)</div>
+            <ul class="alert-causes">
+                <li>L'audience est trop large</li>
+                <li>Ou alors beaucoup trop precise</li>
+                <li>La page de capture ne convertit pas assez bien (vise 10-15% avec le numero de telephone)</li>
+            </ul>
+            <div class="alert-section-title">Actions</div>
+            <ul class="alert-actions">
+                <li data-num="1">Optimise ta page de capture</li>
+                <li data-num="2">Teste une autre audience</li>
+            </ul>
+            <div class="niche-note">
+                Le CPL depend fortement de la niche. Perte de poids mass market = ~5€. B2B premium = ~20€. Les deux sont normaux. Regarde ton CPA global, pas ton CPL isole.
+            </div>
+        </div>
+
+        <!-- Cost per call -->
+        <div class="alert-card alert-cpcall">
+            <span class="alert-badge">VSL + Formulaire</span>
+            <div class="alert-threshold">Cout par call > 150€</div>
+            <ul class="alert-causes">
+                <li>VSL ne convertit pas : mauvais message</li>
+                <li>VSL potentiellement trop longue, personne ne va au bout</li>
+                <li>Le formulaire disqualifie trop</li>
+                <li>Les leads entrants ne sont pas adaptes au message</li>
+            </ul>
+            <div class="alert-section-title">Actions</div>
+            <ul class="alert-actions">
+                <li data-num="1">Bien comprendre ton avatar</li>
+                <li data-num="2">Rediger le script comme si tu parlais a ton avatar (sois precis)</li>
+                <li data-num="3">Revoir les questions du formulaire pour ne pas trop disqualifier</li>
+            </ul>
+        </div>
+
+        <!-- Cost per call after cancellation -->
+        <div class="alert-card alert-cpcall-cancel">
+            <span class="alert-badge">Closers + Formulaire</span>
+            <div class="alert-threshold">Cout par call apres annulation > 250€</div>
+            <ul class="alert-causes">
+                <li>Les closers disqualifient trop</li>
+                <li>Le formulaire disqualifie trop</li>
+            </ul>
+            <div class="alert-section-title">Actions</div>
+            <ul class="alert-actions">
+                <li data-num="1">Revoir avec tes closers pourquoi ils disqualifient autant</li>
+                <li data-num="2">Revoir les questions du formulaire pour ne pas trop disqualifier</li>
+            </ul>
+        </div>
+
+        <!-- Show-up rate -->
+        <div class="alert-card alert-showup">
+            <span class="alert-badge">Pre-call</span>
+            <div class="alert-threshold">Show-up rate &lt; 70%</div>
+            <ul class="alert-causes">
+                <li>La video sur la thank you page n'endoctrine pas le prospect</li>
+                <li>Mauvais reminders par email</li>
+                <li>Mauvais reminders par SMS</li>
+                <li>Disponibilite sur le calendrier depasse 4 jours</li>
+            </ul>
+            <div class="alert-section-title">Actions</div>
+            <ul class="alert-actions">
+                <li data-num="1">Creer une bonne video de bienvenue qui explique a quoi s'attendre lors de l'appel</li>
+                <li data-num="2">Ameliorer les emails de suivi</li>
+                <li data-num="3">Ameliorer les SMS de suivi</li>
+                <li data-num="4">Le closer pre-qualifie le prospect 24h avant l'appel</li>
+            </ul>
+        </div>
+
+        <!-- CPA -->
+        <div class="alert-card alert-cpa">
+            <span class="alert-badge">Closing</span>
+            <div class="alert-threshold">CPA > 1 500€</div>
+            <ul class="alert-causes">
+                <li>Ne vend pas assez cher</li>
+                <li>Mauvais closing</li>
+                <li>Tes appels sont beaucoup trop chers</li>
+            </ul>
+            <div class="alert-section-title">Actions</div>
+            <ul class="alert-actions">
+                <li data-num="1">Commencer par ameliorer ton taux de closing (minimum 20%)</li>
+                <li data-num="2">Augmenter ton prix</li>
+                <li data-num="3">Avoir un back-end (serie d'emails follow-up)</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <p><strong>Pense a bien remplir ton tracking quotidiennement.</strong><br>
+            Tu verras des tendances apparaitre et tu les comprendras de mieux en mieux avec le temps.<br><br>
+            Mets ce document dans ton dossier "frameworks" pour que Claude Code puisse diagnostiquer ton tunnel automatiquement.</p>
+        </div>
+    </div>
+</body>
+</html>
