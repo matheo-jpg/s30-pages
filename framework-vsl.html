@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Framework VSL — Les 16 Rouages</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0f;
+    color: #e0e0e0;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* HEADER */
+  .header {
+    text-align: center;
+    padding: 60px 20px 30px;
+    position: relative;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #f59e0b, transparent);
+  }
+  .header h1 {
+    font-size: 2.4rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #f59e0b, #f97316);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 12px;
+    letter-spacing: -1px;
+  }
+  .header p {
+    font-size: 1.05rem;
+    color: #888;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* MACHINE CONTAINER */
+  .machine {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+    position: relative;
+  }
+
+  /* PHASE LABELS */
+  .phase {
+    margin-bottom: 50px;
+  }
+  .phase-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+  .phase-intro .phase-label { background: rgba(59,130,246,0.15); color: #60a5fa; border: 1px solid rgba(59,130,246,0.3); }
+  .phase-corps .phase-label { background: rgba(168,85,247,0.15); color: #c084fc; border: 1px solid rgba(168,85,247,0.3); }
+  .phase-vente .phase-label { background: rgba(245,158,11,0.15); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); }
+
+  .phase-subtitle {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 20px;
+    padding-left: 4px;
+  }
+
+  /* GEAR GRID */
+  .gear-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+  }
+
+  /* INDIVIDUAL GEAR */
+  .gear {
+    position: relative;
+    background: #13131a;
+    border: 1px solid #1e1e2a;
+    border-radius: 16px;
+    padding: 20px 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+  .gear::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 16px 16px 0 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .gear:hover::before { opacity: 1; }
+  .gear:hover {
+    border-color: #2a2a3a;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  }
+
+  .phase-intro .gear::before { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+  .phase-corps .gear::before { background: linear-gradient(90deg, #a855f7, #c084fc); }
+  .phase-vente .gear::before { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+
+  .gear-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+  .phase-intro .gear-number { background: rgba(59,130,246,0.15); color: #60a5fa; }
+  .phase-corps .gear-number { background: rgba(168,85,247,0.15); color: #c084fc; }
+  .phase-vente .gear-number { background: rgba(245,158,11,0.15); color: #fbbf24; }
+
+  .gear-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #f0f0f0;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .gear-role {
+    font-size: 0.72rem;
+    color: #666;
+    line-height: 1.4;
+  }
+
+  .gear-tag {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 2px 8px;
+    border-radius: 8px;
+    font-size: 0.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .tag-optionnel { background: rgba(100,100,100,0.2); color: #888; }
+
+  /* COG ICON */
+  .cog-icon {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 20px;
+    height: 20px;
+    opacity: 0.12;
+    transition: all 0.5s ease;
+  }
+  .gear:hover .cog-icon {
+    opacity: 0.3;
+    animation: spin 3s linear infinite;
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* CONNECTORS */
+  .connectors {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    padding: 10px 0;
+  }
+  .connector-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #2a2a3a;
+  }
+
+  /* BREAK SIMULATION */
+  .break-section {
+    max-width: 1100px;
+    margin: 60px auto 40px;
+    padding: 0 20px;
+  }
+  .break-box {
+    background: linear-gradient(135deg, rgba(239,68,68,0.08), rgba(239,68,68,0.02));
+    border: 1px solid rgba(239,68,68,0.2);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+  }
+  .break-box h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #ef4444;
+    margin-bottom: 12px;
+  }
+  .break-box p {
+    color: #999;
+    font-size: 0.95rem;
+    max-width: 600px;
+    margin: 0 auto 24px;
+    line-height: 1.6;
+  }
+
+  /* TOGGLE BUTTONS */
+  .toggle-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  .toggle-btn {
+    padding: 8px 14px;
+    border-radius: 10px;
+    border: 1px solid #2a2a3a;
+    background: #13131a;
+    color: #ccc;
+    font-size: 0.72rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Inter', sans-serif;
+  }
+  .toggle-btn:hover {
+    border-color: #ef4444;
+    color: #ef4444;
+  }
+  .toggle-btn.broken {
+    background: rgba(239,68,68,0.15);
+    border-color: #ef4444;
+    color: #ef4444;
+    text-decoration: line-through;
+  }
+
+  /* CHAIN VISUAL */
+  .chain-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0;
+    margin: 30px auto 16px;
+    max-width: 900px;
+  }
+  .chain-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 0.7rem;
+    font-weight: 800;
+    transition: all 0.4s ease;
+    position: relative;
+  }
+  .chain-link.intro { background: rgba(59,130,246,0.2); color: #60a5fa; }
+  .chain-link.corps { background: rgba(168,85,247,0.2); color: #c084fc; }
+  .chain-link.vente { background: rgba(245,158,11,0.2); color: #fbbf24; }
+
+  .chain-link.broken-link {
+    background: rgba(239,68,68,0.3) !important;
+    color: #ef4444 !important;
+    animation: shake 0.5s ease;
+    transform: scale(0.7);
+    opacity: 0.4;
+  }
+  @keyframes shake {
+    0%, 100% { transform: scale(0.7) rotate(0deg); }
+    25% { transform: scale(0.7) rotate(-5deg); }
+    75% { transform: scale(0.7) rotate(5deg); }
+  }
+
+  .chain-connector {
+    width: 16px;
+    height: 2px;
+    background: #2a2a3a;
+    transition: all 0.4s;
+  }
+  .chain-connector.broken-connector {
+    background: #ef4444;
+    height: 2px;
+    opacity: 0.3;
+    width: 16px;
+    background: repeating-linear-gradient(90deg, #ef4444 0px, #ef4444 3px, transparent 3px, transparent 6px);
+  }
+
+  .chain-status {
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    min-height: 24px;
+    transition: all 0.3s;
+  }
+  .chain-status.ok { color: #22c55e; }
+  .chain-status.broken-status { color: #ef4444; }
+
+  /* DETAIL MODAL */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal {
+    background: #13131a;
+    border: 1px solid #2a2a3a;
+    border-radius: 20px;
+    max-width: 560px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 36px;
+    position: relative;
+  }
+  .modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .modal-close:hover { color: #fff; }
+  .modal h3 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+  .modal .modal-num {
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 8px;
+  }
+  .modal .modal-num.intro { background: rgba(59,130,246,0.15); color: #60a5fa; }
+  .modal .modal-num.corps { background: rgba(168,85,247,0.15); color: #c084fc; }
+  .modal .modal-num.vente { background: rgba(245,158,11,0.15); color: #fbbf24; }
+  .modal p, .modal li {
+    font-size: 0.88rem;
+    color: #aaa;
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .modal ul { padding-left: 18px; }
+  .modal .rule {
+    background: rgba(239,68,68,0.08);
+    border-left: 3px solid #ef4444;
+    padding: 10px 14px;
+    border-radius: 0 10px 10px 0;
+    margin: 14px 0;
+    font-size: 0.82rem;
+    color: #ef4444;
+  }
+  .modal .tip {
+    background: rgba(34,197,94,0.08);
+    border-left: 3px solid #22c55e;
+    padding: 10px 14px;
+    border-radius: 0 10px 10px 0;
+    margin: 14px 0;
+    font-size: 0.82rem;
+    color: #22c55e;
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: #444;
+    font-size: 0.75rem;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .header h1 { font-size: 1.6rem; }
+    .gear-grid { grid-template-columns: repeat(2, 1fr); }
+    .chain-link { width: 32px; height: 32px; font-size: 0.6rem; }
+    .chain-connector { width: 8px; }
+    .break-box { padding: 24px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Les 16 Rouages d'une VSL</h1>
+  <p>Chaque section est un rouage. Ils s'emboitent les uns dans les autres. Si un seul manque ou est mal place, toute la machine s'arrete.</p>
+</div>
+
+<!-- INTRODUCTION -->
+<div class="machine">
+  <div class="phase phase-intro">
+    <div class="phase-label">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      Introduction
+    </div>
+    <div class="phase-subtitle">400-700 mots max — 2-3 minutes. Si c'est plus long, le prospect decroche.</div>
+    <div class="gear-grid">
+
+      <div class="gear" onclick="openModal(0)">
+        <svg class="cog-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64L19.43 12.97Z"/></svg>
+        <div class="gear-number">1</div>
+        <div class="gear-title">Hook</div>
+        <div class="gear-role">Capter l'attention en 3-5 secondes</div>
+      </div>
+
+      <div class="gear" onclick="openModal(1)">
+        <svg class="cog-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64L19.43 12.97Z"/></svg>
+        <div class="gear-number">2</div>
+        <div class="gear-title">Agitation</div>
+        <div class="gear-role">Appuyer sur la douleur du prospect</div>
+      </div>
+
+      <div class="gear" onclick="openModal(2)">
+        <svg class="cog-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64L19.43 12.97Z"/></svg>
+        <div class="gear-number">3</div>
+        <div class="gear-title">Shift</div>
+        <div class="gear-role">Transition vers l'espoir</div>
+      </div>
+
+      <div class="gear" onclick="openModal(3)">
+        <svg class="cog-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64L19.43 12.97Z"/></svg>
+        <div class="gear-number">4</div>
+        <div class="gear-title">Promesse</div>
+        <div class="gear-role">Big Idea + tease du mecanisme</div>
+      </div>
+
+      <div class="gear" onclick="openModal(4)">
+        <svg class="cog-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64L19.43 12.97Z"/></svg>
+        <div class="gear-number">5</div>
+        <div class="gear-title">Bullet Points</div>
+        <div class="gear-role">Curiosite sans donner la reponse</div>
+      </div>
+
+      <div class="gear" onclick="openModal(5)">
+        <svg class="cog-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64L19.43 12.97Z"/></svg>
+        <div class="gear-number">6</div>
+        <div class="gear-title">Credibilite</div>
+        <div class="gear-role">1-3 lignes max. Pas de CV.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="connectors"><div class="connector-dot"></div><div class="connector-dot"></div><div class="connector-dot"></div></div>
+
+  <!-- CORPS -->
+  <div class="phase phase-corps">
+    <div class="phase-label">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      Corps — Argumentaire
+    </div>
+    <div class="phase-subtitle">Le coeur de la VSL. C'est ici que la conviction se construit.</div>
+    <div class="gear-grid">
+
+      <div class="gear" onclick="openModal(6)">
+        <svg class="cog-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64L19.43 12.97Z"/></svg>
+        <div class="gear-number">7</div>
+        <div class="gear-title">Storytelling</div>
+        <div class="gear-role">Emotion et confiance par la narration</div>
+        <span class="gear-tag tag-optionnel">optionnel</span>
+      </div>
+
+      <div class="gear" onclick="openModal(7)">
+        <svg class="cog-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64L19.43 12.97Z"/></svg>
+        <div class="gear-number">8</div>
+        <div class="gear-title">MUP</div>
+        <div class="gear-role">Pourquoi tout ce qu'il a essaye a echoue</div>
+      </div>
+
+      <div class="gear" onclick="openModal(8)">
+        <svg class="cog-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64L19.43 12.97Z"/></svg>
+        <div class="gear-number">9</div>
+        <div class="gear-title">MUS</div>
+        <div class="gear-role">La solution unique et differente</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="connectors"><div class="connector-dot"></div><div class="connector-dot"></div><div class="connector-dot"></div></div>
+
+  <!-- VENTE -->
+  <div class="phase phase-vente">
+    <div class="phase-label">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      Vente — Conversion
+    </div>
+    <div class="phase-subtitle">Le prospect est convaincu. Il faut maintenant le faire passer a l'action.</div>
+    <div class="gear-grid">
+
+      <div class="gear" onclick="openModal(9)">
+        <svg class="cog-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64L19.43 12.97Z"/></svg>
+        <div class="gear-number">10</div>
+        <div class="gear-title">Transition</div>
+        <div class="gear-role">Pont naturel vers l'offre</div>
+      </div>
+
+      <div class="gear" onclick="openModal(10)">
+        <svg class="cog-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64L19.43 12.97Z"/></svg>
+        <div class="gear-number">11</div>
+        <div class="gear-title">Offre + CTA</div>
+        <div class="gear-role">Benefices, pas features</div>
+      </div>
+
+      <div class="gear" onclick="openModal(11)">
+        <svg class="cog-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64L19.43 12.97Z"/></svg>
+        <div class="gear-number">12</div>
+        <div class="gear-title">Temoignages</div>
+        <div class="gear-role">Preuves sociales apres l'offre</div>
+      </div>
+
+      <div class="gear" onclick="openModal(12)">
+        <svg class="cog-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64L19.43 12.97Z"/></svg>
+        <div class="gear-number">13</div>
+        <div class="gear-title">Future Pacing</div>
+        <div class="gear-role">Projeter le prospect dans sa vie transformee</div>
+      </div>
+
+      <div class="gear" onclick="openModal(13)">
+        <svg class="cog-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64L19.43 12.97Z"/></svg>
+        <div class="gear-number">14</div>
+        <div class="gear-title">3 Choix</div>
+        <div class="gear-role">Les 3 options du prospect</div>
+        <span class="gear-tag tag-optionnel">optionnel</span>
+      </div>
+
+      <div class="gear" onclick="openModal(14)">
+        <svg class="cog-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64L19.43 12.97Z"/></svg>
+        <div class="gear-number">15</div>
+        <div class="gear-title">Urgence</div>
+        <div class="gear-role">Cout de l'inaction</div>
+      </div>
+
+      <div class="gear" onclick="openModal(15)">
+        <svg class="cog-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64L19.43 12.97Z"/></svg>
+        <div class="gear-number">16</div>
+        <div class="gear-title">CTA Final</div>
+        <div class="gear-role">Dernier appel a l'action</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- BREAK SIMULATION -->
+<div class="break-section">
+  <div class="break-box">
+    <h2>Retire un rouage, la machine casse</h2>
+    <p>Clique sur un rouage pour le retirer. Regarde ce qui arrive a la chaine.</p>
+
+    <div class="chain-visual" id="chainVisual"></div>
+    <div class="chain-status ok" id="chainStatus">Tous les rouages tournent. La machine convertit.</div>
+
+    <div class="toggle-grid" id="toggleGrid"></div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modalContent">
+    <button class="modal-close" onclick="closeModal(event, true)">&times;</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<div class="footer">Framework VSL — VSL System by Strategie 30%</div>
+
+<script>
+const sections = [
+  { num: 1, title: "Hook", phase: "intro", detail: `<p>C'est la premiere phrase que ton prospect entend. Tu as <strong>3-5 secondes</strong> pour capter son attention.</p><div class="rule">Ne PAS pointer du doigt le prospect. "Tu n'arrives pas a..." le met sur la defensive.</div><div class="tip">Prefere une statistique choc ou une declaration contre-intuitive qui parle au general.</div>` },
+  { num: 2, title: "Agitation", phase: "intro", detail: `<p>Tu appuies sur la douleur. Tu decris la situation actuelle du prospect avec <strong>precision</strong>.</p><p>Plus c'est precis, plus il se dit "c'est exactement moi".</p><div class="tip">3-5 phrases qui tapent juste. Pas besoin de 10 paragraphes.</div>` },
+  { num: 3, title: "Shift", phase: "intro", detail: `<p>Transition de la douleur vers l'espoir. Tu passes de "voila ton probleme" a "mais il y a une solution".</p><div class="tip">C'est une transition courte, pas une section longue. 1-2 phrases suffisent.</div>` },
+  { num: 4, title: "Promesse", phase: "intro", detail: `<p>Tu annonces ce que le prospect va decouvrir. C'est ici que tu places ta <strong>Big Idea</strong>.</p><p>"Dans les prochaines minutes, tu vas decouvrir [Big Idea] qui a permis a [resultat concret]."</p><div class="rule">Ne dis jamais "je vais te vendre un programme".</div>` },
+  { num: 5, title: "Bullet Points", phase: "intro", detail: `<p>3 a 5 bullets qui piquent la curiosite <strong>sans donner la reponse</strong>.</p><div class="tip">Bon : "Pourquoi les squats lourds detruisent ta detente verticale"</div><div class="rule">Mauvais : "Tu vas apprendre des exercices de pliometrie" (donne la reponse = plus de raison de rester)</div>` },
+  { num: 6, title: "Credibilite", phase: "intro", detail: `<p><strong>1 a 3 lignes maximum.</strong> Juste assez pour que le prospect se dise "ok, cette personne sait de quoi elle parle".</p><div class="rule">Pas de liste de diplomes. Pas de CV. Pas de biographie depuis l'enfance.</div><div class="tip">"Coach sportif depuis 12 ans, il a accompagne plus de 300 athletes dont 15 joueurs pros."</div>` },
+  { num: 7, title: "Storytelling", phase: "corps", detail: `<p>Si ton createur a une histoire forte, c'est ici. Le storytelling cree de l'emotion et de la confiance.</p><p>L'histoire doit servir le <strong>prospect</strong>, pas flatter l'ego du createur.</p><div class="rule">Si l'histoire est faible, ne la mets pas. Un storytelling ennuyeux tue la conversion.</div><div class="tip">Scenes narratives : "Il etait 3h du matin..." est 10x plus puissant que "J'ai eu une periode difficile".</div>` },
+  { num: 8, title: "MUP", phase: "corps", detail: `<p>Le <strong>Mecanisme Unique du Probleme</strong>. Tu expliques pourquoi tout ce que le prospect a essaye avant n'a pas fonctionne.</p><p>Le MUP doit avoir un <strong>nom</strong>. Le prospect doit avoir un moment "aha".</p><div class="tip">C'est la section qui cree le plus de confiance : "Cette personne comprend mon probleme mieux que moi-meme."</div>` },
+  { num: 9, title: "MUS", phase: "corps", detail: `<p>Le <strong>Mecanisme Unique de la Solution</strong>. Comment ca fonctionne, pourquoi c'est different, pourquoi ca marche.</p><div class="rule">Ne revele pas tout. Le prospect doit comprendre la logique mais vouloir en savoir plus.</div><div class="tip">Utilise le nom que tu as donne a ton mecanisme pour le rendre memorable.</div>` },
+  { num: 10, title: "Transition", phase: "vente", detail: `<p>Une phrase simple qui fait le pont : "Et c'est exactement ce que tu vas decouvrir dans [nom du programme]."</p><div class="tip">Le prospect est deja convaincu. La transition doit etre naturelle, pas forcee.</div>` },
+  { num: 11, title: "Offre + CTA", phase: "vente", detail: `<p>Tu presentes le programme. Chaque element = un <strong>benefice</strong>, pas une feature.</p><div class="rule">Mauvais : "Tu recois 12 modules video."</div><div class="tip">Bon : "Tu recois le systeme complet en 12 etapes pour [resultat] en [delai]."</div><p>Le CTA doit etre clair et direct.</p>` },
+  { num: 12, title: "Temoignages", phase: "vente", detail: `<p>Les gros temoignages dedies vont <strong>APRES</strong> l'offre. Ils confirment que ca fonctionne.</p><div class="tip">Les petits temoignages (une phrase, une stat client) peuvent etre glisses partout dans la VSL pour appuyer un argument.</div><p>Choisis des temoignages qui refletent l'avatar cible.</p>` },
+  { num: 13, title: "Future Pacing", phase: "vente", detail: `<p>Tu projettes le prospect dans sa vie future. "Imagine dans 60 jours..."</p><div class="rule">JAMAIS dans l'introduction. C'est trop tot, le prospect ne te fait pas encore confiance.</div><div class="tip">Le future pacing active l'emotion. Le prospect ne veut plus revenir a sa situation actuelle.</div>` },
+  { num: 14, title: "3 Choix", phase: "vente", detail: `<p>Les 3 options : ne rien faire, essayer seul, ou suivre la methode du createur.</p><div class="tip">Technique classique qui fonctionne bien, mais optionnelle si la VSL est deja longue.</div>` },
+  { num: 15, title: "Urgence", phase: "vente", detail: `<p>Rappeler le cout de ne PAS agir. "Chaque semaine qui passe sans corriger [probleme], c'est [consequence]."</p><div class="rule">L'urgence doit etre VRAIE. Pas de fausse rarete ou de compte a rebours bidon.</div>` },
+  { num: 16, title: "CTA Final", phase: "vente", detail: `<p>Dernier appel a l'action. <strong>Clair, simple, direct.</strong></p><div class="tip">Repete le benefice principal et dis au prospect exactement quoi faire.</div>` }
+];
+
+const brokenSet = new Set();
+
+function buildChain() {
+  const chain = document.getElementById('chainVisual');
+  chain.innerHTML = '';
+  for (let i = 0; i < sections.length; i++) {
+    const link = document.createElement('div');
+    link.className = `chain-link ${sections[i].phase}`;
+    if (brokenSet.has(i)) link.classList.add('broken-link');
+    link.textContent = sections[i].num;
+    chain.appendChild(link);
+    if (i < sections.length - 1) {
+      const conn = document.createElement('div');
+      conn.className = 'chain-connector';
+      if (brokenSet.has(i) || brokenSet.has(i + 1)) conn.classList.add('broken-connector');
+      chain.appendChild(conn);
+    }
+  }
+  const status = document.getElementById('chainStatus');
+  if (brokenSet.size === 0) {
+    status.className = 'chain-status ok';
+    status.textContent = 'Tous les rouages tournent. La machine convertit.';
+  } else {
+    const names = [...brokenSet].map(i => sections[i].title).join(', ');
+    status.className = 'chain-status broken-status';
+    status.textContent = `Rouage(s) manquant(s) : ${names}. La chaine est cassee.`;
+  }
+}
+
+function buildToggles() {
+  const grid = document.getElementById('toggleGrid');
+  grid.innerHTML = '';
+  sections.forEach((s, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'toggle-btn' + (brokenSet.has(i) ? ' broken' : '');
+    btn.textContent = `${s.num}. ${s.title}`;
+    btn.onclick = () => {
+      if (brokenSet.has(i)) brokenSet.delete(i); else brokenSet.add(i);
+      buildChain();
+      buildToggles();
+    };
+    grid.appendChild(btn);
+  });
+}
+
+function openModal(idx) {
+  const s = sections[idx];
+  document.getElementById('modalBody').innerHTML = `
+    <span class="modal-num ${s.phase}">Section ${s.num}</span>
+    <h3>${s.title}</h3>
+    ${s.detail}
+  `;
+  document.getElementById('modalOverlay').classList.add('active');
+}
+
+function closeModal(e, force) {
+  if (force || e.target === document.getElementById('modalOverlay')) {
+    document.getElementById('modalOverlay').classList.remove('active');
+  }
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') document.getElementById('modalOverlay').classList.remove('active'); });
+
+buildChain();
+buildToggles();
+</script>
+</body>
+</html>
