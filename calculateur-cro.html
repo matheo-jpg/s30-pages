@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculateur CRO — Strategie 30%</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+        .subtitle {
+            text-align: center;
+            color: #888;
+            font-size: 15px;
+            margin-bottom: 40px;
+        }
+        .shared-inputs {
+            background: #141414;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        .shared-inputs h2 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+        .shared-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+        }
+        .scenarios {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+        .scenario {
+            background: #141414;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 24px;
+        }
+        .scenario.a { border-top: 3px solid #555; }
+        .scenario.b { border-top: 3px solid #4f9cf7; }
+        .scenario h2 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        .scenario.a h2 { color: #999; }
+        .scenario.b h2 { color: #4f9cf7; }
+        .input-group {
+            margin-bottom: 14px;
+        }
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 4px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 10px 12px;
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .input-group input:focus {
+            border-color: #4f9cf7;
+        }
+        .input-group .suffix {
+            position: relative;
+        }
+        .input-group .suffix input {
+            padding-right: 36px;
+        }
+        .input-group .suffix span {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #555;
+            font-size: 14px;
+        }
+        .results {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #222;
+        }
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+        .result-row .label { color: #888; }
+        .result-row .value { color: #fff; font-weight: 600; }
+        .result-row.total {
+            border-top: 1px solid #333;
+            margin-top: 8px;
+            padding-top: 14px;
+        }
+        .result-row.total .label { color: #ccc; font-size: 16px; }
+        .result-row.total .value { font-size: 20px; }
+        .scenario.a .result-row.total .value { color: #999; }
+        .scenario.b .result-row.total .value { color: #4f9cf7; }
+        .diff-box {
+            background: #141414;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 28px;
+            text-align: center;
+        }
+        .diff-box .diff-label {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 4px;
+        }
+        .diff-row {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+        .diff-item {
+            text-align: center;
+        }
+        .diff-item .diff-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #34d399;
+        }
+        .diff-item .diff-value.negative {
+            color: #f87171;
+        }
+        .diff-item .diff-sub {
+            font-size: 13px;
+            color: #888;
+            margin-top: 2px;
+        }
+        .diff-percent {
+            font-size: 16px;
+            color: #34d399;
+            font-weight: 600;
+            margin-top: 12px;
+        }
+        .diff-percent.negative {
+            color: #f87171;
+        }
+        .projections {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .proj-item {
+            background: #0a0a0a;
+            border: 1px solid #222;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+        .proj-item .proj-period {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .proj-item .proj-value {
+            font-size: 22px;
+            font-weight: 700;
+            color: #34d399;
+            margin-top: 4px;
+        }
+        .proj-item .proj-value.negative {
+            color: #f87171;
+        }
+        @media (max-width: 700px) {
+            .scenarios { grid-template-columns: 1fr; }
+            .shared-grid { grid-template-columns: 1fr; }
+            .diff-row { gap: 24px; }
+            .projections { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculateur CRO</h1>
+        <p class="subtitle">Compare deux scenarios et vois l'impact du CRO sur ton CA</p>
+
+        <div class="shared-inputs">
+            <h2>Parametres communs</h2>
+            <div class="shared-grid">
+                <div class="input-group">
+                    <label>Visiteurs / mois</label>
+                    <div class="suffix">
+                        <input type="number" id="visitors" value="1000" oninput="calculate()">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Prix de l'offre</label>
+                    <div class="suffix">
+                        <input type="number" id="price" value="4000" oninput="calculate()">
+                        <span>€</span>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Cash collecte par vente</label>
+                    <div class="suffix">
+                        <input type="number" id="cashPercent" value="50" oninput="calculate()">
+                        <span>%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scenarios">
+            <div class="scenario a">
+                <h2>Scenario A — Actuel</h2>
+                <div class="input-group">
+                    <label>Taux de conversion page de capture</label>
+                    <div class="suffix">
+                        <input type="number" id="lpA" value="8" step="0.1" oninput="calculate()">
+                        <span>%</span>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Taux de conversion VSL</label>
+                    <div class="suffix">
+                        <input type="number" id="vslA" value="10" step="0.1" oninput="calculate()">
+                        <span>%</span>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Taux de show-up</label>
+                    <div class="suffix">
+                        <input type="number" id="showA" value="80" step="1" oninput="calculate()">
+                        <span>%</span>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Taux de closing</label>
+                    <div class="suffix">
+                        <input type="number" id="closeA" value="25" step="1" oninput="calculate()">
+                        <span>%</span>
+                    </div>
+                </div>
+                <div class="results" id="resultsA"></div>
+            </div>
+
+            <div class="scenario b">
+                <h2>Scenario B — Apres optimisation</h2>
+                <div class="input-group">
+                    <label>Taux de conversion page de capture</label>
+                    <div class="suffix">
+                        <input type="number" id="lpB" value="13" step="0.1" oninput="calculate()">
+                        <span>%</span>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Taux de conversion VSL</label>
+                    <div class="suffix">
+                        <input type="number" id="vslB" value="10" step="0.1" oninput="calculate()">
+                        <span>%</span>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Taux de show-up</label>
+                    <div class="suffix">
+                        <input type="number" id="showB" value="80" step="1" oninput="calculate()">
+                        <span>%</span>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Taux de closing</label>
+                    <div class="suffix">
+                        <input type="number" id="closeB" value="25" step="1" oninput="calculate()">
+                        <span>%</span>
+                    </div>
+                </div>
+                <div class="results" id="resultsB"></div>
+            </div>
+        </div>
+
+        <div class="diff-box" id="diffBox"></div>
+    </div>
+
+    <script>
+        function fmt(n) {
+            return Math.round(n).toLocaleString('fr-FR');
+        }
+
+        function fmtDec(n) {
+            if (n === Math.floor(n)) return fmt(n);
+            return n.toFixed(1).replace('.', ',');
+        }
+
+        function computeScenario(visitors, lp, vsl, show, close) {
+            const leads = visitors * (lp / 100);
+            const calls = leads * (vsl / 100);
+            const showups = calls * (show / 100);
+            const sales = showups * (close / 100);
+            return { leads, calls, showups, sales };
+        }
+
+        function renderResults(containerId, data, price, cashPct) {
+            const ca = data.sales * price;
+            const cash = ca * (cashPct / 100);
+            const el = document.getElementById(containerId);
+            el.innerHTML = `
+                <div class="result-row"><span class="label">Leads</span><span class="value">${fmtDec(data.leads)}</span></div>
+                <div class="result-row"><span class="label">Calls bookes</span><span class="value">${fmtDec(data.calls)}</span></div>
+                <div class="result-row"><span class="label">Show-ups</span><span class="value">${fmtDec(data.showups)}</span></div>
+                <div class="result-row"><span class="label">Ventes</span><span class="value">${fmtDec(data.sales)}</span></div>
+                <div class="result-row total"><span class="label">CA</span><span class="value">${fmt(ca)} €</span></div>
+                <div class="result-row total"><span class="label">Cash collecte</span><span class="value">${fmt(cash)} €</span></div>
+            `;
+            return { ca, cash };
+        }
+
+        function calculate() {
+            const visitors = parseFloat(document.getElementById('visitors').value) || 0;
+            const price = parseFloat(document.getElementById('price').value) || 0;
+            const cashPct = parseFloat(document.getElementById('cashPercent').value) || 0;
+
+            const lpA = parseFloat(document.getElementById('lpA').value) || 0;
+            const vslA = parseFloat(document.getElementById('vslA').value) || 0;
+            const showA = parseFloat(document.getElementById('showA').value) || 0;
+            const closeA = parseFloat(document.getElementById('closeA').value) || 0;
+
+            const lpB = parseFloat(document.getElementById('lpB').value) || 0;
+            const vslB = parseFloat(document.getElementById('vslB').value) || 0;
+            const showB = parseFloat(document.getElementById('showB').value) || 0;
+            const closeB = parseFloat(document.getElementById('closeB').value) || 0;
+
+            const dataA = computeScenario(visitors, lpA, vslA, showA, closeA);
+            const dataB = computeScenario(visitors, lpB, vslB, showB, closeB);
+
+            const totA = renderResults('resultsA', dataA, price, cashPct);
+            const totB = renderResults('resultsB', dataB, price, cashPct);
+
+            const diffCa = totB.ca - totA.ca;
+            const diffCash = totB.cash - totA.cash;
+            const pctChange = totA.ca > 0 ? ((diffCa / totA.ca) * 100) : 0;
+            const isPositive = diffCa >= 0;
+            const sign = isPositive ? '+' : '';
+            const cls = isPositive ? '' : 'negative';
+
+            document.getElementById('diffBox').innerHTML = `
+                <div class="diff-label">Difference entre Scenario B et Scenario A</div>
+                <div class="diff-row">
+                    <div class="diff-item">
+                        <div class="diff-value ${cls}">${sign}${fmt(diffCa)} €</div>
+                        <div class="diff-sub">CA / mois</div>
+                    </div>
+                    <div class="diff-item">
+                        <div class="diff-value ${cls}">${sign}${fmt(diffCash)} €</div>
+                        <div class="diff-sub">Cash collecte / mois</div>
+                    </div>
+                </div>
+                <div class="diff-percent ${cls}">${sign}${Math.round(pctChange)}% de CA</div>
+                <div class="projections">
+                    <div class="proj-item">
+                        <div class="proj-period">Sur 3 mois</div>
+                        <div class="proj-value ${cls}">${sign}${fmt(diffCash * 3)} €</div>
+                    </div>
+                    <div class="proj-item">
+                        <div class="proj-period">Sur 6 mois</div>
+                        <div class="proj-value ${cls}">${sign}${fmt(diffCash * 6)} €</div>
+                    </div>
+                    <div class="proj-item">
+                        <div class="proj-period">Sur 12 mois</div>
+                        <div class="proj-value ${cls}">${sign}${fmt(diffCash * 12)} €</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        calculate();
+    </script>
+</body>
+</html>
