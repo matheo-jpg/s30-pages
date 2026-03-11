@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onboarding Sales Manager — Stratégie 30%</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #222;
+        }
+        header h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        header p {
+            font-size: 1.1rem;
+            color: #888;
+        }
+        .section {
+            margin-bottom: 48px;
+        }
+        .section-number {
+            display: inline-block;
+            background: #1a1a2e;
+            color: #4a9eff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        h2 {
+            font-size: 1.6rem;
+            color: #fff;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        h3 {
+            font-size: 1.1rem;
+            color: #4a9eff;
+            margin-bottom: 12px;
+            margin-top: 24px;
+            font-weight: 600;
+        }
+        p, li {
+            color: #bbb;
+            font-size: 1rem;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            padding: 8px 0 8px 24px;
+            position: relative;
+        }
+        ul li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #4a9eff;
+            font-weight: bold;
+        }
+        .card {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+        .card-highlight {
+            border-color: #4a9eff33;
+            background: #0d1117;
+        }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+        .metric {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        .metric .value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            display: block;
+        }
+        .metric .label {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 4px;
+        }
+        .kpi-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+        }
+        .kpi-table th, .kpi-table td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid #1a1a1a;
+        }
+        .kpi-table th {
+            color: #4a9eff;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+        .kpi-table td {
+            color: #ccc;
+        }
+        .tag {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .tag-setting { background: #1a2e1a; color: #4aff4a; }
+        .tag-closing { background: #2e1a1a; color: #ff6b6b; }
+        .tag-global { background: #1a1a2e; color: #4a9eff; }
+        .priority {
+            background: #2e1a00;
+            border: 1px solid #ff8c0033;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin: 12px 0;
+            color: #ffb347;
+            font-weight: 500;
+        }
+        .priority strong {
+            color: #ff8c00;
+        }
+        .funnel-flow {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 16px 0;
+        }
+        .funnel-step {
+            background: #1a1a2e;
+            border: 1px solid #4a9eff33;
+            padding: 10px 16px;
+            border-radius: 8px;
+            color: #4a9eff;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .funnel-arrow {
+            color: #333;
+            font-size: 1.2rem;
+        }
+        .team-member {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 12px 0;
+            border-bottom: 1px solid #1a1a1a;
+        }
+        .team-member:last-child { border-bottom: none; }
+        .team-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #1a1a2e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #4a9eff;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+        .team-info .name { color: #fff; font-weight: 600; }
+        .team-info .role { color: #888; font-size: 0.9rem; }
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+        .checklist li {
+            padding: 10px 0 10px 32px;
+            position: relative;
+            border-bottom: 1px solid #1a1a1a;
+        }
+        .checklist li::before {
+            content: "☐";
+            position: absolute;
+            left: 0;
+            color: #4a9eff;
+            font-size: 1.1rem;
+        }
+        .checklist li:last-child { border-bottom: none; }
+        .footer {
+            text-align: center;
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid #222;
+            color: #555;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Onboarding Sales Manager</h1>
+            <p>Stratégie 30% — Romain — 11 mars 2026</p>
+        </header>
+
+        <!-- SECTION 1: FUNNEL -->
+        <div class="section">
+            <span class="section-number">Section 1</span>
+            <h2>Le funnel de vente</h2>
+            <div class="funnel-flow">
+                <div class="funnel-step">Pub Meta (vidéo)</div>
+                <span class="funnel-arrow">→</span>
+                <div class="funnel-step">Page opt-in</div>
+                <span class="funnel-arrow">→</span>
+                <div class="funnel-step">VSL</div>
+                <span class="funnel-arrow">→</span>
+                <div class="funnel-step">Questionnaire iClosed</div>
+                <span class="funnel-arrow">→</span>
+                <div class="funnel-step">Appel closing</div>
+            </div>
+            <div class="card">
+                <h3>3 types de leads</h3>
+                <ul>
+                    <li><strong>Qualifiés</strong> — Bonnes réponses au questionnaire → appel de 45 min</li>
+                    <li><strong>À qualifier</strong> — Réponses moyennes → appel de 15 min</li>
+                    <li><strong>Disqualifiés</strong> — Mauvaises réponses → pas d'appel</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Canal secondaire</h3>
+                <ul>
+                    <li>Instagram (setter Mathéo Touam) → DM → Booking appel (3-4 appels/jour)</li>
+                    <li>Setting téléphonique (Nicolas Tragin, Naël Charles) → Appels des leads opt-in</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SECTION 2: MÉTRIQUES -->
+        <div class="section">
+            <span class="section-number">Section 2</span>
+            <h2>Métriques actuelles</h2>
+            <div class="metrics-grid">
+                <div class="metric">
+                    <span class="value">30K€</span>
+                    <span class="label">Budget ads / mois</span>
+                </div>
+                <div class="metric">
+                    <span class="value">125€</span>
+                    <span class="label">Coût par appel show-up</span>
+                </div>
+                <div class="metric">
+                    <span class="value">~75%</span>
+                    <span class="label">Taux de show-up</span>
+                </div>
+                <div class="metric">
+                    <span class="value">~25%</span>
+                    <span class="label">Taux de closing live</span>
+                </div>
+                <div class="metric">
+                    <span class="value">500€</span>
+                    <span class="label">CAC</span>
+                </div>
+                <div class="metric">
+                    <span class="value">4 000€</span>
+                    <span class="label">Prix offre principale</span>
+                </div>
+            </div>
+            <div class="priority" style="margin-top: 20px;">
+                <strong>⚠ Problème principal :</strong> Ces métriques ne sont pas trackées de manière fiable aujourd'hui. C'est la priorité #1 : avoir de la data propre et quotidienne.
+            </div>
+        </div>
+
+        <!-- SECTION 3: ÉQUIPE -->
+        <div class="section">
+            <span class="section-number">Section 3</span>
+            <h2>L'équipe sales</h2>
+            <div class="card">
+                <h3>Closers <span class="tag tag-closing">Closing</span></h3>
+                <div class="team-member">
+                    <div class="team-avatar">PA</div>
+                    <div class="team-info">
+                        <div class="name">Paul</div>
+                        <div class="role">Closer — Via Momentum</div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-avatar">BA</div>
+                    <div class="team-info">
+                        <div class="name">Bastien</div>
+                        <div class="role">Closer — Via Momentum</div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-avatar">MA</div>
+                    <div class="team-info">
+                        <div class="name">Mattys</div>
+                        <div class="role">Closer — Via Momentum</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Setters <span class="tag tag-setting">Setting</span></h3>
+                <div class="team-member">
+                    <div class="team-avatar">MT</div>
+                    <div class="team-info">
+                        <div class="name">Mathéo Touam</div>
+                        <div class="role">Setter Instagram — DMs — Géré en direct par Mathéo</div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-avatar">NT</div>
+                    <div class="team-info">
+                        <div class="name">Nicolas Tragin</div>
+                        <div class="role">Setter téléphonique — Appels opt-in</div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-avatar">NC</div>
+                    <div class="team-info">
+                        <div class="name">Naël Charles</div>
+                        <div class="role">Setter téléphonique — Appels opt-in</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Contacts clés hors sales</h3>
+                <div class="team-member">
+                    <div class="team-avatar">LW</div>
+                    <div class="team-info">
+                        <div class="name">Léopold Wade</div>
+                        <div class="role">Tech — CRM Airtable — Remonter les bugs à lui</div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-avatar">HE</div>
+                    <div class="team-info">
+                        <div class="name">Hélène</div>
+                        <div class="role">Tech — CRM Airtable — Remonter les bugs à elle</div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-avatar">LC</div>
+                    <div class="team-info">
+                        <div class="name">Lucas Cureau</div>
+                        <div class="role">Responsable Momentum — Ton contact côté agence</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 4: KPIs -->
+        <div class="section">
+            <span class="section-number">Section 4</span>
+            <h2>KPIs à suivre</h2>
+
+            <div class="card card-highlight">
+                <h3><span class="tag tag-setting">Setting</span> KPIs Setters</h3>
+                <table class="kpi-table">
+                    <thead>
+                        <tr>
+                            <th>KPI</th>
+                            <th>Définition</th>
+                            <th>Objectif</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Taux de booking sur leads</strong></td>
+                            <td>Nombre d'appels bookés / nombre de leads contactés (data brute)</td>
+                            <td>À définir après 2 semaines de data</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Speed to lead</strong></td>
+                            <td>Temps entre la réception du lead et le premier appel/contact</td>
+                            <td>Le plus vite possible — minutes, pas heures</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card card-highlight">
+                <h3><span class="tag tag-closing">Closing</span> KPIs Closers</h3>
+                <table class="kpi-table">
+                    <thead>
+                        <tr>
+                            <th>KPI</th>
+                            <th>Définition</th>
+                            <th>Objectif</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Taux de closing sur appel brut</strong></td>
+                            <td>Nombre de ventes / nombre total d'appels (show-up + no-show)</td>
+                            <td>25%+ en live</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cash collecté par appel brut</strong></td>
+                            <td>CA total / nombre total d'appels</td>
+                            <td>À définir après baseline</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card card-highlight">
+                <h3><span class="tag tag-global">Global</span> KPIs Stratégiques</h3>
+                <table class="kpi-table">
+                    <thead>
+                        <tr>
+                            <th>KPI</th>
+                            <th>Définition</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Cash collecté — calls bookés par setters</strong></td>
+                            <td>CA généré par les appels qui ont été bookés via setting (pas auto-book)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cash collecté — calls auto-bookés</strong></td>
+                            <td>CA généré par les appels bookés directement par le prospect (sans setter)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Taux de show-up</strong></td>
+                            <td>Appels effectués / appels réservés</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="priority">
+                    <strong>Objectif clé :</strong> Comparer le CA setting vs auto-book pour valider si le setting opt-in est rentable ou non. Aujourd'hui on n'a aucune visibilité là-dessus.
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 5: REPORTING -->
+        <div class="section">
+            <span class="section-number">Section 5</span>
+            <h2>Reporting & outils</h2>
+            <div class="card">
+                <h3>Fréquence</h3>
+                <ul>
+                    <li><strong>Daily</strong> — Recap quotidien avec les KPIs ci-dessus (au moins les premières semaines)</li>
+                    <li><strong>Hebdo</strong> — Synthèse + insights terrain + recommandations marketing</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>CRM Airtable — Priorité #1</h3>
+                <ul>
+                    <li>Le CRM est sur Airtable — passer du temps dessus pour le comprendre en profondeur</li>
+                    <li>Remonter TOUS les bugs et problèmes à <strong>Hélène</strong> et <strong>Léopold</strong></li>
+                    <li>C'est l'outil central de tracking — si le CRM est bancal, la data est bancale</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Pont Sales → Marketing</h3>
+                <ul>
+                    <li>Si une <strong>objection revient souvent</strong> en call → la remonter à Mathéo</li>
+                    <li>Si les prospects arrivent <strong>mal qualifiés</strong> → signal marketing à corriger</li>
+                    <li>Si une <strong>question revient</strong> tout le temps → la traiter en amont (VSL, page, emails)</li>
+                    <li>Ce feedback terrain est critique pour améliorer tout le funnel</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SECTION 6: ATTENTES -->
+        <div class="section">
+            <span class="section-number">Section 6</span>
+            <h2>Ce qu'on attend de toi</h2>
+            <div class="card card-highlight">
+                <ul class="checklist">
+                    <li><strong>Être proactif</strong> — Relancer les closers, ne pas attendre qu'on te demande. C'est LA raison du changement de Sales Manager.</li>
+                    <li><strong>Manager closers ET setters</strong> — Les deux sont aussi importants. Il y a énormément d'argent à faire côté setting et ça a été négligé.</li>
+                    <li><strong>Écouter les calls</strong> — Coaching actif des closers et setters, pas du management à distance.</li>
+                    <li><strong>Remonter les insights terrain</strong> — Objections, questions, qualité des leads. C'est toi le lien entre le terrain et le marketing.</li>
+                    <li><strong>Reporting quotidien</strong> — Data propre + insights actionnables. Pas juste des chiffres, des recommandations.</li>
+                    <li><strong>Maîtriser le CRM Airtable</strong> — C'est ton outil de travail principal. Le comprendre, l'utiliser, remonter les bugs.</li>
+                    <li><strong>Prendre des appels de vente</strong> — Pour comprendre l'offre en profondeur et garder le contact avec le terrain.</li>
+                    <li><strong>Faire monter en compétence l'équipe</strong> — Pas juste tracker, coacher. Identifier les faiblesses et travailler dessus.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SECTION 7: L'OFFRE -->
+        <div class="section">
+            <span class="section-number">Section 7</span>
+            <h2>L'offre à connaître</h2>
+            <div class="card">
+                <h3>Stratégie 30% — 4 000€</h3>
+                <ul>
+                    <li>Programme de 6 mois pour devenir Opérateur de Croissance</li>
+                    <li>Promesse : passer de 0 à 5 000-10 000€/mois</li>
+                    <li>Hébergé sur Skool — formation vidéo + 5 calls/semaine + communauté</li>
+                    <li>Garantie : remboursement si pas de ROI en 6 mois (après avoir suivi les étapes)</li>
+                    <li>Après M6 : continuité à 197€/mois</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Le business model "Opérateur de Croissance"</h3>
+                <p style="margin-top: 8px;">Tu deviens le bras droit business d'un créateur de contenu. Tu construis l'arsenal d'acquisition (pubs, tunnel, VSL), le créateur vend. Tu prends un % sur chaque vente. Pas de création de contenu, pas de personal branding. Juste l'infrastructure qui génère du CA.</p>
+            </div>
+            <div class="card">
+                <h3>L'avatar type (le prospect en call)</h3>
+                <ul>
+                    <li>Homme, 20-30 ans, salarié ou alternant</li>
+                    <li>Veut changer de vie, quitter son job, gagner en liberté</li>
+                    <li>70% n'ont jamais lancé de business — 30% ont déjà essayé (drop, SMMA, trading...)</li>
+                    <li>Objections principales : le prix, la peur de l'arnaque, le doute de soi, le manque de temps</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SECTION 8: QUESTIONS -->
+        <div class="section">
+            <span class="section-number">Section 8</span>
+            <h2>Questions à discuter ensemble</h2>
+            <div class="card">
+                <ul>
+                    <li>Comment tu gères un closer qui underperform ?</li>
+                    <li>C'est quoi ta méthode pour onboarder sur une nouvelle offre ?</li>
+                    <li>Comment tu structures tes debriefs avec les closers ?</li>
+                    <li>T'as déjà géré des setters aussi ou juste des closers ?</li>
+                    <li>Combien de temps tu as besoin pour être opérationnel à 100% ?</li>
+                    <li>Comment tu vois la collaboration au quotidien avec moi ?</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            Stratégie 30% — Document interne — Mars 2026
+        </div>
+    </div>
+</body>
+</html>
