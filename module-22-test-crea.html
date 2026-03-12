@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Process de Test Créa — Module 22</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: #0a0a0a;
+            color: #f5f5f5;
+            overflow-x: hidden;
+        }
+
+        /* ── SLIDE SYSTEM ── */
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px 80px;
+            position: relative;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.25);
+            font-weight: 500;
+            letter-spacing: 2px;
+        }
+
+        /* ── TYPOGRAPHY ── */
+        h1 {
+            font-size: 64px;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 24px;
+        }
+
+        h2 {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 16px;
+        }
+
+        p, li {
+            font-size: 22px;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .subtitle {
+            font-size: 26px;
+            color: rgba(255,255,255,0.5);
+            font-weight: 500;
+            margin-bottom: 40px;
+        }
+
+        .highlight {
+            color: #fbbf24;
+        }
+
+        .highlight-green {
+            color: #34d399;
+        }
+
+        .highlight-red {
+            color: #f87171;
+        }
+
+        .highlight-blue {
+            color: #60a5fa;
+        }
+
+        .dim {
+            color: rgba(255,255,255,0.4);
+        }
+
+        /* ── LAYOUT HELPERS ── */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 40px;
+        }
+
+        .three-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        /* ── CARDS ── */
+        .card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 32px;
+        }
+
+        .card h3 {
+            margin-bottom: 12px;
+        }
+
+        .card-accent {
+            border-color: rgba(251,191,36,0.3);
+            background: rgba(251,191,36,0.04);
+        }
+
+        .card-green {
+            border-color: rgba(52,211,153,0.3);
+            background: rgba(52,211,153,0.04);
+        }
+
+        .card-red {
+            border-color: rgba(248,113,113,0.3);
+            background: rgba(248,113,113,0.04);
+        }
+
+        .card-blue {
+            border-color: rgba(96,165,250,0.3);
+            background: rgba(96,165,250,0.04);
+        }
+
+        /* ── DIAGRAM: CAMPAIGN STRUCTURE ── */
+        .structure-diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        .structure-level {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .structure-box {
+            padding: 20px 36px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 20px;
+            text-align: center;
+            min-width: 200px;
+        }
+
+        .structure-campaign {
+            background: rgba(251,191,36,0.15);
+            border: 2px solid rgba(251,191,36,0.5);
+            color: #fbbf24;
+            font-size: 22px;
+        }
+
+        .structure-adset {
+            background: rgba(96,165,250,0.12);
+            border: 2px solid rgba(96,165,250,0.4);
+            color: #60a5fa;
+        }
+
+        .structure-ad {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: rgba(255,255,255,0.7);
+            font-size: 16px;
+            padding: 14px 24px;
+            min-width: 160px;
+        }
+
+        .structure-arrow {
+            font-size: 28px;
+            color: rgba(255,255,255,0.2);
+        }
+
+        .adsets-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .ads-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ads-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .connector {
+            width: 2px;
+            height: 30px;
+            background: rgba(255,255,255,0.1);
+            margin: 0 auto;
+        }
+
+        /* ── ANGLE CARDS ── */
+        .angle-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .angle-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 28px 24px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .angle-card:hover {
+            border-color: rgba(251,191,36,0.4);
+            background: rgba(251,191,36,0.04);
+            transform: translateY(-4px);
+        }
+
+        .angle-icon {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+
+        .angle-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #fbbf24;
+        }
+
+        .angle-card p {
+            font-size: 16px;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.5;
+        }
+
+        /* ── METRIC PYRAMID ── */
+        .pyramid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin-top: 50px;
+        }
+
+        .pyramid-level {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px 40px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 22px;
+        }
+
+        .pyramid-1 {
+            background: rgba(251,191,36,0.15);
+            border: 2px solid rgba(251,191,36,0.4);
+            color: #fbbf24;
+            min-width: 300px;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .pyramid-2 {
+            background: rgba(251,191,36,0.08);
+            border: 1px solid rgba(251,191,36,0.25);
+            color: rgba(251,191,36,0.8);
+            min-width: 400px;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .pyramid-3 {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: rgba(255,255,255,0.6);
+            min-width: 500px;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .pyramid-4 {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.35);
+            min-width: 600px;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .pyramid-rank {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-right: 12px;
+            opacity: 0.6;
+        }
+
+        /* ── RULE 3X ── */
+        .rule-3x {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .rule-box {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .rule-number {
+            font-size: 80px;
+            font-weight: 900;
+            color: #fbbf24;
+            line-height: 1;
+        }
+
+        .rule-multiply {
+            font-size: 50px;
+            color: rgba(255,255,255,0.2);
+            font-weight: 300;
+        }
+
+        .rule-label {
+            font-size: 18px;
+            color: rgba(255,255,255,0.5);
+            margin-top: 8px;
+        }
+
+        .rule-equals {
+            font-size: 50px;
+            color: rgba(255,255,255,0.2);
+        }
+
+        .rule-result {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .rule-result-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: #f87171;
+        }
+
+        /* ── COMPARISON TABLE ── */
+        .compare-table {
+            width: 100%;
+            margin-top: 40px;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .compare-table th {
+            padding: 16px 24px;
+            text-align: left;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.35);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .compare-table td {
+            padding: 20px 24px;
+            font-size: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .compare-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .tag-yes {
+            background: rgba(52,211,153,0.15);
+            color: #34d399;
+        }
+
+        .tag-no {
+            background: rgba(248,113,113,0.15);
+            color: #f87171;
+        }
+
+        /* ── PARAMS GRID ── */
+        .params-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .param-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 28px;
+        }
+
+        .param-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: 8px;
+        }
+
+        .param-value {
+            font-size: 28px;
+            font-weight: 800;
+            color: #fbbf24;
+        }
+
+        .param-note {
+            font-size: 16px;
+            color: rgba(255,255,255,0.4);
+            margin-top: 6px;
+        }
+
+        /* ── BIG NUMBER ── */
+        .big-number {
+            font-size: 120px;
+            font-weight: 900;
+            letter-spacing: -5px;
+            line-height: 1;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* ── SCALE VISUAL ── */
+        .scale-visual {
+            display: flex;
+            align-items: flex-end;
+            gap: 12px;
+            margin-top: 50px;
+            justify-content: center;
+        }
+
+        .scale-bar {
+            width: 70px;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding-bottom: 12px;
+            position: relative;
+        }
+
+        .scale-bar .label {
+            position: absolute;
+            bottom: -30px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.4);
+            white-space: nowrap;
+        }
+
+        .scale-bar .value {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        /* ── LIST ── */
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            padding: 8px 0;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 18px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #fbbf24;
+        }
+
+        /* ── TIMELINE ── */
+        .timeline {
+            display: flex;
+            gap: 0;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: rgba(255,255,255,0.08);
+        }
+
+        .timeline-item {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            padding: 0 10px;
+        }
+
+        .timeline-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #fbbf24;
+            margin: 22px auto 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-dot.dim-dot {
+            background: rgba(255,255,255,0.15);
+        }
+
+        .timeline-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fbbf24;
+            margin-bottom: 8px;
+        }
+
+        .timeline-title.dim-title {
+            color: rgba(255,255,255,0.3);
+        }
+
+        .timeline-text {
+            font-size: 14px;
+            color: rgba(255,255,255,0.4);
+            line-height: 1.5;
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            text-align: center;
+            padding: 40px;
+            color: rgba(255,255,255,0.15);
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══════════════════ SLIDE 1: TITLE ═══════════════════ -->
+<div class="slide" style="justify-content: center; align-items: center; text-align: center;">
+    <span class="slide-number">01</span>
+    <p class="dim" style="font-size: 18px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px;">Section 6 — Ads & Media Buying</p>
+    <h1>Le process de<br>test <span class="highlight">créa</span></h1>
+    <p class="subtitle">Comment tester tes pubs, trouver un winner, et savoir quand couper.</p>
+</div>
+
+<!-- ═══════════════════ SLIDE 2: VOLUME ═══════════════════ -->
+<div class="slide">
+    <span class="slide-number">02</span>
+    <h2>La regle n°1 :<br><span class="highlight">le volume</span></h2>
+    <p style="max-width: 700px; margin-top: 20px;">Les operateurs qui scalent le plus vite sont ceux qui testent le plus.<br>Pas ceux qui ecrivent la meilleure pub du premier coup.</p>
+
+    <div class="two-col" style="margin-top: 60px;">
+        <div class="card">
+            <p class="dim" style="font-size: 16px; margin-bottom: 8px;">3 pubs / semaine</p>
+            <p style="font-size: 36px; font-weight: 800; color: #f87171;">~2 mois</p>
+            <p class="dim" style="font-size: 16px; margin-top: 4px;">pour trouver un winner</p>
+        </div>
+        <div class="card card-accent">
+            <p class="dim" style="font-size: 16px; margin-bottom: 8px;">10 pubs / semaine</p>
+            <p style="font-size: 36px; font-weight: 800; color: #34d399;">~2 semaines</p>
+            <p class="dim" style="font-size: 16px; margin-top: 4px;">pour trouver un winner</p>
+        </div>
+    </div>
+
+    <p style="margin-top: 50px; font-size: 24px; font-weight: 700;">Objectif : <span class="highlight">5 a 10 nouvelles pubs par semaine</span></p>
+</div>
+
+<!-- ═══════════════════ SLIDE 3: ANGLES ═══════════════════ -->
+<div class="slide">
+    <span class="slide-number">03</span>
+    <h2>Tu ne testes pas des pubs.<br>Tu testes des <span class="highlight">angles</span>.</h2>
+    <p style="max-width: 650px; margin-top: 16px;">Un angle, c'est l'approche emotionnelle de ta pub.<br>C'est le filtre a travers lequel tu parles a ton prospect.</p>
+
+    <div class="angle-grid">
+        <div class="angle-card">
+            <div class="angle-icon">☀️</div>
+            <h3>Positif</h3>
+            <p>"Imagine-toi dans 3 mois, [resultat]"</p>
+        </div>
+        <div class="angle-card">
+            <div class="angle-icon">⚡</div>
+            <h3>Negatif</h3>
+            <p>"Dans 3 mois, tu ressembles encore a ce que tu ressembles"</p>
+        </div>
+        <div class="angle-card">
+            <div class="angle-icon">👀</div>
+            <h3>Jugement</h3>
+            <p>"Ce que les gens pensent quand ils te voient"</p>
+        </div>
+        <div class="angle-card">
+            <div class="angle-icon">💔</div>
+            <h3>Relation</h3>
+            <p>"Ce que ton mari pense mais ne te dit pas"</p>
+        </div>
+    </div>
+
+    <div class="card" style="margin-top: 40px; max-width: 800px;">
+        <p style="font-size: 20px;"><span class="highlight">Mon experience :</span> j'avais un angle IA, un angle "salarie frustre", un angle basket. <strong>C'est le basket qui a gagne.</strong> Je ne l'aurais jamais su sans tester les autres.</p>
+    </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 4: ABO vs CBO ═══════════════════ -->
+<div class="slide">
+    <span class="slide-number">04</span>
+    <h2>On teste en <span class="highlight">ABO</span>.<br><span class="dim">Pas en CBO.</span></h2>
+
+    <div class="two-col" style="margin-top: 50px;">
+        <div class="card card-accent">
+            <h3 style="color: #fbbf24;">ABO <span class="tag tag-yes">ON UTILISE CA</span></h3>
+            <ul style="margin-top: 16px;">
+                <li>Tu fixes le budget par ad set</li>
+                <li>Chaque angle recoit le meme montant</li>
+                <li>Tu forces Meta a depenser partout</li>
+                <li>Donnees comparables entre les angles</li>
+            </ul>
+        </div>
+        <div class="card card-red">
+            <h3 style="color: #f87171;">CBO <span class="tag tag-no">PAS POUR LE TEST</span></h3>
+            <ul style="margin-top: 16px;">
+                <li>Meta decide ou mettre l'argent</li>
+                <li>Concentre sur un seul ad set</li>
+                <li>Peut etre celui qui a eu de la chance</li>
+                <li>Pas assez de data sur les autres</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 5: STRUCTURE CAMPAGNE ═══════════════════ -->
+<div class="slide" style="align-items: center; text-align: center;">
+    <span class="slide-number">05</span>
+    <h2>La structure de campagne</h2>
+
+    <div class="structure-diagram">
+        <div class="structure-box structure-campaign">🎯 1 Campagne de test — ABO — Leads</div>
+
+        <div class="structure-arrow">↓</div>
+
+        <div class="adsets-row">
+            <div class="ads-group">
+                <div class="structure-box structure-adset">Ad Set 1<br><span style="font-size: 14px; font-weight: 400; opacity: 0.7;">Angle "positif"</span></div>
+                <div class="connector"></div>
+                <div class="ads-row">
+                    <div class="structure-box structure-ad">Pub A</div>
+                    <div class="structure-box structure-ad">Pub B</div>
+                </div>
+            </div>
+            <div class="ads-group">
+                <div class="structure-box structure-adset">Ad Set 2<br><span style="font-size: 14px; font-weight: 400; opacity: 0.7;">Angle "negatif"</span></div>
+                <div class="connector"></div>
+                <div class="ads-row">
+                    <div class="structure-box structure-ad">Pub C</div>
+                    <div class="structure-box structure-ad">Pub D</div>
+                </div>
+            </div>
+            <div class="ads-group">
+                <div class="structure-box structure-adset">Ad Set 3<br><span style="font-size: 14px; font-weight: 400; opacity: 0.7;">Angle "jugement"</span></div>
+                <div class="connector"></div>
+                <div class="ads-row">
+                    <div class="structure-box structure-ad">Pub E</div>
+                </div>
+            </div>
+            <div class="ads-group">
+                <div class="structure-box structure-adset">Ad Set 4<br><span style="font-size: 14px; font-weight: 400; opacity: 0.7;">Angle "relation"</span></div>
+                <div class="connector"></div>
+                <div class="ads-row">
+                    <div class="structure-box structure-ad">Pub F</div>
+                    <div class="structure-box structure-ad">Pub G</div>
+                    <div class="structure-box structure-ad">Pub H</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p style="margin-top: 50px; font-size: 20px;">1 ad set = 1 angle — <span class="highlight">1 a 3 pubs par ad set</span> — meme angle, hooks differents</p>
+</div>
+
+<!-- ═══════════════════ SLIDE 6: PARAMETRES ═══════════════════ -->
+<div class="slide">
+    <span class="slide-number">06</span>
+    <h2>Les parametres de <span class="highlight">lancement</span></h2>
+
+    <div class="params-grid">
+        <div class="param-item">
+            <div class="param-label">Objectif</div>
+            <div class="param-value">Leads</div>
+            <div class="param-note">Jusqu'a 100 appels bookes minimum</div>
+        </div>
+        <div class="param-item">
+            <div class="param-label">Budget par ad set</div>
+            <div class="param-value">10€ / jour min.</div>
+            <div class="param-note">15-20€ si le budget le permet</div>
+        </div>
+        <div class="param-item">
+            <div class="param-label">Ciblage</div>
+            <div class="param-value">Broad</div>
+            <div class="param-note">Genre + age max. Le pixel est deja chauffe.</div>
+        </div>
+        <div class="param-item">
+            <div class="param-label">Placements</div>
+            <div class="param-value">Automatiques</div>
+            <div class="param-note">Tu ne touches a rien</div>
+        </div>
+    </div>
+
+    <div class="card" style="margin-top: 40px; max-width: 700px;">
+        <p style="font-size: 18px;"><span class="highlight">Pourquoi broad ?</span> Le compte publicitaire est deja chauffe par les follower ads. Le pixel sait deja qui reagit. Meta est meilleur que toi pour cibler. Fais-lui confiance.</p>
+    </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 7: PRIORITE METRIQUES ═══════════════════ -->
+<div class="slide" style="align-items: center; text-align: center;">
+    <span class="slide-number">07</span>
+    <h2>L'ordre de priorite des <span class="highlight">metriques</span></h2>
+    <p style="margin-top: 8px; margin-bottom: 20px;">On ne pilote PAS au cout par lead. C'est le dernier maillon.</p>
+
+    <div class="pyramid">
+        <div class="pyramid-level pyramid-1">
+            <span class="pyramid-rank">#1</span> ROAS
+        </div>
+        <div class="pyramid-level pyramid-2">
+            <span class="pyramid-rank">#2</span> Cout par acquisition
+        </div>
+        <div class="pyramid-level pyramid-3">
+            <span class="pyramid-rank">#3</span> Cout par appel
+        </div>
+        <div class="pyramid-level pyramid-4">
+            <span class="pyramid-rank">#4</span> Cout par lead
+        </div>
+    </div>
+
+    <p style="margin-top: 40px; font-size: 18px; color: rgba(255,255,255,0.5); max-width: 600px;">Au debut (pas assez de ventes pour un ROAS fiable), pilote au cout par appel.<br>Des que tu as du volume, passe au ROAS.</p>
+</div>
+
+<!-- ═══════════════════ SLIDE 8: REGLE 3X ═══════════════════ -->
+<div class="slide" style="align-items: center; text-align: center;">
+    <span class="slide-number">08</span>
+    <h2>Quand couper :<br>la regle des <span class="highlight">3x</span></h2>
+
+    <div class="rule-3x">
+        <div class="rule-box">
+            <div class="rule-number">3</div>
+            <div class="rule-label">fois</div>
+        </div>
+        <div class="rule-multiply">×</div>
+        <div class="rule-box">
+            <p style="font-size: 24px; font-weight: 700;">Ton cout par<br>acquisition cible</p>
+        </div>
+        <div class="rule-equals">=</div>
+        <div class="rule-result">
+            <div class="rule-result-text">Budget max<br>avant de couper</div>
+        </div>
+    </div>
+
+    <div class="two-col" style="max-width: 800px; margin: 50px auto 0;">
+        <div class="card">
+            <h3>Exemple</h3>
+            <p>CPA en follower ads = <strong>300€</strong></p>
+            <p style="margin-top: 8px;">3 × 300€ = <span class="highlight" style="font-size: 26px; font-weight: 800;">900€</span></p>
+            <p class="dim" style="font-size: 16px; margin-top: 8px;">Tu depenses jusqu'a 900€ avant de decider</p>
+        </div>
+        <div class="card">
+            <h3>Si budget serre</h3>
+            <p>Commence a <strong>2x</strong> le CPA</p>
+            <p style="margin-top: 8px;">2 × 300€ = <span class="highlight" style="font-size: 26px; font-weight: 800;">600€</span></p>
+            <p class="dim" style="font-size: 16px; margin-top: 8px;">Jamais en dessous de 2x</p>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 9: SCALER ═══════════════════ -->
+<div class="slide">
+    <span class="slide-number">09</span>
+    <h2>Quand garder et <span class="highlight-green">scaler</span></h2>
+    <p style="margin-top: 12px;">ROAS cible = 2,5. Si ta pub tourne a 3, 4, 5 ou plus → c'est un winner.</p>
+
+    <div class="card card-green" style="margin-top: 40px; max-width: 700px;">
+        <h3 style="color: #34d399;">La regle : +20% par jour</h3>
+        <p style="margin-top: 12px;">Tu augmentes le budget de 20% chaque jour jusqu'a ce que le ROAS redescende vers ta cible.</p>
+    </div>
+
+    <div class="scale-visual">
+        <div class="scale-bar" style="height: 80px; background: rgba(52,211,153,0.15); border: 1px solid rgba(52,211,153,0.3);">
+            <span class="value" style="color: #34d399;">10€</span>
+            <span class="label">J1</span>
+        </div>
+        <div class="scale-bar" style="height: 100px; background: rgba(52,211,153,0.2); border: 1px solid rgba(52,211,153,0.35);">
+            <span class="value" style="color: #34d399;">12€</span>
+            <span class="label">J2</span>
+        </div>
+        <div class="scale-bar" style="height: 125px; background: rgba(52,211,153,0.25); border: 1px solid rgba(52,211,153,0.4);">
+            <span class="value" style="color: #34d399;">14€</span>
+            <span class="label">J3</span>
+        </div>
+        <div class="scale-bar" style="height: 155px; background: rgba(52,211,153,0.3); border: 1px solid rgba(52,211,153,0.45);">
+            <span class="value" style="color: #34d399;">17€</span>
+            <span class="label">J4</span>
+        </div>
+        <div class="scale-bar" style="height: 190px; background: rgba(52,211,153,0.35); border: 1px solid rgba(52,211,153,0.5);">
+            <span class="value" style="color: #34d399;">20€</span>
+            <span class="label">J5</span>
+        </div>
+        <div class="scale-bar" style="height: 230px; background: rgba(52,211,153,0.4); border: 1px solid rgba(52,211,153,0.55);">
+            <span class="value" style="color: #34d399;">24€</span>
+            <span class="label">J6</span>
+        </div>
+        <div class="scale-bar" style="height: 280px; background: rgba(52,211,153,0.45); border: 1px solid rgba(52,211,153,0.6);">
+            <span class="value" style="color: #34d399;">29€</span>
+            <span class="label">J7</span>
+        </div>
+    </div>
+    <p class="dim" style="text-align: center; margin-top: 50px; font-size: 16px;">+20% / jour → en 7 jours, le budget a presque triple</p>
+</div>
+
+<!-- ═══════════════════ SLIDE 10: FATIGUE ═══════════════════ -->
+<div class="slide">
+    <span class="slide-number">10</span>
+    <h2>La fatigue <span class="highlight-red">creative</span></h2>
+    <p style="margin-top: 12px;">Meme ta meilleure pub finira par s'essouffler.</p>
+
+    <div class="three-col" style="margin-top: 50px;">
+        <div class="card card-red">
+            <h3 style="color: #f87171;">Signe 1</h3>
+            <p>Le cout par resultat augmente sur <strong>5-7 jours</strong></p>
+        </div>
+        <div class="card card-red">
+            <h3 style="color: #f87171;">Signe 2</h3>
+            <p>La frequence depasse <strong>2</strong><br><span class="dim" style="font-size: 16px;">(meme personne voit la pub 2+ fois)</span></p>
+        </div>
+        <div class="card card-red">
+            <h3 style="color: #f87171;">Signe 3</h3>
+            <p>Le taux de clic <strong>baisse</strong> progressivement</p>
+        </div>
+    </div>
+
+    <div class="card card-accent" style="margin-top: 40px; max-width: 600px;">
+        <p style="font-size: 20px; font-weight: 600;">La bonne pratique : toujours avoir <span class="highlight">2-3 pubs en stock</span>, montees et pretes.</p>
+        <p style="font-size: 17px; color: rgba(255,255,255,0.5); margin-top: 8px;">Quand un winner fatigue → tu coupes et tu remplaces dans la journee.</p>
+    </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 11: CYCLE ═══════════════════ -->
+<div class="slide" style="align-items: center; text-align: center;">
+    <span class="slide-number">11</span>
+    <h2>Le cycle <span class="highlight">complet</span></h2>
+    <p style="margin-top: 8px;">Tu repetes chaque semaine. Le process ne s'arrete jamais.</p>
+
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-title">Ecrire</div>
+            <div class="timeline-text">5 scripts<br>(ou Claude Code)</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-title">Produire</div>
+            <div class="timeline-text">HeyGen<br>+ monteur</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-title">Lancer</div>
+            <div class="timeline-text">ABO — 1 ad set/angle<br>10€/jour min.</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-title">Lire</div>
+            <div class="timeline-text">ROAS → CPA<br>→ cout/appel</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-title">Decider</div>
+            <div class="timeline-text">Couper (3x)<br>ou scaler (+20%)</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-dot dim-dot"></div>
+            <div class="timeline-title dim-title">Recommencer</div>
+            <div class="timeline-text">Nouveau batch<br>→ boucle infinie</div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 12: ACTION ═══════════════════ -->
+<div class="slide">
+    <span class="slide-number">12</span>
+    <h2>Ce que tu fais <span class="highlight">maintenant</span></h2>
+
+    <div style="margin-top: 40px; max-width: 750px;">
+        <table class="compare-table">
+            <tr>
+                <td style="color: rgba(255,255,255,0.3); font-size: 16px; width: 30px;">1</td>
+                <td>Ouvre le gestionnaire de publicites Meta</td>
+            </tr>
+            <tr>
+                <td style="color: rgba(255,255,255,0.3); font-size: 16px;">2</td>
+                <td>Cree une campagne — objectif <strong class="highlight">Leads</strong></td>
+            </tr>
+            <tr>
+                <td style="color: rgba(255,255,255,0.3); font-size: 16px;">3</td>
+                <td>Cree <strong>1 ad set par angle</strong> (minimum 3 angles)</td>
+            </tr>
+            <tr>
+                <td style="color: rgba(255,255,255,0.3); font-size: 16px;">4</td>
+                <td>Budget : <strong class="highlight">10€/jour</strong> par ad set</td>
+            </tr>
+            <tr>
+                <td style="color: rgba(255,255,255,0.3); font-size: 16px;">5</td>
+                <td>Ciblage : <strong>broad</strong> (genre + age max)</td>
+            </tr>
+            <tr>
+                <td style="color: rgba(255,255,255,0.3); font-size: 16px;">6</td>
+                <td>Placements : <strong>automatiques</strong></td>
+            </tr>
+            <tr>
+                <td style="color: rgba(255,255,255,0.3); font-size: 16px;">7</td>
+                <td>Uploade tes pubs (1 a 3 par ad set)</td>
+            </tr>
+            <tr>
+                <td style="color: rgba(255,255,255,0.3); font-size: 16px;">8</td>
+                <td>Lance</td>
+            </tr>
+            <tr>
+                <td style="color: rgba(255,255,255,0.3); font-size: 16px;">9</td>
+                <td>Note ton CPA actuel → c'est ton repere pour couper (<strong>2x a 3x</strong>)</td>
+            </tr>
+            <tr>
+                <td style="color: rgba(255,255,255,0.3); font-size: 16px;">10</td>
+                <td>Reviens dans <strong>3-5 jours</strong> pour lire les resultats</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="footer">
+    Module 22 — Niveau 4 : VSL System — Strategie 30%
+</div>
+
+</body>
+</html>
