@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ads Pre-Call — Retargeting Objection Killing</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: #0a0a0a;
+            color: #f5f5f5;
+            overflow-x: hidden;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px 80px;
+            position: relative;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.25);
+            font-weight: 500;
+            letter-spacing: 2px;
+        }
+
+        h1 {
+            font-size: 64px;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 24px;
+        }
+
+        h2 {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 16px;
+        }
+
+        p, li {
+            font-size: 22px;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .subtitle {
+            font-size: 26px;
+            color: rgba(255,255,255,0.5);
+            font-weight: 500;
+            margin-bottom: 40px;
+        }
+
+        .highlight { color: #fbbf24; }
+        .highlight-green { color: #34d399; }
+        .highlight-red { color: #f87171; }
+        .highlight-blue { color: #60a5fa; }
+        .highlight-purple { color: #a78bfa; }
+        .dim { color: rgba(255,255,255,0.4); }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .three-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 32px;
+        }
+
+        .card-accent {
+            border-color: rgba(251,191,36,0.3);
+            background: rgba(251,191,36,0.04);
+        }
+
+        .card-green {
+            border-color: rgba(52,211,153,0.3);
+            background: rgba(52,211,153,0.04);
+        }
+
+        .card-red {
+            border-color: rgba(248,113,113,0.3);
+            background: rgba(248,113,113,0.04);
+        }
+
+        .card-blue {
+            border-color: rgba(96,165,250,0.3);
+            background: rgba(96,165,250,0.04);
+        }
+
+        .card-purple {
+            border-color: rgba(167,139,250,0.3);
+            background: rgba(167,139,250,0.04);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            padding: 8px 0;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 18px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #fbbf24;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .tag-yes {
+            background: rgba(52,211,153,0.15);
+            color: #34d399;
+        }
+
+        /* ── FUNNEL VISUAL ── */
+        .funnel-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .funnel-step {
+            text-align: center;
+            padding: 20px 28px;
+            border-radius: 12px;
+            min-width: 160px;
+        }
+
+        .funnel-step-main {
+            background: rgba(251,191,36,0.12);
+            border: 2px solid rgba(251,191,36,0.4);
+        }
+
+        .funnel-step-normal {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .funnel-step-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 6px;
+        }
+
+        .funnel-step-value {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .funnel-arrow {
+            font-size: 24px;
+            color: rgba(255,255,255,0.15);
+        }
+
+        /* ── CAMPAIGN STRUCTURE ── */
+        .campaign-visual {
+            display: flex;
+            gap: 40px;
+            margin-top: 50px;
+            justify-content: center;
+        }
+
+        .campaign-block {
+            flex: 1;
+            max-width: 450px;
+        }
+
+        .campaign-header {
+            padding: 16px 24px;
+            border-radius: 12px 12px 0 0;
+            font-weight: 700;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .campaign-header-short {
+            background: rgba(251,191,36,0.15);
+            border: 2px solid rgba(251,191,36,0.4);
+            border-bottom: none;
+            color: #fbbf24;
+        }
+
+        .campaign-header-long {
+            background: rgba(167,139,250,0.15);
+            border: 2px solid rgba(167,139,250,0.4);
+            border-bottom: none;
+            color: #a78bfa;
+        }
+
+        .campaign-body {
+            border: 1px solid rgba(255,255,255,0.08);
+            border-top: none;
+            border-radius: 0 0 12px 12px;
+            padding: 20px;
+        }
+
+        .adset-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .adset-icon {
+            font-size: 20px;
+        }
+
+        .adset-text {
+            font-size: 16px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .adset-badge {
+            margin-left: auto;
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.4);
+        }
+
+        /* ── FREQUENCY METER ── */
+        .freq-meter {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 4px;
+            margin-top: 50px;
+        }
+
+        .freq-bar {
+            width: 40px;
+            border-radius: 6px 6px 0 0;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .freq-bar .freq-label {
+            position: absolute;
+            bottom: -28px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 13px;
+            color: rgba(255,255,255,0.35);
+            white-space: nowrap;
+        }
+
+        /* ── PARAMS ── */
+        .params-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .param-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 28px;
+        }
+
+        .param-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: 8px;
+        }
+
+        .param-value {
+            font-size: 28px;
+            font-weight: 800;
+            color: #fbbf24;
+        }
+
+        .param-note {
+            font-size: 16px;
+            color: rgba(255,255,255,0.4);
+            margin-top: 6px;
+        }
+
+        /* ── BUDGET TABLE ── */
+        .budget-table {
+            width: 100%;
+            margin-top: 40px;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .budget-table th {
+            padding: 14px 20px;
+            text-align: left;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.3);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .budget-table td {
+            padding: 16px 20px;
+            font-size: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .budget-table tr:last-child td { border-bottom: none; }
+
+        /* ── EXCLUSION FLOW ── */
+        .exclusion-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        .exclusion-step {
+            text-align: center;
+            padding: 24px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            min-width: 180px;
+        }
+
+        .exclusion-step-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .exclusion-step-text {
+            font-size: 16px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .exclusion-arrow {
+            font-size: 24px;
+            color: rgba(255,255,255,0.15);
+        }
+
+        /* ── OBJECTION GRID ── */
+        .objection-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .objection-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 28px 20px;
+            text-align: center;
+        }
+
+        .objection-card:hover {
+            border-color: rgba(248,113,113,0.4);
+            background: rgba(248,113,113,0.04);
+        }
+
+        .objection-icon {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .objection-card h3 {
+            font-size: 18px;
+            color: #f87171;
+            margin-bottom: 10px;
+        }
+
+        .objection-card p {
+            font-size: 15px;
+            color: rgba(255,255,255,0.45);
+            line-height: 1.5;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px;
+            color: rgba(255,255,255,0.15);
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══════════════════ SLIDE 1: TITLE ═══════════════════ -->
+<div class="slide" style="justify-content: center; align-items: center; text-align: center;">
+    <span class="slide-number">01</span>
+    <p class="dim" style="font-size: 18px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px;">Section 6 — Ads & Media Buying</p>
+    <h1>Ads <span class="highlight">pre-call</span></h1>
+    <p class="subtitle">Retargeting objection killing — Bombarder avant le call</p>
+</div>
+
+<!-- ═══════════════════ SLIDE 2: LE PROBLEME ═══════════════════ -->
+<div class="slide">
+    <span class="slide-number">02</span>
+    <h2>Le probleme : <span class="highlight-red">le doute</span><br>entre le booking et le call</h2>
+
+    <div class="funnel-flow">
+        <div class="funnel-step funnel-step-normal">
+            <div class="funnel-step-label">Pub</div>
+            <div class="funnel-step-value">Clic</div>
+        </div>
+        <div class="funnel-arrow">→</div>
+        <div class="funnel-step funnel-step-normal">
+            <div class="funnel-step-label">Opt-in</div>
+            <div class="funnel-step-value">Email</div>
+        </div>
+        <div class="funnel-arrow">→</div>
+        <div class="funnel-step funnel-step-normal">
+            <div class="funnel-step-label">VSL</div>
+            <div class="funnel-step-value">Regarde</div>
+        </div>
+        <div class="funnel-arrow">→</div>
+        <div class="funnel-step funnel-step-normal">
+            <div class="funnel-step-label">Booking</div>
+            <div class="funnel-step-value" style="color: #34d399;">Booke</div>
+        </div>
+        <div class="funnel-arrow">→</div>
+        <div class="funnel-step funnel-step-main">
+            <div class="funnel-step-label" style="color: #fbbf24;">Zone critique</div>
+            <div class="funnel-step-value" style="color: #fbbf24;">Doutes</div>
+        </div>
+        <div class="funnel-arrow">→</div>
+        <div class="funnel-step funnel-step-normal">
+            <div class="funnel-step-label">Call</div>
+            <div class="funnel-step-value">Close</div>
+        </div>
+    </div>
+
+    <div class="card" style="margin-top: 50px; max-width: 750px;">
+        <p style="font-size: 20px;">Entre le booking et le call, les peurs reviennent :<br>
+        <span class="highlight-red">"C'est une arnaque ?"</span> — <span class="highlight-red">"C'est vraiment pour moi ?"</span> — <span class="highlight-red">"Je vais perdre mon argent ?"</span></p>
+        <p style="margin-top: 16px; font-size: 20px;">Le retargeting pre-call <strong>tue ces objections</strong> avant le call.</p>
+    </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 3: FREQUENCE ═══════════════════ -->
+<div class="slide" style="align-items: center; text-align: center;">
+    <span class="slide-number">03</span>
+    <h2>Frequence cible : <span class="highlight">12 a 15</span></h2>
+    <p style="margin-top: 8px;">Le prospect doit te voir partout entre le booking et le call.</p>
+
+    <div class="freq-meter">
+        <div class="freq-bar" style="height: 30px; background: rgba(248,113,113,0.3); border: 1px solid rgba(248,113,113,0.4);">
+            <span class="freq-label">2</span>
+        </div>
+        <div class="freq-bar" style="height: 45px; background: rgba(248,113,113,0.25); border: 1px solid rgba(248,113,113,0.35);">
+            <span class="freq-label">4</span>
+        </div>
+        <div class="freq-bar" style="height: 60px; background: rgba(248,113,113,0.2); border: 1px solid rgba(248,113,113,0.3);">
+            <span class="freq-label">6</span>
+        </div>
+        <div class="freq-bar" style="height: 80px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);">
+            <span class="freq-label">8</span>
+        </div>
+        <div class="freq-bar" style="height: 100px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);">
+            <span class="freq-label">10</span>
+        </div>
+        <div class="freq-bar" style="height: 120px; background: rgba(52,211,153,0.25); border: 2px solid rgba(52,211,153,0.5);">
+            <span class="freq-label" style="color: #34d399; font-weight: 700;">12</span>
+        </div>
+        <div class="freq-bar" style="height: 140px; background: rgba(52,211,153,0.3); border: 2px solid rgba(52,211,153,0.5);">
+            <span class="freq-label" style="color: #34d399; font-weight: 700;">13</span>
+        </div>
+        <div class="freq-bar" style="height: 155px; background: rgba(52,211,153,0.35); border: 2px solid rgba(52,211,153,0.55);">
+            <span class="freq-label" style="color: #34d399; font-weight: 700;">14</span>
+        </div>
+        <div class="freq-bar" style="height: 170px; background: rgba(52,211,153,0.4); border: 2px solid rgba(52,211,153,0.6);">
+            <span class="freq-label" style="color: #34d399; font-weight: 700;">15</span>
+        </div>
+        <div class="freq-bar" style="height: 185px; background: rgba(251,191,36,0.2); border: 1px solid rgba(251,191,36,0.3);">
+            <span class="freq-label">18</span>
+        </div>
+        <div class="freq-bar" style="height: 200px; background: rgba(248,113,113,0.2); border: 1px solid rgba(248,113,113,0.3);">
+            <span class="freq-label">20+</span>
+        </div>
+    </div>
+
+    <div class="two-col" style="max-width: 700px; margin: 60px auto 0;">
+        <div class="card card-red">
+            <p style="font-size: 18px;"><span class="highlight-red">Freq < 12</span><br>→ Augmente le budget</p>
+        </div>
+        <div class="card card-green">
+            <p style="font-size: 18px;"><span class="highlight-green">Freq 12-15</span><br>→ Zone optimale</p>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 4: 2 CAMPAGNES ═══════════════════ -->
+<div class="slide">
+    <span class="slide-number">04</span>
+    <h2>Deux campagnes. <span class="highlight">Deux formats.</span></h2>
+
+    <div class="campaign-visual">
+        <div class="campaign-block">
+            <div class="campaign-header campaign-header-short">Campagne 1 — Shorts</div>
+            <div class="campaign-body">
+                <div class="adset-row">
+                    <span class="adset-icon">🎬</span>
+                    <span class="adset-text">Temoignage Bryan (45s)</span>
+                    <span class="adset-badge">1 video</span>
+                </div>
+                <div class="adset-row">
+                    <span class="adset-icon">🛡️</span>
+                    <span class="adset-text">Objection "arnaque" (30s)</span>
+                    <span class="adset-badge">1 video</span>
+                </div>
+                <div class="adset-row">
+                    <span class="adset-icon">💪</span>
+                    <span class="adset-text">Objection "pas capable" (40s)</span>
+                    <span class="adset-badge">1 video</span>
+                </div>
+                <div class="adset-row">
+                    <span class="adset-icon">👥</span>
+                    <span class="adset-text">Behind the scenes (50s)</span>
+                    <span class="adset-badge">1 video</span>
+                </div>
+                <div class="adset-row">
+                    <span class="adset-icon">🔥</span>
+                    <span class="adset-text">Revente vehicule (60s)</span>
+                    <span class="adset-badge">1 video</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="campaign-block">
+            <div class="campaign-header campaign-header-long">Campagne 2 — Longs</div>
+            <div class="campaign-body">
+                <div class="adset-row">
+                    <span class="adset-icon">🎙️</span>
+                    <span class="adset-text">Interview Clement (18 min)</span>
+                    <span class="adset-badge">1 video</span>
+                </div>
+                <div class="adset-row">
+                    <span class="adset-icon">🎙️</span>
+                    <span class="adset-text">Interview Issa (22 min)</span>
+                    <span class="adset-badge">1 video</span>
+                </div>
+                <div class="adset-row">
+                    <span class="adset-icon">📐</span>
+                    <span class="adset-text">Pourquoi l'OdC (15 min)</span>
+                    <span class="adset-badge">1 video</span>
+                </div>
+                <div class="adset-row">
+                    <span class="adset-icon">🧠</span>
+                    <span class="adset-text">Fausses croyances (12 min)</span>
+                    <span class="adset-badge">1 video</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p style="text-align: center; margin-top: 40px; font-size: 18px; color: rgba(255,255,255,0.5);">1 ad set = 1 video — Chaque video est isolee pour forcer la distribution</p>
+</div>
+
+<!-- ═══════════════════ SLIDE 5: OBJECTIONS ═══════════════════ -->
+<div class="slide">
+    <span class="slide-number">05</span>
+    <h2>Les objections a <span class="highlight-red">tuer</span></h2>
+    <p style="margin-top: 8px;">Chaque video tue une objection. Le prospect arrive sur le call sans doutes.</p>
+
+    <div class="objection-grid">
+        <div class="objection-card">
+            <div class="objection-icon">💰</div>
+            <h3>"C'est trop cher"</h3>
+            <p>Montrer le ROI. Comparer au cout de rester ou il est.</p>
+        </div>
+        <div class="objection-card">
+            <div class="objection-icon">🚨</div>
+            <h3>"C'est une arnaque"</h3>
+            <p>Montrer des vrais resultats. La communaute. La transparence.</p>
+        </div>
+        <div class="objection-card">
+            <div class="objection-icon">😰</div>
+            <h3>"Je suis pas capable"</h3>
+            <p>Montrer des eleves qui partaient de zero absolu.</p>
+        </div>
+        <div class="objection-card">
+            <div class="objection-icon">⏰</div>
+            <h3>"J'ai pas le temps"</h3>
+            <p>Montrer que ca se fait a cote du travail actuel.</p>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 6: PARAMETRES ═══════════════════ -->
+<div class="slide">
+    <span class="slide-number">06</span>
+    <h2>Les parametres de <span class="highlight">campagne</span></h2>
+
+    <div class="params-grid">
+        <div class="param-item">
+            <div class="param-label">Objectif</div>
+            <div class="param-value">Engagement</div>
+            <div class="param-note">Video views → Maximize true play views</div>
+        </div>
+        <div class="param-item">
+            <div class="param-label">Advantage+ budget</div>
+            <div class="param-value" style="color: #f87171;">Desactive</div>
+            <div class="param-note">Chaque ad set gere son budget</div>
+        </div>
+        <div class="param-item">
+            <div class="param-label">Dynamic creative</div>
+            <div class="param-value" style="color: #f87171;">Desactive</div>
+            <div class="param-note">On ne veut pas que Meta remixe</div>
+        </div>
+        <div class="param-item">
+            <div class="param-label">Placements</div>
+            <div class="param-value">Automatiques</div>
+            <div class="param-note">On ne touche a rien</div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 7: AUDIENCE ═══════════════════ -->
+<div class="slide">
+    <span class="slide-number">07</span>
+    <h2>L'audience : <span class="highlight">call bookes</span> uniquement</h2>
+
+    <div class="two-col" style="margin-top: 40px;">
+        <div class="card card-blue">
+            <h3 style="color: #60a5fa;">Methode 1 — Via CRM</h3>
+            <p style="font-size: 18px; margin-top: 12px;">ActiveCampaign / GHL / HubSpot connecte a Meta</p>
+            <ul style="margin-top: 12px;">
+                <li>Tag "call-book" declenche l'automatisation</li>
+                <li>Le prospect est ajoute a une audience Meta</li>
+                <li>Plus fiable (evenement precis)</li>
+            </ul>
+        </div>
+        <div class="card card-purple">
+            <h3 style="color: #a78bfa;">Methode 2 — Via URL</h3>
+            <p style="font-size: 18px; margin-top: 12px;">Custom Audience → Website → URL specifique</p>
+            <ul style="margin-top: 12px;">
+                <li>URL de la page de confirmation post-booking</li>
+                <li>Fonctionne avec n'importe quel outil</li>
+                <li>Alternative si le CRM ne se connecte pas</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="three-col" style="margin-top: 30px;">
+        <div class="card" style="text-align: center;">
+            <p class="dim" style="font-size: 14px;">100+ calls/sem</p>
+            <p style="font-size: 32px; font-weight: 800; color: #34d399;">7 jours</p>
+        </div>
+        <div class="card card-accent" style="text-align: center;">
+            <p class="dim" style="font-size: 14px;">Volume moyen</p>
+            <p style="font-size: 32px; font-weight: 800; color: #fbbf24;">15 jours</p>
+        </div>
+        <div class="card" style="text-align: center;">
+            <p class="dim" style="font-size: 14px;">Faible volume</p>
+            <p style="font-size: 32px; font-weight: 800; color: rgba(255,255,255,0.6);">30 jours</p>
+        </div>
+    </div>
+
+    <p class="dim" style="text-align: center; margin-top: 16px; font-size: 16px;">Meta ne delivre pas tant que l'audience n'a pas au moins 100 personnes</p>
+</div>
+
+<!-- ═══════════════════ SLIDE 8: EXCLUSION ═══════════════════ -->
+<div class="slide" style="align-items: center; text-align: center;">
+    <span class="slide-number">08</span>
+    <h2>L'exclusion : <span class="highlight">pas la meme video deux fois</span></h2>
+    <p style="margin-top: 8px;">Le prospect doit consommer le MAXIMUM de contenu different.</p>
+
+    <div class="exclusion-flow">
+        <div class="exclusion-step">
+            <div class="exclusion-step-icon">👁️</div>
+            <div class="exclusion-step-text">Prospect voit<br><strong>Video A</strong> (3s+)</div>
+        </div>
+        <div class="exclusion-arrow">→</div>
+        <div class="exclusion-step" style="border-color: rgba(248,113,113,0.3); background: rgba(248,113,113,0.04);">
+            <div class="exclusion-step-icon">🚫</div>
+            <div class="exclusion-step-text">Video A<br><strong style="color: #f87171;">exclue</strong></div>
+        </div>
+        <div class="exclusion-arrow">→</div>
+        <div class="exclusion-step" style="border-color: rgba(52,211,153,0.3); background: rgba(52,211,153,0.04);">
+            <div class="exclusion-step-icon">▶️</div>
+            <div class="exclusion-step-text">Meta montre<br><strong style="color: #34d399;">Video B</strong></div>
+        </div>
+        <div class="exclusion-arrow">→</div>
+        <div class="exclusion-step" style="border-color: rgba(52,211,153,0.3); background: rgba(52,211,153,0.04);">
+            <div class="exclusion-step-icon">▶️</div>
+            <div class="exclusion-step-text">Puis<br><strong style="color: #34d399;">Video C, D, E...</strong></div>
+        </div>
+    </div>
+
+    <div class="card" style="margin-top: 50px; max-width: 650px;">
+        <p style="font-size: 18px;"><strong>Comment :</strong> Custom Audience → Video → 3 secondes → la video de l'ad set → retention <span class="highlight">365 jours</span> → ajouter en exclusion</p>
+    </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 9: BUDGET ═══════════════════ -->
+<div class="slide">
+    <span class="slide-number">09</span>
+    <h2>Le budget : <span class="highlight">5%</span> du total</h2>
+
+    <table class="budget-table" style="max-width: 700px;">
+        <tr>
+            <th>Budget ads froid</th>
+            <th>Retargeting</th>
+            <th>Par campagne</th>
+        </tr>
+        <tr>
+            <td>1 000€/mois</td>
+            <td><span class="highlight">50€</span></td>
+            <td class="dim">~25€</td>
+        </tr>
+        <tr>
+            <td>5 000€/mois</td>
+            <td><span class="highlight">250€</span></td>
+            <td class="dim">~125€</td>
+        </tr>
+        <tr>
+            <td>10 000€/mois</td>
+            <td><span class="highlight">500€</span></td>
+            <td class="dim">~250€</td>
+        </tr>
+        <tr>
+            <td>30 000€/mois</td>
+            <td><span class="highlight">1 500€</span></td>
+            <td class="dim">~750€</td>
+        </tr>
+    </table>
+
+    <div class="card card-accent" style="margin-top: 40px; max-width: 500px;">
+        <p style="font-size: 20px;">Si la frequence n'est pas entre <span class="highlight">12 et 15</span> → ajuste le budget jusqu'a l'atteindre.</p>
+    </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 10: IMPACT ═══════════════════ -->
+<div class="slide" style="align-items: center; text-align: center;">
+    <span class="slide-number">10</span>
+    <h2>L'impact sur tes <span class="highlight-green">resultats</span></h2>
+
+    <div class="three-col" style="max-width: 800px; margin: 50px auto 0;">
+        <div class="card card-green" style="text-align: center;">
+            <p style="font-size: 16px; color: rgba(255,255,255,0.5);">Show-up rate</p>
+            <p style="font-size: 40px; font-weight: 900; color: #34d399; margin: 8px 0;">↑</p>
+            <p style="font-size: 16px; color: rgba(255,255,255,0.5);">Moins de no-show</p>
+        </div>
+        <div class="card card-green" style="text-align: center;">
+            <p style="font-size: 16px; color: rgba(255,255,255,0.5);">Closing rate</p>
+            <p style="font-size: 40px; font-weight: 900; color: #34d399; margin: 8px 0;">↑</p>
+            <p style="font-size: 16px; color: rgba(255,255,255,0.5);">Prospect rechauffe</p>
+        </div>
+        <div class="card card-green" style="text-align: center;">
+            <p style="font-size: 16px; color: rgba(255,255,255,0.5);">Taux de PIF</p>
+            <p style="font-size: 40px; font-weight: 900; color: #34d399; margin: 8px 0;">↑</p>
+            <p style="font-size: 16px; color: rgba(255,255,255,0.5);">Plus de confiance</p>
+        </div>
+    </div>
+
+    <p style="margin-top: 40px; font-size: 22px; max-width: 700px;">Le prospect arrive sur le call en ayant deja vu <span class="highlight">15 videos</span> de toi. Il te connait. Il te fait confiance. Ton closer a un prospect <span class="highlight-green">rechauffe</span> au lieu d'un prospect froid.</p>
+</div>
+
+<!-- ═══════════════════ SLIDE 11: ACTION ═══════════════════ -->
+<div class="slide">
+    <span class="slide-number">11</span>
+    <h2>Ce que tu fais <span class="highlight">maintenant</span></h2>
+
+    <div style="margin-top: 40px; max-width: 800px;">
+        <table class="budget-table">
+            <tr>
+                <td style="color: rgba(255,255,255,0.3); font-size: 16px; width: 30px;">1</td>
+                <td>Cree tes audiences Meta (<strong>CRM</strong> ou <strong>URL de confirmation</strong>)</td>
+            </tr>
+            <tr>
+                <td style="color: rgba(255,255,255,0.3); font-size: 16px;">2</td>
+                <td>Retention : <strong>7, 15 ou 30 jours</strong> selon ton volume</td>
+            </tr>
+            <tr>
+                <td style="color: rgba(255,255,255,0.3); font-size: 16px;">3</td>
+                <td>Cree <strong>2 campagnes</strong> Engagement → Video views</td>
+            </tr>
+            <tr>
+                <td style="color: rgba(255,255,255,0.3); font-size: 16px;">4</td>
+                <td>Campagne Shorts : <strong>1 ad set par video courte</strong></td>
+            </tr>
+            <tr>
+                <td style="color: rgba(255,255,255,0.3); font-size: 16px;">5</td>
+                <td>Campagne Longs : <strong>1 ad set par video longue</strong></td>
+            </tr>
+            <tr>
+                <td style="color: rgba(255,255,255,0.3); font-size: 16px;">6</td>
+                <td>Exclusion : <strong>3s de la video</strong> par ad set (365 jours)</td>
+            </tr>
+            <tr>
+                <td style="color: rgba(255,255,255,0.3); font-size: 16px;">7</td>
+                <td>Budget : <strong>5% du budget total</strong></td>
+            </tr>
+            <tr>
+                <td style="color: rgba(255,255,255,0.3); font-size: 16px;">8</td>
+                <td>Verifie la frequence apres 7 jours → cible <strong class="highlight">12-15</strong></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="footer">
+    Module 23 — Niveau 4 : VSL System — Strategie 30%
+</div>
+
+</body>
+</html>
