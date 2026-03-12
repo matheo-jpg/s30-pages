@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creative Strategy Sprint — 5-12 Mars 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0f; color: #e0e0e0; padding: 24px; }
+
+  .header { text-align: center; margin-bottom: 32px; }
+  .header h1 { font-size: 28px; font-weight: 700; color: #fff; }
+  .header .subtitle { color: #888; font-size: 14px; margin-top: 4px; }
+  .header .period { color: #6366f1; font-size: 13px; margin-top: 2px; }
+
+  .kpi-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; margin-bottom: 32px; }
+  .kpi-card { background: #141420; border: 1px solid #1e1e30; border-radius: 12px; padding: 20px; text-align: center; }
+  .kpi-card .value { font-size: 28px; font-weight: 700; color: #fff; }
+  .kpi-card .label { font-size: 12px; color: #888; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .kpi-card.good .value { color: #22c55e; }
+  .kpi-card.warning .value { color: #f59e0b; }
+  .kpi-card.bad .value { color: #ef4444; }
+  .kpi-card.neutral .value { color: #6366f1; }
+
+  .section { margin-bottom: 32px; }
+  .section-title { font-size: 18px; font-weight: 600; color: #fff; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .section-title .badge { font-size: 11px; padding: 3px 8px; border-radius: 4px; font-weight: 500; }
+  .badge-green { background: #22c55e20; color: #22c55e; }
+  .badge-red { background: #ef444420; color: #ef4444; }
+  .badge-yellow { background: #f59e0b20; color: #f59e0b; }
+  .badge-blue { background: #6366f120; color: #6366f1; }
+
+  table { width: 100%; border-collapse: collapse; }
+  th { text-align: left; padding: 10px 12px; font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #1e1e30; }
+  td { padding: 10px 12px; font-size: 13px; border-bottom: 1px solid #1a1a25; }
+  tr:hover { background: #1a1a28; }
+
+  .table-wrapper { background: #141420; border: 1px solid #1e1e30; border-radius: 12px; overflow: hidden; }
+
+  .status { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+  .status-winner { background: #22c55e20; color: #22c55e; }
+  .status-scale { background: #3b82f620; color: #3b82f6; }
+  .status-test { background: #f59e0b20; color: #f59e0b; }
+  .status-kill { background: #ef444420; color: #ef4444; }
+  .status-watch { background: #8b5cf620; color: #8b5cf6; }
+
+  .insight-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .insight-card { background: #141420; border: 1px solid #1e1e30; border-radius: 12px; padding: 20px; }
+  .insight-card h3 { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 8px; }
+  .insight-card p { font-size: 13px; color: #aaa; line-height: 1.5; }
+  .insight-card .highlight { color: #22c55e; font-weight: 600; }
+  .insight-card .warning-text { color: #f59e0b; font-weight: 600; }
+  .insight-card .danger-text { color: #ef4444; font-weight: 600; }
+
+  .priority-card { background: #141420; border-left: 3px solid #6366f1; border-radius: 0 12px 12px 0; padding: 20px; margin-bottom: 16px; }
+  .priority-card.p1 { border-left-color: #ef4444; }
+  .priority-card.p2 { border-left-color: #f59e0b; }
+  .priority-card.p3 { border-left-color: #22c55e; }
+  .priority-card .priority-number { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .priority-card.p1 .priority-number { color: #ef4444; }
+  .priority-card.p2 .priority-number { color: #f59e0b; }
+  .priority-card.p3 .priority-number { color: #22c55e; }
+  .priority-card h3 { font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 8px; }
+  .priority-card p { font-size: 13px; color: #aaa; line-height: 1.6; }
+  .priority-card .concept { background: #1a1a2e; border-radius: 8px; padding: 12px; margin-top: 12px; margin-bottom: 8px; }
+  .priority-card .concept-title { font-size: 13px; font-weight: 600; color: #6366f1; margin-bottom: 4px; }
+  .priority-card .concept p { margin: 0; }
+
+  .bar { height: 6px; border-radius: 3px; background: #1e1e30; overflow: hidden; margin-top: 4px; }
+  .bar-fill { height: 100%; border-radius: 3px; }
+  .bar-green { background: #22c55e; }
+  .bar-yellow { background: #f59e0b; }
+  .bar-red { background: #ef4444; }
+  .bar-blue { background: #6366f1; }
+
+  .format-comparison { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 16px; }
+  .format-card { background: #141420; border: 1px solid #1e1e30; border-radius: 12px; padding: 20px; }
+  .format-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 12px; }
+  .format-stat { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; }
+  .format-stat .label { color: #888; }
+  .format-stat .val { font-weight: 600; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .annotation { font-size: 12px; color: #666; margin-top: 8px; font-style: italic; }
+
+  @media (max-width: 768px) {
+    .kpi-grid { grid-template-columns: repeat(3, 1fr); }
+    .insight-grid { grid-template-columns: 1fr; }
+    .format-comparison { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>CREATIVE STRATEGY SPRINT</h1>
+  <div class="subtitle">Analyse hebdomadaire des creatives Meta Ads</div>
+  <div class="period">5 mars — 12 mars 2026 | Source : Hyros (Scientific) + Meta Ads API</div>
+</div>
+
+<!-- KPIs -->
+<div class="kpi-grid">
+  <div class="kpi-card neutral">
+    <div class="value">$6,976</div>
+    <div class="label">Adspend total</div>
+  </div>
+  <div class="kpi-card good">
+    <div class="value">349</div>
+    <div class="label">Leads</div>
+  </div>
+  <div class="kpi-card good">
+    <div class="value">$20.0</div>
+    <div class="label">CPL moyen</div>
+  </div>
+  <div class="kpi-card warning">
+    <div class="value">78</div>
+    <div class="label">Calls bookes</div>
+  </div>
+  <div class="kpi-card warning">
+    <div class="value">$89</div>
+    <div class="label">Cout / Call</div>
+  </div>
+  <div class="kpi-card">
+    <div class="value">11</div>
+    <div class="label">Ventes attribuees</div>
+  </div>
+</div>
+
+<!-- INSIGHT CARDS -->
+<div class="section">
+  <div class="section-title">Insights cles de la semaine</div>
+  <div class="insight-grid">
+    <div class="insight-card">
+      <h3>Les IMAGES ecrasent les videos</h3>
+      <p><span class="highlight">ADS 3 IMG = 5 ventes</span> pour $703 depenses (CPA $140). Meilleur performer de loin. ADS 4 IMG et ADS 16 IMG aussi avec des ventes. Les images representent <span class="highlight">73% des ventes</span> cette semaine pour 14% du spend.</p>
+    </div>
+    <div class="insight-card">
+      <h3>PUB 74 depense $1K pour 0 ventes</h3>
+      <p><span class="danger-text">$1,022 de spend, 0 sales.</span> 46 leads, 7 calls, $146/call. Cette crea est etiquetee "WINNER" mais elle brule du budget. Elle genere du volume de leads mais la qualite semble faible — les leads ne closent pas.</p>
+    </div>
+    <div class="insight-card">
+      <h3>80% du spend sur 2 creas</h3>
+      <p><span class="warning-text">PUB 80 + PUB 74 = $2,534</span> (36% du spend total). Probleme : concentration extreme. Si ces 2 fatiguent, tout s'effondre. Il faut diversifier les winners et pousser ADS 3 IMG qui performe mieux a moindre cout.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FORMAT COMPARISON -->
+<div class="section">
+  <div class="section-title">Comparaison formats <span class="badge badge-blue">Format = variable #3</span></div>
+  <div class="format-comparison">
+    <div class="format-card">
+      <h4 style="color: #22c55e;">Images statiques</h4>
+      <div class="format-stat"><span class="label">Spend total</span><span class="val" style="color:#22c55e">$982</span></div>
+      <div class="format-stat"><span class="label">Leads</span><span class="val">73</span></div>
+      <div class="format-stat"><span class="label">CPL moyen</span><span class="val" style="color:#22c55e">$13.4</span></div>
+      <div class="format-stat"><span class="label">Calls</span><span class="val">15</span></div>
+      <div class="format-stat"><span class="label">Ventes</span><span class="val" style="color:#22c55e">8</span></div>
+      <div class="format-stat"><span class="label">CPA</span><span class="val" style="color:#22c55e">$123</span></div>
+      <div class="bar"><div class="bar-fill bar-green" style="width:73%"></div></div>
+      <div class="annotation">73% des ventes pour 14% du spend</div>
+    </div>
+    <div class="format-card">
+      <h4 style="color: #f59e0b;">Videos (face cam / HeyGen)</h4>
+      <div class="format-stat"><span class="label">Spend total</span><span class="val" style="color:#f59e0b">$5,994</span></div>
+      <div class="format-stat"><span class="label">Leads</span><span class="val">276</span></div>
+      <div class="format-stat"><span class="label">CPL moyen</span><span class="val" style="color:#f59e0b">$21.7</span></div>
+      <div class="format-stat"><span class="label">Calls</span><span class="val">63</span></div>
+      <div class="format-stat"><span class="label">Ventes</span><span class="val" style="color:#f59e0b">3</span></div>
+      <div class="format-stat"><span class="label">CPA</span><span class="val" style="color:#ef4444">$1,998</span></div>
+      <div class="bar"><div class="bar-fill bar-yellow" style="width:27%"></div></div>
+      <div class="annotation">27% des ventes pour 86% du spend</div>
+    </div>
+  </div>
+</div>
+
+<!-- PERFORMANCE TABLE -->
+<div class="section">
+  <div class="section-title">Performance par creative <span class="badge badge-blue">Triees par spend decroissant</span></div>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Creative</th>
+          <th>Decision</th>
+          <th style="text-align:right">Spend</th>
+          <th style="text-align:right">Impr</th>
+          <th style="text-align:right">CTR</th>
+          <th style="text-align:right">Leads</th>
+          <th style="text-align:right">CPL</th>
+          <th style="text-align:right">Calls</th>
+          <th style="text-align:right">$/Call</th>
+          <th style="text-align:right">Sales</th>
+          <th style="text-align:right">Rev</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>PUB 80 HOOK E</strong> (AD1 H5 Winner)</td>
+          <td><span class="status status-watch">SURVEILLER</span></td>
+          <td style="text-align:right">$1,512</td>
+          <td style="text-align:right">103,559</td>
+          <td style="text-align:right">1.0%</td>
+          <td style="text-align:right">81</td>
+          <td style="text-align:right">$18.7</td>
+          <td style="text-align:right">21</td>
+          <td style="text-align:right">$72</td>
+          <td style="text-align:right">1</td>
+          <td style="text-align:right">$1,220</td>
+        </tr>
+        <tr style="background:#1a0a0a">
+          <td><strong>PUB 74 HOOK D</strong> (AD2 H4 Winner)</td>
+          <td><span class="status status-kill">COUPER</span></td>
+          <td style="text-align:right">$1,022</td>
+          <td style="text-align:right">50,721</td>
+          <td style="text-align:right">0.7%</td>
+          <td style="text-align:right">46</td>
+          <td style="text-align:right">$22.2</td>
+          <td style="text-align:right">7</td>
+          <td style="text-align:right; color:#ef4444">$146</td>
+          <td style="text-align:right; color:#ef4444">0</td>
+          <td style="text-align:right">$0</td>
+        </tr>
+        <tr style="background:#0a1a0a">
+          <td><strong>ADS 3 IMG</strong></td>
+          <td><span class="status status-winner">WINNER — SCALER</span></td>
+          <td style="text-align:right">$703</td>
+          <td style="text-align:right">67,970</td>
+          <td style="text-align:right">0.8%</td>
+          <td style="text-align:right">60</td>
+          <td style="text-align:right; color:#22c55e">$11.7</td>
+          <td style="text-align:right">14</td>
+          <td style="text-align:right; color:#22c55e">$50</td>
+          <td style="text-align:right; color:#22c55e">5</td>
+          <td style="text-align:right; color:#22c55e">$2,207</td>
+        </tr>
+        <tr>
+          <td><strong>Ads 140</strong></td>
+          <td><span class="status status-scale">GARDER</span></td>
+          <td style="text-align:right">$556</td>
+          <td style="text-align:right">15,183</td>
+          <td style="text-align:right">1.9%</td>
+          <td style="text-align:right">32</td>
+          <td style="text-align:right">$17.4</td>
+          <td style="text-align:right">11</td>
+          <td style="text-align:right">$51</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">$0</td>
+        </tr>
+        <tr>
+          <td><strong>PUB 5</strong></td>
+          <td><span class="status status-watch">SURVEILLER</span></td>
+          <td style="text-align:right">$380</td>
+          <td style="text-align:right">12,559</td>
+          <td style="text-align:right">1.3%</td>
+          <td style="text-align:right">9</td>
+          <td style="text-align:right; color:#ef4444">$42.3</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">-</td>
+          <td style="text-align:right">1</td>
+          <td style="text-align:right">$1,613</td>
+        </tr>
+        <tr>
+          <td><strong>PUB 37 HOOK C</strong> (AD37 H3 Winner)</td>
+          <td><span class="status status-watch">SURVEILLER</span></td>
+          <td style="text-align:right">$378</td>
+          <td style="text-align:right">11,807</td>
+          <td style="text-align:right">1.0%</td>
+          <td style="text-align:right">17</td>
+          <td style="text-align:right">$22.3</td>
+          <td style="text-align:right">5</td>
+          <td style="text-align:right">$76</td>
+          <td style="text-align:right">1</td>
+          <td style="text-align:right">$0</td>
+        </tr>
+        <tr>
+          <td><strong>ID:13280024</strong> (nouveau test)</td>
+          <td><span class="status status-test">TESTER +</span></td>
+          <td style="text-align:right">$352</td>
+          <td style="text-align:right">10,779</td>
+          <td style="text-align:right">1.2%</td>
+          <td style="text-align:right">18</td>
+          <td style="text-align:right; color:#22c55e">$19.5</td>
+          <td style="text-align:right">4</td>
+          <td style="text-align:right">$88</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">$0</td>
+        </tr>
+        <tr style="background:#1a0a0a">
+          <td><strong>PUB 2</strong></td>
+          <td><span class="status status-kill">COUPER</span></td>
+          <td style="text-align:right">$312</td>
+          <td style="text-align:right">7,377</td>
+          <td style="text-align:right">3.8%</td>
+          <td style="text-align:right">5</td>
+          <td style="text-align:right; color:#ef4444">$62.5</td>
+          <td style="text-align:right">1</td>
+          <td style="text-align:right; color:#ef4444">$312</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">$0</td>
+        </tr>
+        <tr>
+          <td><strong>ID:15650024</strong> (nouveau test)</td>
+          <td><span class="status status-scale">SCALER</span></td>
+          <td style="text-align:right">$249</td>
+          <td style="text-align:right">5,218</td>
+          <td style="text-align:right">2.1%</td>
+          <td style="text-align:right">18</td>
+          <td style="text-align:right; color:#22c55e">$13.9</td>
+          <td style="text-align:right">5</td>
+          <td style="text-align:right; color:#22c55e">$50</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">$0</td>
+        </tr>
+        <tr>
+          <td><strong>Ads 144 v2</strong></td>
+          <td><span class="status status-scale">GARDER</span></td>
+          <td style="text-align:right">$219</td>
+          <td style="text-align:right">7,371</td>
+          <td style="text-align:right">1.0%</td>
+          <td style="text-align:right">13</td>
+          <td style="text-align:right">$16.9</td>
+          <td style="text-align:right">3</td>
+          <td style="text-align:right">$73</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">$0</td>
+        </tr>
+        <tr>
+          <td><strong>ID:57580024</strong></td>
+          <td><span class="status status-test">TESTER +</span></td>
+          <td style="text-align:right">$202</td>
+          <td style="text-align:right">7,229</td>
+          <td style="text-align:right">1.0%</td>
+          <td style="text-align:right">9</td>
+          <td style="text-align:right">$22.5</td>
+          <td style="text-align:right">1</td>
+          <td style="text-align:right; color:#ef4444">$202</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">$0</td>
+        </tr>
+        <tr style="background:#1a0a0a">
+          <td><strong>PUB 6</strong></td>
+          <td><span class="status status-kill">COUPER</span></td>
+          <td style="text-align:right">$194</td>
+          <td style="text-align:right">5,591</td>
+          <td style="text-align:right">7.0%</td>
+          <td style="text-align:right">5</td>
+          <td style="text-align:right; color:#ef4444">$38.9</td>
+          <td style="text-align:right">1</td>
+          <td style="text-align:right; color:#ef4444">$195</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">$0</td>
+        </tr>
+        <tr>
+          <td><strong>Ads 110</strong></td>
+          <td><span class="status status-test">TESTER +</span></td>
+          <td style="text-align:right">$164</td>
+          <td style="text-align:right">5,637</td>
+          <td style="text-align:right">1.0%</td>
+          <td style="text-align:right">8</td>
+          <td style="text-align:right">$20.5</td>
+          <td style="text-align:right">1</td>
+          <td style="text-align:right">$164</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">$0</td>
+        </tr>
+        <tr style="background:#0a1a0a">
+          <td><strong>ADS 4 IMG</strong></td>
+          <td><span class="status status-scale">SCALER</span></td>
+          <td style="text-align:right">$151</td>
+          <td style="text-align:right">2,814</td>
+          <td style="text-align:right">1.8%</td>
+          <td style="text-align:right">6</td>
+          <td style="text-align:right; color:#22c55e">$25.2</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">-</td>
+          <td style="text-align:right; color:#22c55e">1</td>
+          <td style="text-align:right">$813</td>
+        </tr>
+        <tr style="background:#0a1a0a">
+          <td><strong>ADS 16 IMG</strong></td>
+          <td><span class="status status-scale">SCALER</span></td>
+          <td style="text-align:right">$104</td>
+          <td style="text-align:right">1,731</td>
+          <td style="text-align:right">1.4%</td>
+          <td style="text-align:right">5</td>
+          <td style="text-align:right; color:#22c55e">$20.8</td>
+          <td style="text-align:right">1</td>
+          <td style="text-align:right">$104</td>
+          <td style="text-align:right; color:#22c55e">1</td>
+          <td style="text-align:right">$232</td>
+        </tr>
+        <tr style="background:#0a1a0a">
+          <td><strong>ADS 5 IMG</strong></td>
+          <td><span class="status status-test">SCALER — CPL $9</span></td>
+          <td style="text-align:right">$36</td>
+          <td style="text-align:right">917</td>
+          <td style="text-align:right">2.1%</td>
+          <td style="text-align:right">4</td>
+          <td style="text-align:right; color:#22c55e">$9.0</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">-</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">$0</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="annotation">CPL cible : &lt;$25 | Cout/call cible : &lt;$100 | Les creas avec &lt;$50 de spend sont exclues (pas assez de data).</div>
+</div>
+
+<!-- DECISIONS -->
+<div class="section">
+  <div class="section-title">Decisions immediates</div>
+  <div class="two-col">
+    <div>
+      <div class="insight-card" style="border-left: 3px solid #ef4444; margin-bottom: 16px;">
+        <h3 style="color:#ef4444">A COUPER MAINTENANT</h3>
+        <p><strong>PUB 74 HOOK D</strong> — $1,022 pour 0 ventes. $146/call. Leads de mauvaise qualite. Ca fait 3x le CPA cible sans resultat.<br><br>
+        <strong>PUB 2</strong> — $312 pour 0 ventes. $62.5 CPL malgre 3.8% CTR. Le CTR est un piege : les gens cliquent mais ne convertissent pas.<br><br>
+        <strong>PUB 6</strong> — $194 pour 0 ventes. $38.9 CPL. Meme pattern que PUB 2 — CTR eleve (7%) mais zero conversion downstream.</p>
+      </div>
+    </div>
+    <div>
+      <div class="insight-card" style="border-left: 3px solid #22c55e; margin-bottom: 16px;">
+        <h3 style="color:#22c55e">A SCALER MAINTENANT (+20%/jour)</h3>
+        <p><strong>ADS 3 IMG</strong> — Le champion. 5 ventes, $140 CPA, $11.7 CPL. Augmenter le budget de $100/jour a $200/jour cette semaine.<br><br>
+        <strong>ADS 5 IMG</strong> — CPL a $9. Pas encore assez de data mais signal tres fort. Passer de $5/jour a $15-20/jour.<br><br>
+        <strong>ADS 4 IMG + ADS 16 IMG</strong> — Les deux ont des ventes. Augmenter progressivement.<br><br>
+        <strong>ID:15650024</strong> — $13.9 CPL, 5 calls a $50. Bon signal. Augmenter.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 3 PRIORITIES -->
+<div class="section">
+  <div class="section-title">3 priorites de test — Semaine du 13 mars</div>
+
+  <div class="priority-card p1">
+    <div class="priority-number">Priorite 1 — Confiance haute</div>
+    <h3>Decliner ADS 3 IMG en 5 variantes image</h3>
+    <p>ADS 3 IMG est ton winner absolu (5 ventes, $140 CPA). Mais tu n'as que 6 images actives contre des dizaines de videos. Le format image est masssivement sous-exploite alors qu'il produit 73% de tes ventes.</p>
+
+    <div class="concept">
+      <div class="concept-title">Concept A — Meme structure, nouveaux temoignages</div>
+      <p>Garder la structure visuelle de ADS 3 (avant/apres avec contraste), changer les temoignages. Tester Issa (ex-livreur → 8K), Bryan (premier mois → 7K maintenant), Cesar (etudiant → 7K).</p>
+    </div>
+
+    <div class="concept">
+      <div class="concept-title">Concept B — Format carrousel image (3-4 slides)</div>
+      <p>Slide 1 = hook visuel (contraste avant/apres). Slides 2-3 = un temoignage chacun avec chiffre. Slide 4 = CTA. Les carrousels ont un engagement natif plus haut sur Instagram.</p>
+    </div>
+
+    <div class="concept">
+      <div class="concept-title">Concept C — Image "screenshot conversation"</div>
+      <p>Screenshot stylise d'une conversation WhatsApp/Skool ou un membre annonce un resultat. Format natif, ne ressemble pas a une pub. Curiosite immediate.</p>
+    </div>
+
+    <p style="margin-top: 12px;"><strong>Segment cible :</strong> PA→SA (50%) + SA+ (30%) + PA pur (20%)</p>
+  </div>
+
+  <div class="priority-card p2">
+    <div class="priority-number">Priorite 2 — Confiance moyenne</div>
+    <h3>Tester l'angle "communaute / accompagnement"</h3>
+    <p>70%+ des prospects disent que la valeur #1 qu'ils n'avaient PAS realisee avant l'appel = la communaute. Mais AUCUNE de tes ads actives ne vend ca. C'est un angle completement inexploite.</p>
+
+    <div class="concept">
+      <div class="concept-title">Concept D — "Tu fais pas ca tout seul" (video face cam)</div>
+      <p>Hook : "Le probleme c'est pas que t'as pas trouve le bon business. C'est que t'essaies de le faire tout seul." Body : extraits de calls de groupe, captures Skool, anecdote d'un membre aide par la communaute. CTA standard.</p>
+    </div>
+
+    <div class="concept">
+      <div class="concept-title">Concept E — Image "200 personnes" (image statique)</div>
+      <p>Visuel : photo de groupe / screenshot de la communaute Skool active. Texte : "200 personnes se levent chaque matin pour avancer ensemble. Tu viens ?" Format qui a prouve qu'il marche (image) + angle inexploite.</p>
+    </div>
+
+    <p style="margin-top: 12px;"><strong>Segment cible :</strong> PA pur (40%) + PA→SA (60%). Cet angle touche les gens qui ont peur de la solitude entrepreneuriale.</p>
+  </div>
+
+  <div class="priority-card p3">
+    <div class="priority-number">Priorite 3 — Swing test</div>
+    <h3>Tester du UGC membre reel</h3>
+    <p>100% de tes videos sont toi en face cam ou HeyGen. Aucun UGC de tes membres. Pourtant tu as 200 membres dont certains font 7-14K/mois. Un vrai visage inconnu = pattern interrupt massif dans le feed.</p>
+
+    <div class="concept">
+      <div class="concept-title">Concept F — UGC Clement (7K/mois, 2 createurs)</div>
+      <p>Hook : "Y'a un an j'etais en alternance. Aujourd'hui je fais 7 000 euros par mois avec 2 createurs de contenu." 60 secondes, filme a l'iPhone, pas de montage fancy. Authentique &gt; produit.</p>
+    </div>
+
+    <div class="concept">
+      <div class="concept-title">Concept G — UGC Issa (ex-livreur, vit en Thailande)</div>
+      <p>Hook : "Y'a 8 mois j'etais livreur. Aujourd'hui je vis en Thailande et je fais 8 000 euros par mois." Le contraste geographique + financier est puissant sans mentionner Dubai.</p>
+    </div>
+
+    <p style="margin-top: 12px;"><strong>Segment cible :</strong> PA pur (60%) + PA→SA (40%). Le UGC parle directement au problem-aware qui s'identifie au parcours.</p>
+  </div>
+</div>
+
+<!-- BOTTOM LINE -->
+<div class="section">
+  <div class="insight-card" style="border: 1px solid #6366f1;">
+    <h3 style="color: #6366f1;">Resume executif</h3>
+    <p style="font-size: 14px; line-height: 1.7;">
+      <strong>La decouverte de la semaine :</strong> tes images statiques produisent 73% de tes ventes pour 14% du spend. C'est un signal massif. Tu dois basculer ta strategie creative vers plus d'images — c'est la ou tu as le meilleur ROI.<br><br>
+      <strong>L'erreur a corriger :</strong> PUB 74 mange $1K/semaine sans produire de ventes. A couper immediatement. Ca libere du budget pour scaler ADS 3 IMG et les nouveaux tests.<br><br>
+      <strong>Le plan de la semaine :</strong> (1) Couper PUB 74, PUB 2, PUB 6. (2) Scaler ADS 3 IMG + ADS 4/5/16 IMG. (3) Produire 5 nouvelles images (decliner le winner). (4) Lancer 2 concepts angle communaute. (5) Demander a Clement et Issa de filmer un UGC 60s.
+    </p>
+  </div>
+</div>
+
+<div style="text-align:center; color:#444; font-size:11px; margin-top:24px;">
+  Genere par Claude Code — Creative Strategy Sprint | 12 mars 2026
+</div>
+
+</body>
+</html>
