@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment fonctionne l'Opération de Croissance</title>
+    <link rel="icon" type="image/png" href="images/logo-s30.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0e1a;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .header img {
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+            line-height: 1.3;
+        }
+
+        .header p {
+            color: #8b92a8;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Section step */
+        .step {
+            background: linear-gradient(145deg, #131829, #0f1322);
+            border: 1px solid #1e2540;
+            border-radius: 16px;
+            padding: 36px;
+            margin-bottom: 28px;
+        }
+
+        .step-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: #2563eb;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .step-tag {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #60a5fa;
+        }
+
+        .step h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.3px;
+            line-height: 1.3;
+        }
+
+        .step p {
+            color: #b0b8d1;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .step p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight {
+            color: #60a5fa;
+            font-weight: 600;
+        }
+
+        .highlight-green {
+            color: #4ade80;
+            font-weight: 600;
+        }
+
+        /* Arrow */
+        .arrow {
+            text-align: center;
+            margin: -12px 0;
+            font-size: 24px;
+            color: #2563eb;
+        }
+
+        /* Stats bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            margin: 24px 0;
+        }
+
+        .stat {
+            background: #0f1322;
+            border: 1px solid #1e2540;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .stat .number {
+            font-size: 22px;
+            font-weight: 800;
+            color: #60a5fa;
+            margin-bottom: 4px;
+        }
+
+        .stat .label {
+            font-size: 11px;
+            color: #8b92a8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Exercise box */
+        .exercise {
+            background: linear-gradient(145deg, #0f1a2e, #0f1322);
+            border: 2px dashed #2563eb;
+            border-radius: 16px;
+            padding: 28px;
+            margin: 24px 0;
+        }
+
+        .exercise h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #60a5fa;
+        }
+
+        .exercise p {
+            color: #b0b8d1;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .exercise p:last-child {
+            margin-bottom: 0;
+        }
+
+        .search-examples {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 16px 0;
+        }
+
+        .search-tag {
+            background: #1e2540;
+            border: 1px solid #2d3660;
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: 13px;
+            color: #d1d5e8;
+        }
+
+        /* Screenshot placeholder */
+        .screenshot {
+            width: 100%;
+            border-radius: 12px;
+            margin: 16px 0;
+            border: 1px solid #1e2540;
+        }
+
+        .screenshot-caption {
+            text-align: center;
+            font-size: 12px;
+            color: #6b7294;
+            margin-top: -8px;
+            margin-bottom: 16px;
+            font-style: italic;
+        }
+
+        /* Build list */
+        .build-list {
+            margin: 20px 0;
+        }
+
+        .build-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 18px 0;
+            border-bottom: 1px solid #1e2540;
+        }
+
+        .build-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .build-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #1e2540;
+            border-radius: 10px;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .build-content h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .build-content p {
+            color: #8b92a8;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* Schema paiement */
+        .payment-schema {
+            background: #0f1322;
+            border: 1px solid #1e2540;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+            text-align: center;
+        }
+
+        .payment-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 16px 0;
+        }
+
+        .payment-box {
+            background: #1e2540;
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            min-width: 100px;
+        }
+
+        .payment-box.client { border: 1px solid #8b92a8; }
+        .payment-box.processor { border: 1px solid #2563eb; color: #60a5fa; }
+        .payment-box.you { border: 1px solid #4ade80; color: #4ade80; }
+        .payment-box.creator { border: 1px solid #f59e0b; color: #f59e0b; }
+
+        .payment-arrow {
+            color: #4a5170;
+            font-size: 18px;
+        }
+
+        .payment-note {
+            font-size: 12px;
+            color: #6b7294;
+            margin-top: 8px;
+        }
+
+        /* Video embed */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            margin: 20px 0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Résultat */
+        .result {
+            background: linear-gradient(145deg, #0f1d14, #0f1322);
+            border: 1px solid #1a3a25;
+            border-radius: 16px;
+            padding: 36px;
+            margin-bottom: 28px;
+        }
+
+        .result h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #4ade80;
+        }
+
+        .result p {
+            color: #b0b8d1;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .result p:last-child {
+            margin-bottom: 0;
+        }
+
+        .result .big-number {
+            font-size: 36px;
+            font-weight: 900;
+            color: #4ade80;
+            margin: 8px 0;
+        }
+
+        .cta-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #4ade80;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            margin-top: 8px;
+        }
+
+        .cta-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Communauté */
+        .community {
+            background: linear-gradient(145deg, #131829, #0f1322);
+            border: 1px solid #1e2540;
+            border-radius: 16px;
+            padding: 36px;
+            margin-bottom: 28px;
+        }
+
+        .community h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.3px;
+        }
+
+        .community p {
+            color: #b0b8d1;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .community-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .community-feature {
+            background: #0f1322;
+            border: 1px solid #1e2540;
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .community-feature .emoji {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .community-feature h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .community-feature p {
+            font-size: 12px;
+            color: #8b92a8;
+            margin-bottom: 0;
+            line-height: 1.5;
+        }
+
+        /* Skool post mockup */
+        .skool-post {
+            background: #2d2d2d;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .skool-post h4 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .skool-post p {
+            font-size: 13px;
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .skool-post .engagement {
+            display: flex;
+            gap: 16px;
+            font-size: 12px;
+            color: #999;
+            margin-top: 12px;
+            padding-top: 10px;
+            border-top: 1px solid #444;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            color: #4a5170;
+            font-size: 13px;
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid #1e2540;
+        }
+
+        /* Note */
+        .note {
+            background: linear-gradient(145deg, #1a1a2e, #0f1322);
+            border: 1px solid #2563eb;
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 28px;
+        }
+
+        .note h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #60a5fa;
+        }
+
+        .note p {
+            color: #b0b8d1;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .note p:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 500px) {
+            .stats-bar { grid-template-columns: 1fr; }
+            .community-features { grid-template-columns: 1fr; }
+            .payment-flow { flex-direction: column; }
+            .payment-arrow { transform: rotate(90deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="header">
+            <img src="images/logo-s30.png" alt="Stratégie 30%">
+            <h1>L'Opération de Croissance, comment ça marche concrètement ?</h1>
+            <p>Lis cette page en entier. Dans 5 minutes tu comprendras exactement ce que tu vas faire, comment tu vas le faire, et comment tu vas être payé.</p>
+        </div>
+
+        <!-- STATS -->
+        <div class="stats-bar">
+            <div class="stat">
+                <div class="number">300K+</div>
+                <div class="label">Créateurs en France</div>
+            </div>
+            <div class="stat">
+                <div class="number">96%</div>
+                <div class="label">N'ont pas de système de vente</div>
+            </div>
+            <div class="stat">
+                <div class="number">∞</div>
+                <div class="label">Niches disponibles</div>
+            </div>
+        </div>
+
+        <!-- ÉTAPE 1 -->
+        <div class="step">
+            <div class="step-label">
+                <div class="step-number">1</div>
+                <span class="step-tag">Ce que tu fais en premier</span>
+            </div>
+            <h2>Tu trouves un créateur de contenu qui a une audience mais pas de business</h2>
+
+            <p>Il y a des centaines de milliers de créateurs sur Instagram, YouTube, TikTok. Des coachs sportifs, des profs de guitare, des nutritionnistes, des experts en relations, des photographes, des profs de langues...</p>
+
+            <p>Ils ont tous le même problème : <span class="highlight">ils ont une audience qui les suit, qui leur fait confiance, mais ils ne gagnent presque rien avec.</span> Pas de produit à vendre, pas de page web, pas d'emails. Ils postent du contenu gratuitement et espèrent que ça finisse par payer.</p>
+
+            <p>C'est là que tu arrives. Tu deviens la personne qui transforme leur audience en revenus.</p>
+
+            <!-- EXERCICE -->
+            <div class="exercise">
+                <h3>🔍 Fais le test maintenant (30 secondes)</h3>
+                <p>Ouvre Instagram et tape un de ces mots dans la barre de recherche :</p>
+                <div class="search-examples">
+                    <span class="search-tag">prof de guitare</span>
+                    <span class="search-tag">coach tennis</span>
+                    <span class="search-tag">nutritionniste</span>
+                    <span class="search-tag">prof de piano</span>
+                    <span class="search-tag">coach de boxe</span>
+                    <span class="search-tag">prof de yoga</span>
+                    <span class="search-tag">coach running</span>
+                    <span class="search-tag">photographe pro</span>
+                </div>
+                <p>Tu vas voir apparaître des dizaines de créateurs avec des milliers d'abonnés. Clique sur un profil, puis sur <strong>"Voir plus"</strong> dans les suggestions. Tu verras des dizaines d'autres créateurs similaires.</p>
+                <p>Chaque créateur que tu vois, c'est un partenaire potentiel. <span class="highlight">Et 96% d'entre eux n'ont aucun système pour monétiser leur audience.</span></p>
+            </div>
+
+            <p>Et on ne te laisse pas chercher tout seul. On t'apprend exactement comment trouver les bons créateurs et comment les contacter.</p>
+
+            <p>En plus de ça, on met régulièrement en relation des créateurs de contenu et des opérateurs du programme grâce à notre <span class="highlight">réseau secret de créateurs partenaires</span>. Des créateurs qui viennent directement nous demander un opérateur pour les aider.</p>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- ÉTAPE 2 -->
+        <div class="step">
+            <div class="step-label">
+                <div class="step-number">2</div>
+                <span class="step-tag">Ce que tu construis pour lui</span>
+            </div>
+            <h2>Tu construis tout ce qui lui manque pour vendre</h2>
+
+            <p>Imagine un prof de piano sur Instagram avec 30 000 abonnés. Les gens adorent ses vidéos, ils lui envoient des messages pour lui demander comment progresser plus vite. Mais il n'a rien à leur vendre. Pas de programme, pas de site, rien. Il donne tout gratuitement.</p>
+
+            <p><span class="highlight">Toi, tu arrives et tu construis tout ce dont il a besoin :</span></p>
+
+            <div class="build-list">
+                <div class="build-item">
+                    <div class="build-icon">📦</div>
+                    <div class="build-content">
+                        <h4>Son offre</h4>
+                        <p>Tu prends ce que le créateur sait déjà faire et tu le structures en un programme concret. Par exemple : "Apprends à jouer tes morceaux préférés en 90 jours", avec des cours vidéo, des exercices pratiques et un suivi chaque semaine. Tu n'inventes rien, tu organises son savoir en un produit que les gens peuvent acheter.</p>
+                    </div>
+                </div>
+                <div class="build-item">
+                    <div class="build-icon">🌐</div>
+                    <div class="build-content">
+                        <h4>Sa page de vente</h4>
+                        <p>Une page web qui explique le programme, montre à qui c'est destiné, affiche les résultats possibles, et permet aux gens de s'inscrire. On te donne des modèles prêts à l'emploi que tu n'as qu'à adapter avec les infos du créateur. Pas besoin de savoir coder.</p>
+                    </div>
+                </div>
+                <div class="build-item">
+                    <div class="build-icon">✉️</div>
+                    <div class="build-content">
+                        <h4>Ses emails automatiques</h4>
+                        <p>Quand quelqu'un s'intéresse au programme, il reçoit automatiquement une série d'emails. Ces emails répondent à ses questions, lui montrent des résultats d'autres élèves, et l'amènent naturellement vers l'achat. Tu les écris une fois, ils tournent tout seuls ensuite.</p>
+                    </div>
+                </div>
+                <div class="build-item">
+                    <div class="build-icon">📣</div>
+                    <div class="build-content">
+                        <h4>Sa stratégie pour attirer des clients</h4>
+                        <p>Tu mets en place un système pour amener les bonnes personnes au bon endroit. Les abonnés du créateur voient une vidéo qui leur donne envie d'en savoir plus, ils s'inscrivent, reçoivent les emails, et une partie d'entre eux achètent le programme. Le tout tourne en automatique, 24h/24.</p>
+                    </div>
+                </div>
+            </div>
+
+            <p>Le créateur continue de faire ce qu'il sait faire : créer du contenu. <span class="highlight">Toi, tu gères tout le business dans l'ombre.</span> Pas besoin de te montrer, pas besoin d'avoir une audience, pas besoin de créer du contenu.</p>
+
+            <div class="note">
+                <h3>Tu ne sais pas faire tout ça ? C'est normal.</h3>
+                <p>Personne ne savait avant de commencer. Le programme t'apprend chaque étape, une par une, avec des templates prêts à utiliser et des exemples concrets. Et tu as <strong>8 appels en direct par semaine</strong> avec des experts dans chaque domaine (vente, technique, stratégie) pour te débloquer en temps réel.</p>
+            </div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- ÉTAPE 3 -->
+        <div class="step">
+            <div class="step-label">
+                <div class="step-number">3</div>
+                <span class="step-tag">Comment tu es payé</span>
+            </div>
+            <h2>Tu prends un pourcentage sur chaque vente, automatiquement</h2>
+
+            <p>C'est la partie que tout le monde se demande : <em>"Comment je suis sûr d'être payé ?"</em></p>
+
+            <p>Voilà comment ça marche. On utilise un <span class="highlight">processeur de paiement</span> (un outil en ligne sécurisé) qui redistribue automatiquement l'argent à chaque vente :</p>
+
+            <div class="payment-schema">
+                <p style="font-size: 13px; color: #8b92a8; margin-bottom: 20px;">Exemple : un client achète le programme à 500€</p>
+                <!-- Client -->
+                <div style="display: flex; justify-content: center;">
+                    <div class="payment-box client" style="min-width: 180px;">👤 Un client achète<br><strong style="font-size: 20px; color: #fff;">500€</strong></div>
+                </div>
+                <div style="text-align: center; color: #4a5170; font-size: 18px; margin: 8px 0;">↓</div>
+                <!-- Processeur -->
+                <div style="display: flex; justify-content: center;">
+                    <div class="payment-box processor" style="min-width: 220px;">🔒 Processeur de paiement<br><small>Split automatique à chaque vente</small></div>
+                </div>
+                <!-- Split visuel -->
+                <div style="display: flex; justify-content: center; margin: 0;">
+                    <div style="width: 220px; position: relative; height: 32px;">
+                        <div style="position: absolute; left: 50%; top: 0; width: 1px; height: 12px; background: #4a5170;"></div>
+                        <div style="position: absolute; left: 25%; right: 25%; top: 12px; height: 1px; background: #4a5170;"></div>
+                        <div style="position: absolute; left: 25%; top: 12px; width: 1px; height: 20px; background: #4a5170;"></div>
+                        <div style="position: absolute; right: 25%; top: 12px; width: 1px; height: 20px; background: #4a5170;"></div>
+                    </div>
+                </div>
+                <!-- Toi + Créateur -->
+                <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;">
+                    <div class="payment-box you" style="min-width: 150px;">🟢 Toi<br><strong style="font-size: 22px;">150€</strong><br><small>30% automatique</small></div>
+                    <div class="payment-box creator" style="min-width: 150px;">🟡 Créateur<br><strong style="font-size: 22px;">350€</strong><br><small>70% automatique</small></div>
+                </div>
+                <p class="payment-note" style="margin-top: 20px;">À chaque vente, l'argent est redistribué automatiquement sur vos comptes respectifs.<br>Personne ne peut "oublier" de te payer. Personne ne peut te la mettre à l'envers.</p>
+            </div>
+
+            <p>Le créateur ne touche pas ton argent. Tu ne touches pas le sien. <span class="highlight">Tout est automatique et transparent.</span> C'est comme un virement qui se fait tout seul à chaque vente.</p>
+
+            <p>Pas besoin de faire confiance à qui que ce soit. Le système fait le travail.</p>
+
+            <p>Si tu veux comprendre en détail comment se faire payer, j'ai fait une vidéo complète là-dessus :</p>
+
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/4OD7tjXlq40" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- RÉSULTAT -->
+        <div class="result">
+            <h2>Ce que ça donne concrètement</h2>
+            <div class="big-number">5 000 à 15 000€/mois</div>
+            <p>C'est ce que nos membres génèrent avec un seul créateur, au bout de quelques mois de travail.</p>
+            <p>Beaucoup de nos membres peuvent <span class="highlight-green">quitter leur CDI ou leur alternance</span> une fois que leur business se stabilise autour des 5 000€ par mois. C'est à ce moment-là que tout change : tu choisis ton emploi du temps, tu travailles d'où tu veux, et tu construis quelque chose qui t'appartient.</p>
+            <p>Tu veux voir leurs parcours en détail ? Ils racontent tout ici :</p>
+            <a href="https://www.youtube.com/@MatheoCauwetTemoignages" target="_blank" class="cta-link">Clique ici pour voir les témoignages des membres</a>
+        </div>
+
+        <!-- COMMUNAUTÉ -->
+        <div class="community">
+            <h2>Tu ne seras jamais seul</h2>
+            <p>Ce programme, c'est pas un cours en vidéo où on te laisse dans la nature. C'est une communauté de 200 membres actifs qui avancent ensemble.</p>
+
+            <div class="community-features">
+                <div class="community-feature">
+                    <div class="emoji">📞</div>
+                    <h4>8 appels par semaine</h4>
+                    <p>Avec des experts en vente, technique, stratégie et IA. Tu poses ta question, on te répond en direct.</p>
+                </div>
+                <div class="community-feature">
+                    <div class="emoji">👥</div>
+                    <h4>200 membres actifs</h4>
+                    <p>Des gens qui font la même chose que toi. Qui partagent leurs victoires, leurs blocages, leurs contacts.</p>
+                </div>
+                <div class="community-feature">
+                    <div class="emoji">🤝</div>
+                    <h4>On se rencontre en vrai</h4>
+                    <p>Séjours au ski, rencontres à Paris. C'est pas juste un groupe en ligne, c'est une vraie communauté.</p>
+                </div>
+                <div class="community-feature">
+                    <div class="emoji">🎯</div>
+                    <h4>Réseau de créateurs</h4>
+                    <p>On met en relation des créateurs et des opérateurs régulièrement. Tu n'es pas obligé de chercher seul.</p>
+                </div>
+            </div>
+
+            <p>Regarde à quoi ressemble la communauté quand on se retrouve :</p>
+
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/8602HhEipO4" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <!-- NOTE FINALE -->
+        <div class="note">
+            <h3>Tu as un appel prévu avec nous.</h3>
+            <p>Maintenant tu sais comment ça fonctionne. Sur l'appel, on va voir ensemble si ce modèle correspond à ta situation, et si c'est le bon moment pour toi.</p>
+            <p>D'ici là, si t'as des questions, ton conseiller est là pour y répondre. Décroche quand il t'appelle.</p>
+        </div>
+
+        <div class="footer">
+            Stratégie 30% — Opération de Croissance
+        </div>
+
+    </div>
+</body>
+</html>
