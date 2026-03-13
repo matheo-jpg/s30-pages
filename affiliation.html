@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programme d'Affiliation — Stratégie 30%</title>
+    <link rel="icon" type="image/png" href="images/logo-s30.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0e1a;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .header img {
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            color: #8b92a8;
+            font-size: 15px;
+        }
+
+        /* Card */
+        .card {
+            background: linear-gradient(145deg, #131829, #0f1322);
+            border: 1px solid #1e2540;
+            border-radius: 16px;
+            padding: 36px;
+            margin-bottom: 32px;
+        }
+
+        .card h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        /* Form */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #8b92a8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            background: #0a0e1a;
+            border: 1px solid #1e2540;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus {
+            border-color: #4a6cf7;
+        }
+
+        .form-group input::placeholder {
+            color: #3a4160;
+        }
+
+        .btn-generate {
+            width: 100%;
+            padding: 16px;
+            background: #fff;
+            color: #0a0e1a;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: transform 0.15s, opacity 0.15s;
+        }
+
+        .btn-generate:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .btn-generate:active {
+            transform: translateY(0);
+        }
+
+        /* Result */
+        .result {
+            display: none;
+            margin-top: 28px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .result.visible {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #8b92a8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .link-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #0a0e1a;
+            border: 1px solid #1e2540;
+            border-radius: 10px;
+            padding: 4px 4px 4px 16px;
+        }
+
+        .link-box span {
+            flex: 1;
+            font-size: 14px;
+            color: #c0c7db;
+            word-break: break-all;
+            padding: 10px 0;
+        }
+
+        .btn-copy {
+            padding: 10px 20px;
+            background: #4a6cf7;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background 0.2s;
+        }
+
+        .btn-copy:hover {
+            background: #3b5de7;
+        }
+
+        .btn-copy.copied {
+            background: #22c55e;
+        }
+
+        .success-msg {
+            text-align: center;
+            color: #22c55e;
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 12px;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .success-msg.visible {
+            opacity: 1;
+        }
+
+        /* Rules */
+        .rules {
+            margin-top: 8px;
+        }
+
+        .rules h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .rule {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .rule-icon {
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            background: #131829;
+            border: 1px solid #1e2540;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .rule-content h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .rule-content p {
+            font-size: 14px;
+            color: #8b92a8;
+            line-height: 1.5;
+        }
+
+        .highlight {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* Divider */
+        .divider {
+            height: 1px;
+            background: #1e2540;
+            margin: 28px 0;
+        }
+
+        /* FAQ */
+        .faq-item {
+            margin-bottom: 20px;
+        }
+
+        .faq-item h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .faq-item p {
+            font-size: 14px;
+            color: #8b92a8;
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 32px 0 16px;
+            color: #3a4160;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <img src="images/logo-s30.png" alt="Stratégie 30%">
+            <h1>Programme d'Affiliation</h1>
+            <p>Génère ton lien et gagne 500€ par vente</p>
+        </div>
+
+        <!-- Generator -->
+        <div class="card">
+            <h2>Génère ton lien d'affilié</h2>
+
+            <div class="form-group">
+                <label>Ton prénom</label>
+                <input type="text" id="prenom" placeholder="Ex : Clement" autocomplete="off">
+            </div>
+
+            <button class="btn-generate" id="generateBtn" onclick="generateLink()">Générer mon lien</button>
+
+            <div class="result" id="result">
+                <div class="result-label">Ton lien d'affilié</div>
+                <div class="link-box">
+                    <span id="linkText"></span>
+                    <button class="btn-copy" id="copyBtn" onclick="copyLink()">Copier</button>
+                </div>
+                <div class="success-msg" id="successMsg">Lien copié !</div>
+            </div>
+        </div>
+
+        <!-- Rules -->
+        <div class="card rules">
+            <h2>Comment ça marche</h2>
+
+            <div class="rule">
+                <div class="rule-icon">1</div>
+                <div class="rule-content">
+                    <h3>Envoie ton lien</h3>
+                    <p>Partage ton lien d'affilié à quelqu'un qui pourrait être intéressé par le programme. Quand il clique, il arrive directement sur la page de booking avec ton nom pré-rempli.</p>
+                </div>
+            </div>
+
+            <div class="rule">
+                <div class="rule-icon">2</div>
+                <div class="rule-content">
+                    <h3>Il réserve un appel</h3>
+                    <p>Ton contact remplit le questionnaire et réserve un appel avec notre équipe. On sait automatiquement qu'il vient de ta part.</p>
+                </div>
+            </div>
+
+            <div class="rule">
+                <div class="rule-icon">3</div>
+                <div class="rule-content">
+                    <h3>Tu touches ta commission</h3>
+                    <p>Si ton contact rejoint le programme, tu gagnes <span class="highlight">500€</span>.</p>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <h2>Les règles</h2>
+
+            <div class="faq-item">
+                <h3>Combien je gagne ?</h3>
+                <p><span class="highlight">500€ par vente</span> confirmée. Pas de plafond — plus tu ramènes de monde, plus tu gagnes.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Quand je suis payé ?</h3>
+                <p><span class="highlight">Paiement comptant</span> : ta commission est versée au début du mois suivant la vente.<br>
+                <span class="highlight">Paiement en plusieurs fois</span> : ta commission est versée quand 50% du programme a été collecté.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Comment je suis payé ?</h3>
+                <p>Par virement bancaire. On te contacte pour récupérer tes infos de paiement dès qu'une commission est validée.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Comment je sais si mon contact a acheté ?</h3>
+                <p>On te tient au courant par message dès qu'un de tes contacts rejoint le programme.</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            Stratégie 30% — Programme d'Affiliation
+        </div>
+    </div>
+
+    <script>
+        const input = document.getElementById('prenom');
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') generateLink();
+        });
+
+        function normalizeRef(str) {
+            return str
+                .trim()
+                .toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .replace(/[^a-z0-9]/g, '-')
+                .replace(/-+/g, '-')
+                .replace(/^-|-$/g, '');
+        }
+
+        function generateLink() {
+            const prenom = document.getElementById('prenom').value.trim();
+            if (!prenom) {
+                input.focus();
+                input.style.borderColor = '#ef4444';
+                setTimeout(() => input.style.borderColor = '#1e2540', 1500);
+                return;
+            }
+
+            const ref = normalizeRef(prenom);
+            const link = 'https://app.iclosed.io/e/strategie30/affilie-du-programme?ref=' + encodeURIComponent(prenom);
+
+            document.getElementById('linkText').textContent = link;
+            document.getElementById('result').classList.add('visible');
+            document.getElementById('copyBtn').textContent = 'Copier';
+            document.getElementById('copyBtn').classList.remove('copied');
+            document.getElementById('successMsg').classList.remove('visible');
+        }
+
+        function copyLink() {
+            const link = document.getElementById('linkText').textContent;
+            navigator.clipboard.writeText(link).then(() => {
+                const btn = document.getElementById('copyBtn');
+                btn.textContent = 'Copié !';
+                btn.classList.add('copied');
+                document.getElementById('successMsg').classList.add('visible');
+                setTimeout(() => {
+                    btn.textContent = 'Copier';
+                    btn.classList.remove('copied');
+                    document.getElementById('successMsg').classList.remove('visible');
+                }, 2500);
+            });
+        }
+    </script>
+</body>
+</html>
