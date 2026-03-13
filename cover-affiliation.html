@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Cover Affiliation — S30%</title>
+    <style>
+        * { margin: 0; padding: 0; }
+        body {
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            gap: 30px;
+            font-family: sans-serif;
+        }
+        canvas { display: block; }
+        .download-btn {
+            padding: 16px 40px;
+            background: #fff;
+            color: #0a0e1a;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .download-btn:hover { opacity: 0.9; }
+    </style>
+</head>
+<body>
+    <canvas id="cover" width="1280" height="720"></canvas>
+    <button class="download-btn" onclick="downloadPNG()">Télécharger en PNG</button>
+
+    <script>
+        // Load the font first, then draw
+        const font = new FontFace('CoverFont', 'url(https://fonts.gstatic.com/s/bebasneue/v14/JTUSjIg69CK48gW7PXoo9Wlhyw.woff2)');
+
+        font.load().then(function(loadedFont) {
+            document.fonts.add(loadedFont);
+            draw();
+        });
+
+        function draw() {
+            const canvas = document.getElementById('cover');
+            const ctx = canvas.getContext('2d');
+            const W = 1280;
+            const H = 720;
+
+            // === BACKGROUND: radial gradient ===
+            const bgGrad = ctx.createRadialGradient(W/2, H/2, 0, W/2, H/2, 500);
+            bgGrad.addColorStop(0, 'rgb(15, 25, 58)');
+            bgGrad.addColorStop(0.6, 'rgb(10, 17, 38)');
+            bgGrad.addColorStop(1, 'rgb(6, 11, 24)');
+            ctx.fillStyle = bgGrad;
+            ctx.fillRect(0, 0, W, H);
+
+            // === GRID ===
+            ctx.strokeStyle = 'rgba(30, 40, 70, 0.25)';
+            ctx.lineWidth = 1;
+            for (let x = 0; x <= W; x += 60) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, H);
+                ctx.stroke();
+            }
+            for (let y = 0; y <= H; y += 60) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(W, y);
+                ctx.stroke();
+            }
+
+            // === TOP TEXT: "STRATEGIE 30%" ===
+            ctx.save();
+            ctx.font = '400 16px "CoverFont", sans-serif';
+            ctx.fillStyle = 'rgba(67, 97, 238, 0.4)';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.letterSpacing = '10px';
+            // Draw with spacing manually
+            const topText = 'S T R A T E G I E   3 0 %';
+            ctx.font = '16px sans-serif';
+            ctx.fillStyle = 'rgba(67, 97, 238, 0.45)';
+            ctx.fillText(topText, W/2, 248);
+            ctx.restore();
+
+            // === MAIN TEXT: "AFFILIATION" ===
+            ctx.save();
+            ctx.translate(W/2, 350);
+            ctx.transform(1, 0, -0.1, 1, 0, 0); // slight italic skew
+            ctx.font = '400 160px "CoverFont"';
+            ctx.fillStyle = '#ffffff';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('AFFILIATION', 0, 0);
+            ctx.restore();
+
+            // === DIVIDER LINE ===
+            ctx.strokeStyle = 'rgb(96, 77, 238)';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(W/2 - 28, 445);
+            ctx.lineTo(W/2 + 28, 445);
+            ctx.stroke();
+
+            // === BOTTOM TEXT ===
+            ctx.save();
+            ctx.font = '16px sans-serif';
+            ctx.fillStyle = 'rgb(67, 97, 238)';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            const bottomText = 'G A G N E   5 0 0 €   P A R   V E N T E';
+            ctx.fillText(bottomText, W/2, 478);
+            ctx.restore();
+        }
+
+        function downloadPNG() {
+            const canvas = document.getElementById('cover');
+            const link = document.createElement('a');
+            link.download = 'v6-affiliation.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+    </script>
+</body>
+</html>
