@@ -30,42 +30,52 @@
     </style>
 </head>
 <body>
-    <canvas id="cover" width="1280" height="720"></canvas>
+    <canvas id="cover" width="2560" height="1440"></canvas>
     <button class="download-btn" onclick="downloadPNG()">Télécharger en PNG</button>
 
     <script>
-        // Load the font first, then draw
-        const font = new FontFace('CoverFont', 'url(https://fonts.gstatic.com/s/bebasneue/v14/JTUSjIg69CK48gW7PXoo9Wlhyw.woff2)');
+        // Use high-res canvas (2x) for sharp export, display at 1280x720
+        const canvas = document.getElementById('cover');
+        canvas.style.width = '1280px';
+        canvas.style.height = '720px';
 
-        font.load().then(function(loadedFont) {
-            document.fonts.add(loadedFont);
+        // Load multiple font weights
+        Promise.all([
+            new FontFace('MainFont', 'url(https://fonts.gstatic.com/s/bebasneue/v14/JTUSjIg69CK48gW7PXoo9Wlhyw.woff2)').load(),
+            new FontFace('SubFont', 'url(https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hjQ.woff2)').load()
+        ]).then(function(fonts) {
+            fonts.forEach(f => document.fonts.add(f));
+            draw();
+        }).catch(function() {
+            // Fallback: draw anyway
             draw();
         });
 
         function draw() {
-            const canvas = document.getElementById('cover');
             const ctx = canvas.getContext('2d');
-            const W = 1280;
-            const H = 720;
+            const W = 2560;
+            const H = 1440;
+            const S = 2; // scale factor
 
-            // === BACKGROUND: radial gradient ===
-            const bgGrad = ctx.createRadialGradient(W/2, H/2, 0, W/2, H/2, 500);
-            bgGrad.addColorStop(0, 'rgb(15, 25, 58)');
-            bgGrad.addColorStop(0.6, 'rgb(10, 17, 38)');
+            // === BACKGROUND ===
+            const bgGrad = ctx.createRadialGradient(W/2, H/2, 0, W/2, H/2, 900);
+            bgGrad.addColorStop(0, 'rgb(18, 28, 55)');
+            bgGrad.addColorStop(0.5, 'rgb(11, 18, 38)');
             bgGrad.addColorStop(1, 'rgb(6, 11, 24)');
             ctx.fillStyle = bgGrad;
             ctx.fillRect(0, 0, W, H);
 
-            // === GRID ===
-            ctx.strokeStyle = 'rgba(30, 40, 70, 0.25)';
+            // === GRID (very subtle) ===
+            ctx.strokeStyle = 'rgba(25, 35, 60, 0.15)';
             ctx.lineWidth = 1;
-            for (let x = 0; x <= W; x += 60) {
+            const gridSize = 120; // 60px * 2 (scale)
+            for (let x = 0; x <= W; x += gridSize) {
                 ctx.beginPath();
                 ctx.moveTo(x, 0);
                 ctx.lineTo(x, H);
                 ctx.stroke();
             }
-            for (let y = 0; y <= H; y += 60) {
+            for (let y = 0; y <= H; y += gridSize) {
                 ctx.beginPath();
                 ctx.moveTo(0, y);
                 ctx.lineTo(W, y);
@@ -74,23 +84,21 @@
 
             // === TOP TEXT: "STRATEGIE 30%" ===
             ctx.save();
-            ctx.font = '400 16px "CoverFont", sans-serif';
-            ctx.fillStyle = 'rgba(67, 97, 238, 0.4)';
+            ctx.font = (14*S) + 'px "SubFont", "Inter", sans-serif';
+            ctx.fillStyle = 'rgba(67, 97, 238, 0.5)';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
-            ctx.letterSpacing = '10px';
-            // Draw with spacing manually
-            const topText = 'S T R A T E G I E   3 0 %';
-            ctx.font = '16px sans-serif';
-            ctx.fillStyle = 'rgba(67, 97, 238, 0.45)';
-            ctx.fillText(topText, W/2, 248);
+            ctx.fillText('S T R A T E G I E   3 0 %', W/2, 490);
             ctx.restore();
 
             // === MAIN TEXT: "AFFILIATION" ===
             ctx.save();
-            ctx.translate(W/2, 350);
-            ctx.transform(1, 0, -0.1, 1, 0, 0); // slight italic skew
-            ctx.font = '400 160px "CoverFont"';
+            ctx.translate(W/2, H/2 - 10);
+            ctx.transform(1, 0, -0.1, 1, 0, 0); // italic skew
+
+            // Try sizes to fit nicely
+            const fontSize = 280;
+            ctx.font = fontSize + 'px "MainFont", "Bebas Neue", sans-serif';
             ctx.fillStyle = '#ffffff';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
@@ -98,29 +106,35 @@
             ctx.restore();
 
             // === DIVIDER LINE ===
-            ctx.strokeStyle = 'rgb(96, 77, 238)';
-            ctx.lineWidth = 3;
+            const divY = H/2 + 165;
+            ctx.strokeStyle = 'rgb(86, 70, 220)';
+            ctx.lineWidth = 4;
             ctx.beginPath();
-            ctx.moveTo(W/2 - 28, 445);
-            ctx.lineTo(W/2 + 28, 445);
+            ctx.moveTo(W/2 - 50, divY);
+            ctx.lineTo(W/2 + 50, divY);
             ctx.stroke();
 
             // === BOTTOM TEXT ===
             ctx.save();
-            ctx.font = '16px sans-serif';
+            ctx.font = (14*S) + 'px "SubFont", "Inter", sans-serif';
             ctx.fillStyle = 'rgb(67, 97, 238)';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
-            const bottomText = 'G A G N E   5 0 0 €   P A R   V E N T E';
-            ctx.fillText(bottomText, W/2, 478);
+            ctx.fillText('G A G N E   5 0 0 €   P A R   V E N T E', W/2, divY + 55);
             ctx.restore();
         }
 
         function downloadPNG() {
-            const canvas = document.getElementById('cover');
+            // Export at 1280x720
+            const exportCanvas = document.createElement('canvas');
+            exportCanvas.width = 1280;
+            exportCanvas.height = 720;
+            const ectx = exportCanvas.getContext('2d');
+            ectx.drawImage(canvas, 0, 0, 1280, 720);
+
             const link = document.createElement('a');
             link.download = 'v6-affiliation.png';
-            link.href = canvas.toDataURL('image/png');
+            link.href = exportCanvas.toDataURL('image/png');
             link.click();
         }
     </script>
