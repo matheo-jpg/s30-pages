@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checklist avant ton appel — Stratégie 30%</title>
+    <link rel="icon" type="image/png" href="images/logo-s30.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0e1a;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .header img {
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+            line-height: 1.3;
+        }
+
+        .header p {
+            color: #8b92a8;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            color: #60a5fa;
+            font-weight: 600;
+        }
+
+        .highlight-green {
+            color: #4ade80;
+            font-weight: 600;
+        }
+
+        /* Checklist */
+        .checklist {
+            background: linear-gradient(145deg, #131829, #0f1322);
+            border: 1px solid #1e2540;
+            border-radius: 16px;
+            padding: 36px;
+            margin-bottom: 28px;
+        }
+
+        .checklist h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            letter-spacing: -0.3px;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 18px 0;
+            border-bottom: 1px solid #1e2540;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .check-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .check-box {
+            width: 28px;
+            height: 28px;
+            border: 2px solid #2563eb;
+            border-radius: 8px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            margin-top: 2px;
+        }
+
+        .check-box .checkmark {
+            display: none;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .check-item.checked .check-box {
+            background: #4ade80;
+            border-color: #4ade80;
+        }
+
+        .check-item.checked .check-box .checkmark {
+            display: block;
+        }
+
+        .check-item.checked .check-text h4 {
+            text-decoration: line-through;
+            color: #6b7294;
+        }
+
+        .check-text h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            transition: all 0.2s;
+        }
+
+        .check-text p {
+            font-size: 13px;
+            color: #8b92a8;
+            line-height: 1.6;
+        }
+
+        /* Progress */
+        .progress-bar {
+            margin-top: 24px;
+            background: #1e2540;
+            border-radius: 8px;
+            height: 8px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #4ade80;
+            border-radius: 8px;
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .progress-text {
+            text-align: center;
+            font-size: 13px;
+            color: #6b7294;
+            margin-top: 8px;
+        }
+
+        /* Rules */
+        .rules {
+            background: linear-gradient(145deg, #131829, #0f1322);
+            border: 1px solid #1e2540;
+            border-radius: 16px;
+            padding: 36px;
+            margin-bottom: 28px;
+        }
+
+        .rules h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -0.3px;
+        }
+
+        .rule-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid #1e2540;
+        }
+
+        .rule-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .rule-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: #1e2540;
+            border-radius: 10px;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .rule-content h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .rule-content p {
+            font-size: 13px;
+            color: #8b92a8;
+            line-height: 1.6;
+        }
+
+        /* What to expect */
+        .expect {
+            background: linear-gradient(145deg, #0f1d14, #0f1322);
+            border: 1px solid #1a3a25;
+            border-radius: 16px;
+            padding: 36px;
+            margin-bottom: 28px;
+        }
+
+        .expect h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #4ade80;
+        }
+
+        .expect p {
+            color: #b0b8d1;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .expect p:last-child {
+            margin-bottom: 0;
+        }
+
+        .expect-steps {
+            margin: 20px 0;
+        }
+
+        .expect-step {
+            display: flex;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(74, 222, 128, 0.1);
+        }
+
+        .expect-step:last-child {
+            border-bottom: none;
+        }
+
+        .expect-num {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: #1a3a25;
+            border-radius: 50%;
+            font-size: 13px;
+            font-weight: 800;
+            color: #4ade80;
+            flex-shrink: 0;
+        }
+
+        .expect-step p {
+            font-size: 14px;
+            color: #b0b8d1;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* Note */
+        .note {
+            background: linear-gradient(145deg, #1a1a2e, #0f1322);
+            border: 1px solid #2563eb;
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 28px;
+        }
+
+        .note h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #60a5fa;
+        }
+
+        .note p {
+            color: #b0b8d1;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .note p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            color: #4a5170;
+            font-size: 13px;
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid #1e2540;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="header">
+            <img src="images/logo-s30.png" alt="Stratégie 30%">
+            <h1>Ton appel est bientôt</h1>
+            <p>Prépare-toi en 2 minutes pour que l'appel soit le plus utile possible pour toi.</p>
+        </div>
+
+        <!-- CHECKLIST -->
+        <div class="checklist">
+            <h2>Ta checklist avant l'appel</h2>
+
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"><span class="checkmark">✓</span></div>
+                <div class="check-text">
+                    <h4>Tu as regardé la vidéo du premier email</h4>
+                    <p>Celle qui t'explique comment fonctionne l'opération de croissance. Si tu ne l'as pas vue, c'est le moment.</p>
+                </div>
+            </div>
+
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"><span class="checkmark">✓</span></div>
+                <div class="check-text">
+                    <h4>Tu as lu au moins une des pages qu'on t'a envoyées</h4>
+                    <p>Plus tu arrives informé, plus l'appel sera utile pour toi. Ton conseiller ne va pas te réexpliquer ce que tu aurais pu lire avant.</p>
+                </div>
+            </div>
+
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"><span class="checkmark">✓</span></div>
+                <div class="check-text">
+                    <h4>Tu as préparé tes questions</h4>
+                    <p>C'est TON appel. Si tu as des doutes, des questions, des choses que tu veux clarifier, note-les. On est là pour y répondre.</p>
+                </div>
+            </div>
+
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"><span class="checkmark">✓</span></div>
+                <div class="check-text">
+                    <h4>Tu es dans un endroit calme</h4>
+                    <p>Pas dans le métro, pas en voiture, pas avec du bruit autour. L'appel est en visio, tu as besoin d'être concentré.</p>
+                </div>
+            </div>
+
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"><span class="checkmark">✓</span></div>
+                <div class="check-text">
+                    <h4>Tu as le lien de l'appel</h4>
+                    <p>Tu l'as reçu dans tes emails de confirmation. Si tu ne le retrouves pas, envoie un message à ton conseiller, il te le renverra.</p>
+                </div>
+            </div>
+
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"><span class="checkmark">✓</span></div>
+                <div class="check-text">
+                    <h4>Tu seras à l'heure</h4>
+                    <p>On reçoit des centaines de candidatures. Si tu ne te présentes pas, ta place sera donnée à quelqu'un d'autre.</p>
+                </div>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div class="progress-text" id="progress-text">0 sur 6</div>
+        </div>
+
+        <!-- CE QUI VA SE PASSER -->
+        <div class="expect">
+            <h2>Ce qui va se passer sur l'appel</h2>
+
+            <p>L'appel dure entre 30 et 45 minutes. Voilà comment ça se passe :</p>
+
+            <div class="expect-steps">
+                <div class="expect-step">
+                    <div class="expect-num">1</div>
+                    <p><strong>On apprend à te connaître.</strong> Ta situation, ton parcours, ce que tu fais aujourd'hui, ce que tu veux faire demain.</p>
+                </div>
+                <div class="expect-step">
+                    <div class="expect-num">2</div>
+                    <p><strong>On vérifie que c'est fait pour toi.</strong> Tout le monde n'est pas un bon fit. Si on pense que ce n'est pas le bon moment ou le bon modèle pour toi, on te le dira.</p>
+                </div>
+                <div class="expect-step">
+                    <div class="expect-num">3</div>
+                    <p><strong>On répond à toutes tes questions.</strong> Le prix, le fonctionnement, les résultats, la garantie. Tout ce que tu veux savoir.</p>
+                </div>
+                <div class="expect-step">
+                    <div class="expect-num">4</div>
+                    <p><strong>Tu prends ta décision.</strong> Pas de pression. Si c'est oui, on t'explique les prochaines étapes. Si c'est non, pas de problème.</p>
+                </div>
+            </div>
+
+            <p><span class="highlight-green">Ce n'est pas un appel pour te vendre quelque chose à tout prix.</span> C'est un appel pour voir si on peut vraiment t'aider.</p>
+        </div>
+
+        <!-- REGLES -->
+        <div class="rules">
+            <h2>3 choses à savoir</h2>
+
+            <div class="rule-item">
+                <div class="rule-icon">🎯</div>
+                <div class="rule-content">
+                    <h4>Viens avec une vraie envie</h4>
+                    <p>L'appel est fait pour les gens qui veulent changer leur situation, pas pour les curieux. Si tu viens juste pour "voir", tu perds ton temps et le nôtre.</p>
+                </div>
+            </div>
+            <div class="rule-item">
+                <div class="rule-icon">💬</div>
+                <div class="rule-content">
+                    <h4>Sois honnête</h4>
+                    <p>Sur ta situation, tes moyens, tes doutes. On est là pour t'aider, pas pour te juger. Plus tu es transparent, mieux on pourra te conseiller.</p>
+                </div>
+            </div>
+            <div class="rule-item">
+                <div class="rule-icon">⏰</div>
+                <div class="rule-content">
+                    <h4>Sois disponible</h4>
+                    <p>Bloque 45 minutes dans ton agenda. Pas d'appel entre deux réunions ou en sortant du travail pressé. Donne-toi le temps de poser tes questions.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- NOTE -->
+        <div class="note">
+            <h3>On se retrouve dans quelques heures.</h3>
+            <p>Tu as fait le plus dur : tu as pris le temps de comprendre le modèle et tu as réservé un appel. Maintenant, il ne te reste plus qu'à te présenter.</p>
+            <p>À tout à l'heure.</p>
+        </div>
+
+        <div class="footer">
+            Stratégie 30% — Opération de Croissance
+        </div>
+
+    </div>
+
+    <script>
+        function toggleCheck(el) {
+            el.classList.toggle('checked');
+            updateProgress();
+        }
+
+        function updateProgress() {
+            var total = document.querySelectorAll('.check-item').length;
+            var checked = document.querySelectorAll('.check-item.checked').length;
+            var pct = Math.round((checked / total) * 100);
+            document.getElementById('progress-fill').style.width = pct + '%';
+            document.getElementById('progress-text').textContent = checked + ' sur ' + total;
+        }
+    </script>
+</body>
+</html>
