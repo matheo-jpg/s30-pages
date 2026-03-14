@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ce que ça te coûte de ne rien faire — Stratégie 30%</title>
+    <link rel="icon" type="image/png" href="images/logo-s30.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0e1a;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .header img {
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+            line-height: 1.3;
+        }
+
+        .header p {
+            color: #8b92a8;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Section step */
+        .step {
+            background: linear-gradient(145deg, #131829, #0f1322);
+            border: 1px solid #1e2540;
+            border-radius: 16px;
+            padding: 36px;
+            margin-bottom: 28px;
+        }
+
+        .step-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: #2563eb;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .step-tag {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #60a5fa;
+        }
+
+        .step h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.3px;
+            line-height: 1.3;
+        }
+
+        .step p {
+            color: #b0b8d1;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .step p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight {
+            color: #60a5fa;
+            font-weight: 600;
+        }
+
+        .highlight-green {
+            color: #4ade80;
+            font-weight: 600;
+        }
+
+        .highlight-red {
+            color: #f87171;
+            font-weight: 600;
+        }
+
+        /* Arrow */
+        .arrow {
+            text-align: center;
+            margin: -12px 0;
+            font-size: 24px;
+            color: #2563eb;
+        }
+
+        /* Cost calculator */
+        .cost-calc {
+            background: linear-gradient(145deg, #1a1215, #0f1322);
+            border: 1px solid #3a1a1a;
+            border-radius: 16px;
+            padding: 36px;
+            margin-bottom: 28px;
+        }
+
+        .cost-calc h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #f87171;
+        }
+
+        .cost-calc > p {
+            color: #8b92a8;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .cost-input-group {
+            margin-bottom: 24px;
+        }
+
+        .cost-input-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: #f87171;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .cost-input-group input {
+            width: 100%;
+            background: #0f1322;
+            border: 1px solid #3a1a1a;
+            border-radius: 10px;
+            padding: 16px;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .cost-input-group input:focus {
+            border-color: #f87171;
+        }
+
+        .cost-input-group .input-hint {
+            font-size: 12px;
+            color: #6b7294;
+            margin-top: 6px;
+        }
+
+        .cost-timeline {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .cost-card {
+            background: #0f1322;
+            border: 1px solid #3a1a1a;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .cost-card .period {
+            font-size: 12px;
+            color: #8b92a8;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .cost-card .amount {
+            font-size: 28px;
+            font-weight: 900;
+            color: #f87171;
+            line-height: 1.1;
+        }
+
+        .cost-card .amount.big {
+            font-size: 32px;
+        }
+
+        .cost-card .detail {
+            font-size: 11px;
+            color: #6b7294;
+            margin-top: 6px;
+        }
+
+        .cost-card.highlight-card {
+            border-color: #f87171;
+            background: linear-gradient(145deg, #1a1215, #150f1a);
+        }
+
+        /* Opportunity section */
+        .opportunity {
+            background: linear-gradient(145deg, #0f1d14, #0f1322);
+            border: 1px solid #1a3a25;
+            border-radius: 16px;
+            padding: 36px;
+            margin-bottom: 28px;
+        }
+
+        .opportunity h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #4ade80;
+        }
+
+        .opportunity p {
+            color: #b0b8d1;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .opportunity p:last-child {
+            margin-bottom: 0;
+        }
+
+        .opp-timeline {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 24px 0;
+        }
+
+        .opp-card {
+            background: #0f1322;
+            border: 1px solid #1a3a25;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .opp-card .period {
+            font-size: 12px;
+            color: #8b92a8;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .opp-card .amount {
+            font-size: 28px;
+            font-weight: 900;
+            color: #4ade80;
+            line-height: 1.1;
+        }
+
+        .opp-card .amount.big {
+            font-size: 32px;
+        }
+
+        .opp-card .detail {
+            font-size: 11px;
+            color: #6b7294;
+            margin-top: 6px;
+        }
+
+        .opp-card.highlight-card {
+            border-color: #4ade80;
+            background: linear-gradient(145deg, #0f1d14, #0f1a18);
+        }
+
+        /* Comparison side by side */
+        .compare-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 28px 0;
+        }
+
+        .compare-col {
+            border-radius: 14px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .compare-col.bad {
+            background: linear-gradient(145deg, #1a1215, #0f1322);
+            border: 1px solid #3a1a1a;
+        }
+
+        .compare-col.good {
+            background: linear-gradient(145deg, #0f1d14, #0f1322);
+            border: 1px solid #1a3a25;
+        }
+
+        .compare-col h3 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .compare-col.bad h3 { color: #f87171; }
+        .compare-col.good h3 { color: #4ade80; }
+
+        .compare-col .compare-number {
+            font-size: 36px;
+            font-weight: 900;
+            margin-bottom: 4px;
+        }
+
+        .compare-col.bad .compare-number { color: #f87171; }
+        .compare-col.good .compare-number { color: #4ade80; }
+
+        .compare-col .compare-label {
+            font-size: 12px;
+            color: #8b92a8;
+        }
+
+        /* Time visual */
+        .time-visual {
+            margin: 24px 0;
+        }
+
+        .time-bar-container {
+            margin-bottom: 20px;
+        }
+
+        .time-bar-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+
+        .time-bar-label span {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .time-bar-label .left { color: #8b92a8; }
+        .time-bar-label .right { color: #f87171; }
+        .time-bar-label .right.green { color: #4ade80; }
+
+        .time-bar {
+            height: 8px;
+            background: #1e2540;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .time-bar .fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s;
+        }
+
+        .time-bar .fill.red { background: #f87171; }
+        .time-bar .fill.green { background: #4ade80; }
+
+        /* Guarantee */
+        .guarantee {
+            background: linear-gradient(145deg, #0f1d14, #0f1322);
+            border: 1px solid #1a3a25;
+            border-radius: 16px;
+            padding: 36px;
+            margin-bottom: 28px;
+            text-align: center;
+        }
+
+        .guarantee-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .guarantee h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #4ade80;
+        }
+
+        .guarantee p {
+            color: #b0b8d1;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .guarantee p:last-child {
+            margin-bottom: 0;
+        }
+
+        .guarantee-duration {
+            display: inline-block;
+            background: #1a3a25;
+            border: 1px solid #2d5a3a;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: 800;
+            color: #4ade80;
+            margin: 8px 0 16px;
+        }
+
+        /* Note */
+        .note {
+            background: linear-gradient(145deg, #1a1a2e, #0f1322);
+            border: 1px solid #2563eb;
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 28px;
+        }
+
+        .note h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #60a5fa;
+        }
+
+        .note p {
+            color: #b0b8d1;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .note p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            color: #4a5170;
+            font-size: 13px;
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid #1e2540;
+        }
+
+        @media (max-width: 500px) {
+            .cost-timeline { grid-template-columns: 1fr 1fr; }
+            .opp-timeline { grid-template-columns: 1fr 1fr; }
+            .compare-row { grid-template-columns: 1fr; }
+            .cost-card .amount { font-size: 22px; }
+            .cost-card .amount.big { font-size: 26px; }
+            .opp-card .amount { font-size: 22px; }
+            .opp-card .amount.big { font-size: 26px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="header">
+            <img src="images/logo-s30.png" alt="Stratégie 30%">
+            <h1>Ce que ça te coûte de ne rien faire</h1>
+            <p>La plupart des gens se demandent combien ça coûte de se lancer. Personne ne se demande combien ça coûte de ne pas se lancer.</p>
+        </div>
+
+        <!-- TA SITUATION ACTUELLE -->
+        <div class="step">
+            <div class="step-label">
+                <div class="step-number">1</div>
+                <span class="step-tag">Ta situation</span>
+            </div>
+            <h2>Chaque mois où tu ne bouges pas, tu payes</h2>
+
+            <p>Tu ne perds pas d'argent au sens classique. Personne ne te prend de l'argent dans la poche. Mais tu payes quand même.</p>
+
+            <p>Tu payes avec <span class="highlight-red">ton temps</span>. Chaque mois que tu passes dans un job qui ne te plaît pas, c'est un mois que tu ne récupéreras jamais.</p>
+
+            <p>Tu payes avec <span class="highlight-red">ton énergie</span>. Te lever chaque matin pour un truc qui ne te fait pas vibrer, ça use. Lentement, mais ça use.</p>
+
+            <p>Tu payes avec <span class="highlight-red">tes opportunités</span>. Pendant que tu réfléchis, d'autres se lancent, signent des créateurs, et construisent leur vie.</p>
+
+            <p>Le prix de l'inaction, c'est pas un chiffre sur une facture. <span class="highlight">C'est la vie que tu ne vis pas.</span></p>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- CALCULATEUR COUT -->
+        <div class="cost-calc">
+            <h2>Combien te coûte ta situation actuelle ?</h2>
+            <p>Entre ton salaire actuel. On va te montrer ce que ça représente de rester dans cette situation.</p>
+
+            <div class="cost-input-group">
+                <label>Ton salaire mensuel net</label>
+                <input type="number" id="salary-input" value="1500" min="0" step="100">
+                <div class="input-hint">En euros par mois</div>
+            </div>
+
+            <p style="color: #b0b8d1; font-size: 14px; margin-bottom: 16px;">Si tu restes dans cette situation, voilà ce que tu vas gagner. Pas plus, pas moins :</p>
+
+            <div class="cost-timeline">
+                <div class="cost-card">
+                    <div class="period">Dans 1 mois</div>
+                    <div class="amount" id="cost-1m">1 500€</div>
+                    <div class="detail">Même salaire</div>
+                </div>
+                <div class="cost-card">
+                    <div class="period">Dans 6 mois</div>
+                    <div class="amount" id="cost-6m">9 000€</div>
+                    <div class="detail">Même salaire</div>
+                </div>
+                <div class="cost-card">
+                    <div class="period">Dans 1 an</div>
+                    <div class="amount" id="cost-1y">18 000€</div>
+                    <div class="detail">Même salaire</div>
+                </div>
+                <div class="cost-card highlight-card">
+                    <div class="period">Dans 10 ans</div>
+                    <div class="amount big" id="cost-10y">180 000€</div>
+                    <div class="detail">Même salaire. Même vie.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- SCENARIO ALTERNATIF -->
+        <div class="opportunity">
+            <h2>Et si tu passais à l'action ?</h2>
+
+            <p>Nos membres mettent en moyenne 3 à 6 mois avant de générer des revenus réguliers avec leur premier créateur. Voilà ce que ça pourrait donner pour toi :</p>
+
+            <div class="time-visual">
+                <div class="time-bar-container">
+                    <div class="time-bar-label">
+                        <span class="left">Mois 1 : tu apprends et tu signes</span>
+                        <span class="right green">0€</span>
+                    </div>
+                    <div class="time-bar"><div class="fill green" style="width: 5%;"></div></div>
+                </div>
+                <div class="time-bar-container">
+                    <div class="time-bar-label">
+                        <span class="left">Mois 2, 3, 4 : tu construis et tu lances</span>
+                        <span class="right green">1 000 - 3 000€</span>
+                    </div>
+                    <div class="time-bar"><div class="fill green" style="width: 30%;"></div></div>
+                </div>
+                <div class="time-bar-container">
+                    <div class="time-bar-label">
+                        <span class="left">Mois 5, 6 : tes revenus se stabilisent</span>
+                        <span class="right green">3 000 - 5 000€</span>
+                    </div>
+                    <div class="time-bar"><div class="fill green" style="width: 60%;"></div></div>
+                </div>
+                <div class="time-bar-container">
+                    <div class="time-bar-label">
+                        <span class="left">Mois 6+ : tu choisis ta vie</span>
+                        <span class="right green">5 000€+</span>
+                    </div>
+                    <div class="time-bar"><div class="fill green" style="width: 90%;"></div></div>
+                </div>
+            </div>
+
+            <p>Au bout de 6 mois, tu peux avoir un business qui te rapporte <span class="highlight-green">autant ou plus que ton salaire actuel</span>. Sauf que cette fois, c'est toi qui choisis tes horaires, ton lieu de travail, et avec qui tu bosses.</p>
+
+            <p>Voilà ce que ça représente si tu te lances maintenant :</p>
+
+            <div class="opp-timeline">
+                <div class="opp-card">
+                    <div class="period">Dans 6 mois</div>
+                    <div class="amount" id="opp-6m">3 000€/mois</div>
+                    <div class="detail">Avec un seul créateur</div>
+                </div>
+                <div class="opp-card">
+                    <div class="period">Dans 1 an</div>
+                    <div class="amount" id="opp-1y">5 000€/mois</div>
+                    <div class="detail">Revenus stabilisés</div>
+                </div>
+                <div class="opp-card">
+                    <div class="period">Dans 2 ans</div>
+                    <div class="amount" id="opp-2y">10 000€+/mois</div>
+                    <div class="detail">Plusieurs créateurs</div>
+                </div>
+                <div class="opp-card highlight-card">
+                    <div class="period">La vraie différence</div>
+                    <div class="amount big">Liberté</div>
+                    <div class="detail">Tu choisis ta vie</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- COMPARAISON VISUELLE -->
+        <div class="step">
+            <div class="step-label">
+                <div class="step-number">2</div>
+                <span class="step-tag">La vraie question</span>
+            </div>
+            <h2>Dans un an, tu seras dans l'une de ces deux situations</h2>
+
+            <div class="compare-row">
+                <div class="compare-col bad">
+                    <h3>Tu ne fais rien</h3>
+                    <div class="compare-number" id="compare-bad">18 000€</div>
+                    <div class="compare-label">gagnés en 12 mois<br>Même job. Même salaire.<br>Même routine.</div>
+                </div>
+                <div class="compare-col good">
+                    <h3>Tu te lances</h3>
+                    <div class="compare-number">18 000€+</div>
+                    <div class="compare-label">de ton salaire<br>+ ton business à côté<br>+ la liberté de choisir</div>
+                </div>
+            </div>
+
+            <p>Dans les deux cas, l'année va passer. <span class="highlight">La seule question, c'est dans quelle situation tu veux être dans 12 mois.</span></p>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- LE TEMPS -->
+        <div class="step">
+            <div class="step-label">
+                <div class="step-number">3</div>
+                <span class="step-tag">Ce qu'on oublie</span>
+            </div>
+            <h2>Le temps ne s'arrête pas pendant que tu réfléchis</h2>
+
+            <p>Tu as sûrement déjà entendu parler de l'opération de croissance il y a des semaines, peut-être des mois. Tu as regardé les vidéos, lu les témoignages, réfléchi.</p>
+
+            <p>Et pendant ce temps-là, ta situation n'a pas changé.</p>
+
+            <p>C'est pas un reproche. C'est juste un constat. <span class="highlight">Réfléchir ne change rien. Seule l'action change les choses.</span></p>
+
+            <p>Tu n'as pas besoin d'être sûr à 100%. Tu as besoin d'être sûr à 51%. Le reste, tu le découvriras en avançant.</p>
+
+            <p>Rappelle-toi : tu as une <span class="highlight-green">garantie de 6 mois</span>. Si tu suis les étapes et que ça ne donne rien, on te rembourse. Tu ne risques rien d'autre que de ne pas essayer.</p>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- GARANTIE -->
+        <div class="guarantee">
+            <div class="guarantee-icon">🛡️</div>
+            <h2>Le seul vrai risque, c'est de ne rien faire</h2>
+            <div class="guarantee-duration">Garantie 180 jours</div>
+            <p>Si tu suis le programme pendant 6 mois et que tu n'as pas de résultat, on te rembourse.</p>
+            <p>L'appel est gratuit. La décision t'appartient. <span style="color: #4ade80; font-weight: 600;">Mais au moins, tu auras toutes les informations pour la prendre.</span></p>
+        </div>
+
+        <!-- NOTE FINALE -->
+        <div class="note">
+            <h3>Ton appel arrive bientôt.</h3>
+            <p>Ce n'est pas un appel pour te vendre quelque chose. C'est un appel pour voir si ton profil correspond et si c'est le bon moment pour toi. Si ça ne matche pas, on te le dira.</p>
+            <p>La seule chose qu'on te demande, c'est de venir avec une vraie envie de changer ta situation.</p>
+        </div>
+
+        <div class="footer">
+            Stratégie 30% — Opération de Croissance
+        </div>
+
+    </div>
+
+    <script>
+        function formatNum(n) {
+            return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+        }
+
+        function updateCosts() {
+            var salary = parseInt(document.getElementById('salary-input').value) || 0;
+
+            document.getElementById('cost-1m').textContent = formatNum(salary) + '€';
+            document.getElementById('cost-6m').textContent = formatNum(salary * 6) + '€';
+            document.getElementById('cost-1y').textContent = formatNum(salary * 12) + '€';
+            document.getElementById('cost-10y').textContent = formatNum(salary * 120) + '€';
+
+            document.getElementById('compare-bad').textContent = formatNum(salary * 12) + '€';
+        }
+
+        document.getElementById('salary-input').addEventListener('input', updateCosts);
+    </script>
+</body>
+</html>
