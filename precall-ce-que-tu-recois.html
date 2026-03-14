@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ce que tu reçois concrètement — Stratégie 30%</title>
+    <link rel="icon" type="image/png" href="images/logo-s30.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0e1a;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .header img {
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+            line-height: 1.3;
+        }
+
+        .header p {
+            color: #8b92a8;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Section step */
+        .step {
+            background: linear-gradient(145deg, #131829, #0f1322);
+            border: 1px solid #1e2540;
+            border-radius: 16px;
+            padding: 36px;
+            margin-bottom: 28px;
+        }
+
+        .step-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: #2563eb;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .step-tag {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #60a5fa;
+        }
+
+        .step h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.3px;
+            line-height: 1.3;
+        }
+
+        .step p {
+            color: #b0b8d1;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .step p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight {
+            color: #60a5fa;
+            font-weight: 600;
+        }
+
+        .highlight-green {
+            color: #4ade80;
+            font-weight: 600;
+        }
+
+        /* Arrow */
+        .arrow {
+            text-align: center;
+            margin: -12px 0;
+            font-size: 24px;
+            color: #2563eb;
+        }
+
+        /* Stats bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            margin: 24px 0 36px;
+        }
+
+        .stat {
+            background: #0f1322;
+            border: 1px solid #1e2540;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .stat .number {
+            font-size: 22px;
+            font-weight: 800;
+            color: #60a5fa;
+            margin-bottom: 4px;
+        }
+
+        .stat .label {
+            font-size: 11px;
+            color: #8b92a8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Level cards */
+        .level-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .level-card {
+            background: #0f1322;
+            border: 1px solid #1e2540;
+            border-radius: 14px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .level-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #2563eb;
+        }
+
+        .level-card.unlocked::before {
+            background: #4ade80;
+        }
+
+        .level-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: #1e2540;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 800;
+            color: #60a5fa;
+            margin-bottom: 12px;
+        }
+
+        .level-card h3 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .level-card p {
+            font-size: 13px;
+            color: #8b92a8;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .level-unlock {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: #4ade80;
+            font-weight: 600;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Calendar section */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin: 24px 0;
+        }
+
+        .cal-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: #0f1322;
+            border: 1px solid #1e2540;
+            border-radius: 12px;
+            padding: 16px 18px;
+        }
+
+        .cal-day {
+            min-width: 44px;
+            text-align: center;
+        }
+
+        .cal-day .day-name {
+            font-size: 11px;
+            font-weight: 700;
+            color: #60a5fa;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cal-info {
+            flex: 1;
+        }
+
+        .cal-info h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .cal-info p {
+            font-size: 12px;
+            color: #8b92a8;
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        .cal-badge {
+            background: #1e2540;
+            border-radius: 20px;
+            padding: 4px 10px;
+            font-size: 11px;
+            color: #b0b8d1;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        /* Guarantee */
+        .guarantee {
+            background: linear-gradient(145deg, #0f1d14, #0f1322);
+            border: 1px solid #1a3a25;
+            border-radius: 16px;
+            padding: 36px;
+            margin-bottom: 28px;
+            text-align: center;
+        }
+
+        .guarantee-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .guarantee h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #4ade80;
+        }
+
+        .guarantee p {
+            color: #b0b8d1;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .guarantee p:last-child {
+            margin-bottom: 0;
+        }
+
+        .guarantee-duration {
+            display: inline-block;
+            background: #1a3a25;
+            border: 1px solid #2d5a3a;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: 800;
+            color: #4ade80;
+            margin: 8px 0 16px;
+        }
+
+        /* Community */
+        .community {
+            background: linear-gradient(145deg, #131829, #0f1322);
+            border: 1px solid #1e2540;
+            border-radius: 16px;
+            padding: 36px;
+            margin-bottom: 28px;
+        }
+
+        .community h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.3px;
+        }
+
+        .community p {
+            color: #b0b8d1;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .community-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .community-feature {
+            background: #0f1322;
+            border: 1px solid #1e2540;
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .community-feature .emoji {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .community-feature h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .community-feature p {
+            font-size: 12px;
+            color: #8b92a8;
+            margin-bottom: 0;
+            line-height: 1.5;
+        }
+
+        /* Win card */
+        .win-card {
+            background: #1e2540;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .win-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .win-avatar {
+            width: 36px;
+            height: 36px;
+            background: #2563eb;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .win-name {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .win-tag {
+            background: #4ade80;
+            color: #0a0e1a;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: auto;
+        }
+
+        .win-card p {
+            font-size: 13px;
+            color: #b0b8d1;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .win-card .win-result {
+            font-size: 15px;
+            font-weight: 700;
+            color: #4ade80;
+            margin-bottom: 6px;
+        }
+
+        /* Video embed */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            margin: 20px 0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Note */
+        .note {
+            background: linear-gradient(145deg, #1a1a2e, #0f1322);
+            border: 1px solid #2563eb;
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 28px;
+        }
+
+        .note h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #60a5fa;
+        }
+
+        .note p {
+            color: #b0b8d1;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .note p:last-child {
+            margin-bottom: 0;
+        }
+
+        .cta-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #4ade80;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            margin-top: 8px;
+        }
+
+        .cta-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            color: #4a5170;
+            font-size: 13px;
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid #1e2540;
+        }
+
+        @media (max-width: 500px) {
+            .stats-bar { grid-template-columns: 1fr; }
+            .level-grid { grid-template-columns: 1fr; }
+            .community-features { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="header">
+            <img src="images/logo-s30.png" alt="Stratégie 30%">
+            <h1>Voilà exactement ce que tu reçois</h1>
+            <p>Pas de flou, pas de surprises. Tu sauras exactement dans quoi tu mets les pieds avant ton appel.</p>
+        </div>
+
+        <!-- STATS -->
+        <div class="stats-bar">
+            <div class="stat">
+                <div class="number">200+</div>
+                <div class="label">Membres actifs</div>
+            </div>
+            <div class="stat">
+                <div class="number">8+</div>
+                <div class="label">Appels par semaine</div>
+            </div>
+            <div class="stat">
+                <div class="number">4</div>
+                <div class="label">Niveaux progressifs</div>
+            </div>
+        </div>
+
+        <!-- NIVEAUX -->
+        <div class="step">
+            <div class="step-label">
+                <div class="step-number">1</div>
+                <span class="step-tag">Le programme</span>
+            </div>
+            <h2>Un parcours en 4 niveaux, tu avances à ton rythme</h2>
+
+            <p>Le programme est structuré en niveaux. Tu ne passes au suivant que quand tu as atteint un objectif concret. <span class="highlight">Pas de contenu théorique interminable. Chaque niveau a un but précis.</span></p>
+
+            <div class="level-grid">
+                <div class="level-card">
+                    <div class="level-badge">0</div>
+                    <h3>Commence ici</h3>
+                    <p>Tu découvres la communauté, tu comprends comment tout fonctionne, et tu te prépares pour la suite.</p>
+                </div>
+                <div class="level-card">
+                    <div class="level-badge">1</div>
+                    <h3>Trouve ton créateur</h3>
+                    <p>Tu apprends à identifier les bons créateurs et à les convaincre de travailler avec toi. On te met aussi en relation avec des créateurs qui cherchent un opérateur.</p>
+                </div>
+                <div class="level-card unlocked">
+                    <div class="level-badge">2</div>
+                    <h3>Lance ton créateur</h3>
+                    <p>Tu construis l'offre, la page de vente, les emails. Tu lances et tu fais tes premières ventes ensemble.</p>
+                    <div class="level-unlock">Se débloque après ta première signature</div>
+                </div>
+                <div class="level-card unlocked">
+                    <div class="level-badge">3</div>
+                    <h3>Fais grandir ton business</h3>
+                    <p>Tu apprends à utiliser le contenu et la publicité pour aller chercher plus de revenus avec ton créateur.</p>
+                    <div class="level-unlock">Se débloque après 5 000€ collectés</div>
+                </div>
+            </div>
+
+            <p>Chaque niveau contient des vidéos courtes, des templates prêts à utiliser, et des exemples concrets tirés de nos membres. <span class="highlight">Tu n'as pas besoin de tout savoir avant de commencer.</span> Tu apprends en avançant.</p>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- APPELS -->
+        <div class="step">
+            <div class="step-label">
+                <div class="step-number">2</div>
+                <span class="step-tag">L'accompagnement</span>
+            </div>
+            <h2>8+ appels en direct chaque semaine avec des experts</h2>
+
+            <p>Tu n'es jamais seul face à ton écran. Chaque semaine, tu as accès à des appels en direct sur chaque sujet important. <span class="highlight">Tu poses ta question, on te répond en temps réel.</span></p>
+
+            <div class="calendar-grid">
+                <div class="cal-item">
+                    <div class="cal-day"><span class="day-name">LUN</span></div>
+                    <div class="cal-info">
+                        <h4>Comment écrire pour vendre</h4>
+                        <p>Apprends à écrire des textes qui donnent envie d'acheter, sans avoir l'air d'un vendeur.</p>
+                    </div>
+                    <span class="cal-badge">1h</span>
+                </div>
+                <div class="cal-item">
+                    <div class="cal-day"><span class="day-name">MAR</span></div>
+                    <div class="cal-info">
+                        <h4>Trouver des clients sur Instagram</h4>
+                        <p>Les techniques pour utiliser Instagram et attirer des clients vers ton créateur.</p>
+                    </div>
+                    <span class="cal-badge">1h</span>
+                </div>
+                <div class="cal-item">
+                    <div class="cal-day"><span class="day-name">MER</span></div>
+                    <div class="cal-info">
+                        <h4>Trouver ton créateur</h4>
+                        <p>Identifier les bons profils, les contacter, les convaincre de bosser avec toi.</p>
+                    </div>
+                    <span class="cal-badge">1h</span>
+                </div>
+                <div class="cal-item">
+                    <div class="cal-day"><span class="day-name">JEU</span></div>
+                    <div class="cal-info">
+                        <h4>Comment vendre</h4>
+                        <p>Apprends à présenter l'offre de ton créateur pour que les gens aient envie d'acheter.</p>
+                    </div>
+                    <span class="cal-badge">1h</span>
+                </div>
+                <div class="cal-item">
+                    <div class="cal-day"><span class="day-name">VEN</span></div>
+                    <div class="cal-info">
+                        <h4>Trouver ton créateur</h4>
+                        <p>Deuxième session de la semaine. Plus tu participes, plus tu avances vite.</p>
+                    </div>
+                    <span class="cal-badge">1h</span>
+                </div>
+                <div class="cal-item">
+                    <div class="cal-day"><span class="day-name">SAM</span></div>
+                    <div class="cal-info">
+                        <h4>Technique et automatisations</h4>
+                        <p>Comment mettre en place les outils pour que ton business tourne tout seul.</p>
+                    </div>
+                    <span class="cal-badge">1h</span>
+                </div>
+                <div class="cal-item">
+                    <div class="cal-day"><span class="day-name">DIM</span></div>
+                    <div class="cal-info">
+                        <h4>Q&A avec Matheo</h4>
+                        <p>Pose tes questions directement à Matheo. Stratégie, blocages, décisions importantes.</p>
+                    </div>
+                    <span class="cal-badge">1h</span>
+                </div>
+            </div>
+
+            <p>En plus de ces appels, il y a un <span class="highlight">coworking virtuel tous les jours</span>. Tu te connectes, tu bosses en live avec les autres membres. C'est comme avoir des collègues sans avoir de patron.</p>
+
+            <p>Et si tu as une question entre les appels, tu la poses dans la communauté. <span class="highlight">En général, tu as ta réponse dans l'heure.</span> Il y a toujours quelqu'un en ligne qui est passé par là avant toi.</p>
+
+            <div class="note">
+                <h3>Tu ne peux pas venir à un appel ? Pas de problème.</h3>
+                <p>Tous les appels sont enregistrés et disponibles en replay. Tu rattrapes quand tu veux, à ton rythme.</p>
+            </div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- COMMUNAUTE -->
+        <div class="community">
+            <h2>Une communauté de membres dans le monde entier</h2>
+
+            <p>C'est pas un groupe Facebook mort. C'est une communauté active où les gens partagent leurs victoires, s'entraident et avancent ensemble.</p>
+
+            <div class="community-features">
+                <div class="community-feature">
+                    <div class="emoji">🏆</div>
+                    <h4>Des victoires chaque jour</h4>
+                    <p>Des membres qui postent leurs premiers euros, leurs premières signatures, leurs premiers lancements.</p>
+                </div>
+                <div class="community-feature">
+                    <div class="emoji">🤝</div>
+                    <h4>Mise en relation créateurs</h4>
+                    <p>On connecte régulièrement des créateurs de contenu avec des opérateurs du programme.</p>
+                </div>
+                <div class="community-feature">
+                    <div class="emoji">🏔️</div>
+                    <h4>On se voit en vrai</h4>
+                    <p>Séjours au ski, rencontres à Paris. Ce sont des vrais liens, pas juste des pseudos en ligne.</p>
+                </div>
+                <div class="community-feature">
+                    <div class="emoji">🌍</div>
+                    <h4>Partout dans le monde</h4>
+                    <p>France, Belgique, Suisse, Canada, Dubai, Madagascar. Tu peux faire ça de n'importe où.</p>
+                </div>
+            </div>
+
+            <!-- Win examples -->
+            <div class="win-card">
+                <div class="win-header">
+                    <div class="win-avatar">B</div>
+                    <span class="win-name">Bradley</span>
+                    <span class="win-tag">WIN</span>
+                </div>
+                <p class="win-result">1 290€ sur 3 mois + 1 acompte</p>
+                <p>"Je m'étais fixé de très gros objectifs... et je ne les ai pas atteints. Mais au final, c'est grâce à ces objectifs que j'ai commencé à agir beaucoup plus vite."</p>
+            </div>
+
+            <div class="win-card">
+                <div class="win-header">
+                    <div class="win-avatar">A</div>
+                    <span class="win-name">Antoine</span>
+                    <span class="win-tag">WIN</span>
+                </div>
+                <p class="win-result">7 ventes en 7 appels</p>
+                <p>"La folle série continue. 2 appels, 2 ventes."</p>
+            </div>
+
+            <p>Regarde à quoi ressemble la communauté quand on se retrouve :</p>
+
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/8602HhEipO4" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- GARANTIE -->
+        <div class="guarantee">
+            <div class="guarantee-icon">🛡️</div>
+            <h2>Tu es protégé par une garantie</h2>
+            <div class="guarantee-duration">180 jours</div>
+            <p>Si tu suis les étapes du programme pendant 6 mois et que tu n'as pas de retour sur ton investissement, on te rembourse.</p>
+            <p>On ne te demande pas de nous faire confiance les yeux fermés. <span style="color: #4ade80; font-weight: 600;">On prend le risque avec toi.</span></p>
+            <p style="color: #6b7294; font-size: 13px;">Condition : avoir suivi les étapes du programme et appliqué ce qu'on t'enseigne.</p>
+        </div>
+
+        <!-- NOTE FINALE -->
+        <div class="note">
+            <h3>Maintenant tu sais exactement ce que tu reçois.</h3>
+            <p>Un programme en 4 niveaux, 8+ appels par semaine avec des experts, une communauté active, et une garantie de 6 mois.</p>
+            <p>Sur ton appel, on va voir ensemble si c'est le bon moment pour toi et si ton profil correspond.</p>
+        </div>
+
+        <div class="footer">
+            Stratégie 30% — Opération de Croissance
+        </div>
+
+    </div>
+</body>
+</html>
