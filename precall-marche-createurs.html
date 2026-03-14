@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le marché des créateurs en 2026 — Stratégie 30%</title>
+    <link rel="icon" type="image/png" href="images/logo-s30.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0e1a;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .header img {
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+            line-height: 1.3;
+        }
+
+        .header p {
+            color: #8b92a8;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Section step */
+        .step {
+            background: linear-gradient(145deg, #131829, #0f1322);
+            border: 1px solid #1e2540;
+            border-radius: 16px;
+            padding: 36px;
+            margin-bottom: 28px;
+        }
+
+        .step-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: #2563eb;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .step-tag {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #60a5fa;
+        }
+
+        .step h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.3px;
+            line-height: 1.3;
+        }
+
+        .step p {
+            color: #b0b8d1;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .step p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight {
+            color: #60a5fa;
+            font-weight: 600;
+        }
+
+        .highlight-green {
+            color: #4ade80;
+            font-weight: 600;
+        }
+
+        /* Arrow */
+        .arrow {
+            text-align: center;
+            margin: -12px 0;
+            font-size: 24px;
+            color: #2563eb;
+        }
+
+        /* Big stat hero */
+        .stat-hero {
+            text-align: center;
+            margin: 28px 0;
+            padding: 32px 20px;
+            background: #0f1322;
+            border: 1px solid #1e2540;
+            border-radius: 16px;
+        }
+
+        .stat-hero .big-number {
+            font-size: 48px;
+            font-weight: 900;
+            color: #60a5fa;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-hero .big-label {
+            font-size: 15px;
+            color: #8b92a8;
+            font-weight: 500;
+        }
+
+        /* Stats bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 24px 0;
+        }
+
+        .stat {
+            background: #0f1322;
+            border: 1px solid #1e2540;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat .number {
+            font-size: 26px;
+            font-weight: 800;
+            color: #60a5fa;
+            margin-bottom: 4px;
+        }
+
+        .stat .number.green {
+            color: #4ade80;
+        }
+
+        .stat .label {
+            font-size: 12px;
+            color: #8b92a8;
+            line-height: 1.4;
+        }
+
+        /* Ratio visual */
+        .ratio-visual {
+            background: #0f1322;
+            border: 1px solid #1e2540;
+            border-radius: 16px;
+            padding: 28px;
+            margin: 24px 0;
+            text-align: center;
+        }
+
+        .ratio-visual h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #60a5fa;
+            margin-bottom: 16px;
+        }
+
+        .ratio-bar {
+            display: flex;
+            height: 40px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .ratio-bar .creators {
+            flex: 99;
+            background: #2563eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .ratio-bar .operators {
+            flex: 1;
+            background: #4ade80;
+            min-width: 8px;
+        }
+
+        .ratio-legend {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 12px;
+        }
+
+        .ratio-legend span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: #8b92a8;
+        }
+
+        .ratio-legend .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .ratio-legend .dot.blue { background: #2563eb; }
+        .ratio-legend .dot.green { background: #4ade80; }
+
+        .ratio-visual p {
+            font-size: 13px;
+            color: #6b7294;
+            margin-top: 12px;
+        }
+
+        /* Trend list */
+        .trend-list {
+            margin: 20px 0;
+        }
+
+        .trend-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 16px 0;
+            border-bottom: 1px solid #1e2540;
+        }
+
+        .trend-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .trend-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #1e2540;
+            border-radius: 10px;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .trend-content h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .trend-content p {
+            color: #8b92a8;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* IA section */
+        .ia-section {
+            background: linear-gradient(145deg, #131829, #0f1322);
+            border: 1px solid #1e2540;
+            border-radius: 16px;
+            padding: 36px;
+            margin-bottom: 28px;
+        }
+
+        .ia-section h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.3px;
+            line-height: 1.3;
+        }
+
+        .ia-section p {
+            color: #b0b8d1;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .ia-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .ia-examples {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .ia-example {
+            background: #0f1322;
+            border: 1px solid #1e2540;
+            border-radius: 12px;
+            padding: 16px 18px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .ia-example .icon {
+            font-size: 18px;
+            flex-shrink: 0;
+            padding-top: 1px;
+        }
+
+        .ia-example p {
+            font-size: 13px;
+            color: #b0b8d1;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* Result */
+        .result {
+            background: linear-gradient(145deg, #0f1d14, #0f1322);
+            border: 1px solid #1a3a25;
+            border-radius: 16px;
+            padding: 36px;
+            margin-bottom: 28px;
+            text-align: center;
+        }
+
+        .result h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #4ade80;
+        }
+
+        .result p {
+            color: #b0b8d1;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .result p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Note */
+        .note {
+            background: linear-gradient(145deg, #1a1a2e, #0f1322);
+            border: 1px solid #2563eb;
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 28px;
+        }
+
+        .note h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #60a5fa;
+        }
+
+        .note p {
+            color: #b0b8d1;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .note p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            color: #4a5170;
+            font-size: 13px;
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid #1e2540;
+        }
+
+        /* Calculator */
+        .calculator {
+            background: linear-gradient(145deg, #131829, #0f1322);
+            border: 1px solid #1e2540;
+            border-radius: 16px;
+            padding: 36px;
+            margin-bottom: 28px;
+        }
+
+        .calculator h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.3px;
+            line-height: 1.3;
+        }
+
+        .calculator > p {
+            color: #8b92a8;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .calc-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .calc-field label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            color: #60a5fa;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .calc-field input {
+            width: 100%;
+            background: #0f1322;
+            border: 1px solid #1e2540;
+            border-radius: 10px;
+            padding: 14px 16px;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .calc-field input:focus {
+            border-color: #2563eb;
+        }
+
+        .calc-field .input-hint {
+            font-size: 11px;
+            color: #6b7294;
+            margin-top: 6px;
+        }
+
+        .calc-result {
+            background: linear-gradient(145deg, #0f1d14, #0f1322);
+            border: 1px solid #1a3a25;
+            border-radius: 14px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .calc-result .result-label {
+            font-size: 13px;
+            color: #8b92a8;
+            margin-bottom: 4px;
+        }
+
+        .calc-result .result-number {
+            font-size: 42px;
+            font-weight: 900;
+            color: #4ade80;
+            line-height: 1.1;
+            margin-bottom: 4px;
+        }
+
+        .calc-result .result-sub {
+            font-size: 14px;
+            color: #4ade80;
+            font-weight: 600;
+        }
+
+        .calc-result .result-note {
+            font-size: 12px;
+            color: #6b7294;
+            margin-top: 12px;
+        }
+
+        /* Comparison models */
+        .model-compare {
+            margin: 20px 0;
+        }
+
+        .model-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 16px 0;
+            border-bottom: 1px solid #1e2540;
+        }
+
+        .model-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .model-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #1a1215;
+            border: 1px solid #3a1a1a;
+            border-radius: 10px;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .model-icon.good {
+            background: #0f1d14;
+            border: 1px solid #1a3a25;
+        }
+
+        .model-content h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .model-content h4.red { color: #f87171; }
+        .model-content h4.green { color: #4ade80; }
+
+        .model-content p {
+            color: #8b92a8;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 500px) {
+            .stats-bar { grid-template-columns: 1fr; }
+            .stat-hero .big-number { font-size: 36px; }
+            .calc-inputs { grid-template-columns: 1fr; }
+            .calc-result .result-number { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="header">
+            <img src="images/logo-s30.png" alt="Stratégie 30%">
+            <h1>Est-ce que le marché est saturé ?</h1>
+            <p>Les chiffres parlent d'eux-mêmes. Lis cette page, tu comprendras pourquoi le timing n'a jamais été aussi bon.</p>
+        </div>
+
+        <!-- LE MARCHE -->
+        <div class="step">
+            <div class="step-label">
+                <div class="step-number">1</div>
+                <span class="step-tag">Les chiffres</span>
+            </div>
+            <h2>Il y a plus de créateurs que jamais, et presque aucun opérateur</h2>
+
+            <div class="stat-hero">
+                <div class="big-number">300 000+</div>
+                <div class="big-label">créateurs de contenu en France</div>
+            </div>
+
+            <p>Et si tu ajoutes la Belgique, la Suisse, le Canada, et tous les pays francophones, on parle de centaines de milliers de créateurs supplémentaires.</p>
+
+            <p>Parmi tous ces créateurs, <span class="highlight">96% n'ont aucun système pour gagner de l'argent avec leur audience.</span> Ils postent du contenu gratuitement et espèrent que ça finisse par payer un jour.</p>
+
+            <div class="stats-bar">
+                <div class="stat">
+                    <div class="number">96%</div>
+                    <div class="label">des créateurs n'ont pas de système de vente</div>
+                </div>
+                <div class="stat">
+                    <div class="number green">+23%</div>
+                    <div class="label">de nouveaux créateurs chaque année</div>
+                </div>
+            </div>
+
+            <p>De l'autre côté, il y a combien d'opérateurs de croissance en France ? <span class="highlight">Quelques centaines, tout au plus.</span></p>
+
+            <div class="ratio-visual">
+                <h3>Le ratio créateurs / opérateurs</h3>
+                <div class="ratio-bar">
+                    <div class="creators">300 000+ créateurs</div>
+                    <div class="operators"></div>
+                </div>
+                <div class="ratio-legend">
+                    <span><span class="dot blue"></span> Créateurs sans système</span>
+                    <span><span class="dot green"></span> Opérateurs</span>
+                </div>
+                <p>Le marché n'est pas saturé. Il est quasiment vide.</p>
+            </div>
+
+            <p>Le problème, c'est pas qu'il y a trop d'opérateurs. <span class="highlight-green">C'est qu'il y en a pas assez.</span></p>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- POURQUOI CA VA PAS CHANGER -->
+        <div class="step">
+            <div class="step-label">
+                <div class="step-number">2</div>
+                <span class="step-tag">La tendance</span>
+            </div>
+            <h2>Pourquoi ça va dans le bon sens</h2>
+
+            <p>Ce marché ne se réduit pas. Il explose. Et voilà pourquoi :</p>
+
+            <div class="trend-list">
+                <div class="trend-item">
+                    <div class="trend-icon">📈</div>
+                    <div class="trend-content">
+                        <h4>De plus en plus de créateurs chaque jour</h4>
+                        <p>Instagram, YouTube, TikTok. Tout le monde veut partager son savoir en ligne. Chaque nouveau créateur est un partenaire potentiel pour toi.</p>
+                    </div>
+                </div>
+                <div class="trend-item">
+                    <div class="trend-icon">🎓</div>
+                    <div class="trend-content">
+                        <h4>De plus en plus de gens veulent apprendre en ligne</h4>
+                        <p>Les gens préfèrent acheter un programme à un créateur qu'ils suivent plutôt que de retourner en cours. Ce marché grossit chaque année.</p>
+                    </div>
+                </div>
+                <div class="trend-item">
+                    <div class="trend-icon">💰</div>
+                    <div class="trend-content">
+                        <h4>Les créateurs comprennent qu'ils ont besoin d'aide</h4>
+                        <p>Ils voient d'autres créateurs gagner de l'argent grâce à un opérateur. Ils veulent la même chose. La demande augmente.</p>
+                    </div>
+                </div>
+                <div class="trend-item">
+                    <div class="trend-icon">🌍</div>
+                    <div class="trend-content">
+                        <h4>Ça marche dans toutes les niches</h4>
+                        <p>Sport, musique, cuisine, langues, relations, photo, yoga, nutrition. Partout où il y a un créateur avec une audience, il y a une opportunité.</p>
+                    </div>
+                </div>
+            </div>
+
+            <p>Si tu commences maintenant et que dans quelques mois tu deviens un bon opérateur, <span class="highlight">tu seras positionné sur un marché en pleine croissance avec quasiment pas de concurrence.</span></p>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- COMPARAISON AUTRES MODELES -->
+        <div class="step">
+            <div class="step-label">
+                <div class="step-number">3</div>
+                <span class="step-tag">Comparaison</span>
+            </div>
+            <h2>Pendant que les autres marchés se compliquent, celui-ci s'ouvre</h2>
+
+            <p>Si tu as déjà testé un autre business en ligne, tu sais que la plupart deviennent de plus en plus durs. Voilà ce qui se passe ailleurs :</p>
+
+            <div class="model-compare">
+                <div class="model-item">
+                    <div class="model-icon">📦</div>
+                    <div class="model-content">
+                        <h4 class="red">E-commerce / Dropshipping</h4>
+                        <p>Marges qui s'effondrent, coûts publicitaires qui explosent, retours clients, fournisseurs peu fiables. Il faut avancer du capital pour acheter du stock ou de la pub avant de savoir si ça va marcher.</p>
+                    </div>
+                </div>
+                <div class="model-item">
+                    <div class="model-icon">📊</div>
+                    <div class="model-content">
+                        <h4 class="red">Trading / Crypto</h4>
+                        <p>Tu risques ton propre argent. Les marchés sont imprévisibles. La majorité des traders perdent de l'argent sur le long terme. Et tu ne construis rien de durable.</p>
+                    </div>
+                </div>
+                <div class="model-item">
+                    <div class="model-icon">📱</div>
+                    <div class="model-content">
+                        <h4 class="red">Création de contenu</h4>
+                        <p>Tu dois te montrer, publier tous les jours, construire une audience de zéro. Résultat visible au bout de 12 à 24 mois minimum. Et tu restes dépendant des algorithmes.</p>
+                    </div>
+                </div>
+                <div class="model-item">
+                    <div class="model-icon good">🤝</div>
+                    <div class="model-content">
+                        <h4 class="green">Opération de Croissance</h4>
+                        <p>Pas de capital à avancer. Pas de contenu à créer. Pas d'audience à construire. Tu t'associes avec quelqu'un qui a déjà l'audience et tu te fais payer au pourcentage. Le marché grossit chaque année et il n'y a quasiment pas de concurrence.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- CALCULATEUR -->
+        <div class="calculator">
+            <h2>Fais le calcul toi-même</h2>
+            <p>Rentre le chiffre d'affaires mensuel que tu veux aider ton créateur à atteindre :</p>
+
+            <div class="calc-inputs">
+                <div class="calc-field">
+                    <label>CA mensuel du créateur</label>
+                    <input type="number" id="calc-ca" value="10000" min="0" step="1000">
+                    <div class="input-hint">En euros par mois</div>
+                </div>
+                <div class="calc-field">
+                    <label>Ton pourcentage</label>
+                    <input type="number" id="calc-pct" value="30" min="1" max="100">
+                    <div class="input-hint">En général, c'est 30%</div>
+                </div>
+            </div>
+
+            <div class="calc-result">
+                <div class="result-label">Tu gagnes</div>
+                <div class="result-number" id="calc-output">3 000€</div>
+                <div class="result-sub">par mois</div>
+                <div class="result-note">Avec un seul créateur. Sans investir un euro. Sans créer de contenu.</div>
+            </div>
+        </div>
+
+        <script>
+            function updateCalc() {
+                var ca = parseInt(document.getElementById('calc-ca').value) || 0;
+                var pct = parseInt(document.getElementById('calc-pct').value) || 0;
+                var result = Math.round(ca * pct / 100);
+                var formatted = result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+                document.getElementById('calc-output').textContent = formatted + '€';
+            }
+            document.getElementById('calc-ca').addEventListener('input', updateCalc);
+            document.getElementById('calc-pct').addEventListener('input', updateCalc);
+        </script>
+
+        <div class="arrow">↓</div>
+
+        <!-- ET L'IA -->
+        <div class="ia-section">
+            <h2>Et l'IA dans tout ça ?</h2>
+
+            <p>"Est-ce que l'intelligence artificielle va remplacer les opérateurs ?"</p>
+
+            <p>Non. Et c'est même l'inverse. <span class="highlight">L'IA rend les opérateurs plus efficaces, pas obsolètes.</span></p>
+
+            <p>Aujourd'hui, grâce à l'IA, un opérateur peut faire en 2 heures ce qui prenait 2 jours avant :</p>
+
+            <div class="ia-examples">
+                <div class="ia-example">
+                    <span class="icon">⚡</span>
+                    <p><strong>Écrire des emails et des textes de vente</strong> en une fraction du temps</p>
+                </div>
+                <div class="ia-example">
+                    <span class="icon">⚡</span>
+                    <p><strong>Créer des pages de vente</strong> sans savoir coder</p>
+                </div>
+                <div class="ia-example">
+                    <span class="icon">⚡</span>
+                    <p><strong>Analyser ce qui marche</strong> chez les concurrents en quelques minutes</p>
+                </div>
+                <div class="ia-example">
+                    <span class="icon">⚡</span>
+                    <p><strong>Automatiser les tâches répétitives</strong> pour se concentrer sur ce qui rapporte</p>
+                </div>
+            </div>
+
+            <p>L'IA ne remplace pas la relation entre un opérateur et un créateur. Elle ne remplace pas la stratégie, la négociation, la compréhension d'un marché. <span class="highlight">Elle te donne juste des superpouvoirs pour aller plus vite.</span></p>
+
+            <p>D'ailleurs, dans le programme, on t'apprend à utiliser l'IA concrètement pour ton business. C'est un des appels de groupe chaque semaine.</p>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- CONCLUSION -->
+        <div class="result">
+            <h2>Le meilleur moment pour commencer, c'est maintenant</h2>
+            <p>Le marché grossit. La concurrence est quasi inexistante. Les outils n'ont jamais été aussi puissants. Et les créateurs n'ont jamais autant eu besoin d'aide.</p>
+            <p>Ceux qui se positionnent maintenant auront <span class="highlight-green">des années d'avance</span> sur ceux qui attendront.</p>
+        </div>
+
+        <!-- NOTE FINALE -->
+        <div class="note">
+            <h3>Tu as un appel prévu avec nous.</h3>
+            <p>Maintenant tu connais les chiffres. Sur l'appel, on verra ensemble quelle niche et quel type de créateur correspond le mieux à ta situation.</p>
+        </div>
+
+        <div class="footer">
+            Stratégie 30% — Opération de Croissance
+        </div>
+
+    </div>
+</body>
+</html>
