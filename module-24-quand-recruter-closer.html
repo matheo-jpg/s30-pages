@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 24 — Quand et pourquoi recruter un closer</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+            padding: 60px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .module-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: #3d2e0a;
+            color: #f0b429;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -1px;
+            line-height: 1.15;
+        }
+
+        .intro {
+            color: #888;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 60px;
+            max-width: 600px;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 56px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .section-number {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .section p {
+            color: #bbb;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .section p strong {
+            color: #fff;
+        }
+
+        /* Threshold card */
+        .threshold-card {
+            background: linear-gradient(135deg, #1a1a0e 0%, #2d2006 100%);
+            border: 1px solid #f0b42940;
+            border-radius: 16px;
+            padding: 36px;
+            margin: 28px 0;
+            text-align: center;
+        }
+
+        .threshold-value {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #f0b429;
+            letter-spacing: -1px;
+            margin-bottom: 4px;
+        }
+
+        .threshold-label {
+            color: #888;
+            font-size: 0.95rem;
+        }
+
+        .threshold-sub {
+            color: #666;
+            font-size: 0.85rem;
+            margin-top: 12px;
+            font-style: italic;
+        }
+
+        /* Scale card */
+        .scale {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin: 28px 0;
+        }
+
+        .scale-step {
+            display: flex;
+            align-items: stretch;
+            gap: 0;
+        }
+
+        .scale-bar-container {
+            width: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .scale-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            z-index: 1;
+            margin-top: 18px;
+        }
+
+        .scale-line {
+            width: 2px;
+            flex: 1;
+            min-height: 30px;
+        }
+
+        .scale-content {
+            flex: 1;
+            padding: 12px 0 24px 0;
+        }
+
+        .scale-range {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .scale-closers {
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .scale-earnings {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        /* Color coding for scale */
+        .scale-level-1 .scale-dot { background: #f0b42933; border: 2px solid #f0b429; }
+        .scale-level-1 .scale-line { background: #f0b42940; }
+        .scale-level-1 .scale-range { color: #f0b429; }
+
+        .scale-level-2 .scale-dot { background: #f0652933; border: 2px solid #f06529; }
+        .scale-level-2 .scale-line { background: #f0652940; }
+        .scale-level-2 .scale-range { color: #f06529; }
+
+        .scale-level-3 .scale-dot { background: #e53e3e33; border: 2px solid #e53e3e; }
+        .scale-level-3 .scale-line { background: #e53e3e40; }
+        .scale-level-3 .scale-range { color: #e53e3e; }
+
+        /* Error card */
+        .error-card {
+            background: #1a0a0a;
+            border: 1px solid #e53e3e30;
+            border-radius: 14px;
+            padding: 28px;
+            margin: 20px 0;
+        }
+
+        .error-card h3 {
+            color: #e53e3e;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .error-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            background: #e53e3e20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+
+        .error-card p {
+            color: #999;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Story card */
+        .story-card {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 14px;
+            padding: 28px;
+            margin: 20px 0;
+            border-left: 3px solid #f0b429;
+        }
+
+        .story-card .story-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #f0b429;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .story-card p {
+            color: #bbb;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        /* Checklist items */
+        .checklist {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .checklist li {
+            font-size: 0.9rem;
+            color: #bbb;
+            padding: 12px 0 12px 36px;
+            position: relative;
+            line-height: 1.5;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .checklist li:last-child { border-bottom: none; }
+
+        .checklist li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 20px;
+            height: 20px;
+            border-radius: 6px;
+            border: 2px solid #333;
+            background: #1a1a1a;
+        }
+
+        /* Reasons list */
+        .reasons {
+            list-style: none;
+            margin: 16px 0;
+        }
+
+        .reasons li {
+            font-size: 0.9rem;
+            color: #bbb;
+            padding: 10px 0 10px 28px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .reasons li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 16px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #f0b42933;
+            border: 2px solid #f0b429;
+        }
+
+        /* Questions list */
+        .questions {
+            list-style: none;
+            margin: 16px 0;
+        }
+
+        .questions li {
+            font-size: 0.9rem;
+            color: #999;
+            padding: 8px 0 8px 24px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .questions li::before {
+            content: '?';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            color: #e53e3e;
+            font-weight: 800;
+            font-size: 0.9rem;
+        }
+
+        /* Key rule box */
+        .key-rule {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 1px solid #2a3a5e;
+            border-radius: 16px;
+            padding: 32px;
+            margin: 28px 0;
+        }
+
+        .key-rule h3 {
+            color: #7b9ff0;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .key-rule p {
+            color: #bbb;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        /* Action box */
+        .action-box {
+            background: #111;
+            border: 1px solid #f0b42930;
+            border-radius: 16px;
+            padding: 32px;
+            margin-top: 48px;
+        }
+
+        .action-box h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #f0b429;
+            margin-bottom: 20px;
+        }
+
+        .action-box ol {
+            list-style: none;
+            counter-reset: action;
+        }
+
+        .action-box ol li {
+            counter-increment: action;
+            font-size: 0.9rem;
+            color: #bbb;
+            padding: 10px 0 10px 36px;
+            position: relative;
+            line-height: 1.6;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .action-box ol li:last-child { border-bottom: none; }
+
+        .action-box ol li::before {
+            content: counter(action);
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            background: #f0b42920;
+            color: #f0b429;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 32px;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        .footer p {
+            color: #444;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 40px 16px; }
+            h1 { font-size: 1.8rem; }
+            .threshold-value { font-size: 2.2rem; }
+            .threshold-card { padding: 24px; }
+            .error-card, .story-card, .key-rule, .action-box { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <span class="module-badge">Section 7 — Module 1</span>
+        <h1>Quand et pourquoi recruter un closer</h1>
+        <p class="intro">La plupart des operateurs se plantent pas sur le "comment". Ils se plantent sur le "quand". Et si tu recrutes au mauvais moment, tu vas creer plus de problemes que tu vas en resoudre.</p>
+
+        <!-- SECTION 1 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number" style="background: #f0b42920; color: #f0b429;">1</div>
+                <h2>Le seuil minimum</h2>
+            </div>
+            <p>Le signal pour recruter un closer, c'est pas "j'ai envie de deleguer". <strong>C'est le chiffre d'affaires.</strong></p>
+            <p>Un closer est paye 10% du cash collecte. Si tu fais 10 000 euros par mois, il se met 1 000 euros dans la poche. Personne ne reste pour 1 000 euros.</p>
+
+            <div class="threshold-card">
+                <div class="threshold-value">20 000 EUR</div>
+                <div class="threshold-label">collectes par mois — seuil minimum</div>
+                <div class="threshold-sub">En dessous, concentre-toi sur l'offre et le tunnel. Pas de closer.</div>
+            </div>
+
+            <p>Et meme a 20 000, ton closer touche 2 000 euros. C'est le strict minimum. <strong>Il va falloir ajouter des primes</strong> pour qu'il reste, parce que 2 000 euros par mois, c'est pas la liberte.</p>
+            <p>Un closer, c'est quelqu'un qui veut etre libre financierement, geographiquement, temporellement. Exactement comme toi.</p>
+        </div>
+
+        <!-- SECTION 2 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number" style="background: #f0b42920; color: #f0b429;">2</div>
+                <h2>L'autre signal : ton createur sature</h2>
+            </div>
+            <p>Deuxieme cas ou tu dois recruter : <strong>quand ton createur passe ses journees en appels</strong> au lieu de creer du contenu.</p>
+            <p>Le contenu alimente le tunnel. Sans contenu, pas de leads. Sans leads, pas d'appels. Le closer libere du temps au createur pour qu'il fasse ce qu'il fait de mieux.</p>
+
+            <div class="key-rule">
+                <h3>Attention</h3>
+                <p>Meme si ton createur en a marre des appels, il faut que le chiffre d'affaires suive. Si vous faites 8 000 euros par mois, la solution c'est pas un closer. C'est d'ameliorer l'offre et le tunnel pour atteindre les 20 000.</p>
+            </div>
+        </div>
+
+        <!-- SECTION 3 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number" style="background: #f0b42920; color: #f0b429;">3</div>
+                <h2>Mon experience</h2>
+            </div>
+
+            <div class="story-card">
+                <div class="story-label">Ce que j'ai fait</div>
+                <p>Sur Strategie 30%, j'ai close moi-meme jusqu'a environ <strong>50 000 euros collectes par mois</strong>. C'est la que j'ai recrute mon premier closer.</p>
+            </div>
+
+            <p>Pourquoi j'ai attendu aussi longtemps ? Parce que closer moi-meme m'a permis de :</p>
+            <ul class="reasons">
+                <li>Comprendre exactement les objections de mes prospects</li>
+                <li>Affiner mon offre en direct avec les retours du terrain</li>
+                <li>Construire un script de closing qui fonctionne avant de le donner a quelqu'un d'autre</li>
+                <li>Garantir que le closer arrive dans un environnement ou il peut performer</li>
+            </ul>
+            <p>Si j'avais recrute a 15 000 euros, le closer aurait gagne 1 500 euros, il serait parti en 3 semaines, et j'aurais perdu du temps et de l'energie pour rien.</p>
+        </div>
+
+        <!-- SECTION 4 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number" style="background: #e53e3e20; color: #e53e3e;">!</div>
+                <h2>Les 2 erreurs classiques</h2>
+            </div>
+
+            <div class="error-card">
+                <h3><span class="error-icon">1</span> Croire qu'un closer va regler ton probleme de closing</h3>
+                <p>Si ton createur close mal, c'est pas un probleme de closer. C'est un probleme d'offre. Un closer, c'est un executant. Il execute un process de vente. Si le process est bancal, si l'offre ne tient pas la route, si les leads sont froids, le meilleur closer du monde ne va rien changer.</p>
+                <p style="margin-top: 12px;">Pose-toi les bonnes questions :</p>
+                <ul class="questions">
+                    <li>Est-ce que l'offre est assez sexy ?</li>
+                    <li>Est-ce qu'il y a un vrai product-market fit ?</li>
+                    <li>Est-ce que les prospects arrivent qualifies en appel ?</li>
+                    <li>Est-ce que la VSL fait bien son boulot en amont ?</li>
+                </ul>
+            </div>
+
+            <div class="error-card">
+                <h3><span class="error-icon">2</span> Surstaffer — trop de closers, pas assez de revenus</h3>
+                <p>C'est une erreur que j'ai faite moi-meme. A 120 000 euros collectes, j'avais 4 closers. Ca fait 30 000 euros par closer, soit 3 000 euros de commission chacun. Pas assez. Ils partent.</p>
+                <p style="margin-top: 12px; color: #bbb;"><strong style="color: #fff;">La regle :</strong> un closer peut rapporter entre 50 000 et 80 000 euros collectes par mois. Par tranche de 50 000, tu ajoutes un closer.</p>
+            </div>
+        </div>
+
+        <!-- SECTION 5 — Scale -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number" style="background: #f0b42920; color: #f0b429;">4</div>
+                <h2>Combien de closers recruter</h2>
+            </div>
+
+            <div class="scale">
+                <div class="scale-step scale-level-1">
+                    <div class="scale-bar-container">
+                        <div class="scale-dot"></div>
+                        <div class="scale-line"></div>
+                    </div>
+                    <div class="scale-content">
+                        <div class="scale-range">20 000 — 50 000 EUR</div>
+                        <div class="scale-closers">1 closer</div>
+                        <div class="scale-earnings">Commission : 2 000 a 5 000 EUR + primes</div>
+                    </div>
+                </div>
+
+                <div class="scale-step scale-level-2">
+                    <div class="scale-bar-container">
+                        <div class="scale-dot"></div>
+                        <div class="scale-line"></div>
+                    </div>
+                    <div class="scale-content">
+                        <div class="scale-range">50 000 — 100 000 EUR</div>
+                        <div class="scale-closers">2 closers</div>
+                        <div class="scale-earnings">Commission : 2 500 a 5 000 EUR chacun + primes</div>
+                    </div>
+                </div>
+
+                <div class="scale-step scale-level-3">
+                    <div class="scale-bar-container">
+                        <div class="scale-dot"></div>
+                        <div class="scale-line" style="background: transparent;"></div>
+                    </div>
+                    <div class="scale-content">
+                        <div class="scale-range">100 000 — 150 000 EUR</div>
+                        <div class="scale-closers">3 closers max</div>
+                        <div class="scale-earnings">Commission : 3 300 a 5 000 EUR chacun + primes</div>
+                    </div>
+                </div>
+            </div>
+
+            <p><strong>Moins de closers qui gagnent bien > beaucoup de closers qui gagnent mal.</strong> Un closer bien paye, c'est un closer qui reste et qui performe.</p>
+        </div>
+
+        <!-- SECTION 6 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number" style="background: #f0b42920; color: #f0b429;">5</div>
+                <h2>Le createur doit closer d'abord</h2>
+            </div>
+            <p><strong>C'est non-negociable.</strong> Avant de recruter un closer, le createur de contenu doit avoir close lui-meme pendant plusieurs semaines ou mois.</p>
+            <ul class="reasons">
+                <li><strong>Il comprend son audience</strong> mieux que personne — c'est lui qui cree le contenu</li>
+                <li><strong>Il valide l'offre</strong> sur le terrain — s'il n'arrive pas a closer, l'offre a un probleme</li>
+                <li><strong>Il construit le script</strong> — le resultat de dizaines d'appels de test</li>
+                <li><strong>Il fixe le standard</strong> — il sait quel taux de closing attendre</li>
+            </ul>
+            <p>Un closer sans script valide et sans process, c'est un mec qui improvise sur tes appels avec tes prospects que t'as paye en publicite.</p>
+        </div>
+
+        <!-- ACTION BOX -->
+        <div class="action-box">
+            <h3>Ce que tu fais maintenant</h3>
+            <ol>
+                <li>Regarde ton chiffre d'affaires collecte mensuel avec ton createur</li>
+                <li>Si t'es en dessous de 20 000 euros : concentre-toi sur l'offre et le tunnel. Pas de closer.</li>
+                <li>Si t'es au-dessus de 20 000 euros et que le createur est sature d'appels : c'est le moment de recruter</li>
+                <li>Assure-toi que le createur a close lui-meme assez longtemps pour avoir un script qui fonctionne</li>
+                <li>Ne recrute jamais plus d'un closer par tranche de 50 000 euros collectes</li>
+                <li>Prevois 10% de commission + des primes pour que ton closer gagne assez pour rester</li>
+            </ol>
+        </div>
+
+        <div class="footer">
+            <p>Section 7 — Ton equipe de vente — Module 1</p>
+        </div>
+
+    </div>
+</body>
+</html>
