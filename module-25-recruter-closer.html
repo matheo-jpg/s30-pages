@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 25 — Recruter ton closer</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+            padding: 60px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .module-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: #3d2e0a;
+            color: #f0b429;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -1px;
+            line-height: 1.15;
+        }
+
+        .intro {
+            color: #888;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 60px;
+            max-width: 600px;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 56px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .section-number {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .section p {
+            color: #bbb;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .section p strong {
+            color: #fff;
+        }
+
+        /* Option cards grid */
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+            margin: 28px 0;
+        }
+
+        .option-card {
+            background: #111;
+            border-radius: 14px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .option-card.gold {
+            border: 1px solid #f0b42950;
+        }
+
+        .option-card.light {
+            border: 1px solid #333;
+        }
+
+        .option-number {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: #f0b42920;
+            color: #f0b429;
+            font-size: 0.75rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+        }
+
+        .option-card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .option-card .option-tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            width: fit-content;
+        }
+
+        .option-tag.paid {
+            background: #f0b42920;
+            color: #f0b429;
+        }
+
+        .option-tag.free {
+            background: #2d6a4f20;
+            color: #52b788;
+        }
+
+        .option-tag.diy {
+            background: #7b9ff020;
+            color: #7b9ff0;
+        }
+
+        .option-card p {
+            color: #999;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 0;
+            flex: 1;
+        }
+
+        .option-card .contact {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #1a1a1a;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .option-card .contact strong {
+            color: #999;
+        }
+
+        /* Threshold card */
+        .threshold-card {
+            background: linear-gradient(135deg, #1a1a0e 0%, #2d2006 100%);
+            border: 1px solid #f0b42940;
+            border-radius: 16px;
+            padding: 36px;
+            margin: 28px 0;
+            text-align: center;
+        }
+
+        .threshold-value {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: #f0b429;
+            letter-spacing: -1px;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .threshold-label {
+            color: #888;
+            font-size: 0.95rem;
+        }
+
+        .threshold-sub {
+            color: #666;
+            font-size: 0.85rem;
+            margin-top: 12px;
+            font-style: italic;
+        }
+
+        /* Key rule box */
+        .key-rule {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 1px solid #2a3a5e;
+            border-radius: 16px;
+            padding: 32px;
+            margin: 28px 0;
+        }
+
+        .key-rule h3 {
+            color: #7b9ff0;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .key-rule p {
+            color: #bbb;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        /* Story card */
+        .story-card {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 14px;
+            padding: 28px;
+            margin: 20px 0;
+            border-left: 3px solid #f0b429;
+        }
+
+        .story-card .story-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #f0b429;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .story-card p {
+            color: #bbb;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        /* Error card */
+        .error-card {
+            background: #1a0a0a;
+            border: 1px solid #e53e3e30;
+            border-radius: 14px;
+            padding: 28px;
+            margin: 20px 0;
+        }
+
+        .error-card h3 {
+            color: #e53e3e;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .error-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            background: #e53e3e20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+
+        .error-card p {
+            color: #999;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Objections list */
+        .objections {
+            list-style: none;
+            margin: 16px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .objections li {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 10px;
+            padding: 14px 16px;
+            font-size: 0.85rem;
+            color: #bbb;
+            font-style: italic;
+        }
+
+        .objections li::before {
+            content: '"';
+            color: #f0b429;
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin-right: 4px;
+        }
+
+        .objections li::after {
+            content: '"';
+            color: #f0b429;
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin-left: 2px;
+        }
+
+        /* Evaluate criteria */
+        .criteria {
+            list-style: none;
+            margin: 16px 0;
+        }
+
+        .criteria li {
+            font-size: 0.9rem;
+            color: #bbb;
+            padding: 10px 0 10px 28px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .criteria li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 16px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #f0b42933;
+            border: 2px solid #f0b429;
+        }
+
+        /* Steps (onboarding) */
+        .steps {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .steps li {
+            background: #111;
+            border: 1px solid #1a1a1a;
+            border-radius: 12px;
+            padding: 20px 20px 20px 60px;
+            position: relative;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            color: #bbb;
+            line-height: 1.6;
+        }
+
+        .steps li .step-num {
+            position: absolute;
+            left: 18px;
+            top: 18px;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: #f0b42920;
+            color: #f0b429;
+            font-size: 0.8rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .steps li strong {
+            color: #fff;
+        }
+
+        /* Good signs */
+        .signs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .sign-item {
+            background: #0a1a0a;
+            border: 1px solid #2d6a4f30;
+            border-radius: 10px;
+            padding: 14px 16px;
+            font-size: 0.85rem;
+            color: #bbb;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sign-icon {
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            background: #2d6a4f30;
+            color: #52b788;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        /* Checklist items */
+        .checklist {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .checklist li {
+            font-size: 0.9rem;
+            color: #bbb;
+            padding: 12px 0 12px 36px;
+            position: relative;
+            line-height: 1.5;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .checklist li:last-child { border-bottom: none; }
+
+        .checklist li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 20px;
+            height: 20px;
+            border-radius: 6px;
+            border: 2px solid #333;
+            background: #1a1a1a;
+        }
+
+        /* Action box */
+        .action-box {
+            background: #111;
+            border: 1px solid #f0b42930;
+            border-radius: 16px;
+            padding: 32px;
+            margin-top: 48px;
+        }
+
+        .action-box h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #f0b429;
+            margin-bottom: 20px;
+        }
+
+        .action-box ol {
+            list-style: none;
+            counter-reset: action;
+        }
+
+        .action-box ol li {
+            counter-increment: action;
+            font-size: 0.9rem;
+            color: #bbb;
+            padding: 10px 0 10px 36px;
+            position: relative;
+            line-height: 1.6;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .action-box ol li:last-child { border-bottom: none; }
+
+        .action-box ol li::before {
+            content: counter(action);
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            background: #f0b42920;
+            color: #f0b429;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 32px;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        .footer p {
+            color: #444;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 40px 16px; }
+            h1 { font-size: 1.8rem; }
+            .options-grid { grid-template-columns: 1fr; }
+            .objections { grid-template-columns: 1fr; }
+            .signs-grid { grid-template-columns: 1fr; }
+            .threshold-card { padding: 24px; }
+            .threshold-value { font-size: 1.8rem; }
+            .error-card, .story-card, .key-rule, .action-box { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <span class="module-badge">Section 7 — Module 2</span>
+        <h1>Recruter ton closer</h1>
+        <p class="intro">3 manieres de trouver des closers, comment les evaluer, et comment savoir rapidement si ca va le faire ou non.</p>
+
+        <!-- SECTION 1 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number" style="background: #f0b42920; color: #f0b429;">1</div>
+                <h2>3 manieres de trouver des closers</h2>
+            </div>
+            <p>T'as trois options. Chacune a ses avantages. L'important, c'est de <strong>ne pas rester bloque sur une seule methode</strong>.</p>
+
+            <div class="options-grid">
+                <div class="option-card gold">
+                    <div class="option-number">1</div>
+                    <span class="option-tag paid">700 EUR</span>
+                    <h3>WeClose</h3>
+                    <p>Mise en relation avec des closers formes. Garantie remplacement si ca ne matche pas. C'est le plus rapide et le plus fiable.</p>
+                    <div class="contact"><strong>Contact :</strong> Florent<br>+32 492 51 28 16</div>
+                </div>
+
+                <div class="option-card gold">
+                    <div class="option-number">2</div>
+                    <span class="option-tag free">Gratuit</span>
+                    <h3>Momentum</h3>
+                    <p>Pool de closers deja formes. Tu postes ton offre, les closers viennent a toi. Gratuit, mais plus de tri a faire de ton cote.</p>
+                </div>
+
+                <div class="option-card light">
+                    <div class="option-number">3</div>
+                    <span class="option-tag diy">Par toi-meme</span>
+                    <h3>Acquisition directe</h3>
+                    <p>Communaute de createurs, pubs, reseau, formateurs en closing, groupes Facebook. Tu crees ta propre machine de recrutement.</p>
+                </div>
+            </div>
+
+            <div class="key-rule">
+                <h3>Regle cle — Option 3</h3>
+                <p>Recruter un closer, c'est <strong style="color: #fff;">exactement comme faire de l'acquisition</strong>. T'as une offre, t'as un avatar. L'objectif c'est d'envoyer le maximum de trafic dessus. Cree un formulaire, ecris une annonce, envoie du trafic. Exactement comme tu le fais pour tes prospects.</p>
+            </div>
+        </div>
+
+        <!-- SECTION 2 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number" style="background: #f0b42920; color: #f0b429;">2</div>
+                <h2>L'entretien de groupe</h2>
+            </div>
+            <p>Ne fais <strong>jamais</strong> des entretiens individuels un par un. Fais un entretien de groupe.</p>
+            <p>L'etre humain est meilleur pour <strong>comparer</strong> que pour evaluer de maniere isolee. Quand t'as 5 personnes en face de toi, tu vois immediatement qui se demarque. Qui est a l'aise. Qui prend la parole. Qui a de l'energie.</p>
+            <p>Un par un, tu te retrouves a te demander "c'etait bien ou pas ?". Cote a cote, la reponse est evidente.</p>
+        </div>
+
+        <!-- SECTION 3 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number" style="background: #f0b42920; color: #f0b429;">3</div>
+                <h2>Donne-lui le ballon</h2>
+            </div>
+
+            <div class="story-card">
+                <div class="story-label">Analogie — Basketball</div>
+                <p>Tu peux pas savoir si quelqu'un sait jouer au basket en lui demandant de te raconter comment il joue. <strong>Tu lui donnes le ballon et tu regardes.</strong> C'est pareil pour le closing. Arrete de poser des questions. Fais-le jouer.</p>
+            </div>
+
+            <p>Lance un <strong>roleplay en direct</strong>. Joue le prospect. Envoie les objections classiques :</p>
+
+            <ul class="objections">
+                <li>C'est trop cher</li>
+                <li>J'ai besoin de reflechir</li>
+                <li>Je suis pas sur que c'est fait pour moi</li>
+                <li>Je vais en parler a ma femme / mes parents</li>
+            </ul>
+
+            <p>Ce que tu evalues :</p>
+            <ul class="criteria">
+                <li><strong>Capacite a rebondir</strong> — il reste calme et relance, ou il se bloque ?</li>
+                <li><strong>Naturel</strong> — ca sonne comme une conversation ou comme un script appris par coeur ?</li>
+                <li><strong>Coachabilite</strong> — si tu lui donnes un feedback en direct, il l'applique immediatement ?</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 4 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number" style="background: #f0b42920; color: #f0b429;">4</div>
+                <h2>L'onboarding en 3 etapes</h2>
+            </div>
+            <p>Une fois que t'as choisi ton closer, <strong>l'onboarding doit etre rapide et structure</strong>. Pas de formation de 3 semaines. Voila le process :</p>
+
+            <ul class="steps">
+                <li>
+                    <span class="step-num">1</span>
+                    <strong>Banque d'appels closes</strong><br>
+                    Il regarde des vrais appels closes, de A a Z. Il voit le ton, le rythme, les objections, les transitions. C'est son terrain d'entrainement passif.
+                </li>
+                <li>
+                    <span class="step-num">2</span>
+                    <strong>Le process complet</strong><br>
+                    Deck de vente, iClosed, CRM, script. Il doit connaitre chaque outil, chaque etape. Pas de zone d'ombre.
+                </li>
+                <li>
+                    <span class="step-num">3</span>
+                    <strong>10 premiers appels reels</strong><br>
+                    Le plus vite possible. Pas dans 2 semaines. Maintenant. C'est sur le terrain qu'on apprend, pas en regardant des videos.
+                </li>
+            </ul>
+        </div>
+
+        <!-- SECTION 5 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number" style="background: #f0b42920; color: #f0b429;">5</div>
+                <h2>Savoir-etre > savoir-faire</h2>
+            </div>
+
+            <div class="threshold-card">
+                <div class="threshold-value">Savoir-etre > Savoir-faire</div>
+                <div class="threshold-label">Le skill s'apprend. L'attitude, non.</div>
+            </div>
+
+            <p>Les bons signes :</p>
+            <div class="signs-grid">
+                <div class="sign-item">
+                    <span class="sign-icon">+</span>
+                    Show up a l'heure
+                </div>
+                <div class="sign-item">
+                    <span class="sign-icon">+</span>
+                    Coachable
+                </div>
+                <div class="sign-item">
+                    <span class="sign-icon">+</span>
+                    Execute les feedbacks
+                </div>
+                <div class="sign-item">
+                    <span class="sign-icon">+</span>
+                    Fait des efforts
+                </div>
+            </div>
+
+            <div class="error-card">
+                <h3><span class="error-icon">!</span> La regle des 20 appels</h3>
+                <p><strong style="color: #fff;">20 appels.</strong> C'est ce que tu donnes a un closer pour prouver qu'il progresse. Si apres 20 appels tu vois pas d'amelioration, c'est pas ton closer. Passe au suivant. Pas de deuxieme chance, pas de "on va voir". Suivant.</p>
+            </div>
+
+            <div class="story-card">
+                <div class="story-label">Le standard</div>
+                <p>Tu ne peux pas accepter la mediocrite. <strong>Ni meme le moyen. Ni meme le bon.</strong> Il te faut du tres bon. Parce que chaque appel rate, c'est un prospect que t'as paye en publicite qui repart sans acheter. T'as pas les moyens d'etre indulgent.</p>
+            </div>
+        </div>
+
+        <!-- ACTION BOX -->
+        <div class="action-box">
+            <h3>Ce que tu fais maintenant</h3>
+            <ol>
+                <li>Choisis ta methode : WeClose (700 EUR), Momentum (gratuit), ou par toi-meme</li>
+                <li>Si par toi-meme, cree un formulaire + envoie du trafic (comme de l'acquisition)</li>
+                <li>Entretien de groupe — compare, ne juge pas un par un</li>
+                <li>Roleplay objections en direct : "c'est trop cher", "j'ai besoin de reflechir"...</li>
+                <li>Choisis le plus coachable, pas le plus eloquent</li>
+                <li>Onboarding : banque d'appels + process (deck, iClosed, CRM, script)</li>
+                <li>10 appels reels le plus vite possible</li>
+                <li>20 appels pour evaluer — si pas d'amelioration, passe au suivant</li>
+            </ol>
+        </div>
+
+        <div class="footer">
+            <p>Section 7 — Ton equipe de vente — Module 2</p>
+        </div>
+
+    </div>
+</body>
+</html>
