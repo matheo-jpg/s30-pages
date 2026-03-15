@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 26 — Former et coacher tes closers</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+            padding: 60px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .module-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: #3d2e0a;
+            color: #f0b429;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -1px;
+            line-height: 1.15;
+        }
+
+        .intro {
+            color: #888;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 60px;
+            max-width: 600px;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 56px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .section-number {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .section p {
+            color: #bbb;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .section p strong {
+            color: #fff;
+        }
+
+        /* LMS modules grid */
+        .lms-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 24px 0;
+        }
+
+        .lms-card {
+            background: #111;
+            border: 1px solid #f0b42925;
+            border-radius: 12px;
+            padding: 16px 18px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .lms-num {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: #f0b42920;
+            color: #f0b429;
+            font-size: 0.75rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .lms-content h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .lms-content p {
+            color: #777;
+            font-size: 0.8rem;
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        /* Coaching cards */
+        .coaching-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .coaching-card {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 14px;
+            padding: 28px;
+        }
+
+        .coaching-card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .coaching-card .coaching-tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            background: #f0b42920;
+            color: #f0b429;
+        }
+
+        .coaching-card p {
+            color: #999;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* Threshold card */
+        .threshold-card {
+            background: linear-gradient(135deg, #1a1a0e 0%, #2d2006 100%);
+            border: 1px solid #f0b42940;
+            border-radius: 16px;
+            padding: 36px;
+            margin: 28px 0;
+            text-align: center;
+        }
+
+        .threshold-value {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: #f0b429;
+            letter-spacing: -1px;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .threshold-label {
+            color: #888;
+            font-size: 0.95rem;
+        }
+
+        .threshold-sub {
+            color: #666;
+            font-size: 0.85rem;
+            margin-top: 12px;
+            font-style: italic;
+        }
+
+        /* Key rule box */
+        .key-rule {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 1px solid #2a3a5e;
+            border-radius: 16px;
+            padding: 32px;
+            margin: 28px 0;
+        }
+
+        .key-rule h3 {
+            color: #7b9ff0;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .key-rule p {
+            color: #bbb;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        /* Story card */
+        .story-card {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 14px;
+            padding: 28px;
+            margin: 20px 0;
+            border-left: 3px solid #f0b429;
+        }
+
+        .story-card .story-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #f0b429;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .story-card p {
+            color: #bbb;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        /* Detect list */
+        .detect-list {
+            list-style: none;
+            margin: 16px 0;
+        }
+
+        .detect-list li {
+            font-size: 0.9rem;
+            color: #bbb;
+            padding: 10px 0 10px 28px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .detect-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 16px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #f0b42933;
+            border: 2px solid #f0b429;
+        }
+
+        .detect-list li strong {
+            color: #fff;
+        }
+
+        /* Action box */
+        .action-box {
+            background: #111;
+            border: 1px solid #f0b42930;
+            border-radius: 16px;
+            padding: 32px;
+            margin-top: 48px;
+        }
+
+        .action-box h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #f0b429;
+            margin-bottom: 20px;
+        }
+
+        .action-box ol {
+            list-style: none;
+            counter-reset: action;
+        }
+
+        .action-box ol li {
+            counter-increment: action;
+            font-size: 0.9rem;
+            color: #bbb;
+            padding: 10px 0 10px 36px;
+            position: relative;
+            line-height: 1.6;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .action-box ol li:last-child { border-bottom: none; }
+
+        .action-box ol li::before {
+            content: counter(action);
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            background: #f0b42920;
+            color: #f0b429;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 32px;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        .footer p {
+            color: #444;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 40px 16px; }
+            h1 { font-size: 1.8rem; }
+            .lms-grid { grid-template-columns: 1fr; }
+            .coaching-grid { grid-template-columns: 1fr; }
+            .threshold-card { padding: 24px; }
+            .threshold-value { font-size: 1.8rem; }
+            .story-card, .key-rule, .action-box { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <span class="module-badge">Section 7 — Module 3</span>
+        <h1>Former et coacher tes closers</h1>
+        <p class="intro">Recruter un bon closer, c'est 20% du travail. Le former et le coacher pour qu'il performe, c'est les 80% restants.</p>
+
+        <!-- SECTION 1 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number" style="background: #f0b42920; color: #f0b429;">1</div>
+                <h2>Le LMS : tout au meme endroit</h2>
+            </div>
+            <p>Un endroit unique — Notion, HTML, peu importe — qui regroupe <strong>tout ce dont ton closer a besoin</strong>. Pas de fichiers eparpilles, pas de "je te l'envoie par WhatsApp". Tout est la, structure, accessible.</p>
+
+            <div class="lms-grid">
+                <div class="lms-card">
+                    <div class="lms-num">1</div>
+                    <div class="lms-content">
+                        <h4>Commence ici</h4>
+                        <p>Intro, bienvenue, comment naviguer</p>
+                    </div>
+                </div>
+                <div class="lms-card">
+                    <div class="lms-num">2</div>
+                    <div class="lms-content">
+                        <h4>Les outils</h4>
+                        <p>iClosed, CRM, End of Day, WhatsApp</p>
+                    </div>
+                </div>
+                <div class="lms-card">
+                    <div class="lms-num">3</div>
+                    <div class="lms-content">
+                        <h4>Le business</h4>
+                        <p>Pitch, parcours client, avatar, modele</p>
+                    </div>
+                </div>
+                <div class="lms-card">
+                    <div class="lms-num">4</div>
+                    <div class="lms-content">
+                        <h4>Le script de vente</h4>
+                        <p>Script complet avec les transitions</p>
+                    </div>
+                </div>
+                <div class="lms-card">
+                    <div class="lms-num">5</div>
+                    <div class="lms-content">
+                        <h4>Replays d'appels</h4>
+                        <p>5-10 appels gagnes, de A a Z</p>
+                    </div>
+                </div>
+                <div class="lms-card">
+                    <div class="lms-num">6</div>
+                    <div class="lms-content">
+                        <h4>Les follow-ups WhatsApp</h4>
+                        <p>Templates et timing des relances</p>
+                    </div>
+                </div>
+                <div class="lms-card">
+                    <div class="lms-num">7</div>
+                    <div class="lms-content">
+                        <h4>Temoignages et preuves</h4>
+                        <p>Resultats clients a utiliser en call</p>
+                    </div>
+                </div>
+                <div class="lms-card">
+                    <div class="lms-num">8</div>
+                    <div class="lms-content">
+                        <h4>Les objections courantes</h4>
+                        <p>Reponses aux objections frequentes</p>
+                    </div>
+                </div>
+                <div class="lms-card">
+                    <div class="lms-num">9</div>
+                    <div class="lms-content">
+                        <h4>Outils pour le call</h4>
+                        <p>Liens paiement, contrats, generateur</p>
+                    </div>
+                </div>
+                <div class="lms-card">
+                    <div class="lms-num">10</div>
+                    <div class="lms-content">
+                        <h4>Post-closing</h4>
+                        <p>Onboarding client apres la vente</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number" style="background: #f0b42920; color: #f0b429;">2</div>
+                <h2>Le coaching : 2 appels minimum par semaine</h2>
+            </div>
+            <p>Pas un appel quand t'as le temps. Pas un message vocal. <strong>2 appels fixes par semaine, minimum.</strong></p>
+
+            <div class="coaching-grid">
+                <div class="coaching-card">
+                    <span class="coaching-tag">Hebdomadaire</span>
+                    <h3>Appel de coaching</h3>
+                    <p>Review des appels de vente. Ecoute les enregistrements, identifie les points a ameliorer, travaille les objections. Individuel ou en groupe si tu as plusieurs closers.</p>
+                </div>
+                <div class="coaching-card">
+                    <span class="coaching-tag">Chaque lundi</span>
+                    <h3>Appel du lundi</h3>
+                    <p>Chiffres de la semaine passee. Taux de closing, nombre d'appels, revenus generes. Puis la vision pour la semaine qui arrive. Objectifs clairs, priorities definies.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number" style="background: #f0b42920; color: #f0b429;">3</div>
+                <h2>La regle d'or du feedback : un seul point a la fois</h2>
+            </div>
+
+            <div class="threshold-card">
+                <div class="threshold-value">1 SEUL POINT A LA FOIS</div>
+                <div class="threshold-label">Isole. Corrige. Verifie sur le prochain appel.</div>
+                <div class="threshold-sub">Pas 5 feedbacks. Pas 3. Un seul.</div>
+            </div>
+
+            <p>Le cerveau humain ne peut pas integrer 5 corrections en meme temps. Si tu lui dis "parle moins vite, pose plus de questions, reformule mieux, gere mieux les objections et fais une meilleure transition vers l'offre"... <strong>il ne va rien changer.</strong></p>
+            <p>Isole <strong>un seul point</strong>. Donne le feedback. Et verifie sur le prochain appel que c'est corrige avant de passer au suivant.</p>
+
+            <div class="story-card">
+                <div class="story-label">Analogie</div>
+                <p>C'est comme donner un biscuit a un chien qui s'est assis. <strong>Le renforcement positif, ca marche.</strong> Quand ton closer fait bien un truc, dis-le. Immediatement. C'est ca qui ancre le comportement.</p>
+            </div>
+
+            <div class="key-rule">
+                <h3>Regle cle</h3>
+                <p>Si un truc est bien fait, <strong style="color: #fff;">dis-le</strong>. Si un truc est mal fait, <strong style="color: #fff;">dis-le aussi</strong>. Mais un a la fois. Toujours un a la fois. C'est comme ca que tu construis un closer qui progresse semaine apres semaine.</p>
+            </div>
+        </div>
+
+        <!-- SECTION 4 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number" style="background: #f0b42920; color: #f0b429;">4</div>
+                <h2>Utilise l'IA pour review tes appels</h2>
+            </div>
+            <p>Tu n'as pas besoin d'ecouter chaque appel en entier. <strong>Claude Code + transcription = analyse automatique.</strong> Tu envoies la transcription, tu recois un diagnostic complet en 30 secondes.</p>
+
+            <p>Ce que l'IA peut detecter :</p>
+            <ul class="detect-list">
+                <li><strong>Moments mal creuses</strong> — quand le closer passe trop vite sur une douleur ou un besoin</li>
+                <li><strong>Objections mal gerees</strong> — reponses faibles, arguments qui ne tiennent pas</li>
+                <li><strong>Timing de presentation de l'offre</strong> — trop tot, trop tard, mal amene</li>
+                <li><strong>Score global de l'appel</strong> — une note sur la structure, le ton, la maitrise</li>
+            </ul>
+
+            <div class="story-card">
+                <div class="story-label">A savoir</div>
+                <p>Un prompt pret a l'emploi est disponible dans le fichier "closers" de l'OS. Tu n'as qu'a copier-coller la transcription et lancer l'analyse.</p>
+            </div>
+        </div>
+
+        <!-- ACTION BOX -->
+        <div class="action-box">
+            <h3>Ce que tu fais maintenant</h3>
+            <ol>
+                <li>Cree ton LMS (Notion, HTML, peu importe)</li>
+                <li>Remplis les 10 modules</li>
+                <li>Le closer commence par le LMS avant tout appel</li>
+                <li>2 appels/semaine minimum : coaching + chiffres du lundi</li>
+                <li>Review : isole un seul point a ameliorer</li>
+                <li>Renforcement positif quand c'est bien</li>
+                <li>Utilise Claude Code pour analyser les appels</li>
+            </ol>
+        </div>
+
+        <div class="footer">
+            <p>Section 7 — Ton equipe de vente — Module 3</p>
+        </div>
+
+    </div>
+</body>
+</html>
