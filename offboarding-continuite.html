@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Continuité — Stratégie 30%</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0e1a;
+            color: #fff;
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .header-tag {
+            display: inline-block;
+            background: linear-gradient(145deg, #1e2540, #131829);
+            border: 1px solid #2d3660;
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #60a5fa;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+        .header p {
+            font-size: 16px;
+            color: #8b92a8;
+        }
+
+        /* Section */
+        .section {
+            background: linear-gradient(145deg, #131829, #0f1322);
+            border: 1px solid #1e2540;
+            border-radius: 16px;
+            padding: 36px;
+            margin-bottom: 24px;
+        }
+        .section-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: #2563eb;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+        .section-tag {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #60a5fa;
+            margin-bottom: 8px;
+        }
+        .section h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .section p {
+            font-size: 15px;
+            color: #b0b8d1;
+            margin-bottom: 12px;
+        }
+
+        .highlight { color: #60a5fa; font-weight: 600; }
+        .highlight-green { color: #4ade80; font-weight: 600; }
+        .highlight-red { color: #f87171; font-weight: 600; }
+
+        /* Price card */
+        .price-card {
+            background: #0f1322;
+            border: 1px solid #1e2540;
+            border-radius: 12px;
+            padding: 28px;
+            text-align: center;
+            margin: 24px 0 8px;
+        }
+        .price-big {
+            font-size: 42px;
+            font-weight: 900;
+            color: #4ade80;
+        }
+        .price-label {
+            font-size: 14px;
+            color: #8b92a8;
+            margin-top: 4px;
+        }
+        .price-sub {
+            font-size: 13px;
+            color: #6b7294;
+            margin-top: 8px;
+        }
+
+        /* List items */
+        .list-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid #1e2540;
+        }
+        .list-item:last-child { border-bottom: none; }
+        .list-icon {
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            background: #1e2540;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        .list-icon.red {
+            background: #2a1520;
+            border: 1px solid #4a2030;
+        }
+        .list-content h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        .list-content p {
+            font-size: 13px;
+            color: #8b92a8;
+            margin: 0;
+        }
+
+        /* Rules */
+        .rule-box {
+            background: #0f1322;
+            border: 1px solid #1e2540;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 12px;
+        }
+        .rule-box h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .rule-box p {
+            font-size: 13px;
+            color: #b0b8d1;
+            margin: 0;
+        }
+
+        /* Levels */
+        .level-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .level-card {
+            background: #0f1322;
+            border: 1px solid #1e2540;
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .level-card .level-num {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #60a5fa;
+            margin-bottom: 6px;
+        }
+        .level-card h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .level-card p {
+            font-size: 12px;
+            color: #8b92a8;
+            margin: 0;
+        }
+
+        /* Testimonial */
+        .testimonial {
+            background: linear-gradient(145deg, #0f1d14, #0f1322);
+            border: 1px solid #1a3a25;
+            border-radius: 16px;
+            padding: 28px;
+            margin-top: 20px;
+        }
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+        .testimonial-avatar {
+            width: 48px;
+            height: 48px;
+            background: #2563eb;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 800;
+        }
+        .testimonial-name h3 {
+            font-size: 16px;
+            font-weight: 700;
+        }
+        .testimonial-name span {
+            font-size: 12px;
+            color: #8b92a8;
+        }
+        .testimonial-result {
+            display: inline-block;
+            background: #0f1d14;
+            border: 1px solid #1a3a25;
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #4ade80;
+            margin-bottom: 12px;
+        }
+        .testimonial p {
+            font-size: 14px;
+            color: #b0b8d1;
+        }
+
+        /* Compare */
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .compare-col {
+            border-radius: 12px;
+            padding: 24px;
+        }
+        .compare-col.bad {
+            background: linear-gradient(145deg, #1a1015, #0f1322);
+            border: 1px solid #3a1525;
+        }
+        .compare-col.good {
+            background: linear-gradient(145deg, #0f1d14, #0f1322);
+            border: 1px solid #1a3a25;
+        }
+        .compare-col h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+        .compare-col.bad h4 { color: #f87171; }
+        .compare-col.good h4 { color: #4ade80; }
+        .compare-item {
+            font-size: 13px;
+            color: #b0b8d1;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .compare-item:last-child { border-bottom: none; }
+
+        /* Note */
+        .note {
+            background: linear-gradient(145deg, #1a1a2e, #0f1322);
+            border: 1px solid #2563eb;
+            border-radius: 16px;
+            padding: 28px;
+            margin-top: 20px;
+        }
+        .note h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #60a5fa;
+            margin-bottom: 10px;
+        }
+        .note p {
+            font-size: 14px;
+            color: #b0b8d1;
+            margin: 0;
+        }
+
+        /* Arrow */
+        .arrow {
+            text-align: center;
+            font-size: 24px;
+            color: #2563eb;
+            margin: -12px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            color: #4a5170;
+            font-size: 13px;
+            border-top: 1px solid #1e2540;
+            padding-top: 24px;
+            margin-top: 16px;
+        }
+
+        @media (max-width: 500px) {
+            .level-grid { grid-template-columns: 1fr; }
+            .compare-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="header">
+            <div class="header-tag">Appel de continuité</div>
+            <h1>Tes 6 mois sont terminés.</h1>
+            <p>Voici ce qui se passe maintenant.</p>
+        </div>
+
+        <!-- SECTION 1 : Le prix -->
+        <div class="section">
+            <div class="section-number">1</div>
+            <div class="section-tag">La continuité</div>
+            <h2>Un accès illimité pour une fraction du prix</h2>
+            <p>Tu as investi pour rejoindre le programme. Maintenant que tes 6 mois d'accompagnement initial sont terminés, tu peux <span class="highlight">garder ton accès complet</span> à tout ce que le programme offre.</p>
+
+            <div class="price-card">
+                <div class="price-big">197€<span style="font-size: 20px; font-weight: 600;">/mois</span></div>
+                <div class="price-label">Accès complet au programme</div>
+                <div class="price-sub">~230 $/mois via Skool</div>
+            </div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- SECTION 2 : Ce que tu gardes -->
+        <div class="section">
+            <div class="section-number">2</div>
+            <div class="section-tag">Ce que tu gardes</div>
+            <h2>Tout ce à quoi tu as accès aujourd'hui</h2>
+            <p>En restant, tu gardes <span class="highlight">100% de l'accès</span> — et tu continues à débloquer les niveaux suivants au fur et à mesure de ta progression.</p>
+
+            <div class="list-item">
+                <div class="list-icon">📚</div>
+                <div class="list-content">
+                    <h4>Tous les modules vidéos</h4>
+                    <p>Du niveau 0 au niveau où tu es — et les suivants quand tu les débloqueras</p>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-icon">📞</div>
+                <div class="list-content">
+                    <h4>5 appels par semaine avec les experts</h4>
+                    <p>Copywriting, vente, prospection, Instagram, Q&A</p>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-icon">🎬</div>
+                <div class="list-content">
+                    <h4>Tous les replays de coaching</h4>
+                    <p>Accès à l'historique complet des sessions</p>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-icon">👥</div>
+                <div class="list-content">
+                    <h4>La communauté active</h4>
+                    <p>Échanges, entraide, mises en relation avec d'autres opérateurs</p>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-icon">📋</div>
+                <div class="list-content">
+                    <h4>Templates et ressources</h4>
+                    <p>Scripts, frameworks, outils — toujours à jour</p>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-icon">🔄</div>
+                <div class="list-content">
+                    <h4>Toutes les mises à jour</h4>
+                    <p>Nouveaux contenus, nouvelles stratégies, nouveaux modules ajoutés</p>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-icon">🤝</div>
+                <div class="list-content">
+                    <h4>L'accompagnement continu</h4>
+                    <p>Support de l'équipe et accès à ta CSM</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- SECTION 3 : Progression -->
+        <div class="section">
+            <div class="section-number">3</div>
+            <div class="section-tag">Ta progression continue</div>
+            <h2>Tu continues à avancer dans les niveaux</h2>
+            <p>Si tu es au niveau 2 aujourd'hui et que tu continues, tu débloqueras le <span class="highlight">niveau 3</span> dès que tu atteindras les conditions. Tu ne repars pas de zéro — tu continues exactement là où tu en es.</p>
+
+            <div class="level-grid">
+                <div class="level-card">
+                    <div class="level-num">Niveau 0</div>
+                    <h4>Mindset & Découverte</h4>
+                    <p>Poser les bases et comprendre le modèle</p>
+                </div>
+                <div class="level-card">
+                    <div class="level-num">Niveau 1</div>
+                    <h4>Signer ton premier créateur</h4>
+                    <p>Trouver et convaincre ton premier partenaire</p>
+                </div>
+                <div class="level-card">
+                    <div class="level-num">Niveau 2</div>
+                    <h4>Lancer ton premier créateur</h4>
+                    <p>Construire l'offre, le tunnel, les premières ventes</p>
+                </div>
+                <div class="level-card">
+                    <div class="level-num">Niveau 3</div>
+                    <h4>Scaler ton créateur</h4>
+                    <p>Pubs, équipe, optimisation — exploser tes chiffres</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- SECTION 4 : Pourquoi après 6 mois -->
+        <div class="section">
+            <div class="section-number">4</div>
+            <div class="section-tag">Le vrai déclic</div>
+            <h2>C'est après 6 mois que ça explose</h2>
+            <p>Les 6 premiers mois, tu empiles les compétences. Tu apprends à trouver un créateur, à construire une offre, à vendre, à lancer. C'est <span class="highlight">la phase de construction</span>.</p>
+            <p>Après 6 mois, tu as les fondations. C'est là que tes chiffres commencent à <span class="highlight-green">vraiment décoller</span> — parce que tout ce que tu as construit commence à porter ses fruits.</p>
+
+            <div class="testimonial">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">B</div>
+                    <div class="testimonial-name">
+                        <h3>Brandon</h3>
+                        <span>Membre du programme</span>
+                    </div>
+                </div>
+                <div class="testimonial-result">+ de 10 000 €/mois aujourd'hui</div>
+                <p>Brandon a fait quasiment <span class="highlight">0 € sur ses 6 premiers mois</span>. Il a empilé les compétences, il a persévéré, il a continué à appliquer. Après les 6 mois, ses résultats ont explosé. Aujourd'hui, il génère <span class="highlight-green">plus de 10 000 € par mois</span>.</p>
+                <p style="margin-top: 12px;">S'il avait arrêté à 6 mois, il serait reparti à zéro.</p>
+            </div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- SECTION 5 : Les règles -->
+        <div class="section">
+            <div class="section-number">5</div>
+            <div class="section-tag">Les règles</div>
+            <h2>Comment ça fonctionne concrètement</h2>
+
+            <div class="rule-box">
+                <h4><span class="highlight">Paiement mensuel automatique</span></h4>
+                <p>197 €/mois (~230 $) prélevé automatiquement via Skool chaque mois. Pas d'engagement de durée — tu restes tant que tu veux.</p>
+            </div>
+
+            <div class="rule-box">
+                <h4><span class="highlight-red">Si tu arrêtes de payer = accès coupé</span></h4>
+                <p>Ton accès au programme, à la communauté, aux modules, aux appels — tout est coupé immédiatement. Pas de pause possible.</p>
+            </div>
+
+            <div class="rule-box">
+                <h4><span class="highlight-red">Pas de pause d'un ou deux mois</span></h4>
+                <p>Tu ne peux pas mettre ton abonnement en pause pour revenir plus tard à 197 €/mois. Si tu arrêtes, c'est définitif.</p>
+            </div>
+
+            <div class="rule-box">
+                <h4><span class="highlight">Échec de paiement : 24h pour régulariser</span></h4>
+                <p>Si ton paiement échoue (carte expirée, solde insuffisant), tu as 24 heures pour régler la situation et garder ton accès à 197 €/mois.</p>
+            </div>
+
+            <div class="rule-box">
+                <h4><span class="highlight-red">Après 24h = retour au prix complet</span></h4>
+                <p>Si le paiement n'est pas régularisé dans les 24h, ton accès est coupé. Pour revenir, tu devras repayer le programme au tarif en vigueur.</p>
+            </div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- SECTION 6 : Comparaison -->
+        <div class="section">
+            <div class="section-number">6</div>
+            <div class="section-tag">Le choix</div>
+            <h2>197 €/mois vs tout reprendre à zéro</h2>
+
+            <div class="compare-grid">
+                <div class="compare-col bad">
+                    <h4>Si tu arrêtes</h4>
+                    <div class="compare-item">Accès coupé à tout</div>
+                    <div class="compare-item">Plus de modules vidéos</div>
+                    <div class="compare-item">Plus d'appels experts</div>
+                    <div class="compare-item">Plus de communauté</div>
+                    <div class="compare-item">Plus de mises à jour</div>
+                    <div class="compare-item">Plus d'accompagnement</div>
+                    <div class="compare-item">Pour revenir = repayer le programme complet</div>
+                </div>
+                <div class="compare-col good">
+                    <h4>Si tu continues</h4>
+                    <div class="compare-item">Accès illimité à tout</div>
+                    <div class="compare-item">Tu déverrouilles les niveaux suivants</div>
+                    <div class="compare-item">5 appels/semaine avec experts</div>
+                    <div class="compare-item">Communauté active</div>
+                    <div class="compare-item">Nouveaux contenus automatiques</div>
+                    <div class="compare-item">Support continu</div>
+                    <div class="compare-item">197 €/mois — une fraction du prix initial</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- SECTION 7 : Pourquoi cette règle -->
+        <div class="section">
+            <div class="section-number">7</div>
+            <div class="section-tag">Pourquoi cette règle</div>
+            <h2>Une communauté active, pas un cimetière</h2>
+            <p>Cette règle existe pour <span class="highlight">protéger la qualité du programme</span> et l'expérience de chaque membre.</p>
+            <p>On ne veut pas de membres dormants qui traînent sans avancer. On veut une communauté où <span class="highlight-green">tout le monde est actif, engagé, et qui avance</span>.</p>
+            <p>Si tu es là, c'est que tu veux des résultats. Et pour avoir des résultats, il faut être entouré de gens qui veulent la même chose.</p>
+
+            <div class="note">
+                <h3>En résumé</h3>
+                <p>197 €/mois pour garder accès à tout. Pas de pause. Si tu arrêtes, tu repars au prix complet. Les résultats arrivent après les 6 premiers mois — c'est maintenant que ça commence vraiment.</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            Stratégie 30% — Continuité programme
+        </div>
+
+    </div>
+</body>
+</html>
