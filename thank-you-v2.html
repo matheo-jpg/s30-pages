@@ -8,7 +8,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-/* ========== RESET & BASE ========== */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -18,15 +17,12 @@ body {
   overflow-x: hidden;
 }
 a { color: inherit; text-decoration: none; }
-img { max-width: 100%; height: auto; }
+img { max-width: 100%; height: auto; display: block; }
 
-/* ========== VARIABLES ========== */
 :root {
   --bg: #E9FCFF;
   --accent: #1BA7FF;
-  --accent-dark: #0D8CE0;
   --cyan-border: rgba(135, 205, 221, 0.8);
-  --cyan-soft: rgba(135, 205, 221, 0.3);
   --card-bg: rgba(255, 255, 255, 0.8);
   --card-shadow: rgba(0, 0, 0, 0.1) 0px 4px 16px;
   --glow-color: rgb(142, 214, 234);
@@ -35,18 +31,9 @@ img { max-width: 100%; height: auto; }
   --max-width: 800px;
 }
 
-/* ========== LAYOUT ========== */
-.container {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 20px;
-}
-.section {
-  padding: 60px 0;
-  position: relative;
-}
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 20px; }
 
-/* ========== BANNER WARNING ========== */
+/* ===== BANNER ===== */
 .banner-warning {
   background: #CC0000;
   color: #fff;
@@ -55,11 +42,9 @@ img { max-width: 100%; height: auto; }
   font-weight: 700;
   font-size: 16px;
   letter-spacing: 0.5px;
-  position: relative;
-  z-index: 10;
 }
 
-/* ========== HEADLINE ========== */
+/* ===== HEADLINE ===== */
 .headline-section {
   text-align: center;
   padding: 50px 0 30px;
@@ -68,406 +53,276 @@ img { max-width: 100%; height: auto; }
   font-size: 36px;
   font-weight: 800;
   line-height: 1.3;
-  color: var(--text-dark);
 }
-.headline-section h1 .highlight {
-  color: var(--accent);
-  position: relative;
-}
+.highlight { color: var(--accent); }
 
-/* ========== STEP CARDS ========== */
-.step-card {
+/* ===== STEP PILLS (like Jordan) ===== */
+.step-pill {
+  display: inline-block;
   background: var(--card-bg);
   border: 1px solid var(--cyan-border);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 40px;
-  margin-bottom: 30px;
+  border-radius: 50px;
+  padding: 14px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-dark);
   box-shadow: var(--card-shadow);
-  position: relative;
-  overflow: hidden;
+  text-align: center;
+  margin-bottom: 20px;
 }
-.step-card::before {
+.step-pill-wrapper {
+  text-align: center;
+  margin-bottom: 8px;
+  position: relative;
+}
+/* Vertical line between pills */
+.step-pill-wrapper::before {
   content: '';
   position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  box-shadow:
-    inset 0 0 0 1px rgba(135, 205, 221, 0.8),
-    inset 0 0 16px rgba(135, 205, 221, 0.3),
-    inset 0 8px 32px rgba(135, 205, 221, 0.2),
-    inset 0 -8px 32px rgba(135, 205, 221, 0.2);
-  pointer-events: none;
+  top: -30px;
+  left: 50%;
+  width: 1px;
+  height: 30px;
+  background: var(--cyan-border);
 }
-.step-label {
-  display: inline-block;
-  background: var(--accent);
-  color: #fff;
-  font-size: 13px;
-  font-weight: 700;
-  padding: 6px 16px;
-  border-radius: 30px;
-  margin-bottom: 16px;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
+.step-pill-wrapper:first-of-type::before { display: none; }
+
+/* ===== STEP 1 — CALENDAR ===== */
+.calendar-section {
+  text-align: center;
+  padding: 0 0 20px;
 }
-.step-title {
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 8px;
-  color: var(--text-dark);
-}
-.step-subtitle {
+.event-info {
   font-size: 15px;
   color: var(--text-muted);
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
-
-/* ========== CALENDAR BUTTONS ========== */
+.event-info strong {
+  color: var(--text-dark);
+  font-size: 17px;
+}
+.event-info .event-time {
+  color: var(--accent);
+  font-weight: 600;
+}
 .calendar-buttons {
   display: flex;
-  gap: 14px;
+  gap: 10px;
   justify-content: center;
   flex-wrap: wrap;
+  margin-bottom: 40px;
 }
 .cal-btn {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 14px 24px;
-  border-radius: 14px;
-  background: var(--bg);
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  background: var(--card-bg);
   border: 1px solid var(--cyan-border);
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
   text-decoration: none;
   color: var(--text-dark);
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
 }
 .cal-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0,0,0,0.1);
 }
-.cal-btn svg, .cal-btn img {
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
-}
-.event-details {
-  text-align: center;
-  margin-bottom: 28px;
-  padding: 20px;
-  background: var(--bg);
-  border: 1px solid rgba(135, 205, 221, 0.5);
-  border-radius: 14px;
-}
-.event-details .event-date {
-  font-size: 20px;
-  font-weight: 800;
-  color: var(--text-dark);
-  margin-bottom: 4px;
-}
-.event-details .event-time {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--accent);
-  margin-bottom: 4px;
-}
-.event-details .event-with {
-  font-size: 14px;
-  color: var(--text-muted);
-}
+.cal-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
 
-/* ========== VIDEO CONTAINER ========== */
+/* ===== STEP 2 — VIDEO ===== */
+.video-section { padding: 0 0 50px; }
 .video-wrapper {
   border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 8px 30px rgba(0,0,0,0.12);
   border: 2px solid var(--cyan-border);
-}
-
-/* ========== RULES LIST ========== */
-.rules-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-.rules-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 18px 22px;
-  background: var(--bg);
-  border: 1px solid rgba(135, 205, 221, 0.5);
-  border-radius: 14px;
-  font-size: 15px;
-  line-height: 1.5;
-  transition: transform 0.2s;
-}
-.rules-list li:hover {
-  transform: translateX(4px);
-}
-.rule-icon {
-  flex-shrink: 0;
-  width: 42px;
-  height: 42px;
-  background: var(--accent);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-}
-.rule-text strong {
-  display: block;
-  font-size: 15px;
-  font-weight: 700;
-  margin-bottom: 2px;
-  color: var(--text-dark);
-}
-.rule-text span {
-  font-size: 13px;
-  color: var(--text-muted);
-}
-
-/* ========== STATS BAR ========== */
-.stats-section {
-  padding: 50px 0;
-}
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-.stat-card {
   background: var(--card-bg);
-  border: 1px solid var(--cyan-border);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 30px 20px;
-  text-align: center;
-  box-shadow: var(--card-shadow);
-  position: relative;
-  overflow: hidden;
-}
-.stat-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  box-shadow:
-    inset 0 0 0 1px rgba(135, 205, 221, 0.8),
-    inset 0 0 16px rgba(135, 205, 221, 0.3),
-    inset 0 8px 32px rgba(135, 205, 221, 0.15);
-  pointer-events: none;
-}
-.stat-number {
-  font-size: 38px;
-  font-weight: 800;
-  color: var(--accent);
-  line-height: 1.1;
-  margin-bottom: 6px;
-}
-.stat-label {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-muted);
-  line-height: 1.4;
 }
 
-/* ========== SECTION TITLES ========== */
+/* ===== SECTION TITLES ===== */
 .section-title {
   text-align: center;
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 800;
-  margin-bottom: 12px;
-  color: var(--text-dark);
-}
-.section-title .highlight {
-  color: var(--accent);
+  margin-bottom: 8px;
 }
 .section-subtitle {
   text-align: center;
-  font-size: 15px;
+  font-size: 14px;
   color: var(--text-muted);
-  margin-bottom: 40px;
-  max-width: 550px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-bottom: 32px;
+}
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--cyan-border);
+  margin: 20px 0 40px;
 }
 
-/* ========== VIDEO TESTIMONIALS ========== */
+/* ===== OBJECTION VIDEOS GRID ===== */
+.objection-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 50px;
+}
+.objection-card {
+  border-radius: 14px;
+  overflow: hidden;
+  background: #000;
+  position: relative;
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px solid var(--cyan-border);
+}
+.objection-card .placeholder-text {
+  color: rgba(255,255,255,0.5);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  padding: 10px;
+}
+.objection-card .play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  background: rgba(0,0,0,0.6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.objection-card .play-btn::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 8px 0 8px 14px;
+  border-color: transparent transparent transparent #fff;
+  margin-left: 3px;
+}
+.objection-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.85));
+  padding: 24px 12px 12px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* ===== TESTIMONIAL VIDEOS ===== */
 .testimonials-video-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: 16px;
+  margin-bottom: 50px;
 }
 .testimonial-video-card {
   background: var(--card-bg);
   border: 1px solid var(--cyan-border);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: var(--card-shadow);
-  transition: transform 0.3s;
-}
-.testimonial-video-card:hover {
-  transform: translateY(-4px);
-}
-.testimonial-video-wrapper {
-  border-bottom: 1px solid rgba(135, 205, 221, 0.4);
-}
-.testimonial-info {
-  padding: 16px 20px;
-}
-.testimonial-name {
-  font-weight: 700;
-  font-size: 15px;
-  color: var(--text-dark);
-}
-.testimonial-role {
-  font-size: 12px;
-  color: var(--accent);
-  font-weight: 600;
-}
-
-/* ========== TEXT TESTIMONIALS ========== */
-.testimonials-text-section {
-  padding: 60px 0 40px;
-}
-.testimonials-text-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-.text-testimonial-card {
-  background: var(--card-bg);
-  border: 1px solid var(--cyan-border);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 16px;
-  padding: 28px 30px;
-  box-shadow: var(--card-shadow);
-  position: relative;
-}
-.text-testimonial-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 16px;
-  box-shadow:
-    inset 0 0 0 1px rgba(135, 205, 221, 0.8),
-    inset 0 0 16px rgba(135, 205, 221, 0.3);
-  pointer-events: none;
-}
-.quote-icon {
-  font-size: 32px;
-  color: var(--accent);
-  opacity: 0.4;
-  line-height: 1;
-  margin-bottom: 10px;
-  font-family: Georgia, serif;
-}
-.quote-text {
-  font-size: 15px;
-  line-height: 1.7;
-  color: var(--text-dark);
-  margin-bottom: 16px;
-  font-style: italic;
-}
-.quote-author {
-  font-weight: 700;
-  font-size: 14px;
-  color: var(--text-dark);
-}
-.quote-author-role {
-  font-size: 12px;
-  color: var(--accent);
-  font-weight: 600;
-}
-
-/* ========== FAQ ========== */
-.faq-section {
-  padding: 60px 0;
-}
-.faq-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.faq-item {
-  background: var(--card-bg);
-  border: 1px solid var(--cyan-border);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   border-radius: 14px;
   overflow: hidden;
   box-shadow: var(--card-shadow);
+  transition: transform 0.3s;
 }
-.faq-question {
-  padding: 20px 24px;
-  font-weight: 600;
-  font-size: 15px;
-  cursor: pointer;
+.testimonial-video-card:hover { transform: translateY(-3px); }
+.testimonial-video-wrapper { border-bottom: 1px solid rgba(135,205,221,0.4); }
+.testimonial-info { padding: 12px 16px; }
+.testimonial-name { font-weight: 700; font-size: 14px; }
+.testimonial-role { font-size: 11px; color: var(--accent); font-weight: 600; }
+
+/* ===== SCREENSHOT TESTIMONIALS ===== */
+.screenshot-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-bottom: 50px;
+}
+.screenshot-item {
+  position: relative;
+}
+.screenshot-img {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid var(--cyan-border);
+  box-shadow: var(--card-shadow);
+  background: #fff;
+  min-height: 200px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  color: var(--text-dark);
-  transition: color 0.2s;
-  user-select: none;
-}
-.faq-question:hover {
-  color: var(--accent);
-}
-.faq-arrow {
-  font-size: 18px;
-  transition: transform 0.3s;
-  flex-shrink: 0;
-  color: var(--accent);
-}
-.faq-item.open .faq-arrow {
-  transform: rotate(180deg);
-}
-.faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.35s ease, padding 0.35s ease;
-}
-.faq-item.open .faq-answer {
-  max-height: 300px;
-}
-.faq-answer-inner {
-  padding: 0 24px 20px;
-  font-size: 14px;
-  line-height: 1.7;
+  justify-content: center;
   color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 500;
+}
+.screenshot-annotation {
+  position: absolute;
+  background: rgba(20, 20, 35, 0.9);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  font-style: italic;
+  padding: 10px 16px;
+  border-radius: 10px;
+  max-width: 220px;
+  line-height: 1.4;
+  text-align: center;
+}
+.screenshot-annotation.top-right {
+  top: -16px;
+  right: 20px;
+}
+.screenshot-annotation.bottom-right {
+  bottom: -16px;
+  right: 20px;
+}
+.screenshot-annotation.top-left {
+  top: -16px;
+  left: 20px;
+}
+/* Arrow pointing to screenshot */
+.screenshot-annotation::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+.screenshot-annotation.top-right::after,
+.screenshot-annotation.top-left::after {
+  bottom: -8px;
+  left: 30px;
+  border-width: 8px 6px 0 6px;
+  border-color: rgba(20,20,35,0.9) transparent transparent transparent;
+}
+.screenshot-annotation.bottom-right::after {
+  top: -8px;
+  right: 30px;
+  border-width: 0 6px 8px 6px;
+  border-color: transparent transparent rgba(20,20,35,0.9) transparent;
 }
 
-/* ========== ELLIPSE GLOW ========== */
-.ellipse-glow {
-  position: fixed;
-  bottom: -300px;
-  right: -400px;
-  width: 1100px;
-  height: 600px;
-  border-radius: 50%;
-  background-color: var(--glow-color);
-  box-shadow:
-    0 0 100px rgba(170, 245, 253, 1),
-    0 0 200px rgba(170, 245, 253, 0.9),
-    0 0 400px rgba(170, 245, 253, 0.7),
-    0 0 800px rgba(170, 245, 253, 0.5);
-  z-index: -1;
-  pointer-events: none;
-}
-
-/* ========== FOOTER ========== */
+/* ===== FOOTER ===== */
 .footer {
   padding: 40px 0;
   text-align: center;
@@ -478,361 +333,230 @@ img { max-width: 100%; height: auto; }
   color: var(--text-muted);
   line-height: 1.7;
   max-width: 700px;
-  margin: 0 auto 20px;
+  margin: 0 auto 16px;
   opacity: 0.7;
 }
 .footer-links {
   display: flex;
   justify-content: center;
   gap: 24px;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
-.footer-links a {
-  font-size: 13px;
-  color: var(--accent);
-  font-weight: 500;
-  transition: opacity 0.2s;
-}
-.footer-links a:hover {
-  opacity: 0.7;
-}
-.footer-copy {
-  font-size: 12px;
-  color: var(--text-muted);
-  opacity: 0.6;
+.footer-links a { font-size: 13px; color: var(--accent); font-weight: 500; }
+.footer-copy { font-size: 12px; color: var(--text-muted); opacity: 0.6; }
+
+/* ===== ELLIPSE GLOW ===== */
+.ellipse-glow {
+  position: fixed;
+  bottom: -300px; right: -400px;
+  width: 1100px; height: 600px;
+  border-radius: 50%;
+  background-color: var(--glow-color);
+  box-shadow: 0 0 100px rgba(170,245,253,1), 0 0 200px rgba(170,245,253,0.9), 0 0 400px rgba(170,245,253,0.7), 0 0 800px rgba(170,245,253,0.5);
+  z-index: -1;
+  pointer-events: none;
 }
 
-/* ========== RESPONSIVE ========== */
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  .headline-section h1 { font-size: 26px; }
-  .step-card { padding: 28px 22px; }
-  .stats-grid { grid-template-columns: 1fr; gap: 14px; }
-  .stat-number { font-size: 32px; }
+  .headline-section h1 { font-size: 24px; }
+  .step-pill { font-size: 14px; padding: 12px 20px; }
+  .calendar-buttons { gap: 8px; }
+  .cal-btn { padding: 10px 14px; font-size: 12px; }
+  .objection-grid { grid-template-columns: 1fr; }
   .testimonials-video-grid { grid-template-columns: 1fr; }
-  .section-title { font-size: 24px; }
+  .section-title { font-size: 22px; }
   .container { padding: 0 16px; }
-  .banner-warning { font-size: 14px; padding: 12px 16px; }
-  .calendar-buttons { flex-direction: column; align-items: stretch; }
-  .cal-btn { justify-content: center; }
-  .event-details .event-date { font-size: 17px; }
-  .ellipse-glow {
-    width: 900px;
-    height: 800px;
-    transform: translate(53%, 85%);
-  }
+  .banner-warning { font-size: 13px; padding: 12px 16px; }
+  .screenshot-annotation { font-size: 11px; max-width: 180px; padding: 8px 12px; }
+  .ellipse-glow { width: 900px; height: 800px; transform: translate(53%, 85%); }
 }
 </style>
 </head>
 <body>
 
-<!-- ELLIPSE GLOW BACKGROUND -->
 <div class="ellipse-glow"></div>
 
-<!-- ========== SECTION 1 : BANNER ========== -->
+<!-- BANNER -->
 <div class="banner-warning">
   &#9888;&#65039; Important : Ton appel n'est que provisoirement réservé. &#9888;&#65039;
 </div>
 
-<!-- ========== SECTION 2 : HEADLINE ========== -->
+<!-- HEADLINE -->
 <div class="headline-section">
   <div class="container">
     <h1>Suis les étapes ci-dessous pour <span class="highlight">confirmer ton appel !</span></h1>
   </div>
 </div>
 
-<!-- ========== SECTION 3 : STEP 1 — CALENDRIER ========== -->
+<!-- STEP 1 — CALENDAR -->
 <div class="container">
-  <div class="step-card">
-    <span class="step-label">Étape 1</span>
-    <h2 class="step-title"><span class="highlight">Ajoute l'appel</span> à ton calendrier</h2>
-    <p class="step-subtitle">Ton événement est en cours de création...</p>
+  <div class="step-pill-wrapper" style="padding-top:0;">
+    <div class="step-pill">Étape 1 : <span class="highlight">Ajoute l'appel</span> à ton calendrier</div>
+  </div>
 
-    <div class="event-details" id="eventDetails">
-      <div class="event-date" id="eventDate">Chargement...</div>
-      <div class="event-time" id="eventTime"></div>
-      <div class="event-with" id="eventWith"></div>
+  <div class="calendar-section">
+    <div class="event-info">
+      <strong id="eventDate">Chargement...</strong><br>
+      <span class="event-time" id="eventTime"></span>
     </div>
 
     <div class="calendar-buttons">
-      <!-- Google Calendar -->
       <a class="cal-btn" id="calGoogle" href="#" target="_blank">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M18 3h-2V1h-2v2H10V1H8v2H6C4.9 3 4 3.9 4 5v14c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" fill="#4285F4"/><path d="M6 9h12v10H6z" fill="#fff"/><path d="M8 13h3v3H8z" fill="#EA4335"/><path d="M13 13h3v3h-3z" fill="#FBBC04"/><path d="M8 11h3v1H8z" fill="#34A853"/><path d="M13 11h3v1h-3z" fill="#4285F4"/></svg>
+        <svg viewBox="0 0 24 24" fill="none"><path d="M18 3h-2V1h-2v2H10V1H8v2H6C4.9 3 4 3.9 4 5v14c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" fill="#4285F4"/><path d="M6 9h12v10H6z" fill="#fff"/><path d="M8 13h3v3H8z" fill="#EA4335"/><path d="M13 13h3v3h-3z" fill="#FBBC04"/></svg>
         Google
       </a>
-
-      <!-- Apple Calendar -->
       <a class="cal-btn" id="calApple" href="#" download="appel-strategie30.ics">
         <svg viewBox="0 0 24 24" fill="none"><path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.53 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" fill="#333"/></svg>
         Apple
       </a>
-
-      <!-- Outlook -->
       <a class="cal-btn" id="calOutlook" href="#" target="_blank">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" fill="#0078D4"/><path d="M12 2L2 7l10 5 10-5L12 2z" fill="#28A8EA"/><path d="M12 12L2 7v10l10 5V12z" fill="#0078D4"/><ellipse cx="8" cy="13" rx="3" ry="4" fill="#fff"/></svg>
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" fill="#0078D4"/><path d="M12 2L2 7l10 5 10-5L12 2z" fill="#28A8EA"/><ellipse cx="8" cy="13" rx="3" ry="4" fill="#fff"/></svg>
         Outlook
       </a>
-
-      <!-- Yahoo -->
       <a class="cal-btn" id="calYahoo" href="#" target="_blank">
         <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" fill="#6001D2"/><path d="M7 7l3.5 5.5V17h3v-4.5L17 7h-3l-2 3.5L10 7H7z" fill="#fff"/></svg>
         Yahoo
       </a>
     </div>
   </div>
-</div>
 
-<!-- ========== SECTION 4 : STEP 2 — VIDEO ========== -->
-<div class="container">
-  <div class="step-card">
-    <span class="step-label">Étape 2</span>
-    <h2 class="step-title">Regarde la courte vidéo ci-dessous pour être sûr que <span style="color: var(--accent);">nous n'annulions pas ton appel</span></h2>
+  <!-- STEP 2 — VIDEO -->
+  <div class="step-pill-wrapper">
+    <div class="step-pill">Étape 2 : Regarde la courte vidéo ci-dessous pour être sûr qu'<span class="highlight">on n'annule pas ton appel</span></div>
+  </div>
+
+  <div class="video-section">
     <div class="video-wrapper">
       <div id="vidalytics_embed_3qE8GqJPb3vAfW7n" style="width: 100%; position:relative; padding-top: 64.63%;"></div>
     </div>
   </div>
 </div>
 
-<!-- ========== SECTION 5 : STEP 3 — RÈGLES ========== -->
+<!-- SECTION : OBJECTION VIDEOS -->
+<div class="section-divider"></div>
 <div class="container">
-  <div class="step-card">
-    <span class="step-label">Étape 3</span>
-    <h2 class="step-title">Prépare-toi pour l'appel</h2>
-    <p class="step-subtitle">Pour que cet appel soit le plus utile possible, voici ce qu'on attend de toi :</p>
-    <ul class="rules-list">
-      <li>
-        <div class="rule-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 10l-4 4l-2-2"/><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        </div>
-        <div class="rule-text">
-          <strong>Un conseiller va t'appeler pour confirmer</strong>
-          <span>On reçoit beaucoup de candidatures. Si tu ne réponds pas, ton créneau sera donné à quelqu'un d'autre.</span>
-        </div>
-      </li>
-      <li>
-        <div class="rule-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-        </div>
-        <div class="rule-text">
-          <strong>Le rendez-vous sera en visio</strong>
-          <span>Assure-toi d'avoir une connexion stable, une caméra, et un micro qui fonctionne.</span>
-        </div>
-      </li>
-      <li>
-        <div class="rule-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        </div>
-        <div class="rule-text">
-          <strong>Sois à l'heure</strong>
-          <span>L'appel dure 45 minutes. Si tu as plus de 5 minutes de retard, ton créneau sera annulé.</span>
-        </div>
-      </li>
-      <li>
-        <div class="rule-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-        </div>
-        <div class="rule-text">
-          <strong>Sois concentré et dans un endroit calme</strong>
-          <span>Pas en voiture, pas en marchant. Installe-toi et donne 100% de ton attention.</span>
-        </div>
-      </li>
-    </ul>
+  <h2 class="section-title">Tes <span class="highlight">questions</span> avant l'appel</h2>
+  <p class="section-subtitle">On répond aux questions les plus fréquentes en vidéo.</p>
+
+  <div class="objection-grid">
+    <div class="objection-card">
+      <div class="play-btn"></div>
+      <div class="objection-label">Est-ce que ça marche si je pars de zéro ?</div>
+      <div class="placeholder-text" style="position:absolute;top:20px;">Vidéo à venir</div>
+    </div>
+    <div class="objection-card">
+      <div class="play-btn"></div>
+      <div class="objection-label">Combien de temps avant de voir des résultats ?</div>
+      <div class="placeholder-text" style="position:absolute;top:20px;">Vidéo à venir</div>
+    </div>
+    <div class="objection-card">
+      <div class="play-btn"></div>
+      <div class="objection-label">C'est quoi la différence avec le SMMA ou le drop ?</div>
+      <div class="placeholder-text" style="position:absolute;top:20px;">Vidéo à venir</div>
+    </div>
+    <div class="objection-card">
+      <div class="play-btn"></div>
+      <div class="objection-label">Est-ce que je peux faire ça à côté de mon job ?</div>
+      <div class="placeholder-text" style="position:absolute;top:20px;">Vidéo à venir</div>
+    </div>
+    <div class="objection-card">
+      <div class="play-btn"></div>
+      <div class="objection-label">Comment trouver un créateur de contenu ?</div>
+      <div class="placeholder-text" style="position:absolute;top:20px;">Vidéo à venir</div>
+    </div>
+    <div class="objection-card">
+      <div class="play-btn"></div>
+      <div class="objection-label">Combien ça coûte pour se lancer ?</div>
+      <div class="placeholder-text" style="position:absolute;top:20px;">Vidéo à venir</div>
+    </div>
   </div>
 </div>
 
-<!-- ========== SECTION 6 : STATS ========== -->
-<div class="stats-section">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-number">200+</div>
-        <div class="stat-label">membres actifs dans<br>le programme</div>
+<!-- SECTION : RESULTATS MEMBRES (TEMOIGNAGES VIDEO) -->
+<div class="section-divider"></div>
+<div class="container">
+  <h2 class="section-title">Résultats <span class="highlight">concrets</span> de nos membres</h2>
+  <p class="section-subtitle">Des gens normaux qui ont changé de vie grâce à l'Opération de Croissance.</p>
+
+  <div class="testimonials-video-grid">
+    <div class="testimonial-video-card">
+      <div class="testimonial-video-wrapper">
+        <div id="vidalytics_embed_YTw3zea68ayZhV6G" style="width: 100%; position:relative; padding-top: 56.25%;"></div>
       </div>
-      <div class="stat-card">
-        <div class="stat-number">3 sem.</div>
-        <div class="stat-label">en moyenne pour signer<br>un premier créateur</div>
+      <div class="testimonial-info">
+        <div class="testimonial-name">Brandon</div>
+        <div class="testimonial-role">Ancien salarié</div>
       </div>
-      <div class="stat-card">
-        <div class="stat-number">70K</div>
-        <div class="stat-label">EUR/mois générés<br>pour un seul créateur</div>
+    </div>
+    <div class="testimonial-video-card">
+      <div class="testimonial-video-wrapper">
+        <div id="vidalytics_embed_k_dsFs4L4JVbaySP" style="width: 100%; position:relative; padding-top: 56.25%;"></div>
+      </div>
+      <div class="testimonial-info">
+        <div class="testimonial-name">Maréva</div>
+        <div class="testimonial-role">Jeune maman</div>
+      </div>
+    </div>
+    <div class="testimonial-video-card">
+      <div class="testimonial-video-wrapper">
+        <div id="vidalytics_embed_FFYvQKlglwSDlGBy" style="width: 100%; position:relative; padding-top: 56.25%;"></div>
+      </div>
+      <div class="testimonial-info">
+        <div class="testimonial-name">Mathis, 23 ans</div>
+        <div class="testimonial-role">Étudiant</div>
+      </div>
+    </div>
+    <div class="testimonial-video-card">
+      <div class="testimonial-video-wrapper">
+        <div id="vidalytics_embed_SuWphX4QiHHYhZy_" style="width: 100%; position:relative; padding-top: 56.25%;"></div>
+      </div>
+      <div class="testimonial-info">
+        <div class="testimonial-name">Kamil</div>
+        <div class="testimonial-role">30K EUR générés</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ========== SECTION 7 : FAQ ========== -->
-<div class="faq-section">
-  <div class="container">
-    <h2 class="section-title">Tes <span class="highlight">questions</span> avant l'appel</h2>
-    <p class="section-subtitle">Tout ce que tu dois savoir avant de nous parler.</p>
+<!-- SECTION : SCREENSHOTS TEMOIGNAGES -->
+<div class="section-divider"></div>
+<div class="container">
+  <h2 class="section-title">Ce que nos <span class="highlight">membres</span> disent</h2>
+  <p class="section-subtitle"></p>
 
-    <div class="faq-list">
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <span>C'est quoi exactement un Opérateur de Croissance ?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Un Opérateur de Croissance, c'est le bras droit business d'un créateur de contenu. Tu construis toute l'infrastructure d'acquisition (pubs, tunnels, emails) et tu prends un pourcentage sur chaque vente. Pas besoin de créer du contenu, pas besoin de personal branding. Tu gères la machine qui génère le CA.
-          </div>
-        </div>
+  <div class="screenshot-list">
+    <!-- Screenshot 1 -->
+    <div class="screenshot-item">
+      <div class="screenshot-annotation top-right">Placeholder : ajoute ton screenshot ici + annotation</div>
+      <div class="screenshot-img" style="min-height: 280px; border-radius: 14px; border: 2px dashed var(--cyan-border);">
+        Screenshot membre #1 — Remplace par ton image
       </div>
+    </div>
 
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <span>Est-ce que ça marche si je pars de zéro ?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Oui. 70% de nos membres n'avaient jamais lancé de business en ligne avant de nous rejoindre. Le programme est structuré en niveaux (0 à 4) pour t'amener progressivement de zéro à tes premiers revenus. Tu es accompagné à chaque étape avec 5 calls par semaine et une communauté de 200+ personnes.
-          </div>
-        </div>
+    <!-- Screenshot 2 -->
+    <div class="screenshot-item">
+      <div class="screenshot-annotation top-left">Placeholder : ajoute ton screenshot ici + annotation</div>
+      <div class="screenshot-img" style="min-height: 280px; border-radius: 14px; border: 2px dashed var(--cyan-border);">
+        Screenshot membre #2 — Remplace par ton image
       </div>
+    </div>
 
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <span>Combien de temps avant de voir des résultats ?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            En moyenne, nos membres signent leur premier créateur en 3 semaines. Les premiers revenus arrivent généralement dans les 30 à 60 jours selon ton implication et la vitesse à laquelle tu lances les premières campagnes.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <span>C'est quoi la différence avec le SMMA, le dropshipping ou le trading ?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            L'Opération de Croissance est plus stable, plus scalable et moins concurrentielle. Tu ne crées pas de contenu (contrairement au personal branding), tu ne gères pas de stock (contrairement au drop), et tu ne spécules pas (contrairement au trading). Tu t'associes avec un créateur qui a déjà une audience, et tu monétises cette audience avec un système prouvé.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <span>C'est quoi la garantie ?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Si tu suis les étapes du programme pendant 6 mois et que tu n'as pas de ROI, on te rembourse intégralement. C'est une garantie basée sur l'action : si tu fais le travail et que ça ne marche pas, on prend le risque à ta place.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <span>Est-ce que je peux faire ça à côté de mon job ?</span>
-          <span class="faq-arrow">&#9660;</span>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Oui, la majorité de nos membres sont salariés ou alternants quand ils commencent. Il faut compter 2 à 3 heures par jour pour avancer sérieusement. Beaucoup quittent leur job entre le 3e et le 6e mois quand leurs revenus en tant qu'opérateur dépassent leur salaire.
-          </div>
-        </div>
+    <!-- Screenshot 3 -->
+    <div class="screenshot-item">
+      <div class="screenshot-annotation top-right">Placeholder : ajoute ton screenshot ici + annotation</div>
+      <div class="screenshot-img" style="min-height: 280px; border-radius: 14px; border: 2px dashed var(--cyan-border);">
+        Screenshot membre #3 — Remplace par ton image
       </div>
     </div>
   </div>
 </div>
 
-<!-- ========== SECTION 8 : VIDEO TESTIMONIALS ========== -->
-<div class="section">
-  <div class="container">
-    <h2 class="section-title">Résultats <span class="highlight">concrets</span> de nos membres</h2>
-    <p class="section-subtitle">Des gens normaux qui ont changé de vie grâce à l'Opération de Croissance.</p>
-
-    <div class="testimonials-video-grid">
-      <!-- Brandon -->
-      <div class="testimonial-video-card">
-        <div class="testimonial-video-wrapper">
-          <div id="vidalytics_embed_YTw3zea68ayZhV6G" style="width: 100%; position:relative; padding-top: 56.25%;"></div>
-        </div>
-        <div class="testimonial-info">
-          <div class="testimonial-name">Brandon</div>
-          <div class="testimonial-role">Ancien salarié</div>
-        </div>
-      </div>
-
-      <!-- Maréva -->
-      <div class="testimonial-video-card">
-        <div class="testimonial-video-wrapper">
-          <div id="vidalytics_embed_k_dsFs4L4JVbaySP" style="width: 100%; position:relative; padding-top: 56.25%;"></div>
-        </div>
-        <div class="testimonial-info">
-          <div class="testimonial-name">Maréva</div>
-          <div class="testimonial-role">Jeune maman</div>
-        </div>
-      </div>
-
-      <!-- Mathis -->
-      <div class="testimonial-video-card">
-        <div class="testimonial-video-wrapper">
-          <div id="vidalytics_embed_FFYvQKlglwSDlGBy" style="width: 100%; position:relative; padding-top: 56.25%;"></div>
-        </div>
-        <div class="testimonial-info">
-          <div class="testimonial-name">Mathis, 23 ans</div>
-          <div class="testimonial-role">Étudiant</div>
-        </div>
-      </div>
-
-      <!-- Kamil -->
-      <div class="testimonial-video-card">
-        <div class="testimonial-video-wrapper">
-          <div id="vidalytics_embed_SuWphX4QiHHYhZy_" style="width: 100%; position:relative; padding-top: 56.25%;"></div>
-        </div>
-        <div class="testimonial-info">
-          <div class="testimonial-name">Kamil</div>
-          <div class="testimonial-role">30K EUR générés</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ========== SECTION 9 : TEXT TESTIMONIALS ========== -->
-<div class="testimonials-text-section">
-  <div class="container">
-    <h2 class="section-title">Ce que nos <span class="highlight">membres</span> disent</h2>
-
-    <div class="testimonials-text-list">
-      <div class="text-testimonial-card">
-        <div class="quote-icon">&ldquo;</div>
-        <p class="quote-text">J'étais en alternance, je gagnais 900 EUR par mois et je voyais pas comment m'en sortir. En 2 mois dans le programme j'ai signé mon premier créateur et j'ai fait mon premier lancement à 8 000 EUR. Aujourd'hui je vis de ça à 100%.</p>
-        <div class="quote-author">Brandon</div>
-        <div class="quote-author-role">Ancien salarié — Membre depuis 8 mois</div>
-      </div>
-
-      <div class="text-testimonial-card">
-        <div class="quote-icon">&ldquo;</div>
-        <p class="quote-text">J'avais essayé le dropshipping, le trading, rien ne marchait. L'Opération de Croissance c'est le premier modèle où j'ai senti que c'était concret, stable, et que je pouvais vraiment scaler. En 3 semaines j'avais mon premier créateur.</p>
-        <div class="quote-author">Mathis</div>
-        <div class="quote-author-role">Étudiant, 23 ans</div>
-      </div>
-
-      <div class="text-testimonial-card">
-        <div class="quote-icon">&ldquo;</div>
-        <p class="quote-text">La communauté et l'accompagnement font toute la différence. C'est pas juste un cours en ligne. T'as des calls chaque jour, des gens qui avancent avec toi, et Mathéo qui est là en vrai. J'ai fait 30K en quelques mois.</p>
-        <div class="quote-author">Kamil</div>
-        <div class="quote-author-role">30K EUR générés</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ========== FOOTER ========== -->
+<!-- FOOTER -->
 <div class="footer">
   <div class="container">
     <p class="footer-disclaimer">
-      Stratégie 30% et toutes les personnes affiliées à cette organisation n'assument aucune responsabilité quant au résultat ou au succès des services, et ne garantissent pas de résultats spécifiques. Le succès dépend en partie du temps que vous consacrez et de votre mise en oeuvre des stratégies et du soutien reçus. Les stratégies, contenus et toutes les autres fonctionnalités sont à des fins éducatives uniquement et ne doivent pas être interprétés comme des conseils en investissement.
-    </p>
-    <p class="footer-disclaimer">
-      Les témoignages fournis sont ceux de personnes réelles et de leurs propres expériences personnelles. Ceux-ci ne doivent pas être considérés comme des résultats "typiques" et ne seront pas spécifiques à vos circonstances particulières.
+      Stratégie 30% et toutes les personnes affiliées à cette organisation n'assument aucune responsabilité quant au résultat ou au succès des services, et ne garantissent pas de résultats spécifiques. Le succès dépend en partie du temps que vous consacrez et de votre mise en oeuvre des stratégies et du soutien reçus. Les stratégies, contenus et toutes les autres fonctionnalités sont à des fins éducatives uniquement.
     </p>
     <p class="footer-disclaimer">
       Ce site n'est pas une partie du site Meta/Facebook ou de Meta, Inc. Ce site n'est PAS approuvé par Meta de quelque manière que ce soit.
@@ -846,171 +570,69 @@ img { max-width: 100%; height: auto; }
   </div>
 </div>
 
-<!-- ========== SCRIPTS ========== -->
+<!-- ===== SCRIPTS ===== -->
 
-<!-- Calendar Link Generator (dynamique via URL params iClosed) -->
+<!-- Calendar Link Generator -->
 <script>
 (function() {
   var params = new URLSearchParams(window.location.search);
   var startRaw = params.get('event_start_time');
   var endRaw = params.get('event_end_time');
-  var assignedTo = params.get('assigned_to') || 'Notre équipe';
   var eventName = 'Appel de candidature - Stratégie 30%';
 
   if (!startRaw || !endRaw) {
     document.getElementById('eventDate').textContent = 'Ton appel est réservé';
     document.getElementById('eventTime').textContent = 'Vérifie ton email pour les détails';
-    document.getElementById('eventWith').textContent = '';
     return;
   }
 
   var start = new Date(startRaw);
   var end = new Date(endRaw);
 
-  // Affichage de la date/heure
   var jours = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
   var mois = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
-  var dateStr = jours[start.getDay()] + ' ' + start.getDate() + ' ' + mois[start.getMonth()] + ' ' + start.getFullYear();
-  var timeStr = start.getHours().toString().padStart(2,'0') + ':' + start.getMinutes().toString().padStart(2,'0')
-    + ' - ' + end.getHours().toString().padStart(2,'0') + ':' + end.getMinutes().toString().padStart(2,'0');
+  document.getElementById('eventDate').textContent = jours[start.getDay()] + ' ' + start.getDate() + ' ' + mois[start.getMonth()] + ' ' + start.getFullYear();
+  document.getElementById('eventTime').textContent = start.getHours().toString().padStart(2,'0') + ':' + start.getMinutes().toString().padStart(2,'0') + ' - ' + end.getHours().toString().padStart(2,'0') + ':' + end.getMinutes().toString().padStart(2,'0');
 
-  document.getElementById('eventDate').textContent = dateStr;
-  document.getElementById('eventTime').textContent = timeStr;
-  document.getElementById('eventWith').textContent = 'avec ' + decodeURIComponent(assignedTo.replace(/\+/g, ' '));
+  function toICS(d) { return d.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,''); }
 
-  // Format dates pour les calendriers
-  function toICSDate(d) {
-    return d.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');
-  }
-  function toGoogleDate(d) {
-    return d.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');
-  }
+  var desc = "Appel de candidature pour rejoindre le programme Stratégie 30%. Sois à l'heure et dans un endroit calme avec ta caméra activée.";
+  var t = encodeURIComponent(eventName), dd = encodeURIComponent(desc);
 
-  var desc = 'Appel de candidature pour rejoindre le programme Stratégie 30%. Sois à l\'heure et dans un endroit calme avec ta caméra activée.';
-  var descEncoded = encodeURIComponent(desc);
-  var titleEncoded = encodeURIComponent(eventName);
+  document.getElementById('calGoogle').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text='+t+'&dates='+toICS(start)+'/'+toICS(end)+'&details='+dd;
+  document.getElementById('calOutlook').href = 'https://outlook.live.com/calendar/0/action/compose?allday=false&subject='+t+'&startdt='+start.toISOString()+'&enddt='+end.toISOString()+'&body='+dd;
 
-  // Google Calendar
-  var googleUrl = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
-    + '&text=' + titleEncoded
-    + '&dates=' + toGoogleDate(start) + '/' + toGoogleDate(end)
-    + '&details=' + descEncoded;
-  document.getElementById('calGoogle').href = googleUrl;
+  var dur = Math.round((end-start)/60000), dh=String(Math.floor(dur/60)).padStart(2,'0'), dm=String(dur%60).padStart(2,'0');
+  document.getElementById('calYahoo').href = 'https://calendar.yahoo.com/?v=60&title='+t+'&st='+toICS(start)+'&dur='+dh+dm+'&desc='+dd;
 
-  // Outlook
-  var outlookUrl = 'https://outlook.live.com/calendar/0/action/compose?allday=false'
-    + '&subject=' + titleEncoded
-    + '&startdt=' + start.toISOString()
-    + '&enddt=' + end.toISOString()
-    + '&body=' + descEncoded;
-  document.getElementById('calOutlook').href = outlookUrl;
-
-  // Yahoo
-  var duration = Math.round((end - start) / 60000);
-  var dh = String(Math.floor(duration/60)).padStart(2,'0');
-  var dm = String(duration%60).padStart(2,'0');
-  var yahooUrl = 'https://calendar.yahoo.com/?v=60'
-    + '&title=' + titleEncoded
-    + '&st=' + toGoogleDate(start)
-    + '&dur=' + dh + dm
-    + '&desc=' + descEncoded;
-  document.getElementById('calYahoo').href = yahooUrl;
-
-  // Apple (ICS file)
-  var icsContent = [
-    'BEGIN:VCALENDAR',
-    'VERSION:2.0',
-    'PRODID:-//Strategie30//FR',
-    'BEGIN:VEVENT',
-    'DTSTART:' + toICSDate(start),
-    'DTEND:' + toICSDate(end),
-    'SUMMARY:' + eventName,
-    'DESCRIPTION:' + desc,
-    'END:VEVENT',
-    'END:VCALENDAR'
-  ].join('\r\n');
-  var blob = new Blob([icsContent], {type: 'text/calendar;charset=utf-8'});
-  document.getElementById('calApple').href = URL.createObjectURL(blob);
+  var ics = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Strategie30//FR','BEGIN:VEVENT','DTSTART:'+toICS(start),'DTEND:'+toICS(end),'SUMMARY:'+eventName,'DESCRIPTION:'+desc,'END:VEVENT','END:VCALENDAR'].join('\r\n');
+  document.getElementById('calApple').href = URL.createObjectURL(new Blob([ics], {type:'text/calendar;charset=utf-8'}));
 })();
 </script>
 
 <!-- Vidalytics — Video principale -->
 <script type="text/javascript">
-(function (v, i, d, a, l, y, t, c, s) {
-    y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}var vl='Loader',vli=v[y][vl],vsl=v[c][vl + 'Script'],vlf=v[c][vl + 'Loaded'],ve='Embed';
-    if (!vsl){vsl=function(u,cb){
-        if(t){cb();return;}s=i.createElement("script");s.type="text/javascript";s.async=1;s.src=u;
-        if(s.readyState){s.onreadystatechange=function(){if(s.readyState==="loaded"||s.readyState=="complete"){s.onreadystatechange=null;vlf=1;cb();}};}else{s.onload=function(){vlf=1;cb();};}
-        i.getElementsByTagName("head")[0].appendChild(s);
-    };}
-    vsl(l+'loader.min.js',function(){if(!vli){var vlc=v[c][vl];vli=new vlc();}vli.loadScript(l+'player.min.js',function(){var vec=v[d][ve];t=new vec();t.run(a);});});
-})(window, document, 'Vidalytics', 'vidalytics_embed_3qE8GqJPb3vAfW7n', 'https://fast.vidalytics.com/embeds/j3d1vxJQ/3qE8GqJPb3vAfW7n/');
+(function(v,i,d,a,l,y,t,c,s){y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}var vl='Loader',vli=v[y][vl],vsl=v[c][vl+'Script'],vlf=v[c][vl+'Loaded'],ve='Embed';if(!vsl){vsl=function(u,cb){if(t){cb();return;}s=i.createElement("script");s.type="text/javascript";s.async=1;s.src=u;if(s.readyState){s.onreadystatechange=function(){if(s.readyState==="loaded"||s.readyState=="complete"){s.onreadystatechange=null;vlf=1;cb();}};}else{s.onload=function(){vlf=1;cb();};}i.getElementsByTagName("head")[0].appendChild(s);};}vsl(l+'loader.min.js',function(){if(!vli){var vlc=v[c][vl];vli=new vlc();}vli.loadScript(l+'player.min.js',function(){var vec=v[d][ve];t=new vec();t.run(a);});});})(window,document,'Vidalytics','vidalytics_embed_3qE8GqJPb3vAfW7n','https://fast.vidalytics.com/embeds/j3d1vxJQ/3qE8GqJPb3vAfW7n/');
 </script>
 
-<!-- Vidalytics — Témoignage Brandon -->
+<!-- Vidalytics — Brandon -->
 <script type="text/javascript">
-(function (v, i, d, a, l, y, t, c, s) {
-    y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}var vl='Loader',vli=v[y][vl],vsl=v[c][vl + 'Script'],vlf=v[c][vl + 'Loaded'],ve='Embed';
-    if (!vsl){vsl=function(u,cb){
-        if(t){cb();return;}s=i.createElement("script");s.type="text/javascript";s.async=1;s.src=u;
-        if(s.readyState){s.onreadystatechange=function(){if(s.readyState==="loaded"||s.readyState=="complete"){s.onreadystatechange=null;vlf=1;cb();}};}else{s.onload=function(){vlf=1;cb();};}
-        i.getElementsByTagName("head")[0].appendChild(s);
-    };}
-    vsl(l+'loader.min.js',function(){if(!vli){var vlc=v[c][vl];vli=new vlc();}vli.loadScript(l+'player.min.js',function(){var vec=v[d][ve];t=new vec();t.run(a);});});
-})(window, document, 'Vidalytics', 'vidalytics_embed_YTw3zea68ayZhV6G', 'https://fast.vidalytics.com/embeds/j3d1vxJQ/YTw3zea68ayZhV6G/');
+(function(v,i,d,a,l,y,t,c,s){y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}var vl='Loader',vli=v[y][vl],vsl=v[c][vl+'Script'],vlf=v[c][vl+'Loaded'],ve='Embed';if(!vsl){vsl=function(u,cb){if(t){cb();return;}s=i.createElement("script");s.type="text/javascript";s.async=1;s.src=u;if(s.readyState){s.onreadystatechange=function(){if(s.readyState==="loaded"||s.readyState=="complete"){s.onreadystatechange=null;vlf=1;cb();}};}else{s.onload=function(){vlf=1;cb();};}i.getElementsByTagName("head")[0].appendChild(s);};}vsl(l+'loader.min.js',function(){if(!vli){var vlc=v[c][vl];vli=new vlc();}vli.loadScript(l+'player.min.js',function(){var vec=v[d][ve];t=new vec();t.run(a);});});})(window,document,'Vidalytics','vidalytics_embed_YTw3zea68ayZhV6G','https://fast.vidalytics.com/embeds/j3d1vxJQ/YTw3zea68ayZhV6G/');
 </script>
 
-<!-- Vidalytics — Témoignage Maréva -->
+<!-- Vidalytics — Maréva -->
 <script type="text/javascript">
-(function (v, i, d, a, l, y, t, c, s) {
-    y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}var vl='Loader',vli=v[y][vl],vsl=v[c][vl + 'Script'],vlf=v[c][vl + 'Loaded'],ve='Embed';
-    if (!vsl){vsl=function(u,cb){
-        if(t){cb();return;}s=i.createElement("script");s.type="text/javascript";s.async=1;s.src=u;
-        if(s.readyState){s.onreadystatechange=function(){if(s.readyState==="loaded"||s.readyState=="complete"){s.onreadystatechange=null;vlf=1;cb();}};}else{s.onload=function(){vlf=1;cb();};}
-        i.getElementsByTagName("head")[0].appendChild(s);
-    };}
-    vsl(l+'loader.min.js',function(){if(!vli){var vlc=v[c][vl];vli=new vlc();}vli.loadScript(l+'player.min.js',function(){var vec=v[d][ve];t=new vec();t.run(a);});});
-})(window, document, 'Vidalytics', 'vidalytics_embed_k_dsFs4L4JVbaySP', 'https://fast.vidalytics.com/embeds/j3d1vxJQ/k_dsFs4L4JVbaySP/');
+(function(v,i,d,a,l,y,t,c,s){y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}var vl='Loader',vli=v[y][vl],vsl=v[c][vl+'Script'],vlf=v[c][vl+'Loaded'],ve='Embed';if(!vsl){vsl=function(u,cb){if(t){cb();return;}s=i.createElement("script");s.type="text/javascript";s.async=1;s.src=u;if(s.readyState){s.onreadystatechange=function(){if(s.readyState==="loaded"||s.readyState=="complete"){s.onreadystatechange=null;vlf=1;cb();}};}else{s.onload=function(){vlf=1;cb();};}i.getElementsByTagName("head")[0].appendChild(s);};}vsl(l+'loader.min.js',function(){if(!vli){var vlc=v[c][vl];vli=new vlc();}vli.loadScript(l+'player.min.js',function(){var vec=v[d][ve];t=new vec();t.run(a);});});})(window,document,'Vidalytics','vidalytics_embed_k_dsFs4L4JVbaySP','https://fast.vidalytics.com/embeds/j3d1vxJQ/k_dsFs4L4JVbaySP/');
 </script>
 
-<!-- Vidalytics — Témoignage Mathis -->
+<!-- Vidalytics — Mathis -->
 <script type="text/javascript">
-(function (v, i, d, a, l, y, t, c, s) {
-    y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}var vl='Loader',vli=v[y][vl],vsl=v[c][vl + 'Script'],vlf=v[c][vl + 'Loaded'],ve='Embed';
-    if (!vsl){vsl=function(u,cb){
-        if(t){cb();return;}s=i.createElement("script");s.type="text/javascript";s.async=1;s.src=u;
-        if(s.readyState){s.onreadystatechange=function(){if(s.readyState==="loaded"||s.readyState=="complete"){s.onreadystatechange=null;vlf=1;cb();}};}else{s.onload=function(){vlf=1;cb();};}
-        i.getElementsByTagName("head")[0].appendChild(s);
-    };}
-    vsl(l+'loader.min.js',function(){if(!vli){var vlc=v[c][vl];vli=new vlc();}vli.loadScript(l+'player.min.js',function(){var vec=v[d][ve];t=new vec();t.run(a);});});
-})(window, document, 'Vidalytics', 'vidalytics_embed_FFYvQKlglwSDlGBy', 'https://fast.vidalytics.com/embeds/j3d1vxJQ/FFYvQKlglwSDlGBy/');
+(function(v,i,d,a,l,y,t,c,s){y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}var vl='Loader',vli=v[y][vl],vsl=v[c][vl+'Script'],vlf=v[c][vl+'Loaded'],ve='Embed';if(!vsl){vsl=function(u,cb){if(t){cb();return;}s=i.createElement("script");s.type="text/javascript";s.async=1;s.src=u;if(s.readyState){s.onreadystatechange=function(){if(s.readyState==="loaded"||s.readyState=="complete"){s.onreadystatechange=null;vlf=1;cb();}};}else{s.onload=function(){vlf=1;cb();};}i.getElementsByTagName("head")[0].appendChild(s);};}vsl(l+'loader.min.js',function(){if(!vli){var vlc=v[c][vl];vli=new vlc();}vli.loadScript(l+'player.min.js',function(){var vec=v[d][ve];t=new vec();t.run(a);});});})(window,document,'Vidalytics','vidalytics_embed_FFYvQKlglwSDlGBy','https://fast.vidalytics.com/embeds/j3d1vxJQ/FFYvQKlglwSDlGBy/');
 </script>
 
-<!-- Vidalytics — Témoignage Kamil -->
+<!-- Vidalytics — Kamil -->
 <script type="text/javascript">
-(function (v, i, d, a, l, y, t, c, s) {
-    y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}var vl='Loader',vli=v[y][vl],vsl=v[c][vl + 'Script'],vlf=v[c][vl + 'Loaded'],ve='Embed';
-    if (!vsl){vsl=function(u,cb){
-        if(t){cb();return;}s=i.createElement("script");s.type="text/javascript";s.async=1;s.src=u;
-        if(s.readyState){s.onreadystatechange=function(){if(s.readyState==="loaded"||s.readyState=="complete"){s.onreadystatechange=null;vlf=1;cb();}};}else{s.onload=function(){vlf=1;cb();};}
-        i.getElementsByTagName("head")[0].appendChild(s);
-    };}
-    vsl(l+'loader.min.js',function(){if(!vli){var vlc=v[c][vl];vli=new vlc();}vli.loadScript(l+'player.min.js',function(){var vec=v[d][ve];t=new vec();t.run(a);});});
-})(window, document, 'Vidalytics', 'vidalytics_embed_SuWphX4QiHHYhZy_', 'https://fast.vidalytics.com/embeds/j3d1vxJQ/SuWphX4QiHHYhZy_/');
-</script>
-
-<!-- FAQ Toggle Script -->
-<script>
-function toggleFaq(el) {
-  var item = el.parentElement;
-  var isOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(function(faq) {
-    faq.classList.remove('open');
-  });
-  if (!isOpen) {
-    item.classList.add('open');
-  }
-}
+(function(v,i,d,a,l,y,t,c,s){y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}var vl='Loader',vli=v[y][vl],vsl=v[c][vl+'Script'],vlf=v[c][vl+'Loaded'],ve='Embed';if(!vsl){vsl=function(u,cb){if(t){cb();return;}s=i.createElement("script");s.type="text/javascript";s.async=1;s.src=u;if(s.readyState){s.onreadystatechange=function(){if(s.readyState==="loaded"||s.readyState=="complete"){s.onreadystatechange=null;vlf=1;cb();}};}else{s.onload=function(){vlf=1;cb();};}i.getElementsByTagName("head")[0].appendChild(s);};}vsl(l+'loader.min.js',function(){if(!vli){var vlc=v[c][vl];vli=new vlc();}vli.loadScript(l+'player.min.js',function(){var vec=v[d][ve];t=new vec();t.run(a);});});})(window,document,'Vidalytics','vidalytics_embed_SuWphX4QiHHYhZy_','https://fast.vidalytics.com/embeds/j3d1vxJQ/SuWphX4QiHHYhZy_/');
 </script>
 
 </body>
