@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Appel Confirme - Strategie 30%</title>
+<title>Appel Confirmé - Stratégie 30%</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -57,14 +57,6 @@ img { max-width: 100%; height: auto; }
   letter-spacing: 0.5px;
   position: relative;
   z-index: 10;
-}
-.banner-warning span {
-  display: inline-block;
-  animation: pulse-text 2s ease-in-out infinite;
-}
-@keyframes pulse-text {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
 }
 
 /* ========== HEADLINE ========== */
@@ -130,6 +122,62 @@ img { max-width: 100%; height: auto; }
   font-size: 15px;
   color: var(--text-muted);
   margin-bottom: 24px;
+}
+
+/* ========== CALENDAR BUTTONS ========== */
+.calendar-buttons {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.cal-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  border-radius: 14px;
+  background: var(--bg);
+  border: 1px solid var(--cyan-border);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 600;
+  font-size: 14px;
+}
+.cal-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+.cal-btn svg, .cal-btn img {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+.event-details {
+  text-align: center;
+  margin-bottom: 28px;
+  padding: 20px;
+  background: var(--bg);
+  border: 1px solid rgba(135, 205, 221, 0.5);
+  border-radius: 14px;
+}
+.event-details .event-date {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+.event-details .event-time {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.event-details .event-with {
+  font-size: 14px;
+  color: var(--text-muted);
 }
 
 /* ========== VIDEO CONTAINER ========== */
@@ -464,6 +512,9 @@ img { max-width: 100%; height: auto; }
   .section-title { font-size: 24px; }
   .container { padding: 0 16px; }
   .banner-warning { font-size: 14px; padding: 12px 16px; }
+  .calendar-buttons { flex-direction: column; align-items: stretch; }
+  .cal-btn { justify-content: center; }
+  .event-details .event-date { font-size: 17px; }
   .ellipse-glow {
     width: 900px;
     height: 800px;
@@ -479,7 +530,7 @@ img { max-width: 100%; height: auto; }
 
 <!-- ========== SECTION 1 : BANNER ========== -->
 <div class="banner-warning">
-  <span>&#9888;&#65039; Important : Ton appel n'est que provisoirement réservé. &#9888;&#65039;</span>
+  &#9888;&#65039; Important : Ton appel n'est que provisoirement réservé. &#9888;&#65039;
 </div>
 
 <!-- ========== SECTION 2 : HEADLINE ========== -->
@@ -489,23 +540,63 @@ img { max-width: 100%; height: auto; }
   </div>
 </div>
 
-<!-- ========== SECTION 3 : STEP 1 — VIDEO ========== -->
+<!-- ========== SECTION 3 : STEP 1 — CALENDRIER ========== -->
 <div class="container">
   <div class="step-card">
-    <span class="step-label">Etape 1</span>
-    <h2 class="step-title">Regarde cette video AVANT ton appel</h2>
-    <p class="step-subtitle">Cette video t'explique exactement comment on va t'aider. Si tu la regardes, tu arriveras prepare et on pourra aller droit au but.</p>
+    <span class="step-label">Étape 1</span>
+    <h2 class="step-title"><span class="highlight">Ajoute l'appel</span> à ton calendrier</h2>
+    <p class="step-subtitle">Ton événement est en cours de création...</p>
+
+    <div class="event-details" id="eventDetails">
+      <div class="event-date" id="eventDate">Chargement...</div>
+      <div class="event-time" id="eventTime"></div>
+      <div class="event-with" id="eventWith"></div>
+    </div>
+
+    <div class="calendar-buttons">
+      <!-- Google Calendar -->
+      <a class="cal-btn" id="calGoogle" href="#" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M18 3h-2V1h-2v2H10V1H8v2H6C4.9 3 4 3.9 4 5v14c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" fill="#4285F4"/><path d="M6 9h12v10H6z" fill="#fff"/><path d="M8 13h3v3H8z" fill="#EA4335"/><path d="M13 13h3v3h-3z" fill="#FBBC04"/><path d="M8 11h3v1H8z" fill="#34A853"/><path d="M13 11h3v1h-3z" fill="#4285F4"/></svg>
+        Google
+      </a>
+
+      <!-- Apple Calendar -->
+      <a class="cal-btn" id="calApple" href="#" download="appel-strategie30.ics">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.53 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" fill="#333"/></svg>
+        Apple
+      </a>
+
+      <!-- Outlook -->
+      <a class="cal-btn" id="calOutlook" href="#" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" fill="#0078D4"/><path d="M12 2L2 7l10 5 10-5L12 2z" fill="#28A8EA"/><path d="M12 12L2 7v10l10 5V12z" fill="#0078D4"/><ellipse cx="8" cy="13" rx="3" ry="4" fill="#fff"/></svg>
+        Outlook
+      </a>
+
+      <!-- Yahoo -->
+      <a class="cal-btn" id="calYahoo" href="#" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" fill="#6001D2"/><path d="M7 7l3.5 5.5V17h3v-4.5L17 7h-3l-2 3.5L10 7H7z" fill="#fff"/></svg>
+        Yahoo
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SECTION 4 : STEP 2 — VIDEO ========== -->
+<div class="container">
+  <div class="step-card">
+    <span class="step-label">Étape 2</span>
+    <h2 class="step-title">Regarde la courte vidéo ci-dessous pour être sûr que <span style="color: var(--accent);">nous n'annulions pas ton appel</span></h2>
     <div class="video-wrapper">
       <div id="vidalytics_embed_3qE8GqJPb3vAfW7n" style="width: 100%; position:relative; padding-top: 64.63%;"></div>
     </div>
   </div>
 </div>
 
-<!-- ========== SECTION 4 : STEP 2 — REGLES ========== -->
+<!-- ========== SECTION 5 : STEP 3 — RÈGLES ========== -->
 <div class="container">
   <div class="step-card">
-    <span class="step-label">Etape 2</span>
-    <h2 class="step-title">Prepare-toi pour l'appel</h2>
+    <span class="step-label">Étape 3</span>
+    <h2 class="step-title">Prépare-toi pour l'appel</h2>
     <p class="step-subtitle">Pour que cet appel soit le plus utile possible, voici ce qu'on attend de toi :</p>
     <ul class="rules-list">
       <li>
@@ -514,7 +605,7 @@ img { max-width: 100%; height: auto; }
         </div>
         <div class="rule-text">
           <strong>Un conseiller va t'appeler pour confirmer</strong>
-          <span>On recoit beaucoup de candidatures. Si tu ne reponds pas, ton creneau sera donne a quelqu'un d'autre.</span>
+          <span>On reçoit beaucoup de candidatures. Si tu ne réponds pas, ton créneau sera donné à quelqu'un d'autre.</span>
         </div>
       </li>
       <li>
@@ -523,7 +614,7 @@ img { max-width: 100%; height: auto; }
         </div>
         <div class="rule-text">
           <strong>Le rendez-vous sera en visio</strong>
-          <span>Assure-toi d'avoir une connexion stable, une camera, et un micro qui fonctionne.</span>
+          <span>Assure-toi d'avoir une connexion stable, une caméra, et un micro qui fonctionne.</span>
         </div>
       </li>
       <li>
@@ -531,8 +622,8 @@ img { max-width: 100%; height: auto; }
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>
         <div class="rule-text">
-          <strong>Sois a l'heure</strong>
-          <span>L'appel dure 45 minutes. Si tu as plus de 5 minutes de retard, ton creneau sera annule.</span>
+          <strong>Sois à l'heure</strong>
+          <span>L'appel dure 45 minutes. Si tu as plus de 5 minutes de retard, ton créneau sera annulé.</span>
         </div>
       </li>
       <li>
@@ -540,7 +631,7 @@ img { max-width: 100%; height: auto; }
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
         </div>
         <div class="rule-text">
-          <strong>Sois concentre et dans un endroit calme</strong>
+          <strong>Sois concentré et dans un endroit calme</strong>
           <span>Pas en voiture, pas en marchant. Installe-toi et donne 100% de ton attention.</span>
         </div>
       </li>
@@ -548,7 +639,7 @@ img { max-width: 100%; height: auto; }
   </div>
 </div>
 
-<!-- ========== SECTION 5 : STATS ========== -->
+<!-- ========== SECTION 6 : STATS ========== -->
 <div class="stats-section">
   <div class="container">
     <div class="stats-grid">
@@ -558,17 +649,17 @@ img { max-width: 100%; height: auto; }
       </div>
       <div class="stat-card">
         <div class="stat-number">3 sem.</div>
-        <div class="stat-label">en moyenne pour signer<br>un premier createur</div>
+        <div class="stat-label">en moyenne pour signer<br>un premier créateur</div>
       </div>
       <div class="stat-card">
         <div class="stat-number">70K</div>
-        <div class="stat-label">EUR/mois generes<br>pour un seul createur</div>
+        <div class="stat-label">EUR/mois générés<br>pour un seul créateur</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ========== SECTION 6 : FAQ ========== -->
+<!-- ========== SECTION 7 : FAQ ========== -->
 <div class="faq-section">
   <div class="container">
     <h2 class="section-title">Tes <span class="highlight">questions</span> avant l'appel</h2>
@@ -577,48 +668,48 @@ img { max-width: 100%; height: auto; }
     <div class="faq-list">
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFaq(this)">
-          <span>C'est quoi exactement un Operateur de Croissance ?</span>
+          <span>C'est quoi exactement un Opérateur de Croissance ?</span>
           <span class="faq-arrow">&#9660;</span>
         </div>
         <div class="faq-answer">
           <div class="faq-answer-inner">
-            Un Operateur de Croissance, c'est le bras droit business d'un createur de contenu. Tu construis toute l'infrastructure d'acquisition (pubs, tunnels, emails) et tu prends un pourcentage sur chaque vente. Pas besoin de creer du contenu, pas besoin de personal branding. Tu geres la machine qui genere le CA.
+            Un Opérateur de Croissance, c'est le bras droit business d'un créateur de contenu. Tu construis toute l'infrastructure d'acquisition (pubs, tunnels, emails) et tu prends un pourcentage sur chaque vente. Pas besoin de créer du contenu, pas besoin de personal branding. Tu gères la machine qui génère le CA.
           </div>
         </div>
       </div>
 
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFaq(this)">
-          <span>Est-ce que ca marche si je pars de zero ?</span>
+          <span>Est-ce que ça marche si je pars de zéro ?</span>
           <span class="faq-arrow">&#9660;</span>
         </div>
         <div class="faq-answer">
           <div class="faq-answer-inner">
-            Oui. 70% de nos membres n'avaient jamais lance de business en ligne avant de nous rejoindre. Le programme est structure en niveaux (0 a 4) pour t'amener progressivement de zero a tes premiers revenus. Tu es accompagne a chaque etape avec 5 calls par semaine et une communaute de 200+ personnes.
+            Oui. 70% de nos membres n'avaient jamais lancé de business en ligne avant de nous rejoindre. Le programme est structuré en niveaux (0 à 4) pour t'amener progressivement de zéro à tes premiers revenus. Tu es accompagné à chaque étape avec 5 calls par semaine et une communauté de 200+ personnes.
           </div>
         </div>
       </div>
 
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFaq(this)">
-          <span>Combien de temps avant de voir des resultats ?</span>
+          <span>Combien de temps avant de voir des résultats ?</span>
           <span class="faq-arrow">&#9660;</span>
         </div>
         <div class="faq-answer">
           <div class="faq-answer-inner">
-            En moyenne, nos membres signent leur premier createur en 3 semaines. Les premiers revenus arrivent generalement dans les 30 a 60 jours selon ton implication et la vitesse a laquelle tu lances les premieres campagnes.
+            En moyenne, nos membres signent leur premier créateur en 3 semaines. Les premiers revenus arrivent généralement dans les 30 à 60 jours selon ton implication et la vitesse à laquelle tu lances les premières campagnes.
           </div>
         </div>
       </div>
 
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFaq(this)">
-          <span>C'est quoi la difference avec le SMMA, le dropshipping ou le trading ?</span>
+          <span>C'est quoi la différence avec le SMMA, le dropshipping ou le trading ?</span>
           <span class="faq-arrow">&#9660;</span>
         </div>
         <div class="faq-answer">
           <div class="faq-answer-inner">
-            L'Operation de Croissance est plus stable, plus scalable et moins concurrentielle. Tu ne crees pas de contenu (contrairement au personal branding), tu ne geres pas de stock (contrairement au drop), et tu ne specules pas (contrairement au trading). Tu t'associes avec un createur qui a deja une audience, et tu monetises cette audience avec un systeme prouve.
+            L'Opération de Croissance est plus stable, plus scalable et moins concurrentielle. Tu ne crées pas de contenu (contrairement au personal branding), tu ne gères pas de stock (contrairement au drop), et tu ne spécules pas (contrairement au trading). Tu t'associes avec un créateur qui a déjà une audience, et tu monétises cette audience avec un système prouvé.
           </div>
         </div>
       </div>
@@ -630,19 +721,19 @@ img { max-width: 100%; height: auto; }
         </div>
         <div class="faq-answer">
           <div class="faq-answer-inner">
-            Si tu suis les etapes du programme pendant 6 mois et que tu n'as pas de ROI, on te rembourse integralement. C'est une garantie basee sur l'action : si tu fais le travail et que ca ne marche pas, on prend le risque a ta place.
+            Si tu suis les étapes du programme pendant 6 mois et que tu n'as pas de ROI, on te rembourse intégralement. C'est une garantie basée sur l'action : si tu fais le travail et que ça ne marche pas, on prend le risque à ta place.
           </div>
         </div>
       </div>
 
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFaq(this)">
-          <span>Est-ce que je peux faire ca a cote de mon job ?</span>
+          <span>Est-ce que je peux faire ça à côté de mon job ?</span>
           <span class="faq-arrow">&#9660;</span>
         </div>
         <div class="faq-answer">
           <div class="faq-answer-inner">
-            Oui, la majorite de nos membres sont salaries ou alternants quand ils commencent. Il faut compter 2 a 3 heures par jour pour avancer serieusement. Beaucoup quittent leur job entre le 3e et le 6e mois quand leurs revenus en tant qu'operateur depassent leur salaire.
+            Oui, la majorité de nos membres sont salariés ou alternants quand ils commencent. Il faut compter 2 à 3 heures par jour pour avancer sérieusement. Beaucoup quittent leur job entre le 3e et le 6e mois quand leurs revenus en tant qu'opérateur dépassent leur salaire.
           </div>
         </div>
       </div>
@@ -650,11 +741,11 @@ img { max-width: 100%; height: auto; }
   </div>
 </div>
 
-<!-- ========== SECTION 7 : VIDEO TESTIMONIALS ========== -->
+<!-- ========== SECTION 8 : VIDEO TESTIMONIALS ========== -->
 <div class="section">
   <div class="container">
-    <h2 class="section-title">Resultats <span class="highlight">concrets</span> de nos membres</h2>
-    <p class="section-subtitle">Des gens normaux qui ont change de vie grace a l'Operation de Croissance.</p>
+    <h2 class="section-title">Résultats <span class="highlight">concrets</span> de nos membres</h2>
+    <p class="section-subtitle">Des gens normaux qui ont changé de vie grâce à l'Opération de Croissance.</p>
 
     <div class="testimonials-video-grid">
       <!-- Brandon -->
@@ -664,17 +755,17 @@ img { max-width: 100%; height: auto; }
         </div>
         <div class="testimonial-info">
           <div class="testimonial-name">Brandon</div>
-          <div class="testimonial-role">Ancien salarie</div>
+          <div class="testimonial-role">Ancien salarié</div>
         </div>
       </div>
 
-      <!-- Mareva -->
+      <!-- Maréva -->
       <div class="testimonial-video-card">
         <div class="testimonial-video-wrapper">
           <div id="vidalytics_embed_k_dsFs4L4JVbaySP" style="width: 100%; position:relative; padding-top: 56.25%;"></div>
         </div>
         <div class="testimonial-info">
-          <div class="testimonial-name">Mareva</div>
+          <div class="testimonial-name">Maréva</div>
           <div class="testimonial-role">Jeune maman</div>
         </div>
       </div>
@@ -686,7 +777,7 @@ img { max-width: 100%; height: auto; }
         </div>
         <div class="testimonial-info">
           <div class="testimonial-name">Mathis, 23 ans</div>
-          <div class="testimonial-role">Etudiant</div>
+          <div class="testimonial-role">Étudiant</div>
         </div>
       </div>
 
@@ -697,39 +788,38 @@ img { max-width: 100%; height: auto; }
         </div>
         <div class="testimonial-info">
           <div class="testimonial-name">Kamil</div>
-          <div class="testimonial-role">30K EUR generes</div>
+          <div class="testimonial-role">30K EUR générés</div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ========== SECTION 8 : TEXT TESTIMONIALS ========== -->
+<!-- ========== SECTION 9 : TEXT TESTIMONIALS ========== -->
 <div class="testimonials-text-section">
   <div class="container">
     <h2 class="section-title">Ce que nos <span class="highlight">membres</span> disent</h2>
-    <p class="section-subtitle"></p>
 
     <div class="testimonials-text-list">
       <div class="text-testimonial-card">
-        <div class="quote-icon">"</div>
-        <p class="quote-text">J'etais en alternance, je gagnais 900 EUR par mois et je voyais pas comment m'en sortir. En 2 mois dans le programme j'ai signe mon premier createur et j'ai fait mon premier lancement a 8 000 EUR. Aujourd'hui je vis de ca a 100%.</p>
+        <div class="quote-icon">&ldquo;</div>
+        <p class="quote-text">J'étais en alternance, je gagnais 900 EUR par mois et je voyais pas comment m'en sortir. En 2 mois dans le programme j'ai signé mon premier créateur et j'ai fait mon premier lancement à 8 000 EUR. Aujourd'hui je vis de ça à 100%.</p>
         <div class="quote-author">Brandon</div>
-        <div class="quote-author-role">Ancien salarie — Membre depuis 8 mois</div>
+        <div class="quote-author-role">Ancien salarié — Membre depuis 8 mois</div>
       </div>
 
       <div class="text-testimonial-card">
-        <div class="quote-icon">"</div>
-        <p class="quote-text">J'avais essaye le dropshipping, le trading, rien ne marchait. L'Operation de Croissance c'est le premier modele ou j'ai senti que c'etait concret, stable, et que je pouvais vraiment scaler. En 3 semaines j'avais mon premier createur.</p>
+        <div class="quote-icon">&ldquo;</div>
+        <p class="quote-text">J'avais essayé le dropshipping, le trading, rien ne marchait. L'Opération de Croissance c'est le premier modèle où j'ai senti que c'était concret, stable, et que je pouvais vraiment scaler. En 3 semaines j'avais mon premier créateur.</p>
         <div class="quote-author">Mathis</div>
-        <div class="quote-author-role">Etudiant, 23 ans</div>
+        <div class="quote-author-role">Étudiant, 23 ans</div>
       </div>
 
       <div class="text-testimonial-card">
-        <div class="quote-icon">"</div>
-        <p class="quote-text">La communaute et l'accompagnement font toute la difference. C'est pas juste un cours en ligne. T'as des calls chaque jour, des gens qui avancent avec toi, et Matheo qui est la en vrai. J'ai fait 30K en quelques mois.</p>
+        <div class="quote-icon">&ldquo;</div>
+        <p class="quote-text">La communauté et l'accompagnement font toute la différence. C'est pas juste un cours en ligne. T'as des calls chaque jour, des gens qui avancent avec toi, et Mathéo qui est là en vrai. J'ai fait 30K en quelques mois.</p>
         <div class="quote-author">Kamil</div>
-        <div class="quote-author-role">30K EUR generes</div>
+        <div class="quote-author-role">30K EUR générés</div>
       </div>
     </div>
   </div>
@@ -739,24 +829,110 @@ img { max-width: 100%; height: auto; }
 <div class="footer">
   <div class="container">
     <p class="footer-disclaimer">
-      Strategie 30% et toutes les personnes affiliees a cette organisation n'assument aucune responsabilite quant au resultat ou au succes des services, et ne garantissent pas de resultats specifiques. Le succes depend en partie du temps que vous consacrez et de votre mise en oeuvre des strategies et du soutien recus. Les strategies, contenus et toutes les autres fonctionnalites sont a des fins educatives uniquement et ne doivent pas etre interpretes comme des conseils en investissement.
+      Stratégie 30% et toutes les personnes affiliées à cette organisation n'assument aucune responsabilité quant au résultat ou au succès des services, et ne garantissent pas de résultats spécifiques. Le succès dépend en partie du temps que vous consacrez et de votre mise en oeuvre des stratégies et du soutien reçus. Les stratégies, contenus et toutes les autres fonctionnalités sont à des fins éducatives uniquement et ne doivent pas être interprétés comme des conseils en investissement.
     </p>
     <p class="footer-disclaimer">
-      Les temoignages fournis sont ceux de personnes reelles et de leurs propres experiences personnelles. Ceux-ci ne doivent pas etre consideres comme des resultats "typiques" et ne seront pas specifiques a vos circonstances particulieres.
+      Les témoignages fournis sont ceux de personnes réelles et de leurs propres expériences personnelles. Ceux-ci ne doivent pas être considérés comme des résultats "typiques" et ne seront pas spécifiques à vos circonstances particulières.
     </p>
     <p class="footer-disclaimer">
-      Ce site n'est pas une partie du site Meta/Facebook ou de Meta, Inc. Ce site n'est PAS approuve par Meta de quelque maniere que ce soit.
+      Ce site n'est pas une partie du site Meta/Facebook ou de Meta, Inc. Ce site n'est PAS approuvé par Meta de quelque manière que ce soit.
     </p>
     <div class="footer-links">
-      <a href="#">Politique de confidentialite</a>
+      <a href="#">Politique de confidentialité</a>
       <a href="#">Conditions d'utilisation</a>
       <a href="#">Contact</a>
     </div>
-    <p class="footer-copy">&copy; 2026 ForCyclers LLC. Tous droits reserves.</p>
+    <p class="footer-copy">&copy; 2026 ForCyclers LLC. Tous droits réservés.</p>
   </div>
 </div>
 
 <!-- ========== SCRIPTS ========== -->
+
+<!-- Calendar Link Generator (dynamique via URL params iClosed) -->
+<script>
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  var startRaw = params.get('event_start_time');
+  var endRaw = params.get('event_end_time');
+  var assignedTo = params.get('assigned_to') || 'Notre équipe';
+  var eventName = 'Appel de candidature - Stratégie 30%';
+
+  if (!startRaw || !endRaw) {
+    document.getElementById('eventDate').textContent = 'Ton appel est réservé';
+    document.getElementById('eventTime').textContent = 'Vérifie ton email pour les détails';
+    document.getElementById('eventWith').textContent = '';
+    return;
+  }
+
+  var start = new Date(startRaw);
+  var end = new Date(endRaw);
+
+  // Affichage de la date/heure
+  var jours = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+  var mois = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+  var dateStr = jours[start.getDay()] + ' ' + start.getDate() + ' ' + mois[start.getMonth()] + ' ' + start.getFullYear();
+  var timeStr = start.getHours().toString().padStart(2,'0') + ':' + start.getMinutes().toString().padStart(2,'0')
+    + ' - ' + end.getHours().toString().padStart(2,'0') + ':' + end.getMinutes().toString().padStart(2,'0');
+
+  document.getElementById('eventDate').textContent = dateStr;
+  document.getElementById('eventTime').textContent = timeStr;
+  document.getElementById('eventWith').textContent = 'avec ' + decodeURIComponent(assignedTo.replace(/\+/g, ' '));
+
+  // Format dates pour les calendriers
+  function toICSDate(d) {
+    return d.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');
+  }
+  function toGoogleDate(d) {
+    return d.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');
+  }
+
+  var desc = 'Appel de candidature pour rejoindre le programme Stratégie 30%. Sois à l\'heure et dans un endroit calme avec ta caméra activée.';
+  var descEncoded = encodeURIComponent(desc);
+  var titleEncoded = encodeURIComponent(eventName);
+
+  // Google Calendar
+  var googleUrl = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
+    + '&text=' + titleEncoded
+    + '&dates=' + toGoogleDate(start) + '/' + toGoogleDate(end)
+    + '&details=' + descEncoded;
+  document.getElementById('calGoogle').href = googleUrl;
+
+  // Outlook
+  var outlookUrl = 'https://outlook.live.com/calendar/0/action/compose?allday=false'
+    + '&subject=' + titleEncoded
+    + '&startdt=' + start.toISOString()
+    + '&enddt=' + end.toISOString()
+    + '&body=' + descEncoded;
+  document.getElementById('calOutlook').href = outlookUrl;
+
+  // Yahoo
+  var duration = Math.round((end - start) / 60000);
+  var dh = String(Math.floor(duration/60)).padStart(2,'0');
+  var dm = String(duration%60).padStart(2,'0');
+  var yahooUrl = 'https://calendar.yahoo.com/?v=60'
+    + '&title=' + titleEncoded
+    + '&st=' + toGoogleDate(start)
+    + '&dur=' + dh + dm
+    + '&desc=' + descEncoded;
+  document.getElementById('calYahoo').href = yahooUrl;
+
+  // Apple (ICS file)
+  var icsContent = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//Strategie30//FR',
+    'BEGIN:VEVENT',
+    'DTSTART:' + toICSDate(start),
+    'DTEND:' + toICSDate(end),
+    'SUMMARY:' + eventName,
+    'DESCRIPTION:' + desc,
+    'END:VEVENT',
+    'END:VCALENDAR'
+  ].join('\r\n');
+  var blob = new Blob([icsContent], {type: 'text/calendar;charset=utf-8'});
+  document.getElementById('calApple').href = URL.createObjectURL(blob);
+})();
+</script>
 
 <!-- Vidalytics — Video principale -->
 <script type="text/javascript">
@@ -771,7 +947,7 @@ img { max-width: 100%; height: auto; }
 })(window, document, 'Vidalytics', 'vidalytics_embed_3qE8GqJPb3vAfW7n', 'https://fast.vidalytics.com/embeds/j3d1vxJQ/3qE8GqJPb3vAfW7n/');
 </script>
 
-<!-- Vidalytics — Temoignage Brandon -->
+<!-- Vidalytics — Témoignage Brandon -->
 <script type="text/javascript">
 (function (v, i, d, a, l, y, t, c, s) {
     y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}var vl='Loader',vli=v[y][vl],vsl=v[c][vl + 'Script'],vlf=v[c][vl + 'Loaded'],ve='Embed';
@@ -784,7 +960,7 @@ img { max-width: 100%; height: auto; }
 })(window, document, 'Vidalytics', 'vidalytics_embed_YTw3zea68ayZhV6G', 'https://fast.vidalytics.com/embeds/j3d1vxJQ/YTw3zea68ayZhV6G/');
 </script>
 
-<!-- Vidalytics — Temoignage Mareva -->
+<!-- Vidalytics — Témoignage Maréva -->
 <script type="text/javascript">
 (function (v, i, d, a, l, y, t, c, s) {
     y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}var vl='Loader',vli=v[y][vl],vsl=v[c][vl + 'Script'],vlf=v[c][vl + 'Loaded'],ve='Embed';
@@ -797,7 +973,7 @@ img { max-width: 100%; height: auto; }
 })(window, document, 'Vidalytics', 'vidalytics_embed_k_dsFs4L4JVbaySP', 'https://fast.vidalytics.com/embeds/j3d1vxJQ/k_dsFs4L4JVbaySP/');
 </script>
 
-<!-- Vidalytics — Temoignage Mathis -->
+<!-- Vidalytics — Témoignage Mathis -->
 <script type="text/javascript">
 (function (v, i, d, a, l, y, t, c, s) {
     y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}var vl='Loader',vli=v[y][vl],vsl=v[c][vl + 'Script'],vlf=v[c][vl + 'Loaded'],ve='Embed';
@@ -810,7 +986,7 @@ img { max-width: 100%; height: auto; }
 })(window, document, 'Vidalytics', 'vidalytics_embed_FFYvQKlglwSDlGBy', 'https://fast.vidalytics.com/embeds/j3d1vxJQ/FFYvQKlglwSDlGBy/');
 </script>
 
-<!-- Vidalytics — Temoignage Kamil -->
+<!-- Vidalytics — Témoignage Kamil -->
 <script type="text/javascript">
 (function (v, i, d, a, l, y, t, c, s) {
     y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}var vl='Loader',vli=v[y][vl],vsl=v[c][vl + 'Script'],vlf=v[c][vl + 'Loaded'],ve='Embed';
@@ -828,11 +1004,9 @@ img { max-width: 100%; height: auto; }
 function toggleFaq(el) {
   var item = el.parentElement;
   var isOpen = item.classList.contains('open');
-  // Close all
   document.querySelectorAll('.faq-item').forEach(function(faq) {
     faq.classList.remove('open');
   });
-  // Open clicked if was closed
   if (!isOpen) {
     item.classList.add('open');
   }
