@@ -313,7 +313,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  .headline-section h1 { font-size: 28px; }
+  .headline-section h1 { font-size: 24px; }
   .headline-section { padding: 20px 0 8px; }
   .step-pill { font-size: 14px; padding: 14px 22px; }
   .step-pill-wrapper { margin-bottom: 14px; }
@@ -328,7 +328,7 @@ img { max-width: 100%; height: auto; display: block; }
   .section-title.testi-results { font-size: 22px; }
   .section-title.testi-members { font-size: 24px; }
   .container { padding: 0 16px; }
-  .banner-warning { font-size: 18px; padding: 32px 20px; }
+  .banner-warning { font-size: 18px; padding: 20px 20px; padding-top: env(safe-area-inset-top, 20px); }
   .section-divider { margin: 16px 0 28px; }
   .screenshot-annotation { font-size: 11px; max-width: 170px; }
   .ellipse-glow { width: 900px; height: 800px; transform: translate(53%, 85%); }
@@ -352,13 +352,11 @@ img { max-width: 100%; height: auto; display: block; }
 
 <div class="container">
 
-  <!-- STEP 1 PILL -->
-  <div class="step-pill-wrapper" style="padding-top:0;">
-    <div class="step-pill">Étape 1 : <span class="highlight">Ajoute l'appel</span> à ton calendrier</div>
-  </div>
-
-  <!-- CALENDAR CARD -->
+  <!-- STEP 1 — CALENDAR CARD -->
   <div class="cal-card">
+    <div class="step-pill-wrapper" style="margin-bottom:16px;">
+      <div class="step-pill">Étape 1 : <span class="highlight">Ajoute l'appel</span> à ton calendrier</div>
+    </div>
     <div class="cal-icons">
       <!-- Apple -->
       <a class="cal-icon-btn" id="calApple" href="#" download="appel-strategie30.ics" title="Apple Calendar">
@@ -384,13 +382,11 @@ img { max-width: 100%; height: auto; display: block; }
     <p class="cal-subtitle">Sélectionne ton calendrier et enregistre l'appel</p>
   </div>
 
-  <!-- STEP 2 PILL -->
-  <div class="step-pill-wrapper">
-    <div class="step-pill">Étape 2 : Regarde la courte vidéo ci-dessous pour être sûr qu'<span class="highlight">on n'annule pas ton appel</span></div>
-  </div>
-
-  <!-- VIDEO -->
+  <!-- STEP 2 — VIDEO CARD -->
   <div class="video-card">
+    <div class="step-pill-wrapper" style="margin-bottom:16px;">
+      <div class="step-pill">Étape 2 : Regarde la courte vidéo ci-dessous pour être sûr qu'<span class="highlight">on n'annule pas ton appel</span></div>
+    </div>
     <div class="video-wrapper">
       <div id="vidalytics_embed_3qE8GqJPb3vAfW7n" style="width: 100%; position:relative; padding-top: 64.63%;"></div>
     </div>
@@ -401,7 +397,7 @@ img { max-width: 100%; height: auto; display: block; }
 <!-- QUESTIONS / OBJECTION VIDEOS -->
 <div class="section-divider"></div>
 <div class="container">
-  <h2 class="section-title">Tes <span class="highlight">réponses</span> avant l'appel !</h2>
+  <h2 class="section-title">Tes <span class="highlight">questions répondues</span> avant l'appel !</h2>
   <p class="section-subtitle"></p>
 
   <div class="objection-grid">
