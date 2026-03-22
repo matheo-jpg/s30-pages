@@ -38,17 +38,18 @@ img { max-width: 100%; height: auto; display: block; }
   background: #CC0000;
   color: #fff;
   text-align: center;
-  padding: 14px 20px;
+  padding: 28px 24px;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 18px;
+  line-height: 1.4;
 }
 
 /* ===== HEADLINE ===== */
-.headline-section { text-align: center; padding: 45px 0 20px; }
+.headline-section { text-align: center; padding: 30px 0 10px; }
 .headline-section h1 { font-size: 38px; font-weight: 900; line-height: 1.25; }
 
 /* ===== DIVIDER LINE ===== */
-.divider { width: 100%; height: 1px; background: var(--cyan-border); margin: 10px 0 30px; }
+.divider { width: 40%; height: 2px; background: var(--cyan-border); margin: 8px auto 20px; }
 
 /* ===== STEP PILLS ===== */
 .step-pill-wrapper { text-align: center; margin-bottom: 20px; position: relative; }
@@ -312,16 +313,23 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  .headline-section h1 { font-size: 26px; }
+  .headline-section h1 { font-size: 28px; }
+  .headline-section { padding: 20px 0 8px; }
   .step-pill { font-size: 14px; padding: 14px 22px; }
+  .step-pill-wrapper { margin-bottom: 14px; }
   .cal-icon-btn { width: 56px; height: 56px; }
   .cal-icon-btn svg { width: 28px; height: 28px; }
   .cal-icons { gap: 10px; }
+  .cal-card { padding: 24px 16px; margin-bottom: 20px; }
+  .video-card { margin-bottom: 30px; }
   .objection-grid { grid-template-columns: 1fr; }
   .testimonials-grid { grid-template-columns: 1fr; }
   .section-title { font-size: 24px; }
+  .section-title.testi-results { font-size: 22px; }
+  .section-title.testi-members { font-size: 24px; }
   .container { padding: 0 16px; }
-  .banner-warning { font-size: 13px; padding: 12px 16px; }
+  .banner-warning { font-size: 18px; padding: 32px 20px; }
+  .section-divider { margin: 16px 0 28px; }
   .screenshot-annotation { font-size: 11px; max-width: 170px; }
   .ellipse-glow { width: 900px; height: 800px; transform: translate(53%, 85%); }
 }
@@ -393,8 +401,8 @@ img { max-width: 100%; height: auto; display: block; }
 <!-- QUESTIONS / OBJECTION VIDEOS -->
 <div class="section-divider"></div>
 <div class="container">
-  <h2 class="section-title">Tes <span class="highlight">questions</span> avant l'appel</h2>
-  <p class="section-subtitle">On répond aux questions les plus fréquentes en vidéo.</p>
+  <h2 class="section-title">Tes <span class="highlight">réponses</span> avant l'appel !</h2>
+  <p class="section-subtitle"></p>
 
   <div class="objection-grid">
     <div class="objection-card"><div class="play-btn"></div><div class="objection-label">Est-ce que ça marche si je pars de zéro ?</div></div>
@@ -413,7 +421,7 @@ img { max-width: 100%; height: auto; display: block; }
 <!-- RESULTATS MEMBRES -->
 <div class="section-divider"></div>
 <div class="container">
-  <h2 class="section-title">Résultats <span class="highlight">concrets</span> de nos membres</h2>
+  <h2 class="section-title testi-results">Résultats <span class="highlight">concrets</span> de nos membres</h2>
   <p class="section-subtitle">Des gens normaux qui ont changé de vie grâce à l'Opération de Croissance.</p>
 
   <div class="testimonials-grid">
@@ -427,7 +435,7 @@ img { max-width: 100%; height: auto; display: block; }
 <!-- CE QUE NOS MEMBRES DISENT -->
 <div class="section-divider"></div>
 <div class="container">
-  <h2 class="section-title" style="font-size: 36px;">Ce que nos <span class="highlight">membres</span> disent</h2>
+  <h2 class="section-title testi-members">Ce que nos <span class="highlight">membres</span> disent</h2>
   <p class="section-subtitle"></p>
 
   <div class="screenshot-list">
