@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renen Fest — On y va ensemble</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0e1a;
+            color: #fff;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .header .tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #2563eb22, #2563eb11);
+            border: 1px solid #2563eb;
+            color: #60a5fa;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 32px;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+        .header h1 span {
+            color: #60a5fa;
+        }
+        .header .subtitle {
+            font-size: 16px;
+            color: #8b92a8;
+        }
+
+        /* Info bar */
+        .info-bar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: #1e2540;
+            border: 1px solid #1e2540;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+        .info-item {
+            background: #0f1322;
+            padding: 20px 16px;
+            text-align: center;
+        }
+        .info-item .value {
+            font-size: 18px;
+            font-weight: 800;
+            color: #60a5fa;
+            margin-bottom: 4px;
+        }
+        .info-item .label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8b92a8;
+        }
+
+        /* Section */
+        .section {
+            background: linear-gradient(145deg, #131829, #0f1322);
+            border: 1px solid #1e2540;
+            border-radius: 16px;
+            padding: 36px;
+            margin-bottom: 24px;
+        }
+        .section-tag {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #60a5fa;
+            margin-bottom: 16px;
+        }
+        .section h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        /* Timeline */
+        .day {
+            margin-bottom: 24px;
+        }
+        .day:last-child {
+            margin-bottom: 0;
+        }
+        .day-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .day-dot {
+            width: 36px;
+            height: 36px;
+            background: #2563eb;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+        .day-title {
+            font-size: 16px;
+            font-weight: 700;
+        }
+        .day-subtitle {
+            font-size: 13px;
+            color: #8b92a8;
+        }
+        .day-items {
+            margin-left: 48px;
+        }
+        .day-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 0;
+            font-size: 15px;
+            color: #b0b8d1;
+            line-height: 1.6;
+        }
+        .day-item::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: #2563eb;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 9px;
+        }
+        .optional-tag {
+            display: inline-block;
+            background: #1e2540;
+            border: 1px solid #2d3660;
+            border-radius: 20px;
+            padding: 2px 10px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #8b92a8;
+            margin-left: 8px;
+        }
+
+        /* Reasons */
+        .reason-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .reason {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 16px;
+            background: #0f1322;
+            border: 1px solid #1e2540;
+            border-radius: 12px;
+        }
+        .reason-icon {
+            width: 40px;
+            height: 40px;
+            background: #1e2540;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        .reason-text {
+            font-size: 15px;
+            color: #b0b8d1;
+            line-height: 1.6;
+        }
+        .reason-text strong {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(145deg, #0f1d14, #0f1322);
+            border: 1px solid #1a3a25;
+            border-radius: 16px;
+            padding: 40px 36px;
+            text-align: center;
+        }
+        .cta-section h2 {
+            font-size: 28px;
+            font-weight: 900;
+            color: #4ade80;
+            margin-bottom: 12px;
+        }
+        .cta-section p {
+            font-size: 16px;
+            color: #b0b8d1;
+            margin-bottom: 8px;
+        }
+        .cta-note {
+            font-size: 14px;
+            color: #8b92a8;
+            font-style: italic;
+            margin-top: 16px;
+        }
+
+        /* Separator */
+        .arrow {
+            text-align: center;
+            font-size: 24px;
+            color: #2563eb;
+            margin: -12px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 32px 0 16px;
+            color: #4a5170;
+            font-size: 13px;
+            border-top: 1px solid #1e2540;
+            margin-top: 40px;
+        }
+
+        /* Responsive */
+        @media (max-width: 500px) {
+            .info-bar { grid-template-columns: 1fr; }
+            .header h1 { font-size: 26px; }
+            .section { padding: 24px; }
+            .cta-section { padding: 28px 20px; }
+            .day-items { margin-left: 0; margin-top: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <div class="tag">Sortie Strategie 30%</div>
+            <h1>RENEN FEST — <span>ON Y VA ENSEMBLE.</span></h1>
+            <p class="subtitle">Un week-end sport, liens et business entre membres.</p>
+        </div>
+
+        <div class="info-bar">
+            <div class="info-item">
+                <div class="value">24 mai</div>
+                <div class="label">Dimanche</div>
+            </div>
+            <div class="info-item">
+                <div class="value">Macon</div>
+                <div class="label">Lieu</div>
+            </div>
+            <div class="info-item">
+                <div class="value">10K / Semi</div>
+                <div class="label">Distance</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-tag">L'evenement</div>
+            <h2>Un 10 km ou semi-marathon organise par un des plus gros createurs sport en France.</h2>
+            <p style="font-size: 15px; color: #b0b8d1; line-height: 1.8;">Des milliers de participants. Une ambiance de malade. Et un festival sur place apres la course. On y va en groupe Strategie 30%.</p>
+        </div>
+
+        <div class="arrow">&#8595;</div>
+
+        <div class="section">
+            <div class="section-tag">Le programme</div>
+            <h2>3 jours ensemble</h2>
+
+            <div class="day">
+                <div class="day-header">
+                    <div class="day-dot">S</div>
+                    <div>
+                        <div class="day-title">Samedi 23 mai</div>
+                        <div class="day-subtitle">Arrivee + soiree</div>
+                    </div>
+                </div>
+                <div class="day-items">
+                    <div class="day-item">Arrivee a Macon</div>
+                    <div class="day-item">Soiree tous ensemble — on mange, on echange, on se rencontre en vrai</div>
+                </div>
+            </div>
+
+            <div class="day">
+                <div class="day-header">
+                    <div class="day-dot">D</div>
+                    <div>
+                        <div class="day-title">Dimanche 24 mai</div>
+                        <div class="day-subtitle">Course + festival</div>
+                    </div>
+                </div>
+                <div class="day-items">
+                    <div class="day-item">Course — 10 km ou semi, chacun son niveau</div>
+                    <div class="day-item">Festival sur place apres la course</div>
+                    <div class="day-item">Un filmmaker avec nous pour capturer tout ca</div>
+                </div>
+            </div>
+
+            <div class="day">
+                <div class="day-header">
+                    <div class="day-dot">L</div>
+                    <div>
+                        <div class="day-title">Lundi 25 mai</div>
+                        <div class="day-subtitle">Mastermind <span class="optional-tag">optionnel</span></div>
+                    </div>
+                </div>
+                <div class="day-items">
+                    <div class="day-item">Mini mastermind entre nous — on pose les ordis, on parle business, on repart avec de la clarte</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="arrow">&#8595;</div>
+
+        <div class="section">
+            <div class="section-tag">Pourquoi tu dois venir</div>
+            <h2>5 raisons de pas rater ca</h2>
+
+            <div class="reason-list">
+                <div class="reason">
+                    <div class="reason-icon">01</div>
+                    <div class="reason-text"><strong>Tu rencontres les autres membres en vrai</strong> — pas derriere un ecran</div>
+                </div>
+                <div class="reason">
+                    <div class="reason-icon">02</div>
+                    <div class="reason-text"><strong>Tu te depasses physiquement</strong> avec des gens qui pensent comme toi</div>
+                </div>
+                <div class="reason">
+                    <div class="reason-icon">03</div>
+                    <div class="reason-text"><strong>Tu crees des liens</strong> qui valent 10x un call Zoom</div>
+                </div>
+                <div class="reason">
+                    <div class="reason-icon">04</div>
+                    <div class="reason-text"><strong>Tu repars avec du contenu filme pro</strong> de toi en action</div>
+                </div>
+                <div class="reason">
+                    <div class="reason-icon">05</div>
+                    <div class="reason-text"><strong>Et surtout — tu vas kiffer.</strong></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Qui est chaud ?</h2>
+            <p>Reagis maintenant. On organise tout ensemble.</p>
+            <p class="cta-note">Pas besoin d'etre un athlete. Juste besoin d'avoir envie.</p>
+        </div>
+
+        <div class="footer">
+            Strategie 30% &mdash; 2026
+        </div>
+
+    </div>
+</body>
+</html>
