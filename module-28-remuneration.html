@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 28 — La rémunération</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+            padding: 60px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .module-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: #3d2e0a;
+            color: #f0b429;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -1px;
+            line-height: 1.15;
+        }
+
+        .intro {
+            color: #888;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 60px;
+            max-width: 600px;
+        }
+
+        .section {
+            margin-bottom: 56px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .section-number {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 800;
+            flex-shrink: 0;
+            background: #f0b42920;
+            color: #f0b429;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .section p {
+            color: #bbb;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .section p strong {
+            color: #fff;
+        }
+
+        /* Threshold card */
+        .threshold-card {
+            background: linear-gradient(135deg, #1a1a0e 0%, #2d2006 100%);
+            border: 1px solid #f0b42940;
+            border-radius: 16px;
+            padding: 36px;
+            margin: 28px 0;
+            text-align: center;
+        }
+
+        .threshold-value {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: #f0b429;
+            letter-spacing: -1px;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .threshold-label {
+            color: #888;
+            font-size: 0.95rem;
+        }
+
+        .threshold-sub {
+            color: #666;
+            font-size: 0.85rem;
+            margin-top: 12px;
+            font-style: italic;
+        }
+
+        /* Key rule box */
+        .key-rule {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 1px solid #2a3a5e;
+            border-radius: 16px;
+            padding: 32px;
+            margin: 28px 0;
+        }
+
+        .key-rule h3 {
+            color: #7b9ff0;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .key-rule p {
+            color: #bbb;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        /* Error card */
+        .error-card {
+            background: linear-gradient(135deg, #1a0e0e 0%, #2d0606 100%);
+            border: 1px solid #e53e3e40;
+            border-radius: 16px;
+            padding: 28px;
+            margin: 24px 0;
+        }
+
+        .error-card h3 {
+            color: #e53e3e;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .error-card p {
+            color: #bbb;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+
+        .error-card p strong {
+            color: #fff;
+        }
+
+        /* Story card */
+        .story-card {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 14px;
+            padding: 28px;
+            margin: 20px 0;
+            border-left: 3px solid #f0b429;
+        }
+
+        .story-card .story-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #f0b429;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .story-card p {
+            color: #bbb;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        /* Comparison grid */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .comp-card {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 14px;
+            padding: 28px;
+            text-align: center;
+        }
+
+        .comp-card.bad {
+            opacity: 0.6;
+        }
+
+        .comp-card.good {
+            border-color: #f0b42960;
+            background: linear-gradient(135deg, #111 0%, #1a1508 100%);
+        }
+
+        .comp-card .comp-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #888;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .comp-card .comp-detail {
+            color: #777;
+            font-size: 0.8rem;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .comp-card .comp-result {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .comp-card.bad .comp-result {
+            color: #888;
+        }
+
+        .comp-card.good .comp-result {
+            color: #f0b429;
+        }
+
+        /* Info cards */
+        .info-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 24px 0;
+        }
+
+        .info-card {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .info-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: #f0b42915;
+            color: #f0b429;
+            font-size: 0.75rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .info-content h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .info-content p {
+            color: #777;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        /* Structure recap */
+        .recap-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .recap-card {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 14px;
+            padding: 28px;
+        }
+
+        .recap-card.closer {
+            border-color: #f0b42940;
+        }
+
+        .recap-card.setter {
+            border-color: #7b9ff040;
+        }
+
+        .recap-card h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .recap-card.closer h4 {
+            color: #f0b429;
+        }
+
+        .recap-card.setter h4 {
+            color: #7b9ff0;
+        }
+
+        .recap-item {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            padding: 8px 0;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .recap-item:last-child { border-bottom: none; }
+
+        .recap-label {
+            color: #777;
+            font-size: 0.8rem;
+        }
+
+        .recap-value {
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: auto;
+            text-align: right;
+        }
+
+        /* Never do list */
+        .never-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 24px 0;
+        }
+
+        .never-card {
+            background: linear-gradient(135deg, #1a0e0e 0%, #1a0a0a 100%);
+            border: 1px solid #e53e3e25;
+            border-radius: 12px;
+            padding: 20px 24px;
+        }
+
+        .never-card h4 {
+            color: #e53e3e;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .never-card p {
+            color: #999;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .never-card p strong {
+            color: #ccc;
+        }
+
+        /* Action box */
+        .action-box {
+            background: #111;
+            border: 1px solid #f0b42930;
+            border-radius: 16px;
+            padding: 32px;
+            margin-top: 48px;
+        }
+
+        .action-box h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #f0b429;
+            margin-bottom: 20px;
+        }
+
+        .action-box ol {
+            list-style: none;
+            counter-reset: action;
+        }
+
+        .action-box ol li {
+            counter-increment: action;
+            font-size: 0.9rem;
+            color: #bbb;
+            padding: 10px 0 10px 36px;
+            position: relative;
+            line-height: 1.6;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .action-box ol li:last-child { border-bottom: none; }
+
+        .action-box ol li::before {
+            content: counter(action);
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            background: #f0b42920;
+            color: #f0b429;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 32px;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        .footer p {
+            color: #444;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 40px 16px; }
+            h1 { font-size: 1.8rem; }
+            .comparison-grid, .recap-grid { grid-template-columns: 1fr; }
+            .threshold-card { padding: 24px; }
+            .threshold-value { font-size: 1.8rem; }
+            .comp-card .comp-result { font-size: 1.3rem; }
+            .story-card, .key-rule, .action-box, .error-card { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <span class="module-badge">Section 7 — Module 5</span>
+        <h1>La remuneration</h1>
+        <p class="intro">La remuneration de ton equipe de vente determine si tes closers et tes setters restent ou partent. Voici les structures exactes que j'utilise et les erreurs que j'ai faites.</p>
+
+        <!-- SECTION 1 — Closers -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <h2>La remuneration des closers</h2>
+            </div>
+            <p>La structure de base : <strong>10% du cash collecte. Pas de fixe.</strong></p>
+            <p>C'est le standard du marche en francophone pour du high-ticket. En dessous, ton closer va chercher mieux ailleurs. Au-dessus, tes marges se compressent et tu ne pourras pas scaler.</p>
+
+            <div class="threshold-card">
+                <div class="threshold-value">10% DU CASH COLLECTE</div>
+                <div class="threshold-label">Commission de base — 100% variable, pas de fixe</div>
+                <div class="threshold-sub">L'alignement parfait : s'il close, il gagne. S'il ne close pas, il ne gagne pas.</div>
+            </div>
+
+            <p>Concretement, si ton business collecte <strong>50 000 euros par mois</strong> avec un seul closer, il touche <strong>5 000 euros</strong>. C'est assez pour qu'il reste, assez pour qu'il soit motive, et assez pour qu'il ne regarde pas ailleurs.</p>
+            <p>Mais 10%, c'est la base. C'est pas suffisant pour garder quelqu'un sur la duree. Il te faut des primes.</p>
+        </div>
+
+        <!-- SECTION 2 — Primes -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <h2>Les primes : ce qui fait rester un closer</h2>
+            </div>
+            <p>10% d'un business qui fait 30 000 euros, ca fait <strong>3 000 euros</strong>. C'est pas la liberte. Donc tant que ton business fait moins de 50 000 euros collectes par mois, <strong>tu dois ajouter des primes</strong>. C'est non-negociable.</p>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-icon">$</div>
+                    <div class="info-content">
+                        <h4>Prime de palier mensuel</h4>
+                        <p>Bonus progressif quand le closer depasse des seuils de cash collecte. Exemple : +500 euros a 40K, +1 000 euros a 60K, +2 000 euros a 80K. Ca cree de l'excitation et pousse a performer.</p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">1x</div>
+                    <div class="info-content">
+                        <h4>Prime de PIF (paiement en une fois)</h4>
+                        <p>Bonus a chaque paiement integral obtenu. Exemple : 200 euros par PIF. Un PIF = cash immediat, zero risque de defaut. Ca vaut le coup de recompenser ca.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="key-rule">
+                <h3>L'objectif de remuneration</h3>
+                <p>Ton closer doit gagner entre <strong style="color: #fff;">5 000 et 10 000 euros par mois</strong> quand il performe. Si ton closer tourne a 3 000 euros par mois, il est en train de chercher autre chose. Tu ne le sais peut-etre pas encore, mais c'est en cours.</p>
+            </div>
+        </div>
+
+        <!-- SECTION 3 — Setters -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">3</div>
+                <h2>La remuneration des setters</h2>
+            </div>
+            <p>La base : <strong>5% du cash collecte</strong> sur les deals ou le setter a booke l'appel. Le setter ne close pas — il qualifie et il booke. 5%, c'est juste par rapport a sa contribution.</p>
+
+            <div class="story-card">
+                <div class="story-label">Le debat : fixe ou pas fixe ?</div>
+                <p><strong>Par defaut, pas de fixe.</strong> Le full variable aligne les interets. Un setter qui booke des rendez-vous de qualite gagne bien. Un setter qui booke n'importe qui ne gagne rien parce que le closer ne close pas derriere.</p>
+            </div>
+
+            <p><strong>L'exception :</strong> quand le volume n'est pas encore assez eleve pour que le setter vive du variable seul. Si tu as 30 leads par jour, que ton setter en convertit 3 en appels, et que le closer en close 1 — le setter touche 5% d'un seul deal. Sur une offre a 4 000 euros, ca fait <strong>200 euros</strong>. Sur un mois, il tourne a 800 ou 1 000 euros. Personne ne reste pour ca.</p>
+
+            <div class="comparison-grid">
+                <div class="comp-card bad">
+                    <div class="comp-label">Full variable seul</div>
+                    <div class="comp-detail">Volume bas = 800-1 000 EUR/mois<br>Le setter part en 2 semaines</div>
+                    <div class="comp-result">Turnover</div>
+                </div>
+                <div class="comp-card good">
+                    <div class="comp-label">Fixe + variable</div>
+                    <div class="comp-detail">500-1 000 EUR fixe + 5% variable<br>Stabilite + incentive a performer</div>
+                    <div class="comp-result">Retention</div>
+                </div>
+            </div>
+
+            <p>Le fixe, ca doit etre <strong>temporaire</strong>. C'est un filet de securite le temps que le volume monte. Quand le variable seul depasse 2 000 euros par mois, tu retires le fixe.</p>
+
+            <div class="error-card">
+                <h3>Le probleme numero 1 chez les operateurs</h3>
+                <p>Le turnover des setters. Le setter arrive, travaille deux semaines, gagne 500 euros, et part. L'operateur recrute. Meme histoire. <strong>Le probleme c'est pas le setter, c'est la remuneration.</strong> Le setting c'est un boulot ingrat : des refus toute la journee, des gens qui ne repondent pas, des relances. Si la remuneration est maigre en plus, personne ne tient.</p>
+            </div>
+        </div>
+
+        <!-- SECTION 4 — Surstaffer -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">4</div>
+                <h2>L'erreur que j'ai faite : surstaffer et sous-payer</h2>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comp-card bad">
+                    <div class="comp-label">4 closers a 120K</div>
+                    <div class="comp-detail">30 000 EUR / closer<br>10% = 3 000 EUR chacun</div>
+                    <div class="comp-result">2 departs</div>
+                </div>
+                <div class="comp-card good">
+                    <div class="comp-label">2 closers a 120K</div>
+                    <div class="comp-detail">60 000 EUR / closer<br>10% = 6 000 EUR chacun</div>
+                    <div class="comp-result">0 depart</div>
+                </div>
+            </div>
+
+            <p>Quand j'ai reduit l'equipe a 2 closers, j'ai dit aux gars : <strong>"La, vous allez aller chercher des betes de commissions."</strong> Et c'est exactement ce qui s'est passe. Meme volume, chacun a double ses revenus. La motivation a suivi.</p>
+
+            <div class="key-rule">
+                <h3>La regle avant chaque recrutement</h3>
+                <p>Pose-toi la question : <strong style="color: #fff;">"Est-ce que mon closer actuel est maxe en volume d'appels ?"</strong> Si la reponse est non, ne recrute pas. Donne-lui plus d'appels et laisse-le gagner plus. Moins de closers, mieux payes, plus motives, plus fideles.</p>
+            </div>
+        </div>
+
+        <!-- SECTION 5 — Never do -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">5</div>
+                <h2>Ce que tu ne dois jamais faire</h2>
+            </div>
+
+            <div class="never-grid">
+                <div class="never-card">
+                    <h4>Payer en retard</h4>
+                    <p>Un closer paye en retard, c'est un closer qui ne te fait plus confiance. <strong>Paie le 5 du mois</strong> pour le mois precedent. Toujours. Sans exception.</p>
+                </div>
+                <div class="never-card">
+                    <h4>Changer la structure sans prevenir</h4>
+                    <p>Si tu baisses le pourcentage ou modifies les primes, tu en parles <strong>AVANT</strong>. Jamais devant le fait accompli. Sinon c'est fini, il part le jour meme.</p>
+                </div>
+                <div class="never-card">
+                    <h4>Promettre des gains irrealistes</h4>
+                    <p>Ne dis pas "tu vas faire 10 000 euros" si ton business ne fait pas 50 000 collectes. <strong>Sois transparent</strong> sur le volume actuel et la trajectoire realiste.</p>
+                </div>
+                <div class="never-card">
+                    <h4>Oublier que c'est un metier difficile</h4>
+                    <p>Un closer prend des refus tous les jours. Un setter se prend des "non" a longueur de journee. <strong>La remuneration, c'est du respect pour le travail fourni.</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 6 — Recap -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">6</div>
+                <h2>Recapitulatif des structures</h2>
+            </div>
+
+            <div class="recap-grid">
+                <div class="recap-card closer">
+                    <h4>Closer</h4>
+                    <div class="recap-item">
+                        <span class="recap-label">Commission</span>
+                        <span class="recap-value">10% du cash collecte</span>
+                    </div>
+                    <div class="recap-item">
+                        <span class="recap-label">Primes palier</span>
+                        <span class="recap-value">Bonus progressifs</span>
+                    </div>
+                    <div class="recap-item">
+                        <span class="recap-label">Prime PIF</span>
+                        <span class="recap-value">Bonus par PIF obtenu</span>
+                    </div>
+                    <div class="recap-item">
+                        <span class="recap-label">Cible revenus</span>
+                        <span class="recap-value">5 000 — 10 000 EUR</span>
+                    </div>
+                </div>
+                <div class="recap-card setter">
+                    <h4>Setter</h4>
+                    <div class="recap-item">
+                        <span class="recap-label">Commission</span>
+                        <span class="recap-value">5% du cash collecte</span>
+                    </div>
+                    <div class="recap-item">
+                        <span class="recap-label">Fixe optionnel</span>
+                        <span class="recap-value">500 — 1 000 EUR</span>
+                    </div>
+                    <div class="recap-item">
+                        <span class="recap-label">Retirer le fixe</span>
+                        <span class="recap-value">Variable > 2 000 EUR</span>
+                    </div>
+                    <div class="recap-item">
+                        <span class="recap-label">Cible revenus</span>
+                        <span class="recap-value">2 000 — 4 000 EUR</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACTION BOX -->
+        <div class="action-box">
+            <h3>Ce que tu fais maintenant</h3>
+            <ol>
+                <li>Definis la structure de commission de ton closer : 10% du cash collecte</li>
+                <li>Cree tes paliers de primes mensuels en fonction de ton CA actuel</li>
+                <li>Ajoute une prime PIF si ton offre permet le paiement en une fois</li>
+                <li>Pour ton setter, decide si le volume justifie un fixe ou si le 5% seul suffit</li>
+                <li>Calcule ce que ton closer et ton setter vont reellement toucher avec ton volume actuel</li>
+                <li>Si un des deux tombe en dessous de 2 000 euros par mois, ajuste avant qu'il parte</li>
+                <li>Fixe une date de paiement et respecte-la chaque mois sans exception</li>
+            </ol>
+        </div>
+
+        <div class="footer">
+            <p>Section 7 — Ton equipe de vente — Module 5</p>
+        </div>
+
+    </div>
+</body>
+</html>
