@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 29 — Recruter un Head of Sales</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+            padding: 60px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .module-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: #3d2e0a;
+            color: #f0b429;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -1px;
+            line-height: 1.15;
+        }
+
+        .intro {
+            color: #888;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 60px;
+            max-width: 600px;
+        }
+
+        .section {
+            margin-bottom: 56px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .section-number {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 800;
+            flex-shrink: 0;
+            background: #f0b42920;
+            color: #f0b429;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .section p {
+            color: #bbb;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .section p strong {
+            color: #fff;
+        }
+
+        /* Threshold card */
+        .threshold-card {
+            background: linear-gradient(135deg, #1a1a0e 0%, #2d2006 100%);
+            border: 1px solid #f0b42940;
+            border-radius: 16px;
+            padding: 36px;
+            margin: 28px 0;
+            text-align: center;
+        }
+
+        .threshold-value {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: #f0b429;
+            letter-spacing: -1px;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .threshold-label {
+            color: #888;
+            font-size: 0.95rem;
+        }
+
+        .threshold-sub {
+            color: #666;
+            font-size: 0.85rem;
+            margin-top: 12px;
+            font-style: italic;
+        }
+
+        /* Key rule box */
+        .key-rule {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 1px solid #2a3a5e;
+            border-radius: 16px;
+            padding: 32px;
+            margin: 28px 0;
+        }
+
+        .key-rule h3 {
+            color: #7b9ff0;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .key-rule p {
+            color: #bbb;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        /* Error card */
+        .error-card {
+            background: linear-gradient(135deg, #1a0e0e 0%, #2d0606 100%);
+            border: 1px solid #e53e3e40;
+            border-radius: 16px;
+            padding: 28px;
+            margin: 24px 0;
+        }
+
+        .error-card h3 {
+            color: #e53e3e;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .error-card p {
+            color: #bbb;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .error-card p:last-child { margin-bottom: 0; }
+
+        .error-card p strong {
+            color: #fff;
+        }
+
+        /* Story card */
+        .story-card {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 14px;
+            padding: 28px;
+            margin: 20px 0;
+            border-left: 3px solid #f0b429;
+        }
+
+        .story-card .story-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #f0b429;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .story-card p {
+            color: #bbb;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        /* Info cards */
+        .info-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 24px 0;
+        }
+
+        .info-card {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .info-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: #f0b42915;
+            color: #f0b429;
+            font-size: 0.75rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .info-content h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .info-content p {
+            color: #777;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        /* Signs list */
+        .signs-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin: 20px 0;
+        }
+
+        .sign-item {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 10px;
+            padding: 14px 20px;
+            color: #bbb;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sign-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #e53e3e;
+            flex-shrink: 0;
+        }
+
+        /* Comparison grid */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .comp-card {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 14px;
+            padding: 28px;
+            text-align: center;
+        }
+
+        .comp-card.bad {
+            opacity: 0.6;
+        }
+
+        .comp-card.good {
+            border-color: #f0b42960;
+            background: linear-gradient(135deg, #111 0%, #1a1508 100%);
+        }
+
+        .comp-card .comp-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #888;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .comp-card .comp-detail {
+            color: #777;
+            font-size: 0.8rem;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .comp-card .comp-result {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .comp-card.bad .comp-result {
+            color: #e53e3e;
+        }
+
+        .comp-card.good .comp-result {
+            color: #f0b429;
+        }
+
+        /* Scale table */
+        .scale-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin: 24px 0;
+        }
+
+        .scale-row {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 10px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .scale-row.active {
+            border-color: #f0b42940;
+            background: linear-gradient(135deg, #111 0%, #1a1508 100%);
+        }
+
+        .scale-ca {
+            color: #888;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .scale-pct {
+            color: #f0b429;
+            font-size: 1rem;
+            font-weight: 800;
+        }
+
+        .scale-revenu {
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        /* Never do list */
+        .never-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 24px 0;
+        }
+
+        .never-card {
+            background: linear-gradient(135deg, #1a0e0e 0%, #1a0a0a 100%);
+            border: 1px solid #e53e3e25;
+            border-radius: 12px;
+            padding: 20px 24px;
+        }
+
+        .never-card h4 {
+            color: #e53e3e;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .never-card p {
+            color: #999;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .never-card p strong {
+            color: #ccc;
+        }
+
+        /* Action box */
+        .action-box {
+            background: #111;
+            border: 1px solid #f0b42930;
+            border-radius: 16px;
+            padding: 32px;
+            margin-top: 48px;
+        }
+
+        .action-box h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #f0b429;
+            margin-bottom: 20px;
+        }
+
+        .action-box ol {
+            list-style: none;
+            counter-reset: action;
+        }
+
+        .action-box ol li {
+            counter-increment: action;
+            font-size: 0.9rem;
+            color: #bbb;
+            padding: 10px 0 10px 36px;
+            position: relative;
+            line-height: 1.6;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .action-box ol li:last-child { border-bottom: none; }
+
+        .action-box ol li::before {
+            content: counter(action);
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            background: #f0b42920;
+            color: #f0b429;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 32px;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        .footer p {
+            color: #444;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 40px 16px; }
+            h1 { font-size: 1.8rem; }
+            .comparison-grid { grid-template-columns: 1fr; }
+            .threshold-card { padding: 24px; }
+            .threshold-value { font-size: 1.8rem; }
+            .comp-card .comp-result { font-size: 1.2rem; }
+            .story-card, .key-rule, .action-box, .error-card { padding: 20px; }
+            .scale-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <span class="module-badge">Section 7 — Module 6</span>
+        <h1>Recruter un Head of Sales</h1>
+        <p class="intro">Le recrutement le plus impactant — et le plus dangereux — que tu feras en tant qu'operateur. Un bon Head of Sales change tout. Un mauvais te coute des mois.</p>
+
+        <!-- SECTION 1 — Quand recruter -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <h2>Quand recruter un Head of Sales</h2>
+            </div>
+            <p>Le signal, c'est pas un chiffre d'affaires. <strong>C'est ton temps.</strong> Quand tu passes plus de temps a gerer l'equipe qu'a travailler sur le marketing — c'est le moment.</p>
+
+            <div class="signs-list">
+                <div class="sign-item">
+                    <div class="sign-dot"></div>
+                    Tu ecoutes les calls tous les jours et tu n'as plus le temps de toucher aux ads
+                </div>
+                <div class="sign-item">
+                    <div class="sign-dot"></div>
+                    Tu geres les plannings, les no-shows, les remplacements
+                </div>
+                <div class="sign-item">
+                    <div class="sign-dot"></div>
+                    Tu fais le coaching toi-meme parce que personne d'autre ne le fait
+                </div>
+                <div class="sign-item">
+                    <div class="sign-dot"></div>
+                    Tes setters font n'importe quoi et tu n'as pas la bande passante pour recadrer
+                </div>
+                <div class="sign-item">
+                    <div class="sign-dot"></div>
+                    L'equipe tourne au ralenti mais t'as pas le temps de diagnostiquer
+                </div>
+            </div>
+
+            <p>Chaque heure que tu passes a gerer la vente, c'est une heure que tu ne passes pas a ameliorer le tunnel, les pubs et les conversions. <strong>Et c'est la ou tu as le plus d'impact.</strong></p>
+
+            <div class="comparison-grid">
+                <div class="comp-card bad">
+                    <div class="comp-label">Mauvais HOS</div>
+                    <div class="comp-detail">Pas de review calls<br>Pas de coaching<br>Setters ghostent sans detection</div>
+                    <div class="comp-result">2-2.5K comms</div>
+                </div>
+                <div class="comp-card good">
+                    <div class="comp-label">Bon HOS</div>
+                    <div class="comp-detail">Ecoute quotidienne<br>Coaching 2x/semaine<br>Detection problemes en 24h</div>
+                    <div class="comp-result">5-10K comms</div>
+                </div>
+            </div>
+
+            <div class="story-card">
+                <div class="story-label">Mon experience</div>
+                <p>Mon premier Head of Sales n'a pas fait le taf. Resultat : closers a 2 000-2 500 euros de commission, 2 setters ghost pendant des semaines, 300 leads non traites. Quand j'ai recrute le bon, <strong>tout a change en quelques jours</strong>. Process refait, coaching en place, KPIs installes. Les closers ont immediatement performe mieux.</p>
+            </div>
+        </div>
+
+        <!-- SECTION 2 — Le role -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <h2>Ce que fait un bon Head of Sales</h2>
+            </div>
+            <p>Un Head of Sales, c'est <strong>pas un closer senior</strong>. C'est un manager. Son role : faire en sorte que chaque membre de l'equipe performe au maximum.</p>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-icon">1</div>
+                    <div class="info-content">
+                        <h4>Coaching des closers</h4>
+                        <p>Il ecoute les appels tous les jours. Il identifie les erreurs recurrentes, donne du feedback precis. Il sait dire exactement pourquoi un closer a rate un deal — pas juste "il a mal gere l'objection".</p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">2</div>
+                    <div class="info-content">
+                        <h4>Gestion des setters</h4>
+                        <p>Il s'assure que les leads sont traites, que le CRM est rempli. Si un setter ghost, il le detecte en 24h. Il recrute les remplacants et onboarde les nouveaux.</p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">3</div>
+                    <div class="info-content">
+                        <h4>Process de vente</h4>
+                        <p>Il cree et maintient les scripts, les process de confirmation, les templates de relance. Quand le funnel change, il adapte les scripts en consequence.</p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">4</div>
+                    <div class="info-content">
+                        <h4>KPIs et reporting</h4>
+                        <p>Il pose les chiffres chaque semaine : appels bookes, encaisse par appel booke, show-up, cash collecte. Il diagnostique et propose des solutions.</p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">5</div>
+                    <div class="info-content">
+                        <h4>Interface marketing / vente</h4>
+                        <p>Il remonte les objections recurrentes pour que tu les traites dans les ads et emails pre-call. Il forme l'equipe quand tu changes le process.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3 — Comment recruter -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">3</div>
+                <h2>Comment recruter</h2>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comp-card good">
+                    <div class="comp-label">Structure externalisee</div>
+                    <div class="comp-detail">Momentum, WeClose, CGM<br>Cadre + process + remplacement garanti<br>Moins risque pour debuter</div>
+                    <div class="comp-result">Rapide</div>
+                </div>
+                <div class="comp-card" style="border-color: #7b9ff040;">
+                    <div class="comp-label">Recrutement direct</div>
+                    <div class="comp-detail">Ton reseau, groupes HOS<br>Controle total<br>Plus dur, plus long</div>
+                    <div class="comp-result" style="color: #7b9ff0;">Controle</div>
+                </div>
+            </div>
+
+            <div class="key-rule">
+                <h3>La regle numero 1 du recrutement</h3>
+                <p>Tu cherches quelqu'un qui a <strong style="color: #fff;">MANAGE des closers</strong>, pas quelqu'un qui a close. Un bon closer ne fait pas un bon manager. Un closer sait vendre. Un manager sait faire vendre LES AUTRES. Ce sont deux competences completement differentes.</p>
+            </div>
+
+            <p><strong>Ce que tu evalues en entretien :</strong></p>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-icon">?</div>
+                    <div class="info-content">
+                        <h4>Experience de management</h4>
+                        <p>Combien de closers a-t-il gere ? Quel CA generait son equipe ?</p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">?</div>
+                    <div class="info-content">
+                        <h4>Methode de coaching</h4>
+                        <p>Comment review-t-il un appel ? Qu'est-ce qu'il regarde en premier ?</p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">?</div>
+                    <div class="info-content">
+                        <h4>Gestion de conflit</h4>
+                        <p>Comment reagit-il quand un closer sous-performe ? Quand un setter ghost ?</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 4 — Remuneration -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">4</div>
+                <h2>La remuneration</h2>
+            </div>
+            <p>Un seul modele : <strong>un pourcentage du cash collecte total par l'equipe. Pas de fixe.</strong></p>
+            <p>Un Head of Sales peut travailler 2 a 3 heures par jour et manager plusieurs equipes. Le full variable cree le bon alignement : si l'equipe performe, il gagne. Si elle stagne, il le sent.</p>
+            <p>Le pourcentage depend de ton CA. Plus tu fais de volume, plus tu peux baisser le pourcentage :</p>
+
+            <div class="scale-grid">
+                <div class="scale-row">
+                    <span class="scale-ca">30 000 EUR/mois</span>
+                    <span class="scale-pct">8-10%</span>
+                    <span class="scale-revenu">2 400 - 3 000 EUR</span>
+                </div>
+                <div class="scale-row">
+                    <span class="scale-ca">50 000 EUR/mois</span>
+                    <span class="scale-pct">7-8%</span>
+                    <span class="scale-revenu">3 500 - 4 000 EUR</span>
+                </div>
+                <div class="scale-row">
+                    <span class="scale-ca">80 000 EUR/mois</span>
+                    <span class="scale-pct">5-7%</span>
+                    <span class="scale-revenu">4 000 - 5 600 EUR</span>
+                </div>
+                <div class="scale-row active">
+                    <span class="scale-ca">100 000+ EUR/mois</span>
+                    <span class="scale-pct">5%</span>
+                    <span class="scale-revenu">5 000+ EUR</span>
+                </div>
+            </div>
+
+            <div class="story-card">
+                <div class="story-label">Mon cas</div>
+                <p>A l'heure actuelle, le mien est a environ 5%. Mais c'est parce qu'on fait plus de 100 000 euros par mois. A ce niveau, 5% lui fait deja un tres bon revenu. <strong>Si ton HOS touche moins de 2 500 euros par mois, c'est trop bas.</strong> Augmente le pourcentage ou attends que le volume soit suffisant.</p>
+            </div>
+        </div>
+
+        <!-- SECTION 5 — Erreurs -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">5</div>
+                <h2>Les erreurs que j'ai faites</h2>
+            </div>
+
+            <div class="never-grid">
+                <div class="never-card">
+                    <h4>Ne pas review les calls</h4>
+                    <p>Un HOS qui n'ecoute pas les appels tous les jours est <strong>inutile</strong>. C'est son outil de travail numero 1. Sans review, pas de coaching. Sans coaching, les closers stagnent et partent.</p>
+                </div>
+                <div class="never-card">
+                    <h4>Ne pas detecter les problemes assez vite</h4>
+                    <p>Mes setters ont ghost pendant des semaines. <strong>300 leads non traites.</strong> A 125 euros le lead, ca fait des dizaines de milliers d'euros perdus. Un bon HOS detecte ca en 24h.</p>
+                </div>
+                <div class="never-card">
+                    <h4>Ne pas donner assez d'autorite</h4>
+                    <p>Si ton HOS doit te demander la permission pour chaque decision, ca ne marche pas. <strong>Il doit pouvoir recadrer, ajuster, virer.</strong> Toi, tu fixes le cadre. Lui, il manage.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACTION BOX -->
+        <div class="action-box">
+            <h3>Ce que tu fais maintenant</h3>
+            <ol>
+                <li>Evalue si tu passes plus de temps a gerer l'equipe qu'a travailler sur le marketing</li>
+                <li>Si oui, decide entre structure externalisee ou recrutement direct</li>
+                <li>Definis le perimetre exact : coaching, KPIs, gestion setters, process, reporting</li>
+                <li>Fixe le pourcentage en fonction de ton CA : 8-10% en dessous de 50K, 5-7% au-dessus de 80K</li>
+                <li>En entretien, evalue la capacite a MANAGER, pas a CLOSER</li>
+                <li>Donne-lui l'autorite de prendre des decisions operationnelles sur l'equipe</li>
+                <li>Mesure son impact sur l'encaisse par appel booke et le cash collecte dans les 30 premiers jours</li>
+            </ol>
+        </div>
+
+        <div class="footer">
+            <p>Section 7 — Ton equipe de vente — Module 6</p>
+        </div>
+
+    </div>
+</body>
+</html>
