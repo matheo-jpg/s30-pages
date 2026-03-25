@@ -1,48 +1,115 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 320" width="400" height="320">
   <!-- Background -->
-  <rect width="400" height="300" fill="#f8f9fa" rx="16"/>
+  <rect width="400" height="320" fill="#f8f9fa" rx="20"/>
 
-  <!-- Wheel -->
-  <circle cx="200" cy="140" r="90" fill="none" stroke="#e0e0e0" stroke-width="6"/>
-  <circle cx="200" cy="140" r="70" fill="none" stroke="#e0e0e0" stroke-width="3"/>
+  <!-- Wheel outer ring -->
+  <circle cx="200" cy="145" r="105" fill="none" stroke="#d1d5db" stroke-width="12" stroke-linecap="round"/>
+
+  <!-- Wheel inner ring -->
+  <circle cx="200" cy="145" r="80" fill="none" stroke="#e5e7eb" stroke-width="4"/>
 
   <!-- Spokes -->
-  <line x1="200" y1="50" x2="200" y2="230" stroke="#e0e0e0" stroke-width="2.5"/>
-  <line x1="110" y1="140" x2="290" y2="140" stroke="#e0e0e0" stroke-width="2.5"/>
-  <line x1="136" y1="76" x2="264" y2="204" stroke="#e0e0e0" stroke-width="2.5"/>
-  <line x1="264" y1="76" x2="136" y2="204" stroke="#e0e0e0" stroke-width="2.5"/>
+  <line x1="200" y1="40" x2="200" y2="250" stroke="#e5e7eb" stroke-width="3"/>
+  <line x1="95" y1="145" x2="305" y2="145" stroke="#e5e7eb" stroke-width="3"/>
+  <line x1="126" y1="71" x2="274" y2="219" stroke="#e5e7eb" stroke-width="3"/>
+  <line x1="274" y1="71" x2="126" y2="219" stroke="#e5e7eb" stroke-width="3"/>
 
   <!-- Stand -->
-  <line x1="200" y1="230" x2="140" y2="270" stroke="#ccc" stroke-width="4" stroke-linecap="round"/>
-  <line x1="200" y1="230" x2="260" y2="270" stroke="#ccc" stroke-width="4" stroke-linecap="round"/>
-  <line x1="130" y1="270" x2="270" y2="270" stroke="#ccc" stroke-width="4" stroke-linecap="round"/>
+  <line x1="200" y1="250" x2="130" y2="300" stroke="#d1d5db" stroke-width="6" stroke-linecap="round"/>
+  <line x1="200" y1="250" x2="270" y2="300" stroke="#d1d5db" stroke-width="6" stroke-linecap="round"/>
+  <line x1="120" y1="300" x2="280" y2="300" stroke="#d1d5db" stroke-width="6" stroke-linecap="round"/>
 
-  <!-- Hamster body -->
-  <ellipse cx="210" cy="150" rx="28" ry="22" fill="#f4a460"/>
+  <!-- Center hub -->
+  <circle cx="200" cy="145" r="8" fill="#d1d5db"/>
+  <circle cx="200" cy="145" r="3" fill="#9ca3af"/>
 
-  <!-- Hamster head -->
-  <circle cx="235" cy="138" r="16" fill="#f4a460"/>
+  <!-- Motion lines left -->
+  <line x1="145" y1="100" x2="125" y2="88" stroke="#d1d5db" stroke-width="3" stroke-linecap="round"/>
+  <line x1="138" y1="130" x2="115" y2="126" stroke="#d1d5db" stroke-width="3" stroke-linecap="round"/>
+  <line x1="142" y1="162" x2="120" y2="170" stroke="#d1d5db" stroke-width="3" stroke-linecap="round"/>
 
-  <!-- Ear -->
-  <circle cx="244" cy="125" r="7" fill="#deb887"/>
-  <circle cx="244" cy="125" r="4" fill="#f5cba7"/>
+  <!-- === HAMSTER BODY === -->
 
-  <!-- Eye -->
-  <circle cx="242" cy="135" r="3" fill="#333"/>
-  <circle cx="243" cy="134" r="1" fill="#fff"/>
+  <!-- Shadow under hamster -->
+  <ellipse cx="205" cy="200" rx="32" ry="6" fill="rgba(0,0,0,0.08)"/>
+
+  <!-- Body - big round belly -->
+  <ellipse cx="200" cy="165" rx="38" ry="32" fill="#F4A460"/>
+  <!-- Belly lighter -->
+  <ellipse cx="200" cy="172" rx="26" ry="22" fill="#FDDCB5"/>
+
+  <!-- Left foot -->
+  <ellipse cx="180" cy="194" rx="10" ry="6" fill="#E8944E" transform="rotate(-10 180 194)"/>
+  <!-- Right foot -->
+  <ellipse cx="220" cy="194" rx="10" ry="6" fill="#E8944E" transform="rotate(10 220 194)"/>
+
+  <!-- === LEFT ARM + MIDDLE FINGER === -->
+  <!-- Left arm -->
+  <path d="M168 155 Q148 140 145 125" fill="none" stroke="#E8944E" stroke-width="6" stroke-linecap="round"/>
+  <!-- Left fist -->
+  <circle cx="145" cy="122" r="8" fill="#F4A460"/>
+  <!-- Left middle finger raised -->
+  <rect x="143" y="98" width="5" height="20" rx="2.5" fill="#F4A460"/>
+  <!-- Left other fingers curled -->
+  <circle cx="139" cy="118" r="3.5" fill="#E8944E"/>
+  <circle cx="151" cy="118" r="3.5" fill="#E8944E"/>
+
+  <!-- === RIGHT ARM + MIDDLE FINGER === -->
+  <!-- Right arm -->
+  <path d="M232 155 Q252 140 255 125" fill="none" stroke="#E8944E" stroke-width="6" stroke-linecap="round"/>
+  <!-- Right fist -->
+  <circle cx="255" cy="122" r="8" fill="#F4A460"/>
+  <!-- Right middle finger raised -->
+  <rect x="253" y="98" width="5" height="20" rx="2.5" fill="#F4A460"/>
+  <!-- Right other fingers curled -->
+  <circle cx="249" cy="118" r="3.5" fill="#E8944E"/>
+  <circle cx="261" cy="118" r="3.5" fill="#E8944E"/>
+
+  <!-- === HEAD === -->
+  <circle cx="200" cy="138" r="26" fill="#F4A460"/>
+
+  <!-- Cheeks -->
+  <circle cx="182" cy="145" r="8" fill="#F5C49C"/>
+  <circle cx="218" cy="145" r="8" fill="#F5C49C"/>
+
+  <!-- Left ear -->
+  <ellipse cx="180" cy="116" rx="10" ry="13" fill="#F4A460"/>
+  <ellipse cx="180" cy="116" rx="6" ry="9" fill="#FBBF90"/>
+
+  <!-- Right ear -->
+  <ellipse cx="220" cy="116" rx="10" ry="13" fill="#F4A460"/>
+  <ellipse cx="220" cy="116" rx="6" ry="9" fill="#FBBF90"/>
+
+  <!-- Left eye - annoyed/half-closed -->
+  <ellipse cx="190" cy="135" rx="5" ry="3.5" fill="#333"/>
+  <!-- Left eyelid (half-closed annoyed look) -->
+  <path d="M184 133 Q190 130 196 133" fill="#F4A460" stroke="none"/>
+  <!-- Left eye shine -->
+  <circle cx="192" cy="134.5" r="1.2" fill="#fff"/>
+
+  <!-- Right eye - annoyed/half-closed -->
+  <ellipse cx="210" cy="135" rx="5" ry="3.5" fill="#333"/>
+  <!-- Right eyelid -->
+  <path d="M204 133 Q210 130 216 133" fill="#F4A460" stroke="none"/>
+  <!-- Right eye shine -->
+  <circle cx="212" cy="134.5" r="1.2" fill="#fff"/>
+
+  <!-- Annoyed eyebrows -->
+  <line x1="184" y1="127" x2="194" y2="129" stroke="#8B6914" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="216" y1="127" x2="206" y2="129" stroke="#8B6914" stroke-width="2.5" stroke-linecap="round"/>
 
   <!-- Nose -->
-  <circle cx="250" cy="140" r="2" fill="#c0392b"/>
+  <ellipse cx="200" cy="143" rx="3" ry="2.5" fill="#D4845A"/>
 
-  <!-- Legs running -->
-  <ellipse cx="195" cy="168" rx="8" ry="5" fill="#deb887" transform="rotate(-20 195 168)"/>
-  <ellipse cx="220" cy="170" rx="8" ry="5" fill="#deb887" transform="rotate(15 220 170)"/>
+  <!-- Mouth - unimpressed flat line -->
+  <path d="M193 150 Q200 148 207 150" fill="none" stroke="#8B6914" stroke-width="2" stroke-linecap="round"/>
 
-  <!-- Tail -->
-  <path d="M182 148 Q170 140 175 130" fill="none" stroke="#f4a460" stroke-width="3" stroke-linecap="round"/>
+  <!-- Whiskers -->
+  <line x1="175" y1="142" x2="158" y2="138" stroke="#D4A76A" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="175" y1="146" x2="156" y2="148" stroke="#D4A76A" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="225" y1="142" x2="242" y2="138" stroke="#D4A76A" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="225" y1="146" x2="244" y2="148" stroke="#D4A76A" stroke-width="1.2" stroke-linecap="round"/>
 
-  <!-- Motion lines -->
-  <path d="M155 105 L140 95" stroke="#ccc" stroke-width="2" stroke-linecap="round"/>
-  <path d="M150 130 L132 128" stroke="#ccc" stroke-width="2" stroke-linecap="round"/>
-  <path d="M160 160 L142 165" stroke="#ccc" stroke-width="2" stroke-linecap="round"/>
+  <!-- Sweat drop (tired) -->
+  <path d="M230 110 Q233 105 232 100 Q236 108 230 110Z" fill="#87CEEB"/>
 </svg>
