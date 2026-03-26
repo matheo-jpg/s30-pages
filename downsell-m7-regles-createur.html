@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les regles pour choisir ton createur</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8f9fc;
+            color: #1a1a2e;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container { max-width: 720px; margin: 0 auto; }
+
+        .header { text-align: center; margin-bottom: 48px; }
+        .header .badge {
+            display: inline-block;
+            background: #e8f0fe;
+            color: #1a56db;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            padding: 6px 16px;
+            border-radius: 100px;
+            margin-bottom: 16px;
+        }
+        .header h1 { font-size: 26px; font-weight: 800; line-height: 1.3; letter-spacing: -0.5px; margin-bottom: 8px; }
+        .header p { color: #6b7280; font-size: 15px; line-height: 1.5; }
+
+        .sweet-spot {
+            background: linear-gradient(135deg, #1a56db 0%, #1e40af 100%);
+            color: #fff;
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .sweet-spot .range { font-size: 42px; font-weight: 800; line-height: 1; margin-bottom: 8px; }
+        .sweet-spot .label { font-size: 16px; font-weight: 500; opacity: 0.9; margin-bottom: 16px; }
+        .sweet-spot .ideal {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            border-radius: 100px;
+            padding: 8px 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .rules-grid {
+            display: grid;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        .rule-card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 24px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+        .rule-num {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: #e8f0fe;
+            color: #1a56db;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        .rule-content h3 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+        .rule-content p { font-size: 13px; color: #6b7280; line-height: 1.5; }
+
+        .profile-ideal {
+            background: #fff;
+            border: 2px solid #059669;
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 40px;
+        }
+        .profile-ideal h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #059669;
+            margin-bottom: 16px;
+        }
+        .ideal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .ideal-item {
+            font-size: 13px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            background: #ecfdf5;
+            color: #065f46;
+            font-weight: 500;
+        }
+
+        .red-flags {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 16px;
+            padding: 28px;
+        }
+        .red-flags h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #dc2626;
+            margin-bottom: 16px;
+        }
+        .red-flags ul { list-style: none; padding: 0; }
+        .red-flags li {
+            font-size: 13px;
+            color: #374151;
+            line-height: 1.6;
+            padding: 4px 0;
+        }
+        .red-flags li::before { content: '- '; color: #dc2626; font-weight: 700; }
+
+        @media (max-width: 600px) {
+            .ideal-grid { grid-template-columns: 1fr; }
+            .sweet-spot .range { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <div class="badge">Module 7</div>
+            <h1>Les 6 regles pour choisir ton createur</h1>
+            <p>La decision la plus importante de ton parcours. Choisis bien, tout devient plus facile.</p>
+        </div>
+
+        <div class="sweet-spot">
+            <div class="range">500 — 50 000</div>
+            <div class="label">abonnes : le sweet spot</div>
+            <div class="ideal">Ideal : 2 000 a 10 000 abonnes</div>
+        </div>
+
+        <div class="rules-grid">
+            <div class="rule-card">
+                <div class="rule-num">1</div>
+                <div class="rule-content">
+                    <h3>Audience avec du pouvoir d'achat</h3>
+                    <p>Si son audience n'a pas d'argent, tu ne vendras rien. Regarde qui commente : des adultes qui travaillent ou des ados ?</p>
+                </div>
+            </div>
+            <div class="rule-card">
+                <div class="rule-num">2</div>
+                <div class="rule-content">
+                    <h3>Connexion reelle avec l'audience</h3>
+                    <p>Pas les likes. Des vrais commentaires, des questions, des partages d'experience. Le createur repond a ses gens.</p>
+                </div>
+            </div>
+            <div class="rule-card">
+                <div class="rule-num">3</div>
+                <div class="rule-content">
+                    <h3>Dans le sweet spot d'abonnes</h3>
+                    <p>En dessous de 500 : pas assez d'audience. Au-dessus de 50 000 : deja demarche par tout le monde. Ideal : 2 000 a 10 000.</p>
+                </div>
+            </div>
+            <div class="rule-card">
+                <div class="rule-num">4</div>
+                <div class="rule-content">
+                    <h3>Contenu de qualite</h3>
+                    <p>Ton job c'est de monetiser, pas de le transformer en bon createur. Les bases doivent etre la : image, son, aisance camera.</p>
+                </div>
+            </div>
+            <div class="rule-card">
+                <div class="rule-num">5</div>
+                <div class="rule-content">
+                    <h3>Pas d'equipe en place</h3>
+                    <p>Si il a des miniatures travaillees, des pages de vente pro et des resultats clients affiches, il a probablement deja quelqu'un.</p>
+                </div>
+            </div>
+            <div class="rule-card">
+                <div class="rule-num">6</div>
+                <div class="rule-content">
+                    <h3>Niche non-saturee</h3>
+                    <p>80% des operateurs demarchent les memes 20% de createurs. Les resultats viennent des niches inattendues.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-ideal">
+            <h3>Le createur ideal en resume</h3>
+            <div class="ideal-grid">
+                <div class="ideal-item">2 000 a 10 000 abonnes</div>
+                <div class="ideal-item">Niche specifique + pouvoir d'achat</div>
+                <div class="ideal-item">Vraie connexion avec sa communaute</div>
+                <div class="ideal-item">Contenu de qualite</div>
+                <div class="ideal-item">Pas d'equipe ou d'operateur</div>
+                <div class="ideal-item">Ne vend rien ou vend tres mal</div>
+            </div>
+        </div>
+
+        <div class="red-flags">
+            <h3>Red flags : passe au suivant</h3>
+            <ul>
+                <li>Audience d'ados/etudiants sans budget</li>
+                <li>Commentaires generiques (1-2 mots max)</li>
+                <li>Moins de 500 abonnes</li>
+                <li>Videos floues, mal cadrees, son horrible</li>
+                <li>Pages de vente pro et miniatures travaillees (deja une equipe)</li>
+                <li>Niches gaming, foot, basket, lifestyle generaliste</li>
+            </ul>
+        </div>
+
+    </div>
+</body>
+</html>

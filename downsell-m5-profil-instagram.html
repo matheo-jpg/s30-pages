@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ton profil Instagram d'operateur</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8f9fc;
+            color: #1a1a2e;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container { max-width: 720px; margin: 0 auto; }
+
+        .header { text-align: center; margin-bottom: 48px; }
+        .header .badge {
+            display: inline-block;
+            background: #e8f0fe;
+            color: #1a56db;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            padding: 6px 16px;
+            border-radius: 100px;
+            margin-bottom: 16px;
+        }
+        .header h1 { font-size: 26px; font-weight: 800; line-height: 1.3; letter-spacing: -0.5px; margin-bottom: 8px; }
+        .header p { color: #6b7280; font-size: 15px; line-height: 1.5; }
+
+        .rule-banner {
+            background: linear-gradient(135deg, #1a56db 0%, #1e40af 100%);
+            color: #fff;
+            border-radius: 16px;
+            padding: 28px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .rule-banner h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+        .rule-banner p { font-size: 14px; line-height: 1.6; opacity: 0.9; }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        .profile-card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 24px;
+        }
+        .profile-card.full { grid-column: 1 / -1; }
+        .profile-card h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1a56db;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .profile-card ul { list-style: none; padding: 0; }
+        .profile-card li {
+            font-size: 13px;
+            line-height: 1.6;
+            padding: 4px 0 4px 20px;
+            position: relative;
+            color: #374151;
+        }
+        .profile-card li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+        }
+        .profile-card.do li::before { background: #10b981; }
+        .profile-card.dont li::before { background: #ef4444; }
+
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        .comparison-card { border-radius: 14px; padding: 24px; }
+        .comparison-card.good { background: #ecfdf5; border: 1px solid #a7f3d0; }
+        .comparison-card.bad { background: #fef2f2; border: 1px solid #fecaca; }
+        .comparison-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 16px; }
+        .comparison-card.good h3 { color: #059669; }
+        .comparison-card.bad h3 { color: #dc2626; }
+        .comparison-card ul { list-style: none; padding: 0; }
+        .comparison-card li { font-size: 13px; line-height: 1.6; padding: 4px 0; color: #374151; }
+        .comparison-card li::before { margin-right: 8px; font-weight: 700; }
+        .comparison-card.good li::before { content: '+'; color: #059669; }
+        .comparison-card.bad li::before { content: '-'; color: #dc2626; }
+
+        .cert-box {
+            background: #fff;
+            border: 2px solid #1a56db;
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 40px;
+        }
+        .cert-box h3 { font-size: 16px; font-weight: 700; color: #1a56db; margin-bottom: 12px; }
+        .cert-box p { font-size: 14px; color: #374151; line-height: 1.6; }
+        .cert-box .price { font-size: 13px; color: #6b7280; margin-top: 8px; }
+
+        .score-bar {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            color: #fff;
+            border-radius: 16px;
+            padding: 28px;
+            text-align: center;
+        }
+        .score-bar h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+        .score-bar p { font-size: 14px; line-height: 1.6; opacity: 0.9; }
+        .score-bar .big-score { font-size: 48px; font-weight: 800; margin-bottom: 8px; }
+
+        @media (max-width: 600px) {
+            .profile-grid { grid-template-columns: 1fr; }
+            .comparison { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <div class="badge">Module 5</div>
+            <h1>Ton profil Instagram d'operateur</h1>
+            <p>Ta vitrine professionnelle. Le createur te juge en moins de 5 secondes.</p>
+        </div>
+
+        <div class="rule-banner">
+            <h3>Un profil serieux et professionnel</h3>
+            <p>Pas besoin de 10 000 abonnes. Pas besoin d'un feed de mannequin.<br>Ton profil doit dire une seule chose : cette personne est serieuse.</p>
+        </div>
+
+        <div class="profile-grid">
+            <div class="profile-card do">
+                <h3>Photo de profil</h3>
+                <ul>
+                    <li>Nette, bien eclairee</li>
+                    <li>Ton visage est clairement visible</li>
+                    <li>Environnement propre</li>
+                </ul>
+            </div>
+            <div class="profile-card do">
+                <h3>Bio</h3>
+                <ul>
+                    <li>Une phrase qui explique ce que tu fais</li>
+                    <li>Simple, clair, credible</li>
+                    <li>Pas de 4 lignes d'explication</li>
+                </ul>
+            </div>
+            <div class="profile-card do">
+                <h3>Stories a la une</h3>
+                <ul>
+                    <li>1-2 bulles avec des photos de qualite</li>
+                    <li>Toi sur ton ordi, bel environnement</li>
+                    <li>Impression d'un entrepreneur qui bosse</li>
+                </ul>
+            </div>
+            <div class="profile-card do">
+                <h3>Feed</h3>
+                <ul>
+                    <li>Quelques photos orientees business/lifestyle</li>
+                    <li>Ou : rien du tout + stories a la une solides</li>
+                    <li>Compte toujours en public</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="comparison">
+            <div class="comparison-card good">
+                <h3>Ce qui marche</h3>
+                <ul>
+                    <li>Photo pro, bien eclairee</li>
+                    <li>Bio claire en une phrase</li>
+                    <li>Stories : ordi, cafe, lumiere naturelle</li>
+                    <li>Feed clean ou vide</li>
+                    <li>Compte public</li>
+                    <li>Badge Meta verifie</li>
+                </ul>
+            </div>
+            <div class="comparison-card bad">
+                <h3>Ce qui tue ta credibilite</h3>
+                <ul>
+                    <li>Selfie miroir, photo de groupe</li>
+                    <li>Bio remplie de symboles</li>
+                    <li>Aucune story a la une</li>
+                    <li>Feed de soirees et de memes</li>
+                    <li>Compte prive</li>
+                    <li>Nom d'utilisateur bizarre</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="cert-box">
+            <h3>La certification Meta</h3>
+            <p>Le badge bleu qui verifie ton identite. Pas obligatoire, mais ca renforce ta credibilite. Quand un createur voit un profil verifie, meme avec peu d'abonnes, il te prend au serieux.</p>
+            <div class="price">Environ 10 EUR/mois — un petit detail qui fait la difference.</div>
+        </div>
+
+        <div class="score-bar">
+            <div class="big-score">7/10</div>
+            <h3>Score minimum avant de prospecter</h3>
+            <p>Utilise le GPT "Audit profil Instagram" pour scorer ton profil.<br>En dessous de 7/10, prends 24-48h pour corriger avant d'avancer.</p>
+        </div>
+
+    </div>
+</body>
+</html>

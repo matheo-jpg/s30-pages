@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les relances</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8f9fc;
+            color: #1a1a2e;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container { max-width: 720px; margin: 0 auto; }
+
+        .header { text-align: center; margin-bottom: 48px; }
+        .header .badge {
+            display: inline-block;
+            background: #e8f0fe;
+            color: #1a56db;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            padding: 6px 16px;
+            border-radius: 100px;
+            margin-bottom: 16px;
+        }
+        .header h1 { font-size: 26px; font-weight: 800; line-height: 1.3; letter-spacing: -0.5px; margin-bottom: 8px; }
+        .header p { color: #6b7280; font-size: 15px; line-height: 1.5; }
+
+        .stat-banner {
+            background: linear-gradient(135deg, #1a56db 0%, #1e40af 100%);
+            color: #fff;
+            border-radius: 16px;
+            padding: 28px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .stat-banner h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+        .stat-banner p { font-size: 14px; line-height: 1.6; opacity: 0.9; }
+
+        .section-title { font-size: 18px; font-weight: 700; margin-bottom: 24px; color: #1a1a2e; }
+
+        /* Relance timeline */
+        .relance-timeline {
+            position: relative;
+            margin-bottom: 48px;
+        }
+        .relance-timeline::before {
+            content: '';
+            position: absolute;
+            left: 22px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #e5e7eb;
+        }
+        .relance-step {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 24px;
+            position: relative;
+        }
+        .relance-step:last-child { margin-bottom: 0; }
+        .relance-dot {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 14px;
+            color: #fff;
+            flex-shrink: 0;
+            z-index: 1;
+        }
+        .relance-dot.r1 { background: #1a56db; }
+        .relance-dot.r2 { background: #f59e0b; }
+        .relance-dot.r3 { background: #ef4444; }
+        .relance-dot.r4 { background: #6b7280; }
+        .relance-content { padding-top: 4px; }
+        .relance-content .timing { font-size: 12px; font-weight: 600; color: #9ca3af; margin-bottom: 2px; }
+        .relance-content h3 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+        .relance-content p { font-size: 13px; color: #6b7280; line-height: 1.5; }
+        .relance-content .example {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 10px 14px;
+            margin-top: 8px;
+            font-size: 13px;
+            color: #374151;
+            font-style: italic;
+        }
+
+        /* Daily process */
+        .process {
+            background: #fff;
+            border: 2px solid #1a56db;
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 40px;
+        }
+        .process h3 { font-size: 16px; font-weight: 700; color: #1a56db; margin-bottom: 20px; }
+        .process-step {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 14px;
+            align-items: flex-start;
+        }
+        .process-step:last-child { margin-bottom: 0; }
+        .step-num {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: #e8f0fe;
+            color: #1a56db;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 13px;
+            flex-shrink: 0;
+        }
+        .step-num.priority { background: #1a56db; color: #fff; }
+        .step-text { font-size: 14px; color: #374151; line-height: 1.5; padding-top: 3px; }
+        .step-text strong { color: #1a56db; }
+
+        /* Rules */
+        .rules-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+        .rule-item {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .rule-item h4 { font-size: 13px; font-weight: 700; color: #1a56db; margin-bottom: 6px; }
+        .rule-item p { font-size: 12px; color: #6b7280; line-height: 1.5; }
+
+        .takeaway {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            color: #fff;
+            border-radius: 16px;
+            padding: 28px;
+            text-align: center;
+        }
+        .takeaway h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+        .takeaway p { font-size: 14px; line-height: 1.6; opacity: 0.9; }
+
+        @media (max-width: 600px) {
+            .rules-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <div class="badge">Module 14</div>
+            <h1>Les relances</h1>
+            <p>La plupart des createurs qui signent ne repondent pas au premier message. L'argent est dans les relances.</p>
+        </div>
+
+        <div class="stat-banner">
+            <h3>10 secondes pour une relance</h3>
+            <p>Envoyer un Loom prend 5-10 minutes. Une relance prend 10 secondes.<br>C'est le meilleur ratio temps/resultat de toute la prospection.</p>
+        </div>
+
+        <div class="section-title">La sequence de relance</div>
+        <div class="relance-timeline">
+            <div class="relance-step">
+                <div class="relance-dot r1">DM</div>
+                <div class="relance-content">
+                    <div class="timing">Jour 0 : Premier contact</div>
+                    <h3>Message d'approche + Loom</h3>
+                    <p>Tu envoies ton message d'ouverture puis ton Loom quand le createur repond.</p>
+                </div>
+            </div>
+            <div class="relance-step">
+                <div class="relance-dot r2">R1</div>
+                <div class="relance-content">
+                    <div class="timing">24h apres le Loom</div>
+                    <h3>Premiere relance</h3>
+                    <p>Direct, pas agressif. Tu rappelles juste que tu existes.</p>
+                    <div class="example">"Salut [prenom], t'as pu voir la video que je t'ai envoyee hier ?"</div>
+                </div>
+            </div>
+            <div class="relance-step">
+                <div class="relance-dot r3">R2</div>
+                <div class="relance-content">
+                    <div class="timing">48h apres la premiere relance</div>
+                    <h3>Deuxieme relance (creative)</h3>
+                    <p>Change de format : vocal, reponse a sa story, commentaire sur un post.</p>
+                </div>
+            </div>
+            <div class="relance-step">
+                <div class="relance-dot r4">R3</div>
+                <div class="relance-content">
+                    <div class="timing">48h apres la deuxieme relance</div>
+                    <h3>Derniere tentative</h3>
+                    <p>Un autre Loom, un vocal, ou une reponse a sa story. Apres 3 relances sans reponse, passe au suivant.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title">Les regles des relances</div>
+        <div class="rules-grid">
+            <div class="rule-item">
+                <h4>Sois creatif</h4>
+                <p>Si toutes tes relances ressemblent a "t'as vu mon message ?", il va t'ignorer.</p>
+            </div>
+            <div class="rule-item">
+                <h4>Sois court</h4>
+                <p>1-2 phrases max. C'est pas un deuxieme pitch.</p>
+            </div>
+            <div class="rule-item">
+                <h4>Pas desespere</h4>
+                <p>"J'ai envoye un message il y a 3 jours" = ca fait needeux et ca tue toute chance.</p>
+            </div>
+            <div class="rule-item">
+                <h4>Sois regulier</h4>
+                <p>Chaque matin, ouvre ton CRM, vois qui relancer, fais-le en 5 minutes.</p>
+            </div>
+        </div>
+
+        <div class="process">
+            <h3>Ton process quotidien</h3>
+            <div class="process-step">
+                <div class="step-num priority">1</div>
+                <div class="step-text"><strong>Relances d'abord</strong> — 10 secondes par relance, peut apporter un appel immediatement</div>
+            </div>
+            <div class="process-step">
+                <div class="step-num">2</div>
+                <div class="step-text">Cherche des nouveaux createurs et ajoute-les au CRM</div>
+            </div>
+            <div class="process-step">
+                <div class="step-num">3</div>
+                <div class="step-text">Envoie tes messages d'approche aux nouveaux createurs</div>
+            </div>
+            <div class="process-step">
+                <div class="step-num">4</div>
+                <div class="step-text">Enregistre et envoie tes Looms</div>
+            </div>
+            <div class="process-step">
+                <div class="step-num">5</div>
+                <div class="step-text">Mets a jour ton CRM</div>
+            </div>
+        </div>
+
+        <div class="takeaway">
+            <h3>Relances d'abord, nouveaux createurs ensuite</h3>
+            <p>Toujours dans cet ordre. Une relance peut transformer un silence en appel.</p>
+        </div>
+
+    </div>
+</body>
+</html>

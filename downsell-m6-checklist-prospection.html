@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checklist avant de prospecter</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8f9fc;
+            color: #1a1a2e;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container { max-width: 720px; margin: 0 auto; }
+
+        .header { text-align: center; margin-bottom: 48px; }
+        .header .badge {
+            display: inline-block;
+            background: #e8f0fe;
+            color: #1a56db;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            padding: 6px 16px;
+            border-radius: 100px;
+            margin-bottom: 16px;
+        }
+        .header h1 { font-size: 26px; font-weight: 800; line-height: 1.3; letter-spacing: -0.5px; margin-bottom: 8px; }
+        .header p { color: #6b7280; font-size: 15px; line-height: 1.5; }
+
+        .checklist-section {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+        .section-header {
+            padding: 20px 28px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .section-header.loom { background: linear-gradient(135deg, #e8f0fe 0%, #dbeafe 100%); border-bottom: 1px solid #bfdbfe; }
+        .section-header.ig { background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%); border-bottom: 1px solid #f9a8d4; }
+
+        .section-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 18px;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        .loom .section-icon { background: #1a56db; }
+        .ig .section-icon { background: #db2777; }
+
+        .section-title-text h3 { font-size: 16px; font-weight: 700; }
+        .loom .section-title-text h3 { color: #1e40af; }
+        .ig .section-title-text h3 { color: #9d174d; }
+        .section-title-text p { font-size: 13px; color: #6b7280; margin-top: 2px; }
+
+        .checklist-body { padding: 24px 28px; }
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 10px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .check-item:last-child { border-bottom: none; }
+        .check-box {
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            border: 2px solid #d1d5db;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .check-text {
+            font-size: 14px;
+            color: #374151;
+            line-height: 1.5;
+        }
+
+        .go-banner {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            color: #fff;
+            border-radius: 16px;
+            padding: 28px;
+            text-align: center;
+        }
+        .go-banner h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+        .go-banner p { font-size: 14px; line-height: 1.6; opacity: 0.9; }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <div class="badge">Module 6</div>
+            <h1>Checklist avant de prospecter</h1>
+            <p>Coche chaque case avant de passer a la Section 3. Si une case n'est pas cochee, tu n'es pas pret.</p>
+        </div>
+
+        <div class="checklist-section">
+            <div class="section-header loom">
+                <div class="section-icon">L</div>
+                <div class="section-title-text">
+                    <h3>Loom</h3>
+                    <p>Ton outil de prospection principal</p>
+                </div>
+            </div>
+            <div class="checklist-body">
+                <div class="check-item">
+                    <div class="check-box"></div>
+                    <div class="check-text">Mon compte Loom est cree</div>
+                </div>
+                <div class="check-item">
+                    <div class="check-box"></div>
+                    <div class="check-text">J'ai teste un enregistrement pour verifier que mon micro et ma camera fonctionnent</div>
+                </div>
+                <div class="check-item">
+                    <div class="check-box"></div>
+                    <div class="check-text">Ma qualite video est nette et mon son est clair</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="checklist-section">
+            <div class="section-header ig">
+                <div class="section-icon">IG</div>
+                <div class="section-title-text">
+                    <h3>Instagram</h3>
+                    <p>Ta vitrine professionnelle</p>
+                </div>
+            </div>
+            <div class="checklist-body">
+                <div class="check-item">
+                    <div class="check-box"></div>
+                    <div class="check-text">Mon compte est public</div>
+                </div>
+                <div class="check-item">
+                    <div class="check-box"></div>
+                    <div class="check-text">Mon nom d'utilisateur est propre (prenom.nom ou similaire)</div>
+                </div>
+                <div class="check-item">
+                    <div class="check-box"></div>
+                    <div class="check-text">Ma photo de profil est nette et on voit clairement mon visage</div>
+                </div>
+                <div class="check-item">
+                    <div class="check-box"></div>
+                    <div class="check-text">Ma bio est claire et simple (une phrase qui explique ce que je fais)</div>
+                </div>
+                <div class="check-item">
+                    <div class="check-box"></div>
+                    <div class="check-text">J'ai au moins 1 bulle de story a la une avec des photos de qualite</div>
+                </div>
+                <div class="check-item">
+                    <div class="check-box"></div>
+                    <div class="check-text">Mon feed ne contient aucune photo de soiree, meme ou contenu qui me decredibilise</div>
+                </div>
+                <div class="check-item">
+                    <div class="check-box"></div>
+                    <div class="check-text">J'ai passe le GPT "Audit de mon profil" et j'ai un score minimum de 7/10</div>
+                </div>
+                <div class="check-item">
+                    <div class="check-box"></div>
+                    <div class="check-text">J'ai lance la certification Meta (recommande)</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="go-banner">
+            <h3>Tout est coche ? Tu es pret.</h3>
+            <p>Passe a la Section 3 et commence a choisir tes createurs.<br>Si ton score GPT est en dessous de 7/10, prends 48h pour corriger avant d'avancer.</p>
+        </div>
+
+    </div>
+</body>
+</html>

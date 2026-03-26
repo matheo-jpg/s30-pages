@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repertoire de niches rentables</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8f9fc;
+            color: #1a1a2e;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container { max-width: 720px; margin: 0 auto; }
+
+        .header { text-align: center; margin-bottom: 48px; }
+        .header .badge {
+            display: inline-block;
+            background: #e8f0fe;
+            color: #1a56db;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            padding: 6px 16px;
+            border-radius: 100px;
+            margin-bottom: 16px;
+        }
+        .header h1 { font-size: 26px; font-weight: 800; line-height: 1.3; letter-spacing: -0.5px; margin-bottom: 8px; }
+        .header p { color: #6b7280; font-size: 15px; line-height: 1.5; }
+
+        .stat-banner {
+            background: linear-gradient(135deg, #1a56db 0%, #7c3aed 100%);
+            color: #fff;
+            border-radius: 16px;
+            padding: 28px;
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .stat-banner .big { font-size: 42px; font-weight: 800; line-height: 1; margin-bottom: 8px; }
+        .stat-banner p { font-size: 14px; opacity: 0.9; line-height: 1.5; }
+
+        /* Category section */
+        .category {
+            margin-bottom: 32px;
+        }
+        .category-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        .category-title.sport { color: #1a56db; border-color: #1a56db; }
+        .category-title.sante { color: #059669; border-color: #059669; }
+        .category-title.relations { color: #db2777; border-color: #db2777; }
+        .category-title.passions { color: #d97706; border-color: #d97706; }
+        .category-title.business { color: #7c3aed; border-color: #7c3aed; }
+        .category-title.explore { color: #6b7280; border-color: #6b7280; }
+
+        .niches-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .niche-card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 16px 18px;
+        }
+        .niche-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; color: #1a1a2e; }
+        .niche-card .why { font-size: 12px; color: #6b7280; line-height: 1.5; margin-bottom: 8px; }
+        .niche-card .keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+        .keyword {
+            font-size: 10px;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 4px;
+            background: #f3f4f6;
+            color: #6b7280;
+        }
+        .niche-card .offre {
+            font-size: 11px;
+            color: #1a56db;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        /* Explore section */
+        .explore-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+        .explore-item {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .takeaway {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            color: #fff;
+            border-radius: 16px;
+            padding: 28px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        .takeaway h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+        .takeaway p { font-size: 14px; line-height: 1.6; opacity: 0.9; }
+
+        @media (max-width: 600px) {
+            .niches-grid { grid-template-columns: 1fr; }
+            .explore-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <div class="badge">Bonus 2</div>
+            <h1>Repertoire de niches rentables</h1>
+            <p>20+ niches ou des operateurs font de l'argent en ce moment. Pour chaque niche : pourquoi, exemples et mots-cles.</p>
+        </div>
+
+        <div class="stat-banner">
+            <div class="big">20+</div>
+            <p>Niches validees avec pouvoir d'achat, engagement et douleur reelle.<br>Les meilleures opportunites sont dans les niches ou personne ne cherche.</p>
+        </div>
+
+        <!-- Sport Premium -->
+        <div class="category">
+            <div class="category-title sport">Sport premium</div>
+            <div class="niches-grid">
+                <div class="niche-card">
+                    <h4>Golf</h4>
+                    <div class="why">Materiel cher, audience 30-60 ans avec pouvoir d'achat</div>
+                    <div class="keywords">
+                        <span class="keyword">coach golf</span>
+                        <span class="keyword">ameliorer swing</span>
+                        <span class="keyword">prof golf</span>
+                    </div>
+                    <div class="offre">Programme amelioration du handicap</div>
+                </div>
+                <div class="niche-card">
+                    <h4>Cyclisme</h4>
+                    <div class="why">Velos a 5 000-10 000 EUR, audience passionnee</div>
+                    <div class="keywords">
+                        <span class="keyword">coach cyclisme</span>
+                        <span class="keyword">plan FTP</span>
+                        <span class="keyword">velo route</span>
+                    </div>
+                    <div class="offre">Programme entrainement personnalise</div>
+                </div>
+                <div class="niche-card">
+                    <h4>Triathlon</h4>
+                    <div class="why">Discipline technique, investissement materiel lourd</div>
+                    <div class="keywords">
+                        <span class="keyword">coach triathlon</span>
+                        <span class="keyword">ironman</span>
+                        <span class="keyword">preparation</span>
+                    </div>
+                    <div class="offre">Programme preparation saison</div>
+                </div>
+                <div class="niche-card">
+                    <h4>Running</h4>
+                    <div class="why">Audience massive, premiere competition = declencheur d'achat</div>
+                    <div class="keywords">
+                        <span class="keyword">coach running</span>
+                        <span class="keyword">plan marathon</span>
+                        <span class="keyword">trail</span>
+                    </div>
+                    <div class="offre">Preparation marathon/semi/trail</div>
+                </div>
+                <div class="niche-card">
+                    <h4>Pilates</h4>
+                    <div class="why">Audience feminine 25-45 ans, bien-etre premium</div>
+                    <div class="keywords">
+                        <span class="keyword">prof pilates</span>
+                        <span class="keyword">pilates maison</span>
+                        <span class="keyword">reformer</span>
+                    </div>
+                    <div class="offre">Programme en ligne + communaute</div>
+                </div>
+                <div class="niche-card">
+                    <h4>Equitation</h4>
+                    <div class="why">Sport tres cher, audience passionnee et fidele</div>
+                    <div class="keywords">
+                        <span class="keyword">coach equitation</span>
+                        <span class="keyword">dressage</span>
+                        <span class="keyword">CSO</span>
+                    </div>
+                    <div class="offre">Coaching technique video</div>
+                </div>
+                <div class="niche-card">
+                    <h4>Tennis</h4>
+                    <div class="why">Sport technique, licences, cours prives</div>
+                    <div class="keywords">
+                        <span class="keyword">coach tennis</span>
+                        <span class="keyword">technique service</span>
+                    </div>
+                    <div class="offre">Programme technique + analyse video</div>
+                </div>
+                <div class="niche-card">
+                    <h4>Sports de montagne</h4>
+                    <div class="why">Ski, alpinisme, rando technique = budget</div>
+                    <div class="keywords">
+                        <span class="keyword">guide montagne</span>
+                        <span class="keyword">ski freeride</span>
+                        <span class="keyword">alpinisme</span>
+                    </div>
+                    <div class="offre">Preparation physique + securite</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sante & Bien-etre -->
+        <div class="category">
+            <div class="category-title sante">Sante et bien-etre</div>
+            <div class="niches-grid">
+                <div class="niche-card">
+                    <h4>Perte de poids</h4>
+                    <div class="why">Douleur emotionnelle forte, marche enorme</div>
+                    <div class="keywords">
+                        <span class="keyword">coach perte de poids</span>
+                        <span class="keyword">transformation</span>
+                    </div>
+                    <div class="offre">Programme transformation 90 jours</div>
+                </div>
+                <div class="niche-card">
+                    <h4>Fitness +35 ans</h4>
+                    <div class="why">Revenus stables, soucis de sante = urgence</div>
+                    <div class="keywords">
+                        <span class="keyword">fitness apres 40</span>
+                        <span class="keyword">remise en forme</span>
+                    </div>
+                    <div class="offre">Programme adapte + coaching</div>
+                </div>
+                <div class="niche-card">
+                    <h4>Nutrition</h4>
+                    <div class="why">Complementaire a tous les sports, audience large</div>
+                    <div class="keywords">
+                        <span class="keyword">nutritionniste</span>
+                        <span class="keyword">meal prep</span>
+                        <span class="keyword">dietetique</span>
+                    </div>
+                    <div class="offre">Programme nutritionnel personnalise</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Relations -->
+        <div class="category">
+            <div class="category-title relations">Relations</div>
+            <div class="niches-grid">
+                <div class="niche-card">
+                    <h4>Relations amoureuses (femmes)</h4>
+                    <div class="why">Douleur emotionnelle tres forte, pretes a investir</div>
+                    <div class="keywords">
+                        <span class="keyword">love coach</span>
+                        <span class="keyword">confiance en soi</span>
+                    </div>
+                    <div class="offre">Programme transformation relationnelle</div>
+                </div>
+                <div class="niche-card">
+                    <h4>Seduction (hommes)</h4>
+                    <div class="why">Douleur forte, marche sous-exploite en France</div>
+                    <div class="keywords">
+                        <span class="keyword">coach seduction</span>
+                        <span class="keyword">masculinite</span>
+                    </div>
+                    <div class="offre">Programme confiance + coaching</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Passions techniques -->
+        <div class="category">
+            <div class="category-title passions">Passions techniques</div>
+            <div class="niches-grid">
+                <div class="niche-card">
+                    <h4>Guitare</h4>
+                    <div class="why">Passion longue duree, audience fidele</div>
+                    <div class="keywords">
+                        <span class="keyword">prof guitare</span>
+                        <span class="keyword">tuto guitare</span>
+                    </div>
+                    <div class="offre">Programme apprentissage structure</div>
+                </div>
+                <div class="niche-card">
+                    <h4>Piano</h4>
+                    <div class="why">Audience adulte qui reprend un instrument</div>
+                    <div class="keywords">
+                        <span class="keyword">prof piano</span>
+                        <span class="keyword">piano adulte</span>
+                    </div>
+                    <div class="offre">Programme en ligne + communaute</div>
+                </div>
+                <div class="niche-card">
+                    <h4>Langues</h4>
+                    <div class="why">Douleur forte (famille, religion, voyage), marche enorme</div>
+                    <div class="keywords">
+                        <span class="keyword">apprendre arabe</span>
+                        <span class="keyword">espagnol</span>
+                        <span class="keyword">prof langue</span>
+                    </div>
+                    <div class="offre">Programme intensif + coaching</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Business -->
+        <div class="category">
+            <div class="category-title business">Business</div>
+            <div class="niches-grid">
+                <div class="niche-card">
+                    <h4>Entrepreneuriat</h4>
+                    <div class="why">Pret a investir mais niche saturee — plus de concurrence</div>
+                    <div class="keywords">
+                        <span class="keyword">coach business</span>
+                        <span class="keyword">entrepreneur</span>
+                    </div>
+                    <div class="offre">Accompagnement, mastermind</div>
+                </div>
+                <div class="niche-card">
+                    <h4>Investissement / Immobilier</h4>
+                    <div class="why">Audience avec capital, ROI direct</div>
+                    <div class="keywords">
+                        <span class="keyword">investissement immo</span>
+                        <span class="keyword">rendement</span>
+                    </div>
+                    <div class="offre">Formation + coaching personnalise</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- A explorer -->
+        <div class="category">
+            <div class="category-title explore">Niches inattendues (a explorer)</div>
+            <div class="explore-grid">
+                <div class="explore-item">Arreter l'alcool</div>
+                <div class="explore-item">Natation</div>
+                <div class="explore-item">Sexologie</div>
+                <div class="explore-item">Apiculture</div>
+                <div class="explore-item">Photographie</div>
+                <div class="explore-item">Cuisine</div>
+                <div class="explore-item">Parentalite</div>
+            </div>
+        </div>
+
+        <div class="takeaway">
+            <h3>Ce repertoire est un point de depart</h3>
+            <p>Les meilleurs operateurs sont ceux qui trouvent des niches ou personne ne cherche. Sois creatif.</p>
+        </div>
+
+    </div>
+</body>
+</html>
