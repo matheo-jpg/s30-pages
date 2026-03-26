@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ton role d'Operateur de Croissance</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8f9fc;
+            color: #1a1a2e;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container { max-width: 720px; margin: 0 auto; }
+
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .header .badge {
+            display: inline-block;
+            background: #e8f0fe;
+            color: #1a56db;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            padding: 6px 16px;
+            border-radius: 100px;
+            margin-bottom: 16px;
+        }
+        .header h1 {
+            font-size: 26px;
+            font-weight: 800;
+            line-height: 1.3;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+        .header p {
+            color: #6b7280;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        /* Business model visual */
+        .biz-model {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 40px;
+        }
+        .biz-model h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        .biz-flow {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr auto 1fr;
+            gap: 12px;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .biz-box {
+            border-radius: 14px;
+            padding: 20px 16px;
+        }
+        .biz-box.creator {
+            background: #f3f0ff;
+            border: 1px solid #ddd6fe;
+        }
+        .biz-box.operator {
+            background: #e8f0fe;
+            border: 1px solid #bfdbfe;
+        }
+        .biz-box.result {
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+        }
+        .biz-box h4 {
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .biz-box.creator h4 { color: #7c3aed; }
+        .biz-box.operator h4 { color: #1a56db; }
+        .biz-box.result h4 { color: #059669; }
+        .biz-box p {
+            font-size: 12px;
+            color: #6b7280;
+            line-height: 1.4;
+        }
+        .biz-arrow {
+            font-size: 24px;
+            color: #d1d5db;
+            font-weight: 800;
+        }
+        .biz-example {
+            background: #f9fafb;
+            border-radius: 10px;
+            padding: 16px 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #374151;
+            line-height: 1.6;
+        }
+        .biz-example strong {
+            color: #059669;
+        }
+
+        /* Comparison table */
+        .comp-section {
+            margin-bottom: 40px;
+        }
+        .comp-section h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .comp-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+            background: #fff;
+        }
+        .comp-table thead th {
+            background: #f3f4f6;
+            padding: 14px 16px;
+            font-size: 13px;
+            font-weight: 700;
+            text-align: left;
+            color: #374151;
+        }
+        .comp-table tbody td {
+            padding: 14px 16px;
+            font-size: 13px;
+            color: #4b5563;
+            border-top: 1px solid #f3f4f6;
+            line-height: 1.5;
+        }
+        .comp-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        .comp-table .highlight {
+            background: #e8f0fe;
+            font-weight: 600;
+            color: #1a56db;
+        }
+
+        /* What you do */
+        .tasks-section {
+            margin-bottom: 40px;
+        }
+        .tasks-section h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .task-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .task-card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .task-card .task-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: #1a56db;
+            color: #fff;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+        .task-card h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: #1a1a2e;
+        }
+        .task-card p {
+            font-size: 12px;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        /* Results */
+        .results {
+            margin-bottom: 40px;
+        }
+        .results h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .result-card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+        .result-card .amount {
+            font-size: 22px;
+            font-weight: 800;
+            color: #059669;
+            white-space: nowrap;
+        }
+        .result-card .detail {
+            font-size: 13px;
+            color: #4b5563;
+            line-height: 1.5;
+        }
+        .result-card .detail strong {
+            color: #1a1a2e;
+        }
+
+        /* Phases */
+        .phases {
+            background: linear-gradient(135deg, #1a56db 0%, #1e40af 100%);
+            border-radius: 16px;
+            padding: 32px;
+            color: #fff;
+            margin-bottom: 40px;
+        }
+        .phases h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .phase-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .phase-row:last-child { margin-bottom: 0; }
+        .phase-num {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 15px;
+            flex-shrink: 0;
+        }
+        .phase-num.active {
+            background: #fff;
+            color: #1a56db;
+        }
+        .phase-num.locked {
+            background: rgba(255,255,255,0.15);
+            color: rgba(255,255,255,0.5);
+        }
+        .phase-info h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+        .phase-info p {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+        .phase-info .current-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 100px;
+            margin-left: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Pitch */
+        .pitch {
+            background: #fff;
+            border: 2px solid #1a56db;
+            border-radius: 16px;
+            padding: 28px;
+            text-align: center;
+        }
+        .pitch h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1a56db;
+            margin-bottom: 12px;
+        }
+        .pitch blockquote {
+            font-size: 15px;
+            font-style: italic;
+            color: #374151;
+            line-height: 1.7;
+            border: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        @media (max-width: 600px) {
+            .biz-flow { grid-template-columns: 1fr; gap: 8px; }
+            .biz-arrow { transform: rotate(90deg); }
+            .task-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Header -->
+        <div class="header">
+            <div class="badge">Module 2</div>
+            <h1>Ton role d'Operateur de Croissance</h1>
+            <p>Ce que tu fais concrètement, comment tu es paye, et pourquoi c'est le meilleur modèle pour demarrer a partir de zero.</p>
+        </div>
+
+        <!-- Business model -->
+        <div class="biz-model">
+            <h2>Le business model</h2>
+            <div class="biz-flow">
+                <div class="biz-box creator">
+                    <h4>Le createur</h4>
+                    <p>Audience, contenu, credibilite</p>
+                </div>
+                <div class="biz-arrow">+</div>
+                <div class="biz-box operator">
+                    <h4>Toi (operateur)</h4>
+                    <p>Marketing, vente, operations</p>
+                </div>
+                <div class="biz-arrow">=</div>
+                <div class="biz-box result">
+                    <h4>Revenus partages</h4>
+                    <p>20% a 40% pour toi sur chaque vente</p>
+                </div>
+            </div>
+            <div class="biz-example">
+                Exemple : le createur genère <strong>10 000 EUR/mois</strong>. A 30%, tu gagnes <strong>3 000 EUR/mois</strong>.<br>Tu ne factures rien au depart. Zero risque pour le createur = il accepte facilement.
+            </div>
+        </div>
+
+        <!-- Results reels -->
+        <div class="results">
+            <h2>Resultats reels d'operateurs</h2>
+            <div class="result-card">
+                <div class="amount">15 000 EUR</div>
+                <div class="detail"><strong>Melina</strong> — associee avec un coach de golf. 40 000 a 50 000 EUR/mois. A 30%, elle prend 15 000 EUR.</div>
+            </div>
+            <div class="result-card">
+                <div class="amount">15 000 EUR</div>
+                <div class="detail"><strong>Clement</strong> — associe avec un createur dans l'apprentissage de l'arabe. 50 000 EUR/mois de cash collecte.</div>
+            </div>
+            <div class="result-card">
+                <div class="amount">9 000 EUR</div>
+                <div class="detail"><strong>Brandon</strong> — associe avec une coach en relations. 30 000 EUR/mois generes ensemble.</div>
+            </div>
+            <div class="result-card">
+                <div class="amount">6 000 EUR</div>
+                <div class="detail"><strong>Benjamin</strong> — associe avec un prof de guitare qui a 637 abonnes. 20 000 EUR/mois grâce a la publicite.</div>
+            </div>
+        </div>
+
+        <!-- Comparison -->
+        <div class="comp-section">
+            <h2>Operateur vs Freelance vs Agence</h2>
+            <table class="comp-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Freelance</th>
+                        <th>Agence</th>
+                        <th class="highlight">Operateur</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Remuneration</strong></td>
+                        <td>A l'heure ou au projet</td>
+                        <td>Forfait mensuel</td>
+                        <td class="highlight">% sur les ventes</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Risque client</strong></td>
+                        <td>Paye meme si ca marche pas</td>
+                        <td>Paye meme si ca marche pas</td>
+                        <td class="highlight">Zero risque (paye au resultat)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Alignement</strong></td>
+                        <td>Faible (vend son temps)</td>
+                        <td>Moyen (forfait fixe)</td>
+                        <td class="highlight">Total (plus il gagne, plus tu gagnes)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pour demarrer</strong></td>
+                        <td>Besoin de portfolio</td>
+                        <td>Besoin de clients mensuels</td>
+                        <td class="highlight">UN createur suffit</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Scalabilite</strong></td>
+                        <td>Limitee (temps = argent)</td>
+                        <td>Moyenne (turnover clients)</td>
+                        <td class="highlight">Forte (revenus recurrents)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Tasks -->
+        <div class="tasks-section">
+            <h2>Ce que tu fais concrètement</h2>
+            <div class="task-grid">
+                <div class="task-card">
+                    <div class="task-num">1</div>
+                    <h4>Creer l'offre</h4>
+                    <p>Un coaching ou programme premium pour l'audience du createur</p>
+                </div>
+                <div class="task-card">
+                    <div class="task-num">2</div>
+                    <h4>Construire le tunnel</h4>
+                    <p>Page de capture, video de vente, questionnaire de qualification</p>
+                </div>
+                <div class="task-card">
+                    <div class="task-num">3</div>
+                    <h4>Lancer la publicite</h4>
+                    <p>Amener du trafic qualifie vers le tunnel de vente</p>
+                </div>
+                <div class="task-card">
+                    <div class="task-num">4</div>
+                    <h4>Gerer les ventes</h4>
+                    <p>Equipe de vente, emails, paiements, suivi client</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phases -->
+        <div class="phases">
+            <h2>Les 3 phases du metier</h2>
+            <div class="phase-row">
+                <div class="phase-num active">1</div>
+                <div class="phase-info">
+                    <h4>Signer un createur <span class="current-tag">Ce programme</span></h4>
+                    <p>Prospecter, contacter, convaincre, signer un contrat de partenariat</p>
+                </div>
+            </div>
+            <div class="phase-row">
+                <div class="phase-num locked">2</div>
+                <div class="phase-info">
+                    <h4>Lancer son business</h4>
+                    <p>Creer l'offre, construire le tunnel, lancer les premières ventes</p>
+                </div>
+            </div>
+            <div class="phase-row">
+                <div class="phase-num locked">3</div>
+                <div class="phase-info">
+                    <h4>Scaler</h4>
+                    <p>Optimiser, recruter des closers, augmenter le budget pub, passer a 50 000 EUR/mois</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pitch -->
+        <div class="pitch">
+            <h3>Ton pitch en 30 secondes</h3>
+            <blockquote>
+                "Je m'associe avec des createurs de contenu pour les aider a monetiser leur audience. Je m'occupe de toute la partie business — l'offre, le marketing, la vente — et le createur se concentre sur son contenu. Je suis paye au pourcentage, donc je gagne uniquement quand le createur gagne."
+            </blockquote>
+        </div>
+
+    </div>
+</body>
+</html>

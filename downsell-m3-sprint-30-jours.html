@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ton Sprint de 30 jours</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8f9fc;
+            color: #1a1a2e;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container { max-width: 720px; margin: 0 auto; }
+
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .header .badge {
+            display: inline-block;
+            background: #e8f0fe;
+            color: #1a56db;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            padding: 6px 16px;
+            border-radius: 100px;
+            margin-bottom: 16px;
+        }
+        .header h1 {
+            font-size: 26px;
+            font-weight: 800;
+            line-height: 1.3;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+        .header p {
+            color: #6b7280;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        /* Week cards */
+        .week {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+        .week-header {
+            padding: 20px 28px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .week-header.w1 { background: linear-gradient(135deg, #e8f0fe 0%, #dbeafe 100%); border-bottom: 1px solid #bfdbfe; }
+        .week-header.w2 { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-bottom: 1px solid #fcd34d; }
+        .week-header.w3 { background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%); border-bottom: 1px solid #f9a8d4; }
+        .week-header.w4 { background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); border-bottom: 1px solid #6ee7b7; }
+
+        .week-num {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 18px;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        .w1 .week-num { background: #1a56db; }
+        .w2 .week-num { background: #d97706; }
+        .w3 .week-num { background: #db2777; }
+        .w4 .week-num { background: #059669; }
+
+        .week-title h3 {
+            font-size: 16px;
+            font-weight: 700;
+        }
+        .week-title p {
+            font-size: 13px;
+            color: #6b7280;
+            margin-top: 2px;
+        }
+        .w1 .week-title h3 { color: #1e40af; }
+        .w2 .week-title h3 { color: #92400e; }
+        .w3 .week-title h3 { color: #9d174d; }
+        .w4 .week-title h3 { color: #065f46; }
+
+        .week-body {
+            padding: 24px 28px;
+        }
+        .day-block {
+            margin-bottom: 20px;
+        }
+        .day-block:last-child { margin-bottom: 0; }
+        .day-label {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #9ca3af;
+            margin-bottom: 8px;
+        }
+        .day-tasks {
+            list-style: none;
+            padding: 0;
+        }
+        .day-tasks li {
+            font-size: 13px;
+            color: #374151;
+            line-height: 1.6;
+            padding: 4px 0 4px 20px;
+            position: relative;
+        }
+        .day-tasks li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+            border: 2px solid #d1d5db;
+        }
+
+        /* Week result */
+        .week-result {
+            background: #f9fafb;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin-top: 16px;
+        }
+        .week-result h4 {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #6b7280;
+            margin-bottom: 6px;
+        }
+        .week-result p {
+            font-size: 13px;
+            color: #374151;
+            line-height: 1.5;
+        }
+
+        /* Stats bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+        .stat-box {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+        }
+        .stat-box .num {
+            font-size: 24px;
+            font-weight: 800;
+            color: #1a56db;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .stat-box .label {
+            font-size: 11px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        /* Cadence info */
+        .cadence {
+            background: linear-gradient(135deg, #1a56db 0%, #7c3aed 100%);
+            color: #fff;
+            border-radius: 16px;
+            padding: 28px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .cadence h3 {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+        .cadence p {
+            font-size: 14px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        /* Finish */
+        .finish {
+            background: #ecfdf5;
+            border: 2px solid #059669;
+            border-radius: 16px;
+            padding: 28px;
+            text-align: center;
+        }
+        .finish h3 {
+            font-size: 18px;
+            font-weight: 800;
+            color: #059669;
+            margin-bottom: 8px;
+        }
+        .finish p {
+            font-size: 14px;
+            color: #374151;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 600px) {
+            .stats-bar { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Header -->
+        <div class="header">
+            <div class="badge">Module 3</div>
+            <h1>Ton Sprint de 30 jours</h1>
+            <p>La roadmap complète pour signer ton premier createur. Chaque jour compte. Chaque action compte.</p>
+        </div>
+
+        <!-- Cadence -->
+        <div class="cadence">
+            <h3>2 heures par jour pendant 30 jours</h3>
+            <p>C'est le minimum pour suivre cette roadmap. Si tu as 3 a 4 heures, tu peux aller deux fois plus vite.<br>Si tu as moins, ca prendra 45 jours au lieu de 30. L'important c'est d'avancer tous les jours.</p>
+        </div>
+
+        <!-- Stats targets -->
+        <div class="stats-bar">
+            <div class="stat-box">
+                <div class="num">220</div>
+                <div class="label">DM's envoyes</div>
+            </div>
+            <div class="stat-box">
+                <div class="num">60</div>
+                <div class="label">Looms envoyes</div>
+            </div>
+            <div class="stat-box">
+                <div class="num">2+</div>
+                <div class="label">Calls bookes</div>
+            </div>
+            <div class="stat-box">
+                <div class="num">1</div>
+                <div class="label">Createur signe</div>
+            </div>
+        </div>
+
+        <!-- WEEK 1 -->
+        <div class="week">
+            <div class="week-header w1">
+                <div class="week-num">S1</div>
+                <div class="week-title">
+                    <h3>Pose tes fondations</h3>
+                    <p>Jours 1 a 7 — Sections 1, 2 et 3</p>
+                </div>
+            </div>
+            <div class="week-body">
+                <div class="day-block">
+                    <div class="day-label">Jour 1-2 : Comprends le modèle</div>
+                    <ul class="day-tasks">
+                        <li>Regarder les modules 1 et 2</li>
+                        <li>Savoir expliquer le metier en une phrase</li>
+                        <li>Tester ta comprehension avec le GPT</li>
+                    </ul>
+                </div>
+                <div class="day-block">
+                    <div class="day-label">Jour 3-4 : Prepare tes outils</div>
+                    <ul class="day-tasks">
+                        <li>Compte Loom cree + test micro/camera</li>
+                        <li>Profil Instagram optimise (bio, photo, stories a la une)</li>
+                        <li>Audit profil par le GPT — score minimum 7/10</li>
+                    </ul>
+                </div>
+                <div class="day-block">
+                    <div class="day-label">Jour 4-7 : Choisis tes createurs</div>
+                    <ul class="day-tasks">
+                        <li>Regarder les modules Section 3</li>
+                        <li>Liste de minimum 20 createurs potentiels</li>
+                        <li>Chaque createur passe dans le GPT "Analyse de createur"</li>
+                    </ul>
+                </div>
+                <div class="week-result">
+                    <h4>Resultat fin de semaine 1</h4>
+                    <p>Tu as compris le modèle, tes outils sont prets, et ta liste de 20 createurs est validee. Tu es pret a demarcher.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- WEEK 2 -->
+        <div class="week">
+            <div class="week-header w2">
+                <div class="week-num">S2</div>
+                <div class="week-title">
+                    <h3>Demarche</h3>
+                    <p>Jours 8 a 14 — Section 4</p>
+                </div>
+            </div>
+            <div class="week-body">
+                <div class="day-block">
+                    <div class="day-label">Jour 8-9 : Prepare ta prospection</div>
+                    <ul class="day-tasks">
+                        <li>Script de Loom prepare avec le GPT</li>
+                        <li>Premier Loom tourne — score minimum 7/10</li>
+                        <li>CRM Notion en place avec tes 20 createurs</li>
+                    </ul>
+                </div>
+                <div class="day-block">
+                    <div class="day-label">Jour 10-14 : Envoie tes messages</div>
+                    <ul class="day-tasks">
+                        <li>20 DM's par jour (total : 80)</li>
+                        <li>5 Looms par jour (total : 25)</li>
+                        <li>CRM a jour chaque soir</li>
+                        <li>Relancer les non-reponses des premiers jours</li>
+                    </ul>
+                </div>
+                <div class="week-result">
+                    <h4>Resultat fin de semaine 2</h4>
+                    <p>80 DM's envoyes, 25 Looms envoyes, CRM a jour, premières relances faites.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- WEEK 3 -->
+        <div class="week">
+            <div class="week-header w3">
+                <div class="week-num">S3</div>
+                <div class="week-title">
+                    <h3>Continue et ajuste</h3>
+                    <p>Jours 15 a 21 — Section 4 (suite)</p>
+                </div>
+            </div>
+            <div class="week-body">
+                <div class="day-block">
+                    <div class="day-label">Jour 15-21 : Cadence quotidienne</div>
+                    <ul class="day-tasks">
+                        <li>20 DM's par jour (total semaine 3 : 220)</li>
+                        <li>5 Looms par jour (total semaine 3 : 60)</li>
+                        <li>Relancer toutes les non-reponses en attente</li>
+                        <li>Ajuster ton approche si ton score GPT est inferieur a 7/10</li>
+                        <li>Objectif : au moins 1 reponse positive et 1 call booke</li>
+                    </ul>
+                </div>
+                <div class="week-result">
+                    <h4>Resultat fin de semaine 3</h4>
+                    <p>220 DM's envoyes, 60 Looms envoyes, toutes les relances faites, au moins 1 call booke.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- WEEK 4 -->
+        <div class="week">
+            <div class="week-header w4">
+                <div class="week-num">S4</div>
+                <div class="week-title">
+                    <h3>Close ton createur</h3>
+                    <p>Jours 22 a 30 — Section 5</p>
+                </div>
+            </div>
+            <div class="week-body">
+                <div class="day-block">
+                    <div class="day-label">Jour 22-24 : Prepare-toi a closer</div>
+                    <ul class="day-tasks">
+                        <li>Regarder les modules Section 5</li>
+                        <li>3 simulations minimum avec le GPT</li>
+                        <li>Savoir traiter les objections principales</li>
+                    </ul>
+                </div>
+                <div class="day-block">
+                    <div class="day-label">Jour 25-27 : Les calls</div>
+                    <ul class="day-tasks">
+                        <li>Call de decouverte (R1)</li>
+                        <li>Preparer ta presentation personnalisee avec le GPT</li>
+                        <li>Call de closing (R2)</li>
+                    </ul>
+                </div>
+                <div class="day-block">
+                    <div class="day-label">Jour 28-30 : La signature</div>
+                    <ul class="day-tasks">
+                        <li>Le createur signe le contrat</li>
+                        <li>Tu lui envoies un message : "Je reviens vers toi dans 48h avec un plan d'action"</li>
+                    </ul>
+                </div>
+                <div class="week-result">
+                    <h4>Resultat fin de semaine 4</h4>
+                    <p>Createur signe. Tu es officiellement un Operateur de Croissance.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Finish -->
+        <div class="finish">
+            <h3>Objectif : 1 createur signe en 30 jours</h3>
+            <p>C'est LA barrière a l'entree de ce business. Une fois que c'est fait, tout le reste devient plus simple. Chaque jour, coche tes cases et avance.</p>
+        </div>
+
+    </div>
+</body>
+</html>
