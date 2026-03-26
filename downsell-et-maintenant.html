@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Et maintenant ? — Strat&eacute;gie 30%</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8f9fc;
+            color: #1a1a2e;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container { max-width: 760px; margin: 0 auto; }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .header .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            padding: 8px 20px;
+            border-radius: 100px;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 32px;
+            font-weight: 900;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+        }
+        .header p {
+            color: #6b7280;
+            font-size: 16px;
+            line-height: 1.6;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        /* Celebration banner */
+        .celebration-banner {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            color: #fff;
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            margin-bottom: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+        .celebration-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 60%);
+        }
+        .celebration-banner h2 {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        .celebration-banner p {
+            font-size: 15px;
+            line-height: 1.7;
+            opacity: 0.92;
+            position: relative;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        /* Recap section */
+        .recap {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 48px;
+        }
+        .recap h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1a1a2e;
+        }
+        .recap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+        .recap-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 14px;
+            background: #f0fdf4;
+            border-radius: 10px;
+            border: 1px solid #bbf7d0;
+        }
+        .recap-check {
+            width: 24px;
+            height: 24px;
+            background: #059669;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .recap-check svg { width: 14px; height: 14px; }
+        .recap-item span { font-size: 13px; font-weight: 500; color: #065f46; }
+
+        /* Timeline / Roadmap */
+        .roadmap { margin-bottom: 48px; }
+        .roadmap h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        .timeline {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 28px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #10b981 0%, #3b82f6 40%, #7c3aed 70%, #f59e0b 100%);
+            border-radius: 3px;
+        }
+        .timeline-item {
+            display: flex;
+            gap: 20px;
+            padding: 16px 0;
+            position: relative;
+        }
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-left: 19px;
+            margin-top: 4px;
+            z-index: 1;
+            border: 3px solid #fff;
+            box-shadow: 0 0 0 2px rgba(0,0,0,0.06);
+        }
+        .timeline-dot.done { background: #10b981; }
+        .timeline-dot.level2 { background: #3b82f6; }
+        .timeline-dot.level3 { background: #7c3aed; }
+        .timeline-dot.level4 { background: #f59e0b; }
+
+        .timeline-content {
+            flex: 1;
+        }
+        .timeline-card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 18px 22px;
+            transition: box-shadow 0.2s;
+        }
+        .timeline-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+        .timeline-card.current {
+            border-color: #10b981;
+            background: #f0fdf4;
+        }
+        .timeline-card.locked {
+            border-color: #e5e7eb;
+            background: #fafbfc;
+        }
+        .timeline-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 4px;
+        }
+        .timeline-label.done-label { color: #059669; }
+        .timeline-label.next-label { color: #3b82f6; }
+        .timeline-label.scale-label { color: #7c3aed; }
+        .timeline-label.ceo-label { color: #d97706; }
+
+        .timeline-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .timeline-desc {
+            font-size: 13px;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+        .tag-done {
+            display: inline-block;
+            background: #d1fae5;
+            color: #065f46;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 6px;
+            margin-top: 8px;
+        }
+        .tag-locked {
+            display: inline-block;
+            background: #f3f4f6;
+            color: #9ca3af;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 6px;
+            margin-top: 8px;
+        }
+
+        /* Program cards */
+        .program-section { margin-bottom: 48px; }
+        .program-section h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+        .program-section > p {
+            text-align: center;
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+        .program-card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 24px;
+            text-align: center;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .program-card:hover {
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            transform: translateY(-2px);
+        }
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 14px;
+        }
+        .card-icon svg { width: 24px; height: 24px; }
+        .card-icon.community { background: linear-gradient(135deg, #dbeafe, #bfdbfe); }
+        .card-icon.community svg { color: #2563eb; }
+        .card-icon.calls { background: linear-gradient(135deg, #fce7f3, #fbcfe8); }
+        .card-icon.calls svg { color: #db2777; }
+        .card-icon.csm { background: linear-gradient(135deg, #d1fae5, #a7f3d0); }
+        .card-icon.csm svg { color: #059669; }
+        .card-icon.crm { background: linear-gradient(135deg, #fef3c7, #fde68a); }
+        .card-icon.crm svg { color: #d97706; }
+        .card-icon.levels { background: linear-gradient(135deg, #ede9fe, #ddd6fe); }
+        .card-icon.levels svg { color: #7c3aed; }
+        .card-icon.scale { background: linear-gradient(135deg, #fee2e2, #fecaca); }
+        .card-icon.scale svg { color: #dc2626; }
+
+        .program-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+        .program-card p { font-size: 13px; color: #6b7280; line-height: 1.5; }
+
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(135deg, #1a56db 0%, #7c3aed 100%);
+            color: #fff;
+            border-radius: 20px;
+            padding: 40px 32px;
+            text-align: center;
+            margin-bottom: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 60%);
+        }
+        .cta-section h3 {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        .cta-section p {
+            font-size: 15px;
+            line-height: 1.7;
+            opacity: 0.9;
+            max-width: 480px;
+            margin: 0 auto 24px;
+            position: relative;
+        }
+        .cta-button {
+            display: inline-block;
+            background: #fff;
+            color: #1a56db;
+            font-size: 15px;
+            font-weight: 700;
+            padding: 14px 36px;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        /* Closing note */
+        .closing-note {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 24px 28px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .closing-note p {
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.7;
+        }
+        .closing-note strong { color: #1a1a2e; }
+
+        @media (max-width: 600px) {
+            .header h1 { font-size: 26px; }
+            .celebration-banner { padding: 24px 20px; }
+            .celebration-banner h2 { font-size: 19px; }
+            .program-grid { grid-template-columns: 1fr; }
+            .cta-section { padding: 32px 20px; }
+            .cta-section h3 { font-size: 19px; }
+            .recap-grid { grid-template-columns: 1fr; }
+            .timeline::before { left: 18px; }
+            .timeline-dot { margin-left: 9px; width: 18px; height: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Header -->
+        <div class="header">
+            <div class="badge">Felicitations</div>
+            <h1>Et maintenant ?</h1>
+            <p>Tu as signe ton premier createur. C'est le debut de quelque chose de serieux. Voici la suite.</p>
+        </div>
+
+        <!-- Celebration -->
+        <div class="celebration-banner">
+            <h2>Tu es officiellement un Operateur de Croissance</h2>
+            <p>La majorite des gens qui s'interessent au business en ligne ne passent jamais a l'action. Toi, tu l'as fait. Tu as un createur qui t'attend. Personne ne peut t'enlever ca.</p>
+        </div>
+
+        <!-- Recap -->
+        <div class="recap">
+            <h3>Ce que tu as appris (Niveau 1)</h3>
+            <div class="recap-grid">
+                <div class="recap-item">
+                    <div class="recap-check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <span>Identifier un createur a potentiel</span>
+                </div>
+                <div class="recap-item">
+                    <div class="recap-check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <span>Demarcher avec un Loom pro</span>
+                </div>
+                <div class="recap-item">
+                    <div class="recap-check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <span>Mener un appel de decouverte</span>
+                </div>
+                <div class="recap-item">
+                    <div class="recap-check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <span>Closer le deal</span>
+                </div>
+                <div class="recap-item">
+                    <div class="recap-check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <span>Formaliser avec un contrat</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Roadmap Timeline -->
+        <div class="roadmap">
+            <h3>La roadmap complete</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot done"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-card current">
+                            <div class="timeline-label done-label">Niveau 1 — Termine</div>
+                            <div class="timeline-title">Signer ton premier createur</div>
+                            <div class="timeline-desc">Trouver, demarcher, closer, signer. C'est fait.</div>
+                            <div class="tag-done">Complete</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot level2"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-card locked">
+                            <div class="timeline-label next-label">Niveau 2 — Lancer</div>
+                            <div class="timeline-title">Construire le tunnel + lancer les pubs</div>
+                            <div class="timeline-desc">Page de capture, VSL, questionnaire, calendrier. Meta Ads, creative strategy, tracking. Generer les premiers leads pour ton createur.</div>
+                            <div class="tag-locked">Strategie 30%</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot level3"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-card locked">
+                            <div class="timeline-label scale-label">Niveau 3 — Scaler</div>
+                            <div class="timeline-title">Recruter une equipe de vente + scaler</div>
+                            <div class="timeline-desc">Recruter un closer, le former, le coacher. Gerer les operations : paiements, suivi clients, onboarding. Passer de 0 a 5 000 - 10 000 EUR/mois.</div>
+                            <div class="tag-locked">Strategie 30%</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot level4"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-card locked">
+                            <div class="timeline-label ceo-label">Niveau 4 — CEO</div>
+                            <div class="timeline-title">Systematiser et devenir CEO</div>
+                            <div class="timeline-desc">Plusieurs createurs, process automatises, equipe autonome. Tu geres un vrai business, pas juste un side project.</div>
+                            <div class="tag-locked">Strategie 30%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Program cards -->
+        <div class="program-section">
+            <h3>Ce qui t'attend dans Strategie 30%</h3>
+            <p>Tout ce dont tu as besoin pour passer du niveau 1 au niveau 4.</p>
+            <div class="program-grid">
+                <div class="program-card">
+                    <div class="card-icon community">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h4>Communaute d'operateurs</h4>
+                    <p>Des centaines de personnes qui font la meme chose que toi, tous les jours. Tu n'es plus seul.</p>
+                </div>
+                <div class="program-card">
+                    <div class="card-icon calls">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94"/><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </div>
+                    <h4>Un appel live par jour minimum</h4>
+                    <p>Avec des experts qui ont deja fait ce que tu essaies de faire. Pas des replays. Du live.</p>
+                </div>
+                <div class="program-card">
+                    <div class="card-icon csm">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <h4>CSM dediee</h4>
+                    <p>Quelqu'un qui connait ton dossier, qui te tient accountable, qui s'assure que tu avances.</p>
+                </div>
+                <div class="program-card">
+                    <div class="card-icon crm">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    </div>
+                    <h4>CRM automatise</h4>
+                    <p>Un vrai systeme pour gerer tes prospects, tes clients, tes paiements. Pas un Notion bricolage.</p>
+                </div>
+                <div class="program-card">
+                    <div class="card-icon levels">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                    </div>
+                    <h4>Niveaux 2, 3 et 4</h4>
+                    <p>Lancer, scaler, devenir CEO. Tout le chemin de 0 a 10 000+ EUR/mois, etape par etape.</p>
+                </div>
+                <div class="program-card">
+                    <div class="card-icon scale">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    </div>
+                    <h4>Accompagnement personnalise</h4>
+                    <p>On analyse ta situation, on te dit exactement quoi faire, et on marche avec toi jusqu'au resultat.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <h3>Pret a passer au niveau suivant ?</h3>
+            <p>Reserve un appel avec notre equipe. On va analyser ta situation et te dire si le programme est fait pour toi.</p>
+            <a href="https://app.iclosed.io/e/strategie30/appel-de-candidature-pour-strategie-30" class="cta-button" target="_blank">Reserver mon appel de candidature</a>
+        </div>
+
+        <!-- Closing note -->
+        <div class="closing-note">
+            <p>Meme si tu ne prends pas le programme, <strong>ce que tu as appris ici te permet deja de signer des createurs</strong>. Tu as les bases. Tu peux avancer seul. Mais si tu veux aller plus vite, eviter les erreurs que tout le monde fait, et avoir un cadre structure avec des gens qui font le chemin avec toi — on est la.</p>
+        </div>
+
+    </div>
+</body>
+</html>
