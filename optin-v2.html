@@ -356,7 +356,10 @@ img { max-width: 100%; height: auto; display: block; }
   transition: background 0.15s;
 }
 .phone-selector:hover { background: #edf2f7; }
-.phone-selector .flag { font-size: 20px; line-height: 1; }
+.phone-selector .flag { font-size: 20px; line-height: 1; display: flex; align-items: center; }
+.phone-selector .flag svg { width: 22px; height: 16px; border-radius: 2px; flex-shrink: 0; }
+.country-option .co-flag { display: flex; align-items: center; }
+.country-option .co-flag svg { width: 22px; height: 16px; border-radius: 2px; flex-shrink: 0; }
 .phone-selector .prefix {
   font-size: 14px;
   font-weight: 600;
@@ -627,29 +630,29 @@ img { max-width: 100%; height: auto; display: block; }
       <div class="form-group" id="phoneGroup">
         <div class="phone-wrapper" id="phoneWrapper">
           <div class="phone-selector" id="phoneSelector">
-            <span class="flag" id="selectedFlag">&#127467;&#127479;</span>
+            <span class="flag" id="selectedFlag"><svg viewBox="0 0 640 480"><rect width="213" height="480" fill="#002395"/><rect x="213" width="214" height="480" fill="#fff"/><rect x="427" width="213" height="480" fill="#ed2939"/></svg></span>
             <span class="prefix" id="selectedPrefix">+33</span>
             <span class="arrow">&#9660;</span>
           </div>
           <input type="tel" name="telephone" placeholder="06 XX XX XX XX" required>
           <div class="country-dropdown" id="countryDropdown">
-            <div class="country-option selected" data-prefix="+33" data-flag="&#127467;&#127479;" data-min="9" data-max="10" data-placeholder="06 XX XX XX XX">
-              <span class="co-flag">&#127467;&#127479;</span>
+            <div class="country-option selected" data-prefix="+33" data-flag="fr" data-min="9" data-max="10" data-placeholder="06 XX XX XX XX">
+              <span class="co-flag"><svg viewBox="0 0 640 480"><rect width="213" height="480" fill="#002395"/><rect x="213" width="214" height="480" fill="#fff"/><rect x="427" width="213" height="480" fill="#ed2939"/></svg></span>
               <span class="co-name">France</span>
               <span class="co-prefix">+33</span>
             </div>
-            <div class="country-option" data-prefix="+41" data-flag="&#127464;&#127469;" data-min="9" data-max="10" data-placeholder="07X XXX XX XX">
-              <span class="co-flag">&#127464;&#127469;</span>
+            <div class="country-option" data-prefix="+41" data-flag="ch" data-min="9" data-max="10" data-placeholder="07X XXX XX XX">
+              <span class="co-flag"><svg viewBox="0 0 640 480"><rect width="640" height="480" fill="#d52b1e"/><rect x="240" y="120" width="160" height="240" fill="#fff"/><rect x="200" y="180" width="240" height="120" fill="#fff"/></svg></span>
               <span class="co-name">Suisse</span>
               <span class="co-prefix">+41</span>
             </div>
-            <div class="country-option" data-prefix="+32" data-flag="&#127463;&#127466;" data-min="8" data-max="10" data-placeholder="04XX XX XX XX">
-              <span class="co-flag">&#127463;&#127466;</span>
+            <div class="country-option" data-prefix="+32" data-flag="be" data-min="8" data-max="10" data-placeholder="04XX XX XX XX">
+              <span class="co-flag"><svg viewBox="0 0 640 480"><rect width="213" height="480" fill="#000"/><rect x="213" width="214" height="480" fill="#fdda24"/><rect x="427" width="213" height="480" fill="#ed2939"/></svg></span>
               <span class="co-name">Belgique</span>
               <span class="co-prefix">+32</span>
             </div>
-            <div class="country-option" data-prefix="+1" data-flag="&#127464;&#127462;" data-min="10" data-max="10" data-placeholder="(XXX) XXX-XXXX">
-              <span class="co-flag">&#127464;&#127462;</span>
+            <div class="country-option" data-prefix="+1" data-flag="ca" data-min="10" data-max="10" data-placeholder="(XXX) XXX-XXXX">
+              <span class="co-flag"><svg viewBox="0 0 640 480"><rect width="160" height="480" fill="#d52b1e"/><rect x="160" width="320" height="480" fill="#fff"/><rect x="480" width="160" height="480" fill="#d52b1e"/><path d="M320 80l-20 60-50-10 30 45-40 30 50 5 0 50 30-40 30 40 0-50 50-5-40-30 30-45-50 10z" fill="#d52b1e"/></svg></span>
               <span class="co-name">Canada</span>
               <span class="co-prefix">+1</span>
             </div>
@@ -710,7 +713,7 @@ img { max-width: 100%; height: auto; display: block; }
       e.stopPropagation();
       options.forEach(function(o) { o.classList.remove('selected'); });
       opt.classList.add('selected');
-      flagEl.innerHTML = opt.getAttribute('data-flag');
+      flagEl.innerHTML = opt.querySelector('.co-flag').innerHTML;
       currentPrefix = opt.getAttribute('data-prefix');
       currentMinDigits = parseInt(opt.getAttribute('data-min'));
       currentMaxDigits = parseInt(opt.getAttribute('data-max'));
