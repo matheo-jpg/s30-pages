@@ -631,24 +631,24 @@ img { max-width: 100%; height: auto; display: block; }
             <span class="prefix" id="selectedPrefix">+33</span>
             <span class="arrow">&#9660;</span>
           </div>
-          <input type="tel" name="telephone" placeholder="Entre ton numero de telephone" required>
+          <input type="tel" name="telephone" placeholder="06 XX XX XX XX" required>
           <div class="country-dropdown" id="countryDropdown">
-            <div class="country-option selected" data-prefix="+33" data-flag="&#127467;&#127479;" data-min="9" data-max="10">
+            <div class="country-option selected" data-prefix="+33" data-flag="&#127467;&#127479;" data-min="9" data-max="10" data-placeholder="06 XX XX XX XX">
               <span class="co-flag">&#127467;&#127479;</span>
               <span class="co-name">France</span>
               <span class="co-prefix">+33</span>
             </div>
-            <div class="country-option" data-prefix="+41" data-flag="&#127464;&#127469;" data-min="9" data-max="10">
+            <div class="country-option" data-prefix="+41" data-flag="&#127464;&#127469;" data-min="9" data-max="10" data-placeholder="07X XXX XX XX">
               <span class="co-flag">&#127464;&#127469;</span>
               <span class="co-name">Suisse</span>
               <span class="co-prefix">+41</span>
             </div>
-            <div class="country-option" data-prefix="+32" data-flag="&#127463;&#127466;" data-min="8" data-max="10">
+            <div class="country-option" data-prefix="+32" data-flag="&#127463;&#127466;" data-min="8" data-max="10" data-placeholder="04XX XX XX XX">
               <span class="co-flag">&#127463;&#127466;</span>
               <span class="co-name">Belgique</span>
               <span class="co-prefix">+32</span>
             </div>
-            <div class="country-option" data-prefix="+1" data-flag="&#127464;&#127462;" data-min="10" data-max="10">
+            <div class="country-option" data-prefix="+1" data-flag="&#127464;&#127462;" data-min="10" data-max="10" data-placeholder="(XXX) XXX-XXXX">
               <span class="co-flag">&#127464;&#127462;</span>
               <span class="co-name">Canada</span>
               <span class="co-prefix">+1</span>
@@ -715,6 +715,7 @@ img { max-width: 100%; height: auto; display: block; }
       currentMinDigits = parseInt(opt.getAttribute('data-min'));
       currentMaxDigits = parseInt(opt.getAttribute('data-max'));
       prefixEl.textContent = currentPrefix;
+      form.telephone.placeholder = opt.getAttribute('data-placeholder');
       dropdown.classList.remove('open');
       form.telephone.focus();
     });
