@@ -21,7 +21,6 @@
     overflow-x: hidden;
   }
 
-  /* Glow effect */
   body::after {
     content: '';
     position: fixed;
@@ -34,12 +33,8 @@
     pointer-events: none;
   }
 
-  .container {
-    max-width: 520px;
-    width: 100%;
-  }
+  .container { max-width: 520px; width: 100%; }
 
-  /* Main card */
   .card {
     background: rgba(255, 255, 255, 0.8);
     border: 1px solid rgba(135, 205, 221, 0.8);
@@ -50,7 +45,6 @@
     text-align: center;
   }
 
-  /* Badge */
   .badge {
     display: inline-block;
     background: #1BA7FF;
@@ -60,7 +54,7 @@
     padding: 6px 20px;
     border-radius: 50px;
     letter-spacing: 0.5px;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     text-transform: uppercase;
   }
 
@@ -69,39 +63,21 @@
     font-weight: 900;
     color: #1A1A2E;
     line-height: 1.3;
-    margin-bottom: 8px;
-  }
-
-  .subtitle {
-    font-size: 15px;
-    color: #4A5568;
-    font-weight: 500;
     margin-bottom: 32px;
   }
 
-  /* Divider */
-  .divider {
-    width: 60px;
-    height: 3px;
-    background: #1BA7FF;
-    border-radius: 2px;
-    margin: 0 auto 32px;
-    opacity: 0.5;
-  }
-
   .cta-hint {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
     color: #1A1A2E;
     margin-bottom: 16px;
   }
 
-  /* Payment options */
   .options {
     display: flex;
     flex-direction: column;
     gap: 14px;
-    margin-bottom: 28px;
+    margin-bottom: 32px;
   }
 
   .option {
@@ -153,79 +129,9 @@
     font-weight: 500;
   }
 
-  .option-savings {
-    font-size: 13px;
-    color: #1BA7FF;
-    font-weight: 600;
-    margin-top: 4px;
-  }
-
-  /* Guarantee */
-  .guarantee {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 24px;
-    padding: 12px 16px;
-    background: rgba(27, 167, 255, 0.06);
-    border-radius: 10px;
-    border: 1px solid rgba(135, 205, 221, 0.4);
-  }
-
-  .guarantee-icon {
-    font-size: 18px;
-    flex-shrink: 0;
-  }
-
-  .guarantee-text {
-    font-size: 13px;
-    color: #4A5568;
-    font-weight: 500;
-    text-align: left;
-  }
-
-  /* Security */
-  .security {
-    font-size: 12px;
-    color: #4A5568;
-    opacity: 0.7;
-    margin-top: 32px;
-  }
-
-  /* Reassurance */
-  .reassurance {
-    display: flex;
-    justify-content: center;
-    gap: 24px;
-    margin-top: 28px;
-    padding-top: 24px;
-    border-top: 1px solid rgba(135, 205, 221, 0.4);
-    flex-wrap: wrap;
-  }
-
-  .reassurance-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-  }
-
-  .reassurance-icon {
-    font-size: 20px;
-  }
-
-  .reassurance-label {
-    font-size: 11px;
-    color: #4A5568;
-    font-weight: 600;
-    text-align: center;
-  }
-
-  /* What's included */
   .included {
-    margin-top: 24px;
     text-align: left;
+    margin-bottom: 28px;
   }
 
   .included h3 {
@@ -260,6 +166,13 @@
     font-weight: 700;
   }
 
+  .security {
+    font-size: 12px;
+    color: #4A5568;
+    opacity: 0.6;
+    text-align: center;
+  }
+
   @media (max-width: 768px) {
     .card { padding: 32px 20px; }
     h1 { font-size: 22px; }
@@ -273,8 +186,6 @@
   <div class="card">
     <div class="badge">Accès immédiat</div>
     <h1>Signe ton premier créateur<br>en 30 jours</h1>
-    <p class="subtitle">Le sprint pour lancer ton business d'opérateur de croissance.</p>
-    <div class="divider"></div>
 
     <p class="cta-hint">Choisis ton option de paiement pour commencer :</p>
 
@@ -290,11 +201,6 @@
       </a>
     </div>
 
-    <div class="guarantee">
-      <span class="guarantee-icon">&#128274;</span>
-      <span class="guarantee-text">Paiement 100% sécurisé. Satisfait ou remboursé 14 jours.</span>
-    </div>
-
     <div class="included">
       <h3>Dans 30 jours, tu auras</h3>
       <ul>
@@ -305,26 +211,7 @@
       </ul>
     </div>
 
-    <div class="reassurance">
-      <div class="reassurance-item">
-        <span class="reassurance-icon">&#128274;</span>
-        <span class="reassurance-label">Paiement<br>sécurisé</span>
-      </div>
-      <div class="reassurance-item">
-        <span class="reassurance-icon">&#9889;</span>
-        <span class="reassurance-label">Accès<br>immédiat</span>
-      </div>
-      <div class="reassurance-item">
-        <span class="reassurance-icon">&#128176;</span>
-        <span class="reassurance-label">Remboursé<br>sous 14 jours</span>
-      </div>
-      <div class="reassurance-item">
-        <span class="reassurance-icon">&#9854;</span>
-        <span class="reassurance-label">Accès<br>à vie</span>
-      </div>
-    </div>
-
-    <p class="security">Paiement traité par Whop. Tes informations bancaires sont protégées.</p>
+    <p class="security">Paiement 100% sécurisé — Satisfait ou remboursé 14 jours</p>
   </div>
 </div>
 
