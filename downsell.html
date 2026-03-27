@@ -291,7 +291,7 @@ a { color: inherit; text-decoration: none; }
   <!-- ===== BOUTON RECANDIDATER (apparait a 30s) ===== -->
   <div id="recandidaterBtn" style="margin-bottom: 28px; display: none;">
     <!-- PLACEHOLDER : remplacer href par le lien iClosed de recandidature -->
-    <a href="#recandidater" class="cta-recandidater">Si c'est une erreur, recandidater avec mes vraies informations</a>
+    <a href="#recandidater" class="cta-btn" style="background: transparent; color: var(--accent); border: 2px solid var(--accent); font-size: 15px; padding: 14px 24px;">Recandidater &agrave; Strat&eacute;gie 30%</a>
   </div>
 
   <!-- ===== BOUTONS ACHAT (caches, apparaissent a 11:00) ===== -->
@@ -303,7 +303,7 @@ a { color: inherit; text-decoration: none; }
         <div class="price-note">Paiement unique. Acc&egrave;s &agrave; vie. Garantie 14 jours.</div>
       </div>
 
-      <a href="https://whop.com/checkout/plan_YiuOsmeSNW49f" target="_blank" class="cta-btn" id="ctaMain">Commencer pour 197 &euro;</a>
+      <a href="https://whop.com/checkout/plan_YiuOsmeSNW49f" target="_blank" class="cta-btn" id="ctaMain">Rejoindre pour 197 &euro;</a>
 
       <a href="https://whop.com/checkout/plan_4fWOsalMLtd4c" target="_blank" class="cta-secondary">Ou en 2 fois 99 &euro;</a>
 
@@ -360,10 +360,10 @@ setTimeout(function() {
   btn.style.animation = 'fadeInUp 0.5s ease';
 }, 30000);
 
-// Bouton achat : apparait a 11:30 (30 secondes apres le reveal du prix a 11:00)
+// Bouton achat : apparait a 11:00 pile (moment du reveal du prix dans la video)
 setTimeout(function() {
   document.getElementById('purchaseButtons').classList.add('visible');
-}, 690000);
+}, 660000);
 </script>
 
 </body>
