@@ -298,7 +298,7 @@ img { max-width: 100%; height: auto; display: block; }
   background: #fff;
   border: 2px solid var(--accent);
   border-radius: 24px;
-  padding: 40px 32px 32px;
+  padding: 48px 32px 32px;
   max-width: 480px;
   width: 100%;
   position: relative;
@@ -325,7 +325,50 @@ img { max-width: 100%; height: auto; display: block; }
   text-align: center;
   margin-bottom: 24px;
   line-height: 1.25;
+  padding: 0 16px;
 }
+
+/* Phone input with flag */
+.phone-wrapper {
+  display: flex;
+  align-items: stretch;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.phone-wrapper:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(27,167,255,0.12);
+}
+.phone-flag {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 12px 0 16px;
+  background: #f7fafc;
+  border-right: 1px solid #e2e8f0;
+  font-size: 18px;
+  cursor: default;
+  flex-shrink: 0;
+}
+.phone-flag span.prefix {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+.phone-wrapper input {
+  flex: 1;
+  padding: 16px 18px;
+  border: none;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  color: var(--text-dark);
+  background: #fff;
+  outline: none;
+}
+.phone-wrapper input::placeholder { color: #a0aec0; font-weight: 400; }
 .form-group { margin-bottom: 14px; }
 .form-group input {
   width: 100%;
@@ -405,8 +448,8 @@ img { max-width: 100%; height: auto; display: block; }
   .topbar-text { font-size: 12px; }
   .play-btn { width: 56px; height: 56px; }
   .play-btn svg { width: 22px; height: 22px; }
-  .modal-card { padding: 32px 24px 28px; }
-  .modal-title { font-size: 20px; }
+  .modal-card { padding: 40px 20px 28px; }
+  .modal-title { font-size: 20px; padding: 0 12px; }
   .form-group input { padding: 14px 16px; font-size: 15px; }
   .modal-cta { font-size: 15px; padding: 16px 20px; }
   .spacer { height: 200px; }
@@ -521,7 +564,10 @@ img { max-width: 100%; height: auto; display: block; }
         <input type="text" name="prenom" placeholder="Entre ton prenom..." required>
       </div>
       <div class="form-group">
-        <input type="tel" name="telephone" placeholder="Entre ton numero de telephone" required>
+        <div class="phone-wrapper">
+          <div class="phone-flag">&#127467;&#127479;<span class="prefix">+33</span></div>
+          <input type="tel" name="telephone" placeholder="Entre ton numero de telephone" required>
+        </div>
       </div>
       <div class="form-group">
         <input type="email" name="email" placeholder="Entre ton e-mail" required>
@@ -552,6 +598,8 @@ img { max-width: 100%; height: auto; display: block; }
 (function() {
   var overlay = document.getElementById('modalOverlay');
   var closeBtn = document.getElementById('modalClose');
+  var form = document.getElementById('optinForm');
+  var PROXY_URL = 'https://api.strategie30.com/optin'; // VPS proxy
 
   function openModal() {
     overlay.classList.add('active');
@@ -576,6 +624,37 @@ img { max-width: 100%; height: auto; display: block; }
 
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closeModal();
+  });
+
+  // Soumission du formulaire vers Systeme.io via proxy
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = form.querySelector('.modal-cta');
+    var originalText = btn.textContent;
+    btn.textContent = 'Chargement...';
+    btn.disabled = true;
+
+    var data = {
+      prenom: form.prenom.value.trim(),
+      email: form.email.value.trim(),
+      telephone: '+33' + form.telephone.value.trim().replace(/^0+/, '')
+    };
+
+    fetch(PROXY_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(res) {
+      if (res.redirect) {
+        window.location.href = res.redirect;
+      }
+    })
+    .catch(function() {
+      // Fallback : redirige quand meme (le lead sera perdu mais l'UX est preservee)
+      window.location.href = 'https://www.strategie30.com/page-de-vente';
+    });
   });
 })();
 </script>
