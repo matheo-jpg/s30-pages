@@ -328,34 +328,44 @@ img { max-width: 100%; height: auto; display: block; }
   padding: 0 16px;
 }
 
-/* Phone input with flag */
+/* Phone input with country selector */
 .phone-wrapper {
   display: flex;
   align-items: stretch;
   border: 1.5px solid #e2e8f0;
   border-radius: 12px;
-  overflow: hidden;
+  overflow: visible;
   transition: border-color 0.2s, box-shadow 0.2s;
+  position: relative;
 }
 .phone-wrapper:focus-within {
   border-color: var(--accent);
   box-shadow: 0 0 0 3px rgba(27,167,255,0.12);
 }
-.phone-flag {
+.phone-selector {
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 0 12px 0 16px;
+  padding: 0 10px 0 14px;
   background: #f7fafc;
   border-right: 1px solid #e2e8f0;
-  font-size: 18px;
-  cursor: default;
+  cursor: pointer;
   flex-shrink: 0;
+  user-select: none;
+  border-radius: 12px 0 0 12px;
+  transition: background 0.15s;
 }
-.phone-flag span.prefix {
+.phone-selector:hover { background: #edf2f7; }
+.phone-selector .flag { font-size: 20px; line-height: 1; }
+.phone-selector .prefix {
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+.phone-selector .arrow {
+  font-size: 10px;
   color: var(--text-muted);
+  margin-left: 2px;
 }
 .phone-wrapper input {
   flex: 1;
@@ -367,8 +377,59 @@ img { max-width: 100%; height: auto; display: block; }
   color: var(--text-dark);
   background: #fff;
   outline: none;
+  border-radius: 0 12px 12px 0;
+  min-width: 0;
 }
 .phone-wrapper input::placeholder { color: #a0aec0; font-weight: 400; }
+
+/* Country dropdown */
+.country-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  background: #fff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  z-index: 10;
+  width: 280px;
+  max-height: 240px;
+  overflow-y: auto;
+}
+.country-dropdown.open { display: block; }
+.country-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background 0.1s;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-dark);
+}
+.country-option:first-child { border-radius: 12px 12px 0 0; }
+.country-option:last-child { border-radius: 0 0 12px 12px; }
+.country-option:hover { background: #f0f7ff; }
+.country-option.selected { background: #e8f4fd; }
+.country-option .co-flag { font-size: 20px; }
+.country-option .co-name { flex: 1; }
+.country-option .co-prefix { color: var(--text-muted); font-size: 14px; }
+
+/* Validation error */
+.field-error {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 3px rgba(239,68,68,0.12) !important;
+}
+.error-msg {
+  font-size: 12px;
+  color: #ef4444;
+  margin-top: 4px;
+  display: none;
+  font-weight: 500;
+}
+.error-msg.visible { display: block; }
 .form-group { margin-bottom: 14px; }
 .form-group input {
   width: 100%;
@@ -563,14 +624,42 @@ img { max-width: 100%; height: auto; display: block; }
       <div class="form-group">
         <input type="text" name="prenom" placeholder="Entre ton prenom..." required>
       </div>
-      <div class="form-group">
-        <div class="phone-wrapper">
-          <div class="phone-flag">&#127467;&#127479;<span class="prefix">+33</span></div>
+      <div class="form-group" id="phoneGroup">
+        <div class="phone-wrapper" id="phoneWrapper">
+          <div class="phone-selector" id="phoneSelector">
+            <span class="flag" id="selectedFlag">&#127467;&#127479;</span>
+            <span class="prefix" id="selectedPrefix">+33</span>
+            <span class="arrow">&#9660;</span>
+          </div>
           <input type="tel" name="telephone" placeholder="Entre ton numero de telephone" required>
+          <div class="country-dropdown" id="countryDropdown">
+            <div class="country-option selected" data-prefix="+33" data-flag="&#127467;&#127479;" data-min="9" data-max="10">
+              <span class="co-flag">&#127467;&#127479;</span>
+              <span class="co-name">France</span>
+              <span class="co-prefix">+33</span>
+            </div>
+            <div class="country-option" data-prefix="+41" data-flag="&#127464;&#127469;" data-min="9" data-max="10">
+              <span class="co-flag">&#127464;&#127469;</span>
+              <span class="co-name">Suisse</span>
+              <span class="co-prefix">+41</span>
+            </div>
+            <div class="country-option" data-prefix="+32" data-flag="&#127463;&#127466;" data-min="8" data-max="10">
+              <span class="co-flag">&#127463;&#127466;</span>
+              <span class="co-name">Belgique</span>
+              <span class="co-prefix">+32</span>
+            </div>
+            <div class="country-option" data-prefix="+1" data-flag="&#127464;&#127462;" data-min="10" data-max="10">
+              <span class="co-flag">&#127464;&#127462;</span>
+              <span class="co-name">Canada</span>
+              <span class="co-prefix">+1</span>
+            </div>
+          </div>
         </div>
+        <div class="error-msg" id="phoneError">Numero de telephone invalide</div>
       </div>
-      <div class="form-group">
+      <div class="form-group" id="emailGroup">
         <input type="email" name="email" placeholder="Entre ton e-mail" required>
+        <div class="error-msg" id="emailError">Adresse e-mail invalide</div>
       </div>
       <button type="submit" class="modal-cta">J'accede a l'atelier gratuit</button>
     </form>
@@ -594,50 +683,126 @@ img { max-width: 100%; height: auto; display: block; }
   }, 8000);
 })();
 
-// Modal
+// Country selector + Modal + Validation + Submit
 (function() {
   var overlay = document.getElementById('modalOverlay');
   var closeBtn = document.getElementById('modalClose');
   var form = document.getElementById('optinForm');
-  var PROXY_URL = 'http://45.55.64.78:8089'; // VPS proxy Systeme.io
+  var PROXY_URL = 'http://45.55.64.78:8089';
 
+  // --- Country selector ---
+  var selector = document.getElementById('phoneSelector');
+  var dropdown = document.getElementById('countryDropdown');
+  var flagEl = document.getElementById('selectedFlag');
+  var prefixEl = document.getElementById('selectedPrefix');
+  var options = dropdown.querySelectorAll('.country-option');
+  var currentPrefix = '+33';
+  var currentMinDigits = 9;
+  var currentMaxDigits = 10;
+
+  selector.addEventListener('click', function(e) {
+    e.stopPropagation();
+    dropdown.classList.toggle('open');
+  });
+
+  options.forEach(function(opt) {
+    opt.addEventListener('click', function(e) {
+      e.stopPropagation();
+      options.forEach(function(o) { o.classList.remove('selected'); });
+      opt.classList.add('selected');
+      flagEl.innerHTML = opt.getAttribute('data-flag');
+      currentPrefix = opt.getAttribute('data-prefix');
+      currentMinDigits = parseInt(opt.getAttribute('data-min'));
+      currentMaxDigits = parseInt(opt.getAttribute('data-max'));
+      prefixEl.textContent = currentPrefix;
+      dropdown.classList.remove('open');
+      form.telephone.focus();
+    });
+  });
+
+  document.addEventListener('click', function() {
+    dropdown.classList.remove('open');
+  });
+
+  // --- Modal ---
   function openModal() {
     overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
     setTimeout(function() {
-      document.querySelector('#optinForm input[name="prenom"]').focus();
+      form.prenom.focus();
     }, 200);
   }
 
   function closeModal() {
     overlay.classList.remove('active');
     document.body.style.overflow = '';
+    dropdown.classList.remove('open');
   }
 
   document.getElementById('openModal').addEventListener('click', openModal);
   document.getElementById('videoGif').addEventListener('click', openModal);
   closeBtn.addEventListener('click', closeModal);
-
   overlay.addEventListener('click', function(e) {
     if (e.target === overlay) closeModal();
   });
-
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closeModal();
   });
 
-  // Soumission du formulaire vers Systeme.io via proxy
+  // --- Validation ---
+  function validateEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+  }
+
+  function validatePhone(phone) {
+    var digits = phone.replace(/[\s\-\.\(\)]/g, '');
+    if (digits.startsWith('0')) digits = digits.substring(1);
+    return /^\d+$/.test(digits) && digits.length >= currentMinDigits && digits.length <= currentMaxDigits;
+  }
+
+  function clearErrors() {
+    document.getElementById('phoneError').classList.remove('visible');
+    document.getElementById('emailError').classList.remove('visible');
+    document.getElementById('phoneWrapper').classList.remove('field-error');
+    form.email.classList.remove('field-error');
+  }
+
+  // --- Submit ---
   form.addEventListener('submit', function(e) {
     e.preventDefault();
+    clearErrors();
+
+    var email = form.email.value.trim();
+    var phone = form.telephone.value.trim();
+    var valid = true;
+
+    if (!validateEmail(email)) {
+      form.email.classList.add('field-error');
+      document.getElementById('emailError').classList.add('visible');
+      valid = false;
+    }
+
+    if (!validatePhone(phone)) {
+      document.getElementById('phoneWrapper').classList.add('field-error');
+      document.getElementById('phoneError').classList.add('visible');
+      valid = false;
+    }
+
+    if (!valid) return;
+
     var btn = form.querySelector('.modal-cta');
     var originalText = btn.textContent;
     btn.textContent = 'Chargement...';
     btn.disabled = true;
 
+    // Format phone: prefix + digits (sans le 0 initial)
+    var digits = phone.replace(/[\s\-\.\(\)]/g, '');
+    if (digits.startsWith('0')) digits = digits.substring(1);
+
     var data = {
       prenom: form.prenom.value.trim(),
-      email: form.email.value.trim(),
-      telephone: '+33' + form.telephone.value.trim().replace(/^0+/, '')
+      email: email,
+      telephone: currentPrefix + digits
     };
 
     fetch(PROXY_URL, {
@@ -652,9 +817,18 @@ img { max-width: 100%; height: auto; display: block; }
       }
     })
     .catch(function() {
-      // Fallback : redirige quand meme (le lead sera perdu mais l'UX est preservee)
       window.location.href = 'https://www.strategie30.com/page-de-vente';
     });
+  });
+
+  // Clear errors on input
+  form.email.addEventListener('input', function() {
+    form.email.classList.remove('field-error');
+    document.getElementById('emailError').classList.remove('visible');
+  });
+  form.telephone.addEventListener('input', function() {
+    document.getElementById('phoneWrapper').classList.remove('field-error');
+    document.getElementById('phoneError').classList.remove('visible');
   });
 })();
 </script>
