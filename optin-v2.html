@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1BA7FF">
+<title>Atelier Gratuit - Strategie 30%</title>
+<meta name="description" content="Comment passer de vivement vendredi a je suis libre en 90 jours. Atelier gratuit de 15 minutes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #E9FCFF;
+  color: #1a1a2e;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; height: auto; display: block; }
+
+:root {
+  --bg: #E9FCFF;
+  --accent: #1BA7FF;
+  --accent-dark: #0d8de0;
+  --accent-glow: rgba(27,167,255,0.35);
+  --cyan-border: rgba(135, 205, 221, 0.8);
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --card-shadow: rgba(0, 0, 0, 0.08) 0px 4px 16px;
+  --glow-color: rgb(142, 214, 234);
+  --text-dark: #1a1a2e;
+  --text-muted: #4a5568;
+  --max-width: 720px;
+}
+
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 20px; }
+.highlight { color: var(--accent); }
+
+/* ===== ELLIPSE GLOW ===== */
+.ellipse-glow {
+  position: fixed; bottom: -300px; right: -400px;
+  width: 1100px; height: 600px; border-radius: 50%;
+  background-color: var(--glow-color);
+  box-shadow: 0 0 100px rgba(170,245,253,1), 0 0 200px rgba(170,245,253,0.9), 0 0 400px rgba(170,245,253,0.7), 0 0 800px rgba(170,245,253,0.5);
+  z-index: -1; pointer-events: none;
+}
+
+/* ===== TOPBAR ===== */
+.topbar {
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(135,205,221,0.4);
+  padding: 10px 20px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.topbar-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.topbar-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  animation: pulse-dot 2s infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.topbar-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+/* ===== HERO ===== */
+.hero {
+  text-align: center;
+  padding: 48px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid rgba(135,205,221,0.6);
+  border-radius: 50px;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-dark);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  margin-bottom: 28px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.eyebrow-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: #ef4444;
+  animation: pulse-dot 2s infinite;
+}
+
+.hero h1 {
+  font-size: 44px;
+  font-weight: 900;
+  line-height: 1.12;
+  margin-bottom: 24px;
+  max-width: 640px;
+}
+
+/* ===== BULLET GRID ===== */
+.bullet-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 32px;
+  margin-bottom: 32px;
+  justify-items: start;
+  max-width: 520px;
+}
+.bullet-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+.bullet-icon-small {
+  flex-shrink: 0;
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid rgba(135,205,221,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+}
+.bullet-icon-small svg {
+  width: 16px; height: 16px;
+  color: var(--accent);
+}
+
+/* ===== VIDEO GIF ===== */
+.video-gif-wrapper {
+  position: relative;
+  max-width: 560px;
+  width: 100%;
+  margin-bottom: 32px;
+  cursor: pointer;
+}
+.video-gif-card {
+  background: var(--card-bg);
+  border: 1px solid var(--cyan-border);
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+.video-gif-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  box-shadow: inset 0 0 0 1px rgba(135,205,221,0.8), inset 0 0 16px rgba(135,205,221,0.3), inset 0 8px 32px rgba(135,205,221,0.15);
+  pointer-events: none;
+  z-index: 2;
+}
+.video-gif-card video {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+}
+.play-btn {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 4px 24px var(--accent-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  transition: transform 0.2s, box-shadow 0.2s;
+  pointer-events: none;
+}
+.video-gif-wrapper:hover .play-btn {
+  transform: translate(-50%, -50%) scale(1.08);
+  box-shadow: 0 6px 32px rgba(27,167,255,0.5);
+}
+.play-btn svg {
+  width: 28px; height: 28px;
+  color: #fff;
+  margin-left: 3px;
+}
+
+/* ===== CTA BUTTON ===== */
+.cta-btn {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--accent);
+  color: #fff;
+  padding: 18px 52px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  box-shadow: 0 4px 24px var(--accent-glow);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  max-width: 480px;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 0;
+}
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 32px rgba(27,167,255,0.45);
+  background: var(--accent-dark);
+}
+.cta-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%; left: -60%;
+  width: 200%; height: 200%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%);
+  transform: rotate(25deg);
+  animation: shine 4s ease-in-out infinite;
+}
+@keyframes shine {
+  0% { left: -60%; }
+  20% { left: 120%; }
+  100% { left: 120%; }
+}
+.cta-label {
+  font-size: 18px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.cta-sublabel {
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.85;
+  margin-top: 2px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ===== SPACER + FOOTER ===== */
+.spacer { height: 300px; }
+.footer { padding: 40px 0; text-align: center; border-top: 1px solid var(--cyan-border); }
+.footer-disclaimer { font-size: 11px; color: var(--text-muted); line-height: 1.7; max-width: 600px; margin: 0 auto 16px; opacity: 0.7; }
+.footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 12px; }
+.footer-links a { font-size: 13px; color: var(--accent); font-weight: 500; }
+.footer-copy { font-size: 12px; color: var(--text-muted); opacity: 0.6; }
+
+/* ===== MODAL ===== */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-overlay.active {
+  display: flex;
+}
+.modal-card {
+  background: #fff;
+  border: 2px solid var(--accent);
+  border-radius: 24px;
+  padding: 40px 32px 32px;
+  max-width: 480px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2), 0 0 0 1px rgba(27,167,255,0.1);
+}
+.modal-close {
+  position: absolute;
+  top: 16px; right: 16px;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid #e2e8f0;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s;
+}
+.modal-close:hover { border-color: var(--accent); }
+.modal-close svg { width: 18px; height: 18px; color: var(--text-dark); }
+.modal-title {
+  font-size: 24px;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 24px;
+  line-height: 1.25;
+}
+.form-group { margin-bottom: 14px; }
+.form-group input {
+  width: 100%;
+  padding: 16px 18px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  color: var(--text-dark);
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-group input::placeholder { color: #a0aec0; font-weight: 400; }
+.form-group input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(27,167,255,0.12);
+}
+.modal-cta {
+  display: block;
+  width: 100%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 17px;
+  font-weight: 800;
+  padding: 18px 24px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  box-shadow: 0 4px 24px var(--accent-glow);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  margin-top: 4px;
+}
+.modal-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 32px rgba(27,167,255,0.45);
+  background: var(--accent-dark);
+}
+.modal-cta::after {
+  content: '';
+  position: absolute;
+  top: -50%; left: -60%;
+  width: 200%; height: 200%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%);
+  transform: rotate(25deg);
+  animation: shine 4s ease-in-out infinite;
+}
+.modal-disclaimer {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 16px;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .hero { padding: 36px 0 0; }
+  .hero h1 { font-size: 28px; }
+  .hero-eyebrow { font-size: 12px; padding: 8px 18px; }
+  .bullet-grid { gap: 6px 20px; margin-bottom: 24px; }
+  .bullet-item { font-size: 13px; gap: 8px; }
+  .bullet-icon-small { width: 28px; height: 28px; border-radius: 6px; }
+  .bullet-icon-small svg { width: 14px; height: 14px; }
+  .cta-btn { padding: 16px 32px; }
+  .cta-label { font-size: 15px; }
+  .cta-sublabel { font-size: 11px; }
+  .container { padding: 0 16px; }
+  .topbar { padding: 8px 16px; }
+  .topbar-text { font-size: 12px; }
+  .play-btn { width: 56px; height: 56px; }
+  .play-btn svg { width: 22px; height: 22px; }
+  .modal-card { padding: 32px 24px 28px; }
+  .modal-title { font-size: 20px; }
+  .form-group input { padding: 14px 16px; font-size: 15px; }
+  .modal-cta { font-size: 15px; padding: 16px 20px; }
+  .spacer { height: 200px; }
+  .ellipse-glow { width: 900px; height: 800px; transform: translate(53%, 85%); }
+}
+@media (max-width: 380px) {
+  .hero h1 { font-size: 24px; }
+  .bullet-grid { grid-template-columns: 1fr; gap: 6px; }
+}
+</style>
+</head>
+<body>
+
+<div class="ellipse-glow"></div>
+
+<!-- TOPBAR STICKY -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <span class="topbar-dot"></span>
+    <span class="topbar-text"><span id="viewerCount">47</span> personnes regardent cette page en ce moment</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ===== HERO ===== -->
+  <div class="hero">
+
+    <div class="hero-eyebrow">
+      <span class="eyebrow-dot"></span>
+      Atelier offert
+    </div>
+
+    <h1>Comment passer de <span class="highlight">"vivement vendredi"</span> a <span class="highlight">"je suis libre"</span> en 90 jours</h1>
+
+    <!-- BULLET GRID 2x2 -->
+    <div class="bullet-grid">
+      <div class="bullet-item">
+        <div class="bullet-icon-small">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12c1.292 4.338 5.31 7.5 10.066 7.5.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88"/></svg>
+        </div>
+        Sans creer d'audience
+      </div>
+      <div class="bullet-item">
+        <div class="bullet-icon-small">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z"/></svg>
+        </div>
+        Sans montrer ton visage
+      </div>
+      <div class="bullet-item">
+        <div class="bullet-icon-small">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/></svg>
+        </div>
+        Sans creer de produit
+      </div>
+      <div class="bullet-item">
+        <div class="bullet-icon-small">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"/></svg>
+        </div>
+        Sans depenser 1EUR en pub
+      </div>
+    </div>
+
+    <!-- VIDEO GIF -->
+    <div class="video-gif-wrapper" id="videoGif">
+      <div class="video-gif-card">
+        <video autoplay loop muted playsinline>
+          <source src="https://d1yei2z3i6k35z.cloudfront.net/13489841/69becfbf145817.17469066_matheovsl.mp4" type="video/mp4">
+        </video>
+        <div class="play-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.14v14l11-7-11-7z"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA PRINCIPAL -->
+    <button class="cta-btn" id="openModal">
+      <span class="cta-label">Regarde l'atelier gratuit</span>
+      <span class="cta-sublabel">Acces immediat</span>
+    </button>
+
+  </div>
+
+</div>
+
+<!-- GROS SPACER pour cacher le footer -->
+<div class="spacer"></div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="container">
+    <p class="footer-disclaimer">Strategie 30% et toutes les personnes affiliees a cette organisation n'assument aucune responsabilite quant au resultat ou au succes des services. Le succes depend du temps consacre et de la mise en oeuvre des strategies. Contenus a des fins educatives uniquement.</p>
+    <p class="footer-disclaimer">Ce site n'est pas une partie du site Meta/Facebook ou de Meta, Inc. Ce site n'est PAS approuve par Meta.</p>
+    <div class="footer-links">
+      <a href="#">Politique de confidentialite</a>
+      <a href="#">Conditions d'utilisation</a>
+      <a href="#">Contact</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 ForCyclers LLC. Tous droits reserves.</p>
+  </div>
+</div>
+
+<!-- ===== MODAL FORMULAIRE ===== -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-card">
+    <button class="modal-close" id="modalClose">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <h2 class="modal-title">Remplis tes informations pour acceder a l'atelier 100% offert !</h2>
+    <form id="optinForm" action="#" method="POST">
+      <div class="form-group">
+        <input type="text" name="prenom" placeholder="Entre ton prenom..." required>
+      </div>
+      <div class="form-group">
+        <input type="tel" name="telephone" placeholder="Entre ton numero de telephone" required>
+      </div>
+      <div class="form-group">
+        <input type="email" name="email" placeholder="Entre ton e-mail" required>
+      </div>
+      <button type="submit" class="modal-cta">J'accede a l'atelier gratuit</button>
+    </form>
+    <p class="modal-disclaimer">Je HAIS le spam. Tes informations ne seront jamais partagees.</p>
+  </div>
+</div>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+// Compteur visiteurs
+(function() {
+  var el = document.getElementById('viewerCount');
+  if (!el) return;
+  var base = 38 + Math.floor(Math.random() * 20);
+  el.textContent = base;
+  setInterval(function() {
+    base += Math.floor(Math.random() * 5) - 2;
+    if (base < 28) base = 28 + Math.floor(Math.random() * 5);
+    if (base > 72) base = 72 - Math.floor(Math.random() * 5);
+    el.textContent = base;
+  }, 8000);
+})();
+
+// Modal
+(function() {
+  var overlay = document.getElementById('modalOverlay');
+  var closeBtn = document.getElementById('modalClose');
+
+  function openModal() {
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function() {
+      document.querySelector('#optinForm input[name="prenom"]').focus();
+    }, 200);
+  }
+
+  function closeModal() {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('openModal').addEventListener('click', openModal);
+  document.getElementById('videoGif').addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) closeModal();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+})();
+</script>
+
+</body>
+</html>
