@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#E9FCFF">
+<title>Candidature - Strategie 30%</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #E9FCFF;
+  color: #1a1a2e;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+a { color: inherit; text-decoration: none; }
+
+:root {
+  --bg: #E9FCFF;
+  --accent: #1BA7FF;
+  --cyan-border: rgba(135, 205, 221, 0.8);
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --card-shadow: rgba(0, 0, 0, 0.08) 0px 4px 16px;
+  --glow-color: rgb(142, 214, 234);
+  --text-dark: #1a1a2e;
+  --text-muted: #4a5568;
+  --max-width: 720px;
+}
+
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 20px; }
+.highlight { color: var(--accent); }
+
+.ellipse-glow {
+  position: fixed; bottom: -300px; right: -400px;
+  width: 1100px; height: 600px; border-radius: 50%;
+  background-color: var(--glow-color);
+  box-shadow: 0 0 100px rgba(170,245,253,1), 0 0 200px rgba(170,245,253,0.9), 0 0 400px rgba(170,245,253,0.7), 0 0 800px rgba(170,245,253,0.5);
+  z-index: -1; pointer-events: none;
+}
+
+.glass-card {
+  background: var(--card-bg);
+  border: 1px solid var(--cyan-border);
+  border-radius: 20px;
+  padding: 32px 28px;
+  margin-bottom: 28px;
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+.glass-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  box-shadow: inset 0 0 0 1px rgba(135,205,221,0.8), inset 0 0 16px rgba(135,205,221,0.3), inset 0 8px 32px rgba(135,205,221,0.15);
+  pointer-events: none;
+}
+
+.page-header {
+  text-align: center;
+  padding: 48px 0 12px;
+}
+.page-header h1 {
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 1.25;
+  margin-bottom: 16px;
+}
+.page-header p {
+  font-size: 16px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  max-width: 560px;
+  margin: 0 auto;
+}
+.divider {
+  width: 40%;
+  height: 2px;
+  background: var(--cyan-border);
+  margin: 24px auto;
+}
+
+.video-wrapper {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* ===== CTA BUTTONS ===== */
+.cta-btn {
+  display: block;
+  width: 100%;
+  padding: 18px 32px;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+  text-align: center;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+}
+.cta-btn:hover {
+  background: #0d8fe0;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(27,167,255,0.35);
+}
+
+.cta-secondary {
+  display: block;
+  width: 100%;
+  padding: 14px 32px;
+  background: transparent;
+  color: var(--accent);
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+  border: 2px solid var(--accent);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  margin-top: 12px;
+}
+.cta-secondary:hover {
+  background: rgba(27,167,255,0.08);
+  transform: translateY(-1px);
+}
+
+.cta-recandidater {
+  display: block;
+  width: 100%;
+  padding: 12px 24px;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  border: 1px solid rgba(135, 205, 221, 0.6);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+.cta-recandidater:hover {
+  background: rgba(255,255,255,0.5);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Hidden by default, shown via JS */
+.cta-purchase {
+  display: none;
+}
+.cta-purchase.visible {
+  display: block;
+  animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== GUARANTEE ===== */
+.guarantee {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px;
+  background: rgba(255,255,255,0.6);
+  border: 1px solid rgba(135,205,221,0.4);
+  border-radius: 14px;
+  margin-top: 20px;
+}
+.guarantee-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #e8f7ee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.guarantee-icon svg { width: 22px; height: 22px; }
+.guarantee-text h4 { font-size: 14px; font-weight: 800; margin-bottom: 4px; }
+.guarantee-text p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+/* ===== PRICE TAG ===== */
+.price-tag {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.price-old {
+  font-size: 18px;
+  color: var(--text-muted);
+  text-decoration: line-through;
+  font-weight: 600;
+}
+.price-new {
+  font-size: 48px;
+  font-weight: 900;
+  color: var(--text-dark);
+  line-height: 1.2;
+  margin: 4px 0;
+}
+.price-note {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  padding: 40px 0;
+  text-align: center;
+  border-top: 1px solid var(--cyan-border);
+  margin-top: 20px;
+}
+.footer-disclaimer {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  max-width: 700px;
+  margin: 0 auto 16px;
+  opacity: 0.7;
+}
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 12px;
+}
+.footer-links a {
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: 500;
+}
+.footer-copy {
+  font-size: 12px;
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+  .page-header { padding: 32px 0 8px; }
+  .page-header h1 { font-size: 24px; }
+  .page-header p { font-size: 14px; }
+  .glass-card { padding: 24px 20px; margin-bottom: 20px; }
+  .price-new { font-size: 40px; }
+  .cta-btn { font-size: 16px; padding: 16px 24px; }
+  .container { padding: 0 16px; }
+  .ellipse-glow { width: 900px; height: 800px; transform: translate(53%, 85%); }
+}
+</style>
+</head>
+<body>
+
+<div class="ellipse-glow"></div>
+
+<!-- ===== HEADER ===== -->
+<div class="page-header">
+  <div class="container">
+    <h1>Ta candidature n'a pas &eacute;t&eacute; retenue</h1>
+    <p>Regarde cette vid&eacute;o jusqu'au bout. J'ai cr&eacute;&eacute; quelque chose pour les gens dans ta situation.</p>
+    <div class="divider"></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ===== VIDEO ===== -->
+  <div class="glass-card">
+    <div class="video-wrapper">
+      <div id="vidalytics_embed_B4RLg4sw6xKMyVkv" style="width: 100%; position: relative; padding-top: 64.63%;"></div>
+    </div>
+  </div>
+
+  <!-- ===== BOUTON RECANDIDATER (apparait a 30s) ===== -->
+  <div id="recandidaterBtn" style="margin-bottom: 28px; display: none;">
+    <!-- PLACEHOLDER : remplacer href par le lien iClosed de recandidature -->
+    <a href="#recandidater" class="cta-recandidater">Si c'est une erreur, recandidater avec mes vraies informations</a>
+  </div>
+
+  <!-- ===== BOUTONS ACHAT (caches, apparaissent a 11:00) ===== -->
+  <div id="purchaseButtons" class="cta-purchase">
+    <div class="glass-card" style="text-align: center;">
+      <div class="price-tag">
+        <div class="price-old">497 &euro;</div>
+        <div class="price-new">197 &euro;</div>
+        <div class="price-note">Paiement unique. Acc&egrave;s &agrave; vie. Garantie 14 jours.</div>
+      </div>
+
+      <!-- PLACEHOLDER : remplacer href par le lien Whop checkout 197 EUR -->
+      <a href="#checkout-197" class="cta-btn" id="ctaMain">Commencer pour 197 &euro;</a>
+
+      <!-- PLACEHOLDER : remplacer href par le lien Whop checkout 2x99 EUR -->
+      <a href="#checkout-2x99" class="cta-secondary">Ou en 2 fois 99 &euro;</a>
+
+      <div class="guarantee">
+        <div class="guarantee-icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="guarantee-text">
+          <h4>Garantie 14 jours</h4>
+          <p>Si dans les 14 jours tu estimes que le programme ne t'a rien apport&eacute;, on te rembourse int&eacute;gralement. Pas de questions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Padding pour que le footer ne soit pas visible sans scroller -->
+<div style="height: 60vh;"></div>
+
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+  <div class="container">
+    <p class="footer-disclaimer">Strat&eacute;gie 30% et toutes les personnes affili&eacute;es &agrave; cette organisation n'assument aucune responsabilit&eacute; quant au r&eacute;sultat ou au succ&egrave;s des services. Contenus &agrave; des fins &eacute;ducatives uniquement.</p>
+    <p class="footer-disclaimer">Ce site n'est pas une partie du site Meta/Facebook ou de Meta, Inc. Ce site n'est PAS approuv&eacute; par Meta.</p>
+    <div class="footer-links">
+      <a href="#">Politique de confidentialit&eacute;</a>
+      <a href="#">Conditions d'utilisation</a>
+      <a href="#">Contact</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 ForCyclers LLC. Tous droits r&eacute;serv&eacute;s.</p>
+  </div>
+</div>
+
+<!-- ===== VIDALYTICS ===== -->
+<script type="text/javascript">
+(function (v, i, d, a, l, y, t, c, s) {
+    y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}var vl='Loader',vli=v[y][vl],vsl=v[c][vl + 'Script'],vlf=v[c][vl + 'Loaded'],ve='Embed';
+    if (!vsl){vsl=function(u,cb){
+        if(t){cb();return;}s=i.createElement("script");s.type="text/javascript";s.async=1;s.src=u;
+        if(s.readyState){s.onreadystatechange=function(){if(s.readyState==="loaded"||s.readyState=="complete"){s.onreadystatechange=null;vlf=1;cb();}};}else{s.onload=function(){vlf=1;cb();};}
+        i.getElementsByTagName("head")[0].appendChild(s);
+    };}
+    vsl(l+'loader.min.js',function(){if(!vli){var vlc=v[c][vl];vli=new vlc();}vli.loadScript(l+'player.min.js',function(){var vec=v[d][ve];t=new vec();t.run(a);});});
+})(window, document, 'Vidalytics', 'vidalytics_embed_B4RLg4sw6xKMyVkv', 'https://fast.vidalytics.com/embeds/j3d1vxJQ/B4RLg4sw6xKMyVkv/');
+</script>
+
+<!-- ===== TIMERS BOUTONS ===== -->
+<script>
+// Bouton recandidater : apparait a 30 secondes (quand Matheo le mentionne a 00:28)
+setTimeout(function() {
+  var btn = document.getElementById('recandidaterBtn');
+  btn.style.display = 'block';
+  btn.style.animation = 'fadeInUp 0.5s ease';
+}, 30000);
+
+// Bouton achat : apparait a 11:30 (30 secondes apres le reveal du prix a 11:00)
+setTimeout(function() {
+  document.getElementById('purchaseButtons').classList.add('visible');
+}, 690000);
+</script>
+
+</body>
+</html>
