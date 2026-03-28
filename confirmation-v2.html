@@ -356,7 +356,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* ===== SCREENSHOT TESTIMONIALS ===== */
 .screenshot-list { display: flex; flex-direction: column; gap: 40px; margin-bottom: 50px; }
-.screenshot-item { position: relative; }
+.screenshot-item { display: flex; flex-direction: column; }
 .screenshot-img {
   width: 100%;
   border-radius: 14px;
@@ -365,38 +365,20 @@ img { max-width: 100%; height: auto; display: block; }
   display: block;
 }
 .screenshot-annotation {
-  position: absolute;
-  background: rgba(20,20,35,0.9);
+  background: rgba(30,30,50,0.92);
   color: #fff;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   font-style: italic;
-  padding: 10px 16px;
-  border-radius: 10px;
-  max-width: 220px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  max-width: 260px;
   line-height: 1.4;
   text-align: center;
+  margin-bottom: 12px;
 }
-.screenshot-annotation.top-right { top: -16px; right: 20px; }
-.screenshot-annotation.top-left { top: -16px; left: 20px; }
-.screenshot-annotation.bottom-right { bottom: -16px; right: 20px; }
-.screenshot-annotation::after {
-  content: '';
-  position: absolute;
-  width: 0; height: 0;
-  border-style: solid;
-}
-.screenshot-annotation.top-right::after,
-.screenshot-annotation.top-left::after {
-  bottom: -8px; left: 30px;
-  border-width: 8px 6px 0 6px;
-  border-color: rgba(20,20,35,0.9) transparent transparent transparent;
-}
-.screenshot-annotation.bottom-right::after {
-  top: -8px; right: 30px;
-  border-width: 0 6px 8px 6px;
-  border-color: transparent transparent rgba(20,20,35,0.9) transparent;
-}
+.screenshot-annotation.top-right { margin-left: auto; margin-right: 20px; }
+.screenshot-annotation.top-left { margin-left: 20px; margin-right: auto; }
 
 /* ===== CHECKLIST (alternative view for rules) ===== */
 .checklist-item {
