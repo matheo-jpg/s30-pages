@@ -61,13 +61,23 @@ a { color: inherit; text-decoration: none; }
 }
 .divider { width: 80%; height: 1px; background: var(--cyan-border); margin: 20px auto 0; }
 
-/* ===== LIVE WIDGET ===== */
+/* ===== LIVE WIDGET (pilule) ===== */
 .live-widget {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
   padding: 16px 0 16px;
+}
+.live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(135, 205, 221, 0.5);
+  border-radius: 50px;
+  padding: 8px 20px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 .live-badge {
   display: inline-flex;
@@ -75,16 +85,16 @@ a { color: inherit; text-decoration: none; }
   gap: 6px;
   background: #e53e3e;
   color: #fff;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
-  padding: 4px 12px;
+  padding: 3px 10px;
   border-radius: 50px;
   letter-spacing: 0.5px;
   text-transform: uppercase;
 }
 .live-dot {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   background: #fff;
   border-radius: 50%;
   animation: live-pulse 1.5s ease-in-out infinite;
@@ -94,12 +104,12 @@ a { color: inherit; text-decoration: none; }
   50% { opacity: 0.4; }
 }
 .live-count {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 800;
   color: var(--text-dark);
 }
 .live-text {
-  font-size: 15px;
+  font-size: 14px;
   color: var(--text-muted);
   font-weight: 500;
 }
@@ -265,12 +275,14 @@ a { color: inherit; text-decoration: none; }
 
   <!-- LIVE WIDGET -->
   <div class="live-widget">
-    <div class="live-badge">
-      <span class="live-dot"></span>
-      LIVE
+    <div class="live-pill">
+      <div class="live-badge">
+        <span class="live-dot"></span>
+        LIVE
+      </div>
+      <span class="live-count" id="liveCount">244</span>
+      <span class="live-text">personnes regardent cette vid&#233;o</span>
     </div>
-    <span class="live-count" id="liveCount">244</span>
-    <span class="live-text">personnes regardent cette video</span>
   </div>
 
   <!-- VIDEO -->
@@ -282,7 +294,7 @@ a { color: inherit; text-decoration: none; }
 
   <!-- SURPRISE TEASER (disparait quand le CTA apparait) -->
   <div class="surprise-teaser" id="surpriseTeaser">
-    Une surprise apparaitra juste ici dans quelques minutes
+    &#x1F447; Une surprise appara&#238;tra juste ici dans quelques minutes &#x1F447;
   </div>
 
   <!-- iCLOSED CTA (apparait apres 11 minutes) -->
@@ -297,6 +309,9 @@ a { color: inherit; text-decoration: none; }
   </div>
 
 </div>
+
+<!-- SPACER — pousse le footer hors ecran -->
+<div style="height: 60vh;"></div>
 
 <!-- FOOTER -->
 <div class="footer">
