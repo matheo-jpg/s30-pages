@@ -94,7 +94,7 @@ a { color: inherit; text-decoration: none; }
   font-size: 16px;
   color: var(--text-muted);
   line-height: 1.7;
-  max-width: 500px;
+  max-width: 520px;
   margin: 0 auto;
 }
 .divider {
@@ -137,6 +137,10 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ===== CTA ===== */
+.cta-section {
+  text-align: center;
+  margin-bottom: 8px;
+}
 .cta-btn {
   display: block;
   width: 100%;
@@ -152,12 +156,30 @@ a { color: inherit; text-decoration: none; }
   cursor: pointer;
   transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
   text-decoration: none;
-  margin-top: 8px;
 }
 .cta-btn:hover {
   background: var(--accent-dark);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px var(--accent-glow);
+}
+
+/* ===== INFO BOX ===== */
+.info-box {
+  background: rgba(255,255,255,0.6);
+  border: 1px solid rgba(135,205,221,0.4);
+  border-radius: 14px;
+  padding: 20px;
+  margin-top: 24px;
+}
+.info-box h4 {
+  font-size: 14px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+.info-box p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.7;
 }
 
 /* ===== FOOTER ===== */
@@ -195,7 +217,7 @@ a { color: inherit; text-decoration: none; }
       <svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#059669" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
     <h1>Ton acc&egrave;s est activ&eacute;</h1>
-    <p>Ton paiement a bien &eacute;t&eacute; re&ccedil;u. Tu as acc&egrave;s &agrave; tout le programme imm&eacute;diatement.</p>
+    <p>Ton paiement a bien &eacute;t&eacute; re&ccedil;u. Voici comment acc&eacute;der &agrave; ton programme.</p>
     <div class="divider"></div>
   </div>
 </div>
@@ -206,19 +228,12 @@ a { color: inherit; text-decoration: none; }
     <div class="step">
       <div class="step-number">1</div>
       <div class="step-content">
-        <h3>V&eacute;rifie tes emails</h3>
-        <p>Tu vas recevoir un email de confirmation avec ton lien d'acc&egrave;s. Si tu ne le vois pas, v&eacute;rifie tes spams.</p>
+        <h3>Clique sur le bouton ci-dessous</h3>
+        <p>Tu es d&eacute;j&agrave; connect&eacute;. Ton acc&egrave;s est actif imm&eacute;diatement.</p>
       </div>
     </div>
     <div class="step">
       <div class="step-number">2</div>
-      <div class="step-content">
-        <h3>Connecte-toi sur Whop</h3>
-        <p>Utilise l'email avec lequel tu viens de payer pour te connecter sur <strong>whop.com</strong>. Ton acc&egrave;s est d&eacute;j&agrave; actif.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-number">3</div>
       <div class="step-content">
         <h3>Commence le Module 1</h3>
         <p>Les modules sont dans l'ordre. Suis-les un par un. Le premier te prend 10 minutes.</p>
@@ -226,7 +241,15 @@ a { color: inherit; text-decoration: none; }
     </div>
   </div>
 
-  <a href="https://whop.com/strategie-30/signe-ton-premier-createur-en-30-jours/" target="_blank" class="cta-btn">Acc&eacute;der au programme</a>
+  <div class="cta-section">
+    <a href="https://whop.com/strategie-30/signe-ton-premier-createur-en-30-jours/" target="_blank" class="cta-btn">Acc&eacute;der au programme</a>
+  </div>
+
+  <div class="info-box">
+    <h4>Tu reviens plus tard ?</h4>
+    <p><strong>Sur t&eacute;l&eacute;phone :</strong> t&eacute;l&eacute;charge l'application Whop sur l'App Store ou le Google Play Store, puis connecte-toi avec l'email que tu as utilis&eacute; pour payer.</p>
+    <p style="margin-top: 8px;"><strong>Sur ordinateur :</strong> va sur <strong>whop.com</strong> et connecte-toi avec le m&ecirc;me email.</p>
+  </div>
 
 </div>
 
