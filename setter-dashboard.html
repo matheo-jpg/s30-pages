@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Setter Dashboard — Mars 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #0a0a0f;
+    color: #e0e0e0;
+    min-height: 100vh;
+    padding: 32px 16px;
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+    letter-spacing: -0.5px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 28px;
+  }
+
+  /* === KPI Cards === */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .kpi {
+    background: #13131a;
+    border: 1px solid #1e1e2a;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .kpi-value {
+    font-size: 28px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.1;
+    letter-spacing: -1px;
+  }
+
+  .kpi-label {
+    font-size: 11px;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+  }
+
+  .kpi.highlight {
+    border-color: #1a3a2a;
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.06);
+  }
+
+  .kpi.highlight .kpi-value {
+    color: #22c55e;
+  }
+
+  .kpi.warn {
+    border-color: #3a2a1a;
+  }
+
+  .kpi.warn .kpi-value {
+    color: #f97316;
+  }
+
+  /* === Speed gauge === */
+  .speed-section {
+    background: #13131a;
+    border: 1px solid #1e1e2a;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 28px;
+  }
+
+  .speed-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 12px;
+  }
+
+  .speed-title {
+    font-size: 14px;
+    color: #888;
+    font-weight: 600;
+  }
+
+  .speed-value {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+  }
+
+  .speed-gauge {
+    position: relative;
+    margin-bottom: 8px;
+    padding-bottom: 28px;
+  }
+
+  .speed-gauge-track {
+    display: flex;
+    height: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  .speed-zone-green { background: #22c55e; }
+  .speed-zone-yellow { background: #eab308; }
+  .speed-zone-orange { background: #f97316; }
+  .speed-zone-red { background: #ef4444; }
+
+  .speed-gauge-needle {
+    position: absolute;
+    top: -4px;
+    transform: translateX(-50%);
+  }
+
+  .needle-line {
+    width: 4px;
+    height: 18px;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 0 8px rgba(255,255,255,0.5);
+  }
+
+  .speed-gauge-target {
+    position: absolute;
+    top: -4px;
+    transform: translateX(-50%);
+  }
+
+  .target-line {
+    width: 2px;
+    height: 18px;
+    background: #1BA7FF;
+    border-radius: 1px;
+  }
+
+  .target-label {
+    font-size: 9px;
+    color: #1BA7FF;
+    text-align: center;
+    margin-top: 2px;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .speed-legend {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #444;
+  }
+
+  .speed-best-worst {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+    font-size: 12px;
+  }
+
+  .speed-best-worst span {
+    color: #555;
+  }
+
+  /* === Table === */
+  .table-section {
+    background: #13131a;
+    border: 1px solid #1e1e2a;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .table-title {
+    font-size: 14px;
+    color: #888;
+    font-weight: 600;
+    padding: 16px 16px 12px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  thead th {
+    font-size: 11px;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    padding: 8px 10px;
+    text-align: center;
+    border-bottom: 1px solid #1e1e2a;
+  }
+
+  thead th:first-child {
+    text-align: left;
+    padding-left: 16px;
+  }
+
+  tbody td {
+    padding: 10px 10px;
+    text-align: center;
+    border-bottom: 1px solid #0e0e15;
+  }
+
+  .day-cell {
+    text-align: left;
+    padding-left: 16px;
+    font-weight: 600;
+    color: #aaa;
+  }
+
+  .rdv-cell {
+    font-weight: 700;
+    color: #fff;
+  }
+
+  tbody tr:hover {
+    background: rgba(255,255,255,0.02) !important;
+  }
+
+  .footer {
+    margin-top: 24px;
+    font-size: 11px;
+    color: #333;
+    text-align: center;
+  }
+
+  /* === Objectif banner === */
+  .obj-banner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: #13131a;
+    border: 1px solid #1e1e2a;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 13px;
+  }
+
+  .obj-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .obj-text {
+    color: #888;
+  }
+
+  .obj-text strong {
+    color: #fff;
+  }
+
+  @media (max-width: 480px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .kpi:last-child { grid-column: 1 / -1; }
+    table { font-size: 12px; }
+    thead th, tbody td { padding: 8px 6px; }
+    .kpi-value { font-size: 24px; }
+    .speed-value { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <h1>Setting — Lucas</h1>
+  <p class="subtitle">Mars 2026 — 11 jours actifs</p>
+
+  <div class="obj-banner">
+    <div class="obj-dot" style="background:#1BA7FF"></div>
+    <div class="obj-text">Objectif speed-to-call : <strong>30 min max</strong> (heures ouvrees 8h-20h)</div>
+  </div>
+
+  <!-- Speed gauge -->
+  <div class="speed-section">
+    <div class="speed-header">
+      <div class="speed-title">Speed-to-call moyen</div>
+      <div class="speed-value" style="color:#f97316">225 min</div>
+    </div>
+    <div class="speed-gauge">
+      <div class="speed-gauge-track">
+        <div class="speed-gauge-zone speed-zone-green" style="width:10%"></div>
+        <div class="speed-gauge-zone speed-zone-yellow" style="width:30%"></div>
+        <div class="speed-gauge-zone speed-zone-orange" style="width:27%"></div>
+        <div class="speed-gauge-zone speed-zone-red" style="width:33%"></div>
+      </div>
+      <div class="speed-gauge-needle" style="left:75%">
+        <div class="needle-line"></div>
+      </div>
+      <div class="speed-gauge-target" style="left:10%">
+        <div class="target-line"></div>
+        <div class="target-label">Objectif<br>30 min</div>
+      </div>
+    </div>
+    <div class="speed-legend">
+      <span>0</span>
+      <span style="color:#22c55e">30</span>
+      <span style="color:#eab308">120</span>
+      <span style="color:#f97316">200</span>
+      <span style="color:#ef4444">300+</span>
+    </div>
+    <div class="speed-best-worst">
+      <span>Meilleur : <b style="color:#22c55e">56 min</b></span>
+      <span>Pire : <b style="color:#ef4444">620 min</b></span>
+    </div>
+  </div>
+
+  <!-- KPIs -->
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="kpi-value">372</div>
+      <div class="kpi-label">Leads recus</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-value">177</div>
+      <div class="kpi-label">Decroches</div>
+    </div>
+    <div class="kpi highlight">
+      <div class="kpi-value">32</div>
+      <div class="kpi-label">RDV bookes</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-value">48%</div>
+      <div class="kpi-label">Tx contact</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-value">9%</div>
+      <div class="kpi-label">Tx RDV</div>
+    </div>
+    <div class="kpi warn">
+      <div class="kpi-value">1/11</div>
+      <div class="kpi-label">Jours &lt; 60 min</div>
+    </div>
+  </div>
+
+  <!-- Table jour par jour -->
+  <div class="table-section">
+    <div class="table-title">Detail jour par jour</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Jour</th>
+          <th>Leads</th>
+          <th>Speed</th>
+          <th>Decr.</th>
+          <th>Tx</th>
+          <th>RDV</th>
+          <th>Tx RDV</th>
+        </tr>
+      </thead>
+      <tbody>
+
+      <tr style="background:rgba(234,179,8,0.08)">
+        <td class="day-cell">27</td>
+        <td>27</td>
+        <td style="color:#eab308;font-weight:700">109 min</td>
+        <td>15</td>
+        <td>56%</td>
+        <td class="rdv-cell">4</td>
+        <td>15%</td>
+      </tr>
+      <tr style="background:rgba(132,204,22,0.08)">
+        <td class="day-cell">26</td>
+        <td>41</td>
+        <td style="color:#84cc16;font-weight:700">56 min</td>
+        <td>17</td>
+        <td>41%</td>
+        <td class="rdv-cell">4</td>
+        <td>10%</td>
+      </tr>
+      <tr style="background:rgba(239,68,68,0.1)">
+        <td class="day-cell">25</td>
+        <td>35</td>
+        <td style="color:#ef4444;font-weight:700">620 min</td>
+        <td>17</td>
+        <td>49%</td>
+        <td class="rdv-cell">1</td>
+        <td>3%</td>
+      </tr>
+      <tr style="background:rgba(239,68,68,0.1)">
+        <td class="day-cell">24</td>
+        <td>35</td>
+        <td style="color:#ef4444;font-weight:700">245 min</td>
+        <td>19</td>
+        <td>54%</td>
+        <td class="rdv-cell">2</td>
+        <td>6%</td>
+      </tr>
+      <tr style="background:rgba(234,179,8,0.08)">
+        <td class="day-cell">23</td>
+        <td>18</td>
+        <td style="color:#eab308;font-weight:700">112 min</td>
+        <td>10</td>
+        <td>56%</td>
+        <td class="rdv-cell">2</td>
+        <td>11%</td>
+      </tr>
+      <tr style="background:rgba(239,68,68,0.1)">
+        <td class="day-cell">22</td>
+        <td>42</td>
+        <td style="color:#ef4444;font-weight:700">275 min</td>
+        <td>23</td>
+        <td>55%</td>
+        <td class="rdv-cell">2</td>
+        <td>5%</td>
+      </tr>
+      <tr style="background:rgba(249,115,22,0.08)">
+        <td class="day-cell">21</td>
+        <td>36</td>
+        <td style="color:#f97316;font-weight:700">181 min</td>
+        <td>14</td>
+        <td>39%</td>
+        <td class="rdv-cell">3</td>
+        <td>8%</td>
+      </tr>
+      <tr style="background:rgba(239,68,68,0.1)">
+        <td class="day-cell">20</td>
+        <td>39</td>
+        <td style="color:#ef4444;font-weight:700">441 min</td>
+        <td>15</td>
+        <td>38%</td>
+        <td class="rdv-cell">1</td>
+        <td>3%</td>
+      </tr>
+      <tr style="background:rgba(249,115,22,0.08)">
+        <td class="day-cell">19</td>
+        <td>21</td>
+        <td style="color:#f97316;font-weight:700">122 min</td>
+        <td>9</td>
+        <td>43%</td>
+        <td class="rdv-cell">3</td>
+        <td>14%</td>
+      </tr>
+      <tr style="background:rgba(234,179,8,0.08)">
+        <td class="day-cell">18</td>
+        <td>61</td>
+        <td style="color:#eab308;font-weight:700">69 min</td>
+        <td>26</td>
+        <td>43%</td>
+        <td class="rdv-cell">5</td>
+        <td>8%</td>
+      </tr>
+      <tr style="background:rgba(239,68,68,0.1)">
+        <td class="day-cell">17</td>
+        <td>17</td>
+        <td style="color:#ef4444;font-weight:700">243 min</td>
+        <td>12</td>
+        <td>71%</td>
+        <td class="rdv-cell">5</td>
+        <td>29%</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="footer">Source de verite : Tracking Sheet — Mis a jour le 28/03/2026 18h04 (Dubai)</p>
+
+</div>
+
+</body>
+</html>
