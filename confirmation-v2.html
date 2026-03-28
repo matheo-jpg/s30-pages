@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#CC0000">
+<title>Appel Confirmé - Stratégie 30%</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #E9FCFF;
+  color: #1a1a2e;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; height: auto; display: block; }
+
+:root {
+  --bg: #E9FCFF;
+  --accent: #1BA7FF;
+  --cyan-border: rgba(135, 205, 221, 0.8);
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --card-shadow: rgba(0, 0, 0, 0.08) 0px 4px 16px;
+  --glow-color: rgb(142, 214, 234);
+  --text-dark: #1a1a2e;
+  --text-muted: #4a5568;
+  --max-width: 800px;
+  --red: #CC0000;
+  --green: #16a34a;
+}
+
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 20px; }
+.highlight { color: var(--accent); }
+
+/* ===== ELLIPSE GLOW ===== */
+.ellipse-glow {
+  position: fixed; bottom: -300px; right: -400px;
+  width: 1100px; height: 600px; border-radius: 50%;
+  background-color: var(--glow-color);
+  box-shadow: 0 0 100px rgba(170,245,253,1), 0 0 200px rgba(170,245,253,0.9), 0 0 400px rgba(170,245,253,0.7), 0 0 800px rgba(170,245,253,0.5);
+  z-index: -1; pointer-events: none;
+}
+
+/* ===== BANNER ===== */
+.banner-warning {
+  background: var(--red);
+  color: #fff;
+  text-align: center;
+  padding: 28px 24px;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+/* ===== HEADLINE ===== */
+.headline-section { text-align: center; padding: 30px 0 10px; }
+.headline-section h1 { font-size: 38px; font-weight: 900; line-height: 1.25; }
+.divider { width: 40%; height: 2px; background: var(--cyan-border); margin: 12px auto 20px; }
+
+/* ===== COUNTDOWN CARD ===== */
+.countdown-card {
+  background: var(--card-bg);
+  border: 1px solid var(--cyan-border);
+  border-radius: 20px;
+  padding: 24px 20px;
+  margin-bottom: 28px;
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.countdown-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  box-shadow: inset 0 0 0 1px rgba(135,205,221,0.8), inset 0 0 16px rgba(135,205,221,0.3), inset 0 8px 32px rgba(135,205,221,0.15);
+  pointer-events: none;
+}
+.countdown-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+.countdown-timer {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+.countdown-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.countdown-number {
+  font-size: 40px;
+  font-weight: 900;
+  color: var(--text-dark);
+  line-height: 1;
+  min-width: 64px;
+  background: #fff;
+  border: 1px solid rgba(135,205,221,0.5);
+  border-radius: 14px;
+  padding: 12px 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.countdown-suffix {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: 6px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.countdown-separator {
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--cyan-border);
+  line-height: 1;
+  padding-top: 12px;
+}
+.countdown-date {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-top: 16px;
+}
+.countdown-date strong { color: var(--accent); }
+
+/* ===== STEP PILLS ===== */
+.step-pill-wrapper { text-align: center; margin-bottom: 20px; }
+.step-pill {
+  display: inline-block;
+  background: #fff;
+  border: 1px solid rgba(135,205,221,0.6);
+  border-radius: 50px;
+  padding: 16px 36px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-dark);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+/* ===== CALENDAR CARD ===== */
+.cal-card {
+  background: var(--card-bg);
+  border: 1px solid var(--cyan-border);
+  border-radius: 20px;
+  padding: 30px 20px;
+  margin-bottom: 30px;
+  box-shadow: var(--card-shadow);
+  text-align: center;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+.cal-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  box-shadow: inset 0 0 0 1px rgba(135,205,221,0.8), inset 0 0 16px rgba(135,205,221,0.3), inset 0 8px 32px rgba(135,205,221,0.15);
+  pointer-events: none;
+}
+.cal-icons {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.cal-icon-btn {
+  width: 64px;
+  height: 64px;
+  border-radius: 14px;
+  border: 1px solid rgba(135,205,221,0.5);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+}
+.cal-icon-btn:hover {
+  background: #f0f8ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+.cal-icon-btn svg, .cal-icon-btn img { width: 32px; height: 32px; }
+.cal-subtitle {
+  font-size: 14px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ===== VIDEO CARD ===== */
+.video-card {
+  background: var(--card-bg);
+  border: 1px solid var(--cyan-border);
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 40px;
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+.video-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  box-shadow: inset 0 0 0 1px rgba(135,205,221,0.8), inset 0 0 16px rgba(135,205,221,0.3), inset 0 8px 32px rgba(135,205,221,0.15);
+  pointer-events: none;
+}
+.video-wrapper { border-radius: 12px; overflow: hidden; }
+
+/* ===== RULES CARD ===== */
+.rules-card {
+  background: var(--card-bg);
+  border: 1px solid var(--cyan-border);
+  border-radius: 20px;
+  padding: 30px 28px;
+  margin-bottom: 40px;
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+.rules-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  box-shadow: inset 0 0 0 1px rgba(135,205,221,0.8), inset 0 0 16px rgba(135,205,221,0.3), inset 0 8px 32px rgba(135,205,221,0.15);
+  pointer-events: none;
+}
+.rules-title {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.rule-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.rule-item:last-child { margin-bottom: 0; }
+.rule-number {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 800;
+}
+.rule-text {
+  font-size: 15px;
+  line-height: 1.5;
+  padding-top: 6px;
+}
+.rule-text strong { font-weight: 700; }
+
+/* ===== SECTIONS ===== */
+.section-title { text-align: center; font-size: 32px; font-weight: 900; margin-bottom: 8px; }
+.section-subtitle { text-align: center; font-size: 14px; color: var(--text-muted); margin-bottom: 32px; }
+.section-divider { width: 100%; height: 1px; background: var(--cyan-border); margin: 20px 0 40px; }
+
+/* ===== OBJECTION VIDEO GRID ===== */
+.objection-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 50px;
+}
+.objection-card {
+  border-radius: 14px;
+  overflow: hidden;
+  background: #111;
+  position: relative;
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px solid var(--cyan-border);
+  transition: transform 0.2s;
+}
+.objection-card:hover { transform: translateY(-2px); }
+.objection-card .play-btn {
+  width: 52px; height: 52px;
+  background: rgba(0,0,0,0.6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+.objection-card .play-btn::after {
+  content: '';
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 9px 0 9px 16px;
+  border-color: transparent transparent transparent #fff;
+  margin-left: 4px;
+}
+.objection-label {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.9));
+  padding: 30px 14px 14px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.3;
+  z-index: 1;
+}
+
+/* ===== TESTIMONIAL GRID ===== */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 50px;
+}
+.testi-card {
+  background: var(--card-bg);
+  border: 1px solid var(--cyan-border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s;
+}
+.testi-card:hover { transform: translateY(-3px); }
+.testi-thumb {
+  aspect-ratio: 16/9;
+  background: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-bottom: 1px solid rgba(135,205,221,0.4);
+}
+.testi-thumb .play-btn {
+  width: 52px; height: 52px;
+  background: rgba(0,0,0,0.6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.testi-thumb .play-btn::after {
+  content: '';
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 9px 0 9px 16px;
+  border-color: transparent transparent transparent #fff;
+  margin-left: 4px;
+}
+.testi-info { padding: 12px 16px; }
+.testi-name { font-weight: 700; font-size: 14px; }
+.testi-role { font-size: 12px; color: var(--accent); font-weight: 600; }
+
+/* ===== SCREENSHOT TESTIMONIALS ===== */
+.screenshot-list { display: flex; flex-direction: column; gap: 40px; margin-bottom: 50px; }
+.screenshot-item { position: relative; }
+.screenshot-img {
+  width: 100%;
+  border-radius: 14px;
+  border: 2px dashed var(--cyan-border);
+  box-shadow: var(--card-shadow);
+  background: #fff;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 500;
+}
+.screenshot-annotation {
+  position: absolute;
+  background: rgba(20,20,35,0.9);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  font-style: italic;
+  padding: 10px 16px;
+  border-radius: 10px;
+  max-width: 220px;
+  line-height: 1.4;
+  text-align: center;
+}
+.screenshot-annotation.top-right { top: -16px; right: 20px; }
+.screenshot-annotation.top-left { top: -16px; left: 20px; }
+.screenshot-annotation.bottom-right { bottom: -16px; right: 20px; }
+.screenshot-annotation::after {
+  content: '';
+  position: absolute;
+  width: 0; height: 0;
+  border-style: solid;
+}
+.screenshot-annotation.top-right::after,
+.screenshot-annotation.top-left::after {
+  bottom: -8px; left: 30px;
+  border-width: 8px 6px 0 6px;
+  border-color: rgba(20,20,35,0.9) transparent transparent transparent;
+}
+.screenshot-annotation.bottom-right::after {
+  top: -8px; right: 30px;
+  border-width: 0 6px 8px 6px;
+  border-color: transparent transparent rgba(20,20,35,0.9) transparent;
+}
+
+/* ===== CHECKLIST (alternative view for rules) ===== */
+.checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: #fff;
+  border: 1px solid rgba(135,205,221,0.4);
+  border-radius: 12px;
+  margin-bottom: 10px;
+  transition: background 0.2s;
+}
+.checklist-item:last-child { margin-bottom: 0; }
+.checklist-check {
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  background: var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.checklist-check svg { width: 16px; height: 16px; color: #fff; }
+.checklist-cross {
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  background: var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.checklist-cross svg { width: 16px; height: 16px; color: #fff; }
+.checklist-text {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* ===== FOOTER ===== */
+.footer { padding: 40px 0; text-align: center; border-top: 1px solid var(--cyan-border); }
+.footer-disclaimer { font-size: 11px; color: var(--text-muted); line-height: 1.7; max-width: 700px; margin: 0 auto 16px; opacity: 0.7; }
+.footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 12px; }
+.footer-links a { font-size: 13px; color: var(--accent); font-weight: 500; }
+.footer-copy { font-size: 12px; color: var(--text-muted); opacity: 0.6; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .headline-section h1 { font-size: 24px; }
+  .headline-section { padding: 20px 0 8px; }
+  .step-pill { font-size: 14px; padding: 14px 22px; }
+  .cal-icon-btn { width: 56px; height: 56px; }
+  .cal-icon-btn svg { width: 28px; height: 28px; }
+  .cal-icons { gap: 10px; }
+  .cal-card { padding: 24px 16px; margin-bottom: 20px; }
+  .video-card { margin-bottom: 30px; }
+  .rules-card { padding: 24px 20px; }
+  .rule-text { font-size: 14px; }
+  .objection-grid { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .section-title { font-size: 24px; }
+  .container { padding: 0 16px; }
+  .banner-warning { font-size: 16px; padding: 16px 20px; padding-top: calc(env(safe-area-inset-top, 0px) + 16px); }
+  .section-divider { margin: 16px 0 28px; }
+  .screenshot-annotation { font-size: 11px; max-width: 170px; }
+  .countdown-number { font-size: 28px; min-width: 48px; padding: 10px 6px; }
+  .countdown-separator { font-size: 24px; padding-top: 10px; }
+  .countdown-timer { gap: 10px; }
+  .checklist-text { font-size: 14px; }
+  .ellipse-glow { width: 900px; height: 800px; transform: translate(53%, 85%); }
+}
+</style>
+</head>
+<body>
+
+<div class="ellipse-glow"></div>
+
+<!-- BANNER -->
+<div class="banner-warning">Attention : Ton appel n'est que provisoirement réservé. Lis cette page pour le confirmer.</div>
+
+<!-- HEADLINE -->
+<div class="headline-section">
+  <div class="container">
+    <h1>Suis les étapes ci-dessous pour <span class="highlight">confirmer ton appel</span></h1>
+    <div class="divider"></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- COUNTDOWN TO CALL -->
+  <div class="countdown-card" id="countdownCard">
+    <div class="countdown-label">Ton appel est dans</div>
+    <div class="countdown-timer">
+      <div class="countdown-unit">
+        <div class="countdown-number" id="cdDays">--</div>
+        <div class="countdown-suffix">Jours</div>
+      </div>
+      <div class="countdown-separator">:</div>
+      <div class="countdown-unit">
+        <div class="countdown-number" id="cdHours">--</div>
+        <div class="countdown-suffix">Heures</div>
+      </div>
+      <div class="countdown-separator">:</div>
+      <div class="countdown-unit">
+        <div class="countdown-number" id="cdMins">--</div>
+        <div class="countdown-suffix">Minutes</div>
+      </div>
+      <div class="countdown-separator">:</div>
+      <div class="countdown-unit">
+        <div class="countdown-number" id="cdSecs">--</div>
+        <div class="countdown-suffix">Secondes</div>
+      </div>
+    </div>
+    <p class="countdown-date" id="cdDate"></p>
+  </div>
+
+  <!-- STEP 1 — AJOUTER AU CALENDRIER -->
+  <div class="cal-card">
+    <div class="step-pill-wrapper" style="margin-bottom:16px;">
+      <div class="step-pill">Étape 1 : <span class="highlight">Ajoute l'appel</span> à ton calendrier</div>
+    </div>
+    <div class="cal-icons">
+      <!-- Apple -->
+      <a class="cal-icon-btn" id="calApple" href="#" download="appel-strategie30.ics" title="Apple Calendar">
+        <svg viewBox="0 0 24 24" fill="#333"><path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.53 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+      </a>
+      <!-- Google -->
+      <a class="cal-icon-btn" id="calGoogle" href="#" target="_blank" title="Google Calendar">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.76h3.56c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.56-2.76c-.98.66-2.23 1.06-3.72 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09a6.87 6.87 0 010-4.38V6.87H2.18a11 11 0 000 9.9l3.66-2.68z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+      </a>
+      <!-- Office 365 -->
+      <a class="cal-icon-btn" id="calOffice" href="#" target="_blank" title="Office 365">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M8 2L2 5.5v13L8 22l14-3V5L8 2z" fill="#EB3C00"/><path d="M8 2v20l14-3V5L8 2z" fill="#EB3C00" opacity="0.8"/><path d="M2 5.5L8 2l14 3L8 8.5 2 5.5z" fill="#FF6D3F"/></svg>
+      </a>
+      <!-- Outlook -->
+      <a class="cal-icon-btn" id="calOutlook" href="#" target="_blank" title="Outlook">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="1" y="4" width="22" height="16" rx="2" fill="#0078D4"/><path d="M1 6l11 7 11-7" stroke="#28A8EA" stroke-width="1.5" fill="none"/><ellipse cx="8" cy="14" rx="4" ry="3.5" fill="#fff" opacity="0.9"/></svg>
+      </a>
+      <!-- Yahoo -->
+      <a class="cal-icon-btn" id="calYahoo" href="#" target="_blank" title="Yahoo">
+        <svg viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="5" fill="#6001D2"/><path d="M7 7l3.5 5.5V17h3v-4.5L17 7h-3l-2 3.5L10 7H7z" fill="#fff"/></svg>
+      </a>
+    </div>
+    <p class="cal-subtitle">Sélectionne ton calendrier et enregistre l'appel</p>
+  </div>
+
+  <!-- STEP 2 — VIDÉO -->
+  <div class="video-card">
+    <div class="step-pill-wrapper" style="margin-bottom:16px;">
+      <div class="step-pill">Étape 2 : Regarde cette courte vidéo pour être sûr qu'<span class="highlight">on ne supprime pas ton appel</span></div>
+    </div>
+    <div class="video-wrapper">
+      <div id="vidalytics_embed_f0qO6TZotjWW5TII" style="width: 100%; position: relative; padding-top: 56.25%;"></div>
+    </div>
+  </div>
+
+  <!-- STEP 3 — RÈGLES DE L'APPEL (format checklist) -->
+  <div class="step-pill-wrapper">
+    <div class="step-pill">Étape 3 : Lis les <span class="highlight">règles de l'appel</span></div>
+  </div>
+  <div class="rules-card">
+    <div class="rules-title">Ce qu'on attend de toi</div>
+
+    <div class="checklist-item">
+      <div class="checklist-check"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+      <div class="checklist-text">Sois à l'heure. Plus de 5 min de retard = ton créneau est donné à quelqu'un d'autre.</div>
+    </div>
+    <div class="checklist-item">
+      <div class="checklist-check"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+      <div class="checklist-text">Installe-toi dans un endroit calme où tu peux parler librement.</div>
+    </div>
+    <div class="checklist-item">
+      <div class="checklist-check"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+      <div class="checklist-text">Active ta caméra. C'est un échange humain, pas un call anonyme.</div>
+    </div>
+    <div class="checklist-item">
+      <div class="checklist-check"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+      <div class="checklist-text">Prépare tes questions. C'est le moment de tout nous demander.</div>
+    </div>
+    <div class="checklist-item">
+      <div class="checklist-check"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+      <div class="checklist-text">Sois honnête sur ta situation. On ne juge pas, on veut t'aider.</div>
+    </div>
+
+    <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(135,205,221,0.4);">
+      <div class="checklist-item" style="border-color:rgba(204,0,0,0.2);">
+        <div class="checklist-cross"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></div>
+        <div class="checklist-text">Ne viens pas si tu n'as pas regardé la vidéo de présentation.</div>
+      </div>
+      <div class="checklist-item" style="border-color:rgba(204,0,0,0.2);">
+        <div class="checklist-cross"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></div>
+        <div class="checklist-text">Ne viens pas dans la rue ou dans les transports.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- QUESTIONS / OBJECTION VIDEOS -->
+<div class="section-divider"></div>
+<div class="container">
+  <h2 class="section-title">On répond à tes <span class="highlight">questions</span> avant l'appel</h2>
+  <p class="section-subtitle"></p>
+
+  <div class="objection-grid">
+    <div class="objection-card" data-vid="d4f3FiofeDp68Gg4" onclick="playObjection(this)"><img src="https://matheo-jpg.github.io/s30-pages/thumbs-objections/jamais-lance-business.jpg" alt="" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><div class="play-btn"></div><div class="objection-label">J'ai jamais lancé de business</div></div>
+    <div class="objection-card" data-vid="3_5Hw3_2U8Dhpx6r" onclick="playObjection(this)"><img src="https://matheo-jpg.github.io/s30-pages/thumbs-objections/formation-rien-donne.jpg" alt="" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><div class="play-btn"></div><div class="objection-label">J'ai déjà payé une formation et ça n'a rien donné</div></div>
+    <div class="objection-card" data-vid="WpPmxPP26_zaD1jC" onclick="playObjection(this)"><img src="https://matheo-jpg.github.io/s30-pages/thumbs-objections/signer-premier-createur.jpg" alt="" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><div class="play-btn"></div><div class="objection-label">Combien de temps pour signer un créateur ?</div></div>
+    <div class="objection-card" data-vid="uTu2N_Tr2yyXqyZd" onclick="playObjection(this)"><img src="https://matheo-jpg.github.io/s30-pages/thumbs-objections/combien-heures.jpg" alt="" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><div class="play-btn"></div><div class="objection-label">Combien d'heures par jour ?</div></div>
+    <div class="objection-card" data-vid="GBRffSvVXrq9K5qU" onclick="playObjection(this)"><img src="https://matheo-jpg.github.io/s30-pages/thumbs-objections/quotidien-concret.jpg" alt="" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><div class="play-btn"></div><div class="objection-label">Qu'est-ce que je vais faire au quotidien ?</div></div>
+    <div class="objection-card" data-vid="mgVmJhnJuGVyjV6z" onclick="playObjection(this)"><img src="https://matheo-jpg.github.io/s30-pages/thumbs-objections/frais-prevoir.jpg" alt="" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><div class="play-btn"></div><div class="objection-label">Est-ce qu'il y a des frais à prévoir ?</div></div>
+    <div class="objection-card" data-vid="VjthbxwRu1512kt6" onclick="playObjection(this)"><img src="https://matheo-jpg.github.io/s30-pages/thumbs-objections/pourquoi-createur.jpg" alt="" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><div class="play-btn"></div><div class="objection-label">Pourquoi un créateur accepterait bosser avec moi ?</div></div>
+    <div class="objection-card" data-vid="zjIsBsyg3QpzegQ0" onclick="playObjection(this)"><img src="https://matheo-jpg.github.io/s30-pages/thumbs-objections/revenus-realistes.jpg" alt="" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><div class="play-btn"></div><div class="objection-label">C'est quoi les revenus réalistes ?</div></div>
+    <div class="objection-card" data-vid="PB4C5GovwTFxSuSS" onclick="playObjection(this)"><img src="https://matheo-jpg.github.io/s30-pages/thumbs-objections/revenus-recurrents.jpg" alt="" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><div class="play-btn"></div><div class="objection-label">C'est quoi le revenu récurrent ?</div></div>
+    <div class="objection-card" data-vid="Cfof1_0iPK6QOIvZ" onclick="playObjection(this)"><img src="https://matheo-jpg.github.io/s30-pages/thumbs-objections/entourage-arnaque.jpg" alt="" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><div class="play-btn"></div><div class="objection-label">Mon entourage dit que c'est une arnaque</div></div>
+  </div>
+</div>
+
+<!-- RÉSULTATS MEMBRES -->
+<div class="section-divider"></div>
+<div class="container">
+  <h2 class="section-title">Résultats <span class="highlight">concrets</span> de nos membres</h2>
+  <p class="section-subtitle">Des gens normaux qui ont changé de vie grâce à l'Opération de Croissance.</p>
+
+  <div class="testimonials-grid">
+    <div class="testi-card"><div class="testi-thumb"><div class="play-btn"></div></div><div class="testi-info"><div class="testi-name">Brandon</div><div class="testi-role">Ancien salarié</div></div></div>
+    <div class="testi-card"><div class="testi-thumb"><div class="play-btn"></div></div><div class="testi-info"><div class="testi-name">Maréva</div><div class="testi-role">Jeune maman</div></div></div>
+    <div class="testi-card"><div class="testi-thumb"><div class="play-btn"></div></div><div class="testi-info"><div class="testi-name">Mathis, 23 ans</div><div class="testi-role">Étudiant</div></div></div>
+    <div class="testi-card"><div class="testi-thumb"><div class="play-btn"></div></div><div class="testi-info"><div class="testi-name">Kamil</div><div class="testi-role">30K EUR générés</div></div></div>
+  </div>
+</div>
+
+<!-- CE QUE NOS MEMBRES DISENT -->
+<div class="section-divider"></div>
+<div class="container">
+  <h2 class="section-title">Ce que nos <span class="highlight">membres</span> disent</h2>
+  <p class="section-subtitle"></p>
+
+  <div class="screenshot-list">
+    <div class="screenshot-item">
+      <div class="screenshot-annotation top-right">Remplace par ton screenshot + annotation</div>
+      <div class="screenshot-img">Screenshot membre #1</div>
+    </div>
+    <div class="screenshot-item">
+      <div class="screenshot-annotation top-left">Remplace par ton screenshot + annotation</div>
+      <div class="screenshot-img">Screenshot membre #2</div>
+    </div>
+    <div class="screenshot-item">
+      <div class="screenshot-annotation top-right">Remplace par ton screenshot + annotation</div>
+      <div class="screenshot-img">Screenshot membre #3</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="container">
+    <p class="footer-disclaimer">Stratégie 30% et toutes les personnes affiliées à cette organisation n'assument aucune responsabilité quant au résultat ou au succès des services. Le succès dépend du temps consacré et de la mise en oeuvre des stratégies. Contenus à des fins éducatives uniquement.</p>
+    <p class="footer-disclaimer">Ce site n'est pas une partie du site Meta/Facebook ou de Meta, Inc. Ce site n'est PAS approuvé par Meta.</p>
+    <div class="footer-links">
+      <a href="#">Politique de confidentialité</a>
+      <a href="#">Conditions d'utilisation</a>
+      <a href="#">Contact</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 ForCyclers LLC. Tous droits réservés.</p>
+  </div>
+</div>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  var startRaw = params.get('event_start_time');
+  var endRaw = params.get('event_end_time');
+  var eventName = 'Appel de candidature - Stratégie 30%';
+  var desc = "Appel de candidature Stratégie 30%. Sois à l'heure, dans un endroit calme, caméra activée.";
+
+  if (!startRaw || !endRaw) {
+    // Masque le countdown si pas de date
+    var cc = document.getElementById('countdownCard');
+    if (cc) cc.style.display = 'none';
+    return;
+  }
+
+  var start = new Date(startRaw), end = new Date(endRaw);
+
+  // Countdown timer
+  function updateCountdown() {
+    var now = new Date();
+    var diff = start - now;
+    if (diff <= 0) {
+      document.getElementById('cdDays').textContent = '0';
+      document.getElementById('cdHours').textContent = '0';
+      document.getElementById('cdMins').textContent = '0';
+      document.getElementById('cdSecs').textContent = '0';
+      document.getElementById('cdDate').innerHTML = '<strong>C\'est maintenant !</strong> Rejoins ton appel.';
+      return;
+    }
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cdDays').textContent = d;
+    document.getElementById('cdHours').textContent = h < 10 ? '0' + h : h;
+    document.getElementById('cdMins').textContent = m < 10 ? '0' + m : m;
+    document.getElementById('cdSecs').textContent = s < 10 ? '0' + s : s;
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // Affiche la date en clair
+  var options = { weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' };
+  var dateStr = start.toLocaleDateString('fr-FR', options);
+  document.getElementById('cdDate').innerHTML = '<strong>' + dateStr.charAt(0).toUpperCase() + dateStr.slice(1) + '</strong>';
+
+  // Calendar links
+  function toICS(d) { return d.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,''); }
+  var t = encodeURIComponent(eventName), dd = encodeURIComponent(desc);
+
+  document.getElementById('calGoogle').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text='+t+'&dates='+toICS(start)+'/'+toICS(end)+'&details='+dd;
+  document.getElementById('calOutlook').href = 'https://outlook.live.com/calendar/0/action/compose?allday=false&subject='+t+'&startdt='+start.toISOString()+'&enddt='+end.toISOString()+'&body='+dd;
+  document.getElementById('calOffice').href = 'https://outlook.office.com/calendar/0/action/compose?allday=false&subject='+t+'&startdt='+start.toISOString()+'&enddt='+end.toISOString()+'&body='+dd;
+
+  var dur = Math.round((end-start)/60000), dh=String(Math.floor(dur/60)).padStart(2,'0'), dm=String(dur%60).padStart(2,'0');
+  document.getElementById('calYahoo').href = 'https://calendar.yahoo.com/?v=60&title='+t+'&st='+toICS(start)+'&dur='+dh+dm+'&desc='+dd;
+
+  var ics = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Strategie30//FR','BEGIN:VEVENT','DTSTART:'+toICS(start),'DTEND:'+toICS(end),'SUMMARY:'+eventName,'DESCRIPTION:'+desc,'END:VEVENT','END:VCALENDAR'].join('\r\n');
+  document.getElementById('calApple').href = URL.createObjectURL(new Blob([ics], {type:'text/calendar;charset=utf-8'}));
+})();
+</script>
+
+<!-- Vidalytics : vidéo principale pre-call -->
+<script type="text/javascript">
+(function(v,i,d,a,l,y,t,c,s){y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}var vl='Loader',vli=v[y][vl],vsl=v[c][vl+'Script'],vlf=v[c][vl+'Loaded'],ve='Embed';if(!vsl){vsl=function(u,cb){if(t){cb();return;}s=i.createElement("script");s.type="text/javascript";s.async=1;s.src=u;if(s.readyState){s.onreadystatechange=function(){if(s.readyState==="loaded"||s.readyState=="complete"){s.onreadystatechange=null;vlf=1;cb();}};}else{s.onload=function(){vlf=1;cb();};}i.getElementsByTagName("head")[0].appendChild(s);};}vsl(l+'loader.min.js',function(){if(!vli){var vlc=v[c][vl];vli=new vlc();}vli.loadScript(l+'player.min.js',function(){var vec=v[d][ve];t=new vec();t.run(a);});});})(window,document,'Vidalytics','vidalytics_embed_f0qO6TZotjWW5TII','https://fast.vidalytics.com/embeds/j3d1vxJQ/f0qO6TZotjWW5TII/');
+</script>
+
+<!-- Objection video player : click thumbnail → Vidalytics embed -->
+<script>
+function playObjection(card) {
+  var vid = card.getAttribute('data-vid');
+  var embedId = 'vidalytics_embed_' + vid;
+  card.innerHTML = '<div id="' + embedId + '" style="width:100%;position:relative;padding-top:56.25%;"></div>';
+  card.style.aspectRatio = 'auto';
+  card.style.cursor = 'default';
+  card.onclick = null;
+  (function(v,i,d,a,l,y,t,c,s){y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}var vl='Loader',vli=v[y][vl],vsl=v[c][vl+'Script'],vlf=v[c][vl+'Loaded'],ve='Embed';if(!vsl){vsl=function(u,cb){if(t){cb();return;}s=i.createElement("script");s.type="text/javascript";s.async=1;s.src=u;if(s.readyState){s.onreadystatechange=function(){if(s.readyState==="loaded"||s.readyState=="complete"){s.onreadystatechange=null;vlf=1;cb();}};}else{s.onload=function(){vlf=1;cb();};}i.getElementsByTagName("head")[0].appendChild(s);};}vsl(l+'loader.min.js',function(){if(!vli){var vlc=v[c][vl];vli=new vlc();}vli.loadScript(l+'player.min.js',function(){var vec=v[d][ve];t=new vec();t.run(a);});});})(window,document,'Vidalytics',embedId,'https://fast.vidalytics.com/embeds/j3d1vxJQ/'+vid+'/');
+}
+</script>
+
+</body>
+</html>
