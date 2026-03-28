@@ -34,6 +34,13 @@ a { color: inherit; text-decoration: none; }
 }
 
 .container { max-width: var(--max-width); margin: 0 auto; padding: 0 20px; }
+.vsl-center {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 /* ===== ELLIPSE GLOW ===== */
 .ellipse-glow {
@@ -66,7 +73,7 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 0 16px;
+  padding: 16px 0 16px;
 }
 .live-pill {
   display: inline-flex;
@@ -265,7 +272,7 @@ a { color: inherit; text-decoration: none; }
 
 <div class="ellipse-glow"></div>
 
-<div class="container">
+<div class="container vsl-center" id="vslCenter">
 
   <!-- LIVE WIDGET -->
   <div class="live-widget">
