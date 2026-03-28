@@ -375,10 +375,25 @@ img { max-width: 100%; height: auto; display: block; }
   max-width: 260px;
   line-height: 1.4;
   text-align: center;
-  margin-bottom: 12px;
+  margin-bottom: 4px;
+  position: relative;
 }
-.screenshot-annotation.top-right { margin-left: auto; margin-right: 20px; }
-.screenshot-annotation.top-left { margin-left: 20px; margin-right: auto; }
+.screenshot-annotation::after {
+  content: '';
+  position: absolute;
+  bottom: -18px;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #e53e3e;
+  border-top: none;
+  border-left: none;
+  border-radius: 0 0 50% 0;
+  transform: rotate(15deg);
+}
+.screenshot-annotation.top-right { margin-left: auto; margin-right: 40px; }
+.screenshot-annotation.top-right::after { right: 30px; }
+.screenshot-annotation.top-left { margin-left: 40px; margin-right: auto; }
+.screenshot-annotation.top-left::after { left: 30px; border-right: none; border-left: 2px solid #e53e3e; border-radius: 0 0 0 50%; transform: rotate(-15deg); }
 
 /* ===== CHECKLIST (alternative view for rules) ===== */
 .checklist-item {
