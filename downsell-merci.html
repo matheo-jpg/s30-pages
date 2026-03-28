@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#E9FCFF">
+<title>Bienvenue - Signe ton premier cr&eacute;ateur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #E9FCFF;
+  color: #1a1a2e;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+a { color: inherit; text-decoration: none; }
+
+:root {
+  --accent: #1BA7FF;
+  --accent-dark: #0d8fe0;
+  --accent-glow: rgba(27,167,255,0.35);
+  --cyan-border: rgba(135, 205, 221, 0.8);
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --card-shadow: rgba(0, 0, 0, 0.08) 0px 4px 16px;
+  --glow-color: rgb(142, 214, 234);
+  --text-dark: #1a1a2e;
+  --text-muted: #4a5568;
+  --max-width: 680px;
+}
+
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 20px; }
+
+.ellipse-glow {
+  position: fixed; bottom: -300px; right: -400px;
+  width: 1100px; height: 600px; border-radius: 50%;
+  background-color: var(--glow-color);
+  box-shadow: 0 0 100px rgba(170,245,253,1), 0 0 200px rgba(170,245,253,0.9),
+              0 0 400px rgba(170,245,253,0.7), 0 0 800px rgba(170,245,253,0.5);
+  z-index: -1; pointer-events: none;
+}
+
+.glass-card {
+  background: var(--card-bg);
+  border: 1px solid var(--cyan-border);
+  border-radius: 20px;
+  padding: 32px 28px;
+  margin-bottom: 24px;
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+.glass-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  box-shadow: inset 0 0 0 1px rgba(135,205,221,0.8),
+              inset 0 0 16px rgba(135,205,221,0.3),
+              inset 0 8px 32px rgba(135,205,221,0.15);
+  pointer-events: none;
+}
+
+/* ===== HEADER ===== */
+.page-header {
+  text-align: center;
+  padding: 56px 0 8px;
+}
+.check-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #e8f7ee;
+  border: 2px solid #bbf0ce;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+}
+.check-icon svg { width: 36px; height: 36px; }
+.page-header h1 {
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+.page-header p {
+  font-size: 16px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.divider {
+  width: 40%;
+  height: 2px;
+  background: var(--cyan-border);
+  margin: 28px auto;
+}
+
+/* ===== STEPS ===== */
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.step:last-child { margin-bottom: 0; }
+.step-number {
+  min-width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.step-content h3 {
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+.step-content p {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ===== CTA ===== */
+.cta-btn {
+  display: block;
+  width: 100%;
+  padding: 18px 32px;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+  text-align: center;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  margin-top: 8px;
+}
+.cta-btn:hover {
+  background: var(--accent-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--accent-glow);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  padding: 40px 0;
+  text-align: center;
+  border-top: 1px solid var(--cyan-border);
+  margin-top: 32px;
+}
+.footer p {
+  font-size: 12px;
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+  .page-header { padding: 40px 0 8px; }
+  .page-header h1 { font-size: 24px; }
+  .page-header p { font-size: 14px; }
+  .glass-card { padding: 24px 20px; }
+  .cta-btn { font-size: 16px; padding: 16px 24px; }
+  .container { padding: 0 16px; }
+  .check-icon { width: 60px; height: 60px; }
+  .check-icon svg { width: 28px; height: 28px; }
+}
+</style>
+</head>
+<body>
+
+<div class="ellipse-glow"></div>
+
+<div class="page-header">
+  <div class="container">
+    <div class="check-icon">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#059669" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <h1>Ton acc&egrave;s est activ&eacute;</h1>
+    <p>Ton paiement a bien &eacute;t&eacute; re&ccedil;u. Tu as acc&egrave;s &agrave; tout le programme imm&eacute;diatement.</p>
+    <div class="divider"></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="glass-card">
+    <div class="step">
+      <div class="step-number">1</div>
+      <div class="step-content">
+        <h3>V&eacute;rifie tes emails</h3>
+        <p>Tu vas recevoir un email de confirmation avec ton lien d'acc&egrave;s. Si tu ne le vois pas, v&eacute;rifie tes spams.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-number">2</div>
+      <div class="step-content">
+        <h3>Connecte-toi sur Whop</h3>
+        <p>Utilise l'email avec lequel tu viens de payer pour te connecter sur <strong>whop.com</strong>. Ton acc&egrave;s est d&eacute;j&agrave; actif.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-number">3</div>
+      <div class="step-content">
+        <h3>Commence le Module 1</h3>
+        <p>Les modules sont dans l'ordre. Suis-les un par un. Le premier te prend 10 minutes.</p>
+      </div>
+    </div>
+  </div>
+
+  <a href="https://whop.com/strategie-30/signe-ton-premier-createur-en-30-jours/" target="_blank" class="cta-btn">Acc&eacute;der au programme</a>
+
+</div>
+
+<div class="footer">
+  <div class="container">
+    <p>&copy; 2026 ForCyclers LLC. Tous droits r&eacute;serv&eacute;s.</p>
+  </div>
+</div>
+
+</body>
+</html>
