@@ -277,6 +277,13 @@
     color: #fff;
   }
 
+  .night-badge {
+    font-size: 10px;
+    color: #666;
+    font-weight: 400;
+    margin-left: 2px;
+  }
+
   @media (max-width: 480px) {
     .kpi-grid { grid-template-columns: repeat(2, 1fr); }
     .kpi:last-child { grid-column: 1 / -1; }
@@ -336,24 +343,24 @@
   <!-- KPIs -->
   <div class="kpi-grid">
     <div class="kpi">
-      <div class="kpi-value">372</div>
-      <div class="kpi-label">Leads recus</div>
+      <div class="kpi-value">233</div>
+      <div class="kpi-label">Leads 8-20h</div>
     </div>
     <div class="kpi">
-      <div class="kpi-value">177</div>
-      <div class="kpi-label">Decroches</div>
+      <div class="kpi-value" style="color:#666">139</div>
+      <div class="kpi-label">Leads nuit (37%)</div>
     </div>
     <div class="kpi highlight">
       <div class="kpi-value">32</div>
       <div class="kpi-label">RDV bookes</div>
     </div>
     <div class="kpi">
-      <div class="kpi-value">48%</div>
-      <div class="kpi-label">Tx contact</div>
+      <div class="kpi-value">176</div>
+      <div class="kpi-label">Decroches</div>
     </div>
     <div class="kpi">
-      <div class="kpi-value">9%</div>
-      <div class="kpi-label">Tx RDV</div>
+      <div class="kpi-value">47%</div>
+      <div class="kpi-label">Tx contact</div>
     </div>
     <div class="kpi warn">
       <div class="kpi-value">1/11</div>
@@ -368,7 +375,7 @@
       <thead>
         <tr>
           <th>Jour</th>
-          <th>Leads</th>
+          <th>Leads 8-20h</th>
           <th>Speed</th>
           <th>Decr.</th>
           <th>Tx</th>
@@ -380,7 +387,7 @@
 
       <tr style="background:rgba(234,179,8,0.08)">
         <td class="day-cell">27</td>
-        <td>27</td>
+        <td>12<span class="night-badge">+15</span></td>
         <td style="color:#eab308;font-weight:700">109 min</td>
         <td>15</td>
         <td>56%</td>
@@ -389,7 +396,7 @@
       </tr>
       <tr style="background:rgba(132,204,22,0.08)">
         <td class="day-cell">26</td>
-        <td>41</td>
+        <td>24<span class="night-badge">+17</span></td>
         <td style="color:#84cc16;font-weight:700">56 min</td>
         <td>17</td>
         <td>41%</td>
@@ -398,16 +405,16 @@
       </tr>
       <tr style="background:rgba(239,68,68,0.1)">
         <td class="day-cell">25</td>
-        <td>35</td>
+        <td>16<span class="night-badge">+19</span></td>
         <td style="color:#ef4444;font-weight:700">620 min</td>
-        <td>17</td>
-        <td>49%</td>
+        <td>16</td>
+        <td>46%</td>
         <td class="rdv-cell">1</td>
         <td>3%</td>
       </tr>
       <tr style="background:rgba(239,68,68,0.1)">
         <td class="day-cell">24</td>
-        <td>35</td>
+        <td>23<span class="night-badge">+12</span></td>
         <td style="color:#ef4444;font-weight:700">245 min</td>
         <td>19</td>
         <td>54%</td>
@@ -416,7 +423,7 @@
       </tr>
       <tr style="background:rgba(234,179,8,0.08)">
         <td class="day-cell">23</td>
-        <td>18</td>
+        <td>11<span class="night-badge">+7</span></td>
         <td style="color:#eab308;font-weight:700">112 min</td>
         <td>10</td>
         <td>56%</td>
@@ -425,7 +432,7 @@
       </tr>
       <tr style="background:rgba(239,68,68,0.1)">
         <td class="day-cell">22</td>
-        <td>42</td>
+        <td>28<span class="night-badge">+14</span></td>
         <td style="color:#ef4444;font-weight:700">275 min</td>
         <td>23</td>
         <td>55%</td>
@@ -434,7 +441,7 @@
       </tr>
       <tr style="background:rgba(249,115,22,0.08)">
         <td class="day-cell">21</td>
-        <td>36</td>
+        <td>24<span class="night-badge">+12</span></td>
         <td style="color:#f97316;font-weight:700">181 min</td>
         <td>14</td>
         <td>39%</td>
@@ -443,7 +450,7 @@
       </tr>
       <tr style="background:rgba(239,68,68,0.1)">
         <td class="day-cell">20</td>
-        <td>39</td>
+        <td>22<span class="night-badge">+17</span></td>
         <td style="color:#ef4444;font-weight:700">441 min</td>
         <td>15</td>
         <td>38%</td>
@@ -452,7 +459,7 @@
       </tr>
       <tr style="background:rgba(249,115,22,0.08)">
         <td class="day-cell">19</td>
-        <td>21</td>
+        <td>15<span class="night-badge">+6</span></td>
         <td style="color:#f97316;font-weight:700">122 min</td>
         <td>9</td>
         <td>43%</td>
@@ -461,7 +468,7 @@
       </tr>
       <tr style="background:rgba(234,179,8,0.08)">
         <td class="day-cell">18</td>
-        <td>61</td>
+        <td>47<span class="night-badge">+14</span></td>
         <td style="color:#eab308;font-weight:700">69 min</td>
         <td>26</td>
         <td>43%</td>
@@ -470,7 +477,7 @@
       </tr>
       <tr style="background:rgba(239,68,68,0.1)">
         <td class="day-cell">17</td>
-        <td>17</td>
+        <td>11<span class="night-badge">+6</span></td>
         <td style="color:#ef4444;font-weight:700">243 min</td>
         <td>12</td>
         <td>71%</td>
@@ -481,7 +488,7 @@
     </table>
   </div>
 
-  <p class="footer">Source de verite : Tracking Sheet — Mis a jour le 28/03/2026 18h04 (Dubai)</p>
+  <p class="footer">Source de verite : Tracking Sheet — Mis a jour le 28/03/2026 18h22 (Dubai)</p>
 
 </div>
 
