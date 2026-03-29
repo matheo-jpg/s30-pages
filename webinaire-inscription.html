@@ -4,12 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#E9FCFF">
-<title>Webinaire Live Gratuit - Strategie 30%</title>
+<title>Webinaire Live Gratuit - Strat&#233;gie 30%</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+a { color: inherit; text-decoration: none; }
 body {
   font-family: 'Inter', -apple-system, sans-serif;
   background: #E9FCFF;
@@ -22,13 +23,11 @@ body {
   --accent-dark: #0d8de0;
   --accent-glow: rgba(27,167,255,0.35);
   --cyan-border: rgba(135,205,221,0.8);
-  --card-bg: rgba(255,255,255,0.85);
-  --glow-color: rgb(142,214,234);
   --text-dark: #1a1a2e;
   --text-muted: #4a5568;
+  --glow-color: rgb(142,214,234);
 }
 
-/* ===== GLOW ===== */
 .ellipse-glow {
   position: fixed; bottom: -300px; right: -400px;
   width: 1100px; height: 600px; border-radius: 50%;
@@ -37,15 +36,13 @@ body {
   z-index: -1; pointer-events: none;
 }
 
-/* ===== SECTION 1 — HERO ===== */
+/* ===== HERO ===== */
 .hero {
   text-align: center;
   padding: 48px 24px 40px;
   max-width: 800px;
   margin: 0 auto;
 }
-
-/* Social proof pill */
 .social-pill {
   display: inline-flex;
   align-items: center;
@@ -57,9 +54,7 @@ body {
   margin-bottom: 24px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.06);
 }
-.avatar-stack {
-  display: flex;
-}
+.avatar-stack { display: flex; }
 .avatar-stack img {
   width: 28px; height: 28px;
   border-radius: 50%;
@@ -73,8 +68,6 @@ body {
   font-weight: 700;
   color: var(--accent);
 }
-
-/* Eyebrow */
 .hero-eyebrow {
   font-size: 15px;
   font-weight: 800;
@@ -83,8 +76,6 @@ body {
   color: var(--text-muted);
   margin-bottom: 12px;
 }
-
-/* Headline */
 .hero h1 {
   font-size: 40px;
   font-weight: 900;
@@ -94,31 +85,31 @@ body {
 }
 .hero h1 .hl { color: var(--accent); }
 
-/* Benefit checks */
+/* Checks 2x2 grid */
 .checks {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px 32px;
+  grid-template-columns: auto auto;
+  gap: 16px 48px;
+  justify-content: center;
   margin-bottom: 32px;
-  text-align: left;
-  max-width: 480px;
 }
 .check-item {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 14px;
+  gap: 8px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--text-dark);
+  white-space: nowrap;
 }
 .check-icon {
-  width: 20px; height: 20px;
+  width: 22px; height: 22px;
   border-radius: 50%;
   background: var(--accent);
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
 }
-.check-icon svg { width: 12px; height: 12px; color: #fff; }
+.check-icon svg { width: 13px; height: 13px; color: #fff; }
 
 /* Countdown */
 .countdown-label {
@@ -156,7 +147,7 @@ body {
   margin-top: 4px;
 }
 
-/* CTA button */
+/* CTA */
 .cta-btn {
   display: inline-block;
   width: 100%;
@@ -197,11 +188,11 @@ body {
   100% { left: 120%; }
 }
 
-/* ===== SECTION 2 — RESULTATS ===== */
+/* ===== RESULTATS ===== */
 .results-section {
   max-width: 800px;
-  margin: 0 auto 0;
-  padding: 0 24px 48px;
+  margin: 0 auto;
+  padding: 0 24px 24px;
 }
 .results-card {
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
@@ -212,7 +203,6 @@ body {
   gap: 32px;
   align-items: center;
 }
-.results-left {}
 .results-eyebrow {
   font-size: 12px;
   font-weight: 800;
@@ -232,7 +222,6 @@ body {
   flex-direction: column;
   gap: 20px;
 }
-.result-stat {}
 .result-num {
   font-size: 32px;
   font-weight: 900;
@@ -253,18 +242,18 @@ body {
   margin-top: 4px;
 }
 
-/* ===== SECTION 3 — DECOUVRIR ===== */
+/* ===== DECOUVRIR ===== */
 .discover-section {
   max-width: 800px;
   margin: 0 auto;
-  padding: 48px 24px;
+  padding: 24px 24px 24px;
 }
 .discover-card {
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   border-radius: 20px;
   padding: 40px 32px;
   display: grid;
-  grid-template-columns: 1fr 300px;
+  grid-template-columns: 1fr 280px;
   gap: 32px;
   align-items: start;
 }
@@ -301,28 +290,18 @@ body {
   color: #e2e8f0;
   line-height: 1.5;
 }
-.discover-photo {
-  border-radius: 16px;
-  overflow: hidden;
-  position: relative;
-}
-.photo-placeholder {
+.discover-photo { border-radius: 16px; overflow: hidden; }
+.discover-photo img {
   width: 100%;
+  display: block;
+  border-radius: 16px;
+  object-fit: cover;
   aspect-ratio: 3/4;
-  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 8px;
-  color: #64748b;
 }
-.photo-placeholder svg { width: 48px; height: 48px; }
-.photo-placeholder span { font-size: 14px; font-weight: 600; }
 .photo-caption {
   text-align: center;
   margin-top: 12px;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   color: #94a3b8;
 }
@@ -330,12 +309,12 @@ body {
 /* CTA 2 */
 .cta-section {
   text-align: center;
-  padding: 0 24px 48px;
+  padding: 24px 24px 48px;
   max-width: 800px;
   margin: 0 auto;
 }
 
-/* ===== FOOTER ===== */
+/* Footer */
 .footer {
   padding: 40px 24px;
   text-align: center;
@@ -356,28 +335,22 @@ body {
   .hero { padding: 32px 20px 32px; }
   .hero h1 { font-size: 28px; }
   .hero-eyebrow { font-size: 13px; }
-  .checks { gap: 10px 16px; max-width: 100%; }
-  .check-item { font-size: 13px; }
+  .checks { gap: 12px 24px; }
+  .check-item { font-size: 13px; white-space: normal; }
   .cd-unit { min-width: 65px; padding: 12px 14px; }
   .cd-num { font-size: 26px; }
   .cta-btn { font-size: 17px; padding: 20px 24px; }
-  .results-card {
-    grid-template-columns: 1fr;
-    padding: 28px 24px;
-    gap: 24px;
-  }
-  .results-title { font-size: 24px; }
-  .result-num { font-size: 28px; }
-  .discover-card {
-    grid-template-columns: 1fr;
-    padding: 28px 24px;
-  }
+  .results-card { grid-template-columns: 1fr; padding: 28px 24px; gap: 24px; }
+  .results-title { font-size: 22px; }
+  .result-num { font-size: 26px; }
+  .discover-card { grid-template-columns: 1fr; padding: 28px 24px; }
   .discover-title { font-size: 22px; }
-  .discover-photo { max-width: 280px; margin: 0 auto; }
+  .discover-photo { max-width: 240px; margin: 0 auto; }
   .bullet-text { font-size: 15px; }
 }
-@media (max-width: 380px) {
+@media (max-width: 420px) {
   .hero h1 { font-size: 24px; }
+  .checks { grid-template-columns: 1fr 1fr; gap: 10px 16px; }
   .countdown-bar { gap: 6px; }
   .cd-unit { min-width: 58px; padding: 10px 10px; }
 }
@@ -387,10 +360,9 @@ body {
 
 <div class="ellipse-glow"></div>
 
-<!-- ===== SECTION 1 — HERO ===== -->
+<!-- ===== HERO ===== -->
 <section class="hero">
 
-  <!-- Social proof pill -->
   <div class="social-pill">
     <div class="avatar-stack">
       <img src="https://i.pravatar.cc/56?img=12" alt="">
@@ -402,23 +374,22 @@ body {
     <span class="social-pill-text">248 inscrits cette semaine</span>
   </div>
 
-  <div class="hero-eyebrow">Evenement 100% gratuit...</div>
+  <div class="hero-eyebrow">&Eacute;v&eacute;nement 100% gratuit...</div>
 
-  <h1>Comment je genere <span class="hl">+15 000 EUR/mois</span> en aidant des createurs de contenu</h1>
+  <h1>Comment je g&eacute;n&egrave;re <span class="hl">+15 000 EUR/mois</span> en aidant des cr&eacute;ateurs de contenu</h1>
 
-  <!-- Benefit checks -->
   <div class="checks">
     <div class="check-item">
       <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
-      Pas de creation de contenu
+      Pas de cr&eacute;ation de contenu
     </div>
     <div class="check-item">
       <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
-      Aucune competence technique
+      Aucune comp&eacute;tence technique
     </div>
     <div class="check-item">
       <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
-      100% a distance
+      100% &agrave; distance
     </div>
     <div class="check-item">
       <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
@@ -426,97 +397,80 @@ body {
     </div>
   </div>
 
-  <!-- Countdown -->
-  <div class="countdown-label">Compte a rebours avant le live - Samedi 19 avril a 20h00</div>
+  <div class="countdown-label">Compte &agrave; rebours avant le live - Samedi 19 avril &agrave; 20h00</div>
   <div class="countdown-bar" id="countdown">
-    <div class="cd-unit">
-      <div class="cd-num" id="cd-days">--</div>
-      <div class="cd-lbl">Jours</div>
-    </div>
-    <div class="cd-unit">
-      <div class="cd-num" id="cd-hours">--</div>
-      <div class="cd-lbl">Heures</div>
-    </div>
-    <div class="cd-unit">
-      <div class="cd-num" id="cd-mins">--</div>
-      <div class="cd-lbl">Minutes</div>
-    </div>
-    <div class="cd-unit">
-      <div class="cd-num" id="cd-secs">--</div>
-      <div class="cd-lbl">Secondes</div>
-    </div>
+    <div class="cd-unit"><div class="cd-num" id="cd-days">--</div><div class="cd-lbl">Jours</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-hours">--</div><div class="cd-lbl">Heures</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-mins">--</div><div class="cd-lbl">Minutes</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-secs">--</div><div class="cd-lbl">Secondes</div></div>
   </div>
 
-  <!-- CTA -->
-  <button class="cta-btn" onclick="document.getElementById('form-section').scrollIntoView({behavior:'smooth'})">Oui, je reserve ma place</button>
+  <button class="cta-btn" onclick="document.getElementById('cta-bottom').scrollIntoView({behavior:'smooth'})">Oui, je r&eacute;serve ma place</button>
 
 </section>
 
-<!-- ===== SECTION 2 — RESULTATS ===== -->
+<!-- ===== RESULTATS ===== -->
 <section class="results-section">
   <div class="results-card">
-    <div class="results-left">
-      <div class="results-eyebrow">Resultats verifies</div>
-      <h2 class="results-title">Les chiffres parlent d'eux-memes.</h2>
+    <div>
+      <div class="results-eyebrow">R&eacute;sultats clients v&eacute;rifi&eacute;s</div>
+      <h2 class="results-title">Les chiffres parlent d'eux-m&ecirc;mes.</h2>
     </div>
     <div class="results-right">
-      <div class="result-stat">
+      <div>
         <div class="result-num">+1 000 000 EUR</div>
-        <div class="result-desc">generes pour les createurs de contenu</div>
+        <div class="result-desc">g&eacute;n&eacute;r&eacute;s pour les cr&eacute;ateurs de contenu</div>
       </div>
-      <div class="result-stat">
-        <div class="result-num">+1 000 createurs</div>
-        <div class="result-desc">aides a monetiser leur audience</div>
+      <div>
+        <div class="result-num">+1 000 cr&eacute;ateurs</div>
+        <div class="result-desc">aid&eacute;s &agrave; mon&eacute;tiser leur audience</div>
       </div>
-      <div class="result-stat">
+      <div>
         <div class="result-num">3 752 EUR/mois</div>
-        <div class="result-desc">en moyenne au bout de 6 mois pour nos operateurs</div>
+        <div class="result-desc">en moyenne au bout de 6 mois pour nos op&eacute;rateurs</div>
       </div>
     </div>
-    <p class="results-disclaimer">*Resultats reels mais non typiques. Tes resultats dependront de ton travail et de ton engagement.</p>
+    <p class="results-disclaimer">*R&eacute;sultats r&eacute;els mais non typiques. Tes r&eacute;sultats d&eacute;pendront de ton travail et de ton engagement.</p>
   </div>
 </section>
 
-<!-- ===== SECTION 3 — DECOUVRIR ===== -->
+<!-- ===== DECOUVRIR ===== -->
 <section class="discover-section">
   <div class="discover-card">
-    <div class="discover-content">
-      <h2 class="discover-title">Pendant ce live <span class="hl">100% gratuit</span>, tu vas decouvrir...</h2>
+    <div>
+      <h2 class="discover-title">Pendant ce live <span class="hl">100% gratuit</span>, tu vas d&eacute;couvrir...</h2>
       <div class="bullet-list">
         <div class="bullet-item">
           <div class="bullet-dot"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
-          <div class="bullet-text">Le modele exact que j'ai utilise pour generer 15 000 EUR ce mois d'avril 2026</div>
+          <div class="bullet-text">Le mod&egrave;le exact que j'ai utilis&eacute; pour g&eacute;n&eacute;rer 15 000 EUR ce mois d'avril 2026</div>
         </div>
         <div class="bullet-item">
           <div class="bullet-dot"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
-          <div class="bullet-text">Pourquoi des milliers de createurs cherchent desesperement quelqu'un pour les aider a gagner de l'argent - et comment te positionner</div>
+          <div class="bullet-text">Pourquoi des milliers de cr&eacute;ateurs cherchent d&eacute;sesp&eacute;r&eacute;ment quelqu'un pour les aider &agrave; gagner de l'argent - et comment te positionner</div>
         </div>
         <div class="bullet-item">
           <div class="bullet-dot"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
-          <div class="bullet-text">Les 3 erreurs qui bloquent 95% des debutants et comment les eviter pour toucher tes premieres commissions rapidement</div>
+          <div class="bullet-text">Les 3 erreurs qui bloquent 95% des d&eacute;butants et comment les &eacute;viter pour toucher tes premi&egrave;res commissions rapidement</div>
         </div>
       </div>
     </div>
     <div class="discover-photo">
-      <div class="photo-placeholder">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
-        <span>Photo Matheo</span>
-      </div>
-      <p class="photo-caption">Matheo Cauwet - Fondateur de Strategie 30%</p>
+      <img src="matheo-france.jpg" alt="Math&eacute;o Cauwet en maillot &eacute;quipe de France">
+      <p class="photo-caption">Math&eacute;o Cauwet, Fondateur de Strat&eacute;gie 30%<br>(ancien basketteur professionnel)</p>
     </div>
   </div>
 </section>
 
 <!-- ===== CTA FINAL ===== -->
-<section class="cta-section" id="form-section">
-  <button class="cta-btn" onclick="window.open('#', '_blank')">Oui, je reserve ma place</button>
+<section class="cta-section" id="cta-bottom">
+  <button class="cta-btn" onclick="window.open('#', '_blank')">Oui, je r&eacute;serve ma place</button>
 </section>
 
 <!-- ===== FOOTER ===== -->
 <footer class="footer">
-  <p>ForCyclers LLC et toutes les personnes affiliees a cette organisation n'assument aucune responsabilite quant aux resultats ou au succes des services. Le succes depend de ton engagement, de ton travail et de nombreux facteurs. Les strategies et contenus presentes sont a but educatif uniquement.</p>
-  <p>Les temoignages et resultats presentes sont reels mais ne sont pas typiques. Ils ne doivent pas etre consideres comme representatifs des resultats que tu pourrais obtenir.</p>
-  <p style="margin-top:8px; opacity:0.5;">ForCyclers LLC - Tous droits reserves 2026</p>
+  <p>ForCyclers LLC et toutes les personnes affili&eacute;es &agrave; cette organisation n'assument aucune responsabilit&eacute; quant aux r&eacute;sultats ou au succ&egrave;s des services. Le succ&egrave;s d&eacute;pend de ton engagement, de ton travail et de nombreux facteurs. Les strat&eacute;gies et contenus pr&eacute;sent&eacute;s sont &agrave; but &eacute;ducatif uniquement.</p>
+  <p>Les t&eacute;moignages et r&eacute;sultats pr&eacute;sent&eacute;s sont r&eacute;els mais ne sont pas typiques. Ils ne doivent pas &ecirc;tre consid&eacute;r&eacute;s comme repr&eacute;sentatifs des r&eacute;sultats que tu pourrais obtenir.</p>
+  <p style="margin-top:8px; opacity:0.5;">ForCyclers LLC - Tous droits r&eacute;serv&eacute;s 2026</p>
 </footer>
 
 <script>
