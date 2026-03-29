@@ -3,264 +3,192 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#1BA7FF">
+<meta name="theme-color" content="#E9FCFF">
 <title>Webinaire Live Gratuit - Strategie 30%</title>
-<meta name="description" content="Webinaire live gratuit le samedi 19 avril 2026. Decouvre le modele d'Operateur de Croissance.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter', -apple-system, sans-serif;
   background: #E9FCFF;
   color: #1a1a2e;
   line-height: 1.6;
   overflow-x: hidden;
-  min-height: 100vh;
 }
-a { color: inherit; text-decoration: none; }
-
 :root {
-  --bg: #E9FCFF;
   --accent: #1BA7FF;
   --accent-dark: #0d8de0;
   --accent-glow: rgba(27,167,255,0.35);
-  --cyan-border: rgba(135, 205, 221, 0.8);
-  --card-bg: rgba(255, 255, 255, 0.8);
-  --card-shadow: rgba(0, 0, 0, 0.08) 0px 4px 16px;
-  --glow-color: rgb(142, 214, 234);
+  --cyan-border: rgba(135,205,221,0.8);
+  --card-bg: rgba(255,255,255,0.85);
+  --glow-color: rgb(142,214,234);
   --text-dark: #1a1a2e;
   --text-muted: #4a5568;
-  --max-width: 640px;
 }
 
-.container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
-.highlight { color: var(--accent); }
-
-/* ===== ELLIPSE GLOW ===== */
+/* ===== GLOW ===== */
 .ellipse-glow {
   position: fixed; bottom: -300px; right: -400px;
   width: 1100px; height: 600px; border-radius: 50%;
   background-color: var(--glow-color);
-  box-shadow: 0 0 100px rgba(170,245,253,1), 0 0 200px rgba(170,245,253,0.9), 0 0 400px rgba(170,245,253,0.7), 0 0 800px rgba(170,245,253,0.5);
+  box-shadow: 0 0 100px rgba(170,245,253,1), 0 0 200px rgba(170,245,253,0.9), 0 0 400px rgba(170,245,253,0.7);
   z-index: -1; pointer-events: none;
 }
 
-/* ===== TOPBAR ===== */
-.topbar {
-  background: rgba(255,255,255,0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(135,205,221,0.4);
-  padding: 10px 20px;
-  text-align: center;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-.topbar-inner {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-.topbar-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: #ef4444;
-  animation: pulse-dot 2s infinite;
-}
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
-.topbar-text {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-dark);
-}
-
-/* ===== HERO ===== */
+/* ===== SECTION 1 — HERO ===== */
 .hero {
   text-align: center;
-  padding: 40px 0 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 48px 24px 40px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.hero-eyebrow {
+/* Social proof pill */
+.social-pill {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   background: #fff;
-  border: 1px solid rgba(135,205,221,0.6);
+  border: 1px solid var(--cyan-border);
   border-radius: 50px;
-  padding: 10px 24px;
+  padding: 8px 20px 8px 8px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.avatar-stack {
+  display: flex;
+}
+.avatar-stack span {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #93c5fd, #3b82f6);
+  border: 2px solid #fff;
+  margin-left: -8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: #fff;
+}
+.avatar-stack span:first-child { margin-left: 0; }
+.social-pill-text {
   font-size: 14px;
   font-weight: 700;
-  color: var(--text-dark);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-  margin-bottom: 24px;
+  color: var(--accent);
+}
+
+/* Eyebrow */
+.hero-eyebrow {
+  font-size: 15px;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-.eyebrow-dot {
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  background: #ef4444;
-  animation: pulse-dot 2s infinite;
-}
-
-.hero h1 {
-  font-size: 38px;
-  font-weight: 900;
-  line-height: 1.15;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
   margin-bottom: 12px;
-  max-width: 600px;
 }
 
-.hero-date {
-  font-size: 17px;
-  font-weight: 700;
+/* Headline */
+.hero h1 {
+  font-size: 40px;
+  font-weight: 900;
+  line-height: 1.12;
+  margin-bottom: 24px;
   color: var(--text-dark);
-  margin-bottom: 8px;
 }
+.hero h1 .hl { color: var(--accent); }
 
-/* ===== COUNTDOWN ===== */
-.countdown-bar {
+/* Benefit checks */
+.checks {
   display: flex;
-  gap: 12px;
+  flex-wrap: wrap;
   justify-content: center;
+  gap: 8px 20px;
   margin-bottom: 32px;
 }
-.countdown-unit {
-  background: var(--card-bg);
-  border: 1px solid var(--cyan-border);
-  border-radius: 12px;
-  padding: 12px 16px;
-  min-width: 68px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  position: relative;
-  overflow: hidden;
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-dark);
 }
-.countdown-unit::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 12px;
-  box-shadow: inset 0 0 0 1px rgba(135,205,221,0.5), inset 0 0 10px rgba(135,205,221,0.15);
-  pointer-events: none;
+.check-icon {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
 }
-.countdown-number {
-  font-size: 26px;
+.check-icon svg { width: 12px; height: 12px; color: #fff; }
+
+/* Countdown */
+.countdown-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+.countdown-bar {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+.cd-unit {
+  background: #fff;
+  border: 1.5px solid var(--cyan-border);
+  border-radius: 14px;
+  padding: 14px 20px;
+  min-width: 80px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+}
+.cd-num {
+  font-size: 32px;
   font-weight: 900;
-  color: var(--accent);
+  color: var(--text-dark);
   line-height: 1;
 }
-.countdown-label {
+.cd-lbl {
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-top: 4px;
 }
 
-/* ===== COPY SECTION ===== */
-.copy-section {
+/* CTA button */
+.cta-btn {
+  display: inline-block;
   width: 100%;
-  max-width: 560px;
-  text-align: left;
-  margin-bottom: 36px;
-}
-.copy-section p {
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--text-dark);
-  margin-bottom: 16px;
-  line-height: 1.7;
-}
-.copy-section p:last-child { margin-bottom: 0; }
-.copy-section strong { font-weight: 700; }
-
-/* ===== FORM CARD ===== */
-.form-section {
-  width: 100%;
-  max-width: 480px;
-  margin-bottom: 40px;
-}
-.form-card {
-  background: #fff;
-  border: 2px solid var(--accent);
-  border-radius: 24px;
-  padding: 36px 28px 28px;
-  box-shadow: 0 8px 40px rgba(27,167,255,0.12), 0 0 0 1px rgba(27,167,255,0.05);
-}
-.form-title {
+  max-width: 520px;
+  background: linear-gradient(135deg, var(--accent), #38bdf8);
+  color: #fff;
   font-size: 20px;
   font-weight: 900;
-  text-align: center;
-  margin-bottom: 20px;
-  line-height: 1.25;
-}
-.form-group {
-  margin-bottom: 10px;
-}
-.form-group input {
-  width: 100%;
-  padding: 15px 16px;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 12px;
-  font-size: 16px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  color: var(--text-dark);
-  background: #fff;
-  outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-.form-group input::placeholder { color: #a0aec0; font-weight: 400; }
-.form-group input:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(27,167,255,0.12);
-}
-.form-cta {
-  display: block;
-  width: 100%;
-  background: var(--accent);
-  color: #fff;
-  font-size: 17px;
-  font-weight: 800;
-  padding: 18px 24px;
-  border-radius: 14px;
+  padding: 22px 32px;
+  border-radius: 16px;
   border: none;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-  box-shadow: 0 4px 24px var(--accent-glow);
   text-transform: uppercase;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 6px 32px var(--accent-glow);
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
   position: relative;
   overflow: hidden;
   font-family: 'Inter', sans-serif;
-  margin-top: 4px;
 }
-.form-cta:hover {
+.cta-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 32px rgba(27,167,255,0.45);
-  background: var(--accent-dark);
+  box-shadow: 0 8px 40px rgba(27,167,255,0.5);
 }
-.form-cta::after {
+.cta-btn::after {
   content: '';
   position: absolute;
   top: -50%; left: -60%;
   width: 200%; height: 200%;
-  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
   transform: rotate(25deg);
   animation: shine 4s ease-in-out infinite;
 }
@@ -269,84 +197,190 @@ a { color: inherit; text-decoration: none; }
   20% { left: 120%; }
   100% { left: 120%; }
 }
-.form-disclaimer {
+
+/* ===== SECTION 2 — RESULTATS ===== */
+.results-section {
+  max-width: 800px;
+  margin: 0 auto 0;
+  padding: 0 24px 48px;
+}
+.results-card {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border-radius: 20px;
+  padding: 40px 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: center;
+}
+.results-left {}
+.results-eyebrow {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.results-title {
+  font-size: 28px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.2;
+}
+.results-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.result-stat {}
+.result-num {
+  font-size: 32px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+}
+.result-desc {
   font-size: 13px;
-  color: var(--text-muted);
-  text-align: center;
-  margin-top: 14px;
-  line-height: 1.4;
   font-weight: 500;
+  color: #94a3b8;
+  margin-top: 2px;
+  line-height: 1.4;
+}
+.results-disclaimer {
+  grid-column: 1 / -1;
+  font-size: 11px;
+  color: #64748b;
+  margin-top: 4px;
 }
 
-/* ===== PROOF STATS ===== */
-.proof-section {
-  width: 100%;
-  max-width: 480px;
-  margin-bottom: 40px;
+/* ===== SECTION 3 — DECOUVRIR ===== */
+.discover-section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 48px 24px;
 }
-.proof-stats {
+.discover-card {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border-radius: 20px;
+  padding: 40px 32px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 12px;
+  grid-template-columns: 1fr 300px;
+  gap: 32px;
+  align-items: start;
 }
-.proof-stat {
-  background: var(--card-bg);
-  border: 1px solid var(--cyan-border);
-  border-radius: 14px;
-  padding: 18px 10px;
-  text-align: center;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  position: relative;
-  overflow: hidden;
-}
-.proof-stat::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 14px;
-  box-shadow: inset 0 0 0 1px rgba(135,205,221,0.5), inset 0 0 12px rgba(135,205,221,0.15);
-  pointer-events: none;
-}
-.proof-number {
+.discover-title {
   font-size: 26px;
   font-weight: 900;
-  color: var(--accent);
-  line-height: 1;
-  margin-bottom: 4px;
+  color: #fff;
+  line-height: 1.25;
+  margin-bottom: 28px;
 }
-.proof-label {
-  font-size: 11px;
+.discover-title .hl { color: var(--accent); }
+.bullet-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.bullet-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.bullet-dot {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.bullet-dot svg { width: 14px; height: 14px; color: #fff; }
+.bullet-text {
+  font-size: 16px;
   font-weight: 600;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  color: #e2e8f0;
+  line-height: 1.5;
+}
+.discover-photo {
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+}
+.photo-placeholder {
+  width: 100%;
+  aspect-ratio: 3/4;
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  color: #64748b;
+}
+.photo-placeholder svg { width: 48px; height: 48px; }
+.photo-placeholder span { font-size: 14px; font-weight: 600; }
+.photo-caption {
+  text-align: center;
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+/* CTA 2 */
+.cta-section {
+  text-align: center;
+  padding: 0 24px 48px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 /* ===== FOOTER ===== */
-.spacer { height: 60px; }
-.footer { padding: 32px 0; text-align: center; border-top: 1px solid var(--cyan-border); }
-.footer-disclaimer { font-size: 11px; color: var(--text-muted); line-height: 1.7; max-width: 560px; margin: 0 auto 12px; opacity: 0.7; }
-.footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 10px; }
-.footer-links a { font-size: 13px; color: var(--accent); font-weight: 500; }
-.footer-copy { font-size: 12px; color: var(--text-muted); opacity: 0.6; }
+.footer {
+  padding: 40px 24px;
+  text-align: center;
+  border-top: 1px solid var(--cyan-border);
+  max-width: 800px;
+  margin: 0 auto;
+}
+.footer p {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  opacity: 0.7;
+  margin-bottom: 8px;
+}
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  .hero { padding: 28px 0 0; }
+  .hero { padding: 32px 20px 32px; }
   .hero h1 { font-size: 28px; }
-  .countdown-bar { gap: 8px; }
-  .countdown-unit { min-width: 60px; padding: 10px 12px; }
-  .countdown-number { font-size: 22px; }
-  .proof-stats { grid-template-columns: 1fr; gap: 8px; }
-  .proof-stat { padding: 14px 10px; }
-  .form-card { padding: 28px 20px 24px; }
-  .copy-section p { font-size: 15px; }
+  .hero-eyebrow { font-size: 13px; }
+  .checks { gap: 6px 16px; }
+  .check-item { font-size: 13px; }
+  .cd-unit { min-width: 65px; padding: 12px 14px; }
+  .cd-num { font-size: 26px; }
+  .cta-btn { font-size: 17px; padding: 20px 24px; }
+  .results-card {
+    grid-template-columns: 1fr;
+    padding: 28px 24px;
+    gap: 24px;
+  }
+  .results-title { font-size: 24px; }
+  .result-num { font-size: 28px; }
+  .discover-card {
+    grid-template-columns: 1fr;
+    padding: 28px 24px;
+  }
+  .discover-title { font-size: 22px; }
+  .discover-photo { max-width: 280px; margin: 0 auto; }
+  .bullet-text { font-size: 15px; }
 }
 @media (max-width: 380px) {
   .hero h1 { font-size: 24px; }
-  .hero-eyebrow { font-size: 12px; padding: 8px 16px; }
+  .countdown-bar { gap: 6px; }
+  .cd-unit { min-width: 58px; padding: 10px 10px; }
 }
 </style>
 </head>
@@ -354,131 +388,149 @@ a { color: inherit; text-decoration: none; }
 
 <div class="ellipse-glow"></div>
 
-<!-- TOPBAR -->
-<div class="topbar">
-  <div class="topbar-inner">
-    <div class="topbar-dot"></div>
-    <span class="topbar-text">Webinaire live gratuit - Samedi 19 avril 2026</span>
-  </div>
-</div>
+<!-- ===== SECTION 1 — HERO ===== -->
+<section class="hero">
 
-<!-- HERO -->
-<section class="hero container">
-
-  <div class="hero-eyebrow">
-    <div class="eyebrow-dot"></div>
-    Webinaire live gratuit
+  <!-- Social proof pill -->
+  <div class="social-pill">
+    <div class="avatar-stack">
+      <span>M</span><span>A</span><span>C</span><span>S</span><span>B</span>
+    </div>
+    <span class="social-pill-text">[X] inscrits cette semaine</span>
   </div>
 
-  <h1>Je t'explique comment je gagne <span class="highlight">+15 000 EUR/mois</span> sans creer de contenu</h1>
+  <div class="hero-eyebrow">Evenement 100% gratuit...</div>
 
-  <p class="hero-date">Samedi 19 avril 2026 a [HEURE]</p>
+  <h1>Comment je genere <span class="hl">+15 000 EUR/mois</span> en aidant des createurs de contenu a vendre</h1>
 
-  <!-- COUNTDOWN -->
+  <!-- Benefit checks -->
+  <div class="checks">
+    <div class="check-item">
+      <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+      Pas de creation de contenu
+    </div>
+    <div class="check-item">
+      <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+      Aucune competence technique
+    </div>
+    <div class="check-item">
+      <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+      100% a distance
+    </div>
+    <div class="check-item">
+      <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+      Temps partiel possible
+    </div>
+  </div>
+
+  <!-- Countdown -->
+  <div class="countdown-label">Compte a rebours avant le live - Samedi 19 avril a [HEURE]</div>
   <div class="countdown-bar" id="countdown">
-    <div class="countdown-unit">
-      <div class="countdown-number" id="cd-days">--</div>
-      <div class="countdown-label">Jours</div>
+    <div class="cd-unit">
+      <div class="cd-num" id="cd-days">--</div>
+      <div class="cd-lbl">Jours</div>
     </div>
-    <div class="countdown-unit">
-      <div class="countdown-number" id="cd-hours">--</div>
-      <div class="countdown-label">Heures</div>
+    <div class="cd-unit">
+      <div class="cd-num" id="cd-hours">--</div>
+      <div class="cd-lbl">Heures</div>
     </div>
-    <div class="countdown-unit">
-      <div class="countdown-number" id="cd-mins">--</div>
-      <div class="countdown-label">Min</div>
+    <div class="cd-unit">
+      <div class="cd-num" id="cd-mins">--</div>
+      <div class="cd-lbl">Minutes</div>
     </div>
-    <div class="countdown-unit">
-      <div class="countdown-number" id="cd-secs">--</div>
-      <div class="countdown-label">Sec</div>
-    </div>
-  </div>
-
-  <!-- COPY — Structure Fladien courte -->
-  <div class="copy-section">
-    <p>C'est Matheo. Il y a 2 ans, je gagnais 314 EUR par mois au basket. Aujourd'hui, je vis a Dubai et je genere plus de 15 000 EUR par mois -- sans creer de contenu.</p>
-
-    <p>Samedi 19 avril, je t'explique <strong>exactement</strong> comment fonctionne le modele que j'utilise, etape par etape. Inscris-toi, c'est gratuit.</p>
-  </div>
-
-  <!-- FORM -->
-  <div class="form-section" id="form-top">
-    <div class="form-card">
-      <h3 class="form-title">Reserve ta place</h3>
-      <form action="#" method="POST">
-        <div class="form-group">
-          <input type="text" name="prenom" placeholder="Ton prenom" required autocomplete="given-name">
-        </div>
-        <div class="form-group">
-          <input type="email" name="email" placeholder="Ton adresse email" required autocomplete="email">
-        </div>
-        <button type="submit" class="form-cta">Je reserve ma place</button>
-      </form>
-      <p class="form-disclaimer">100% gratuit. Tes informations restent confidentielles.</p>
+    <div class="cd-unit">
+      <div class="cd-num" id="cd-secs">--</div>
+      <div class="cd-lbl">Secondes</div>
     </div>
   </div>
 
-  <!-- SOCIAL PROOF -->
-  <div class="proof-section">
-    <div class="proof-stats">
-      <div class="proof-stat">
-        <div class="proof-number">70K</div>
-        <div class="proof-label">EUR/mois generes pour une creatrice</div>
-      </div>
-      <div class="proof-stat">
-        <div class="proof-number">4</div>
-        <div class="proof-label">Lancements rentables en 2 ans</div>
-      </div>
-      <div class="proof-stat">
-        <div class="proof-number">0</div>
-        <div class="proof-label">Contenu cree</div>
-      </div>
-    </div>
-  </div>
+  <!-- CTA -->
+  <button class="cta-btn" onclick="document.getElementById('form-section').scrollIntoView({behavior:'smooth'})">Oui, je reserve ma place</button>
 
 </section>
 
-<div class="spacer"></div>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="container">
-    <p class="footer-disclaimer">
-      Ce webinaire est presente par ForCyclers LLC. Les resultats mentionnes sont reels mais non typiques. Tes resultats dependront de ton engagement, de ton travail et de nombreux facteurs. Ce n'est pas une promesse de gains.
-    </p>
-    <div class="footer-links">
-      <a href="#">Mentions legales</a>
-      <a href="#">Politique de confidentialite</a>
+<!-- ===== SECTION 2 — RESULTATS ===== -->
+<section class="results-section">
+  <div class="results-card">
+    <div class="results-left">
+      <div class="results-eyebrow">Resultats verifies</div>
+      <h2 class="results-title">Les chiffres parlent d'eux-memes.</h2>
     </div>
-    <p class="footer-copy">ForCyclers LLC -- Tous droits reserves 2026</p>
+    <div class="results-right">
+      <div class="result-stat">
+        <div class="result-num">70 000 EUR/mois</div>
+        <div class="result-desc">Record de cash collecte pour un seul createur</div>
+      </div>
+      <div class="result-stat">
+        <div class="result-num">+15 000 EUR/mois</div>
+        <div class="result-desc">Ce que je genere en tant qu'Operateur de Croissance</div>
+      </div>
+      <div class="result-stat">
+        <div class="result-num">6 mois</div>
+        <div class="result-desc">Pour passer de 0 a ces resultats</div>
+      </div>
+    </div>
+    <p class="results-disclaimer">*Resultats reels mais non typiques. Tes resultats dependront de ton travail et de ton engagement.</p>
   </div>
+</section>
+
+<!-- ===== SECTION 3 — DECOUVRIR ===== -->
+<section class="discover-section">
+  <div class="discover-card">
+    <div class="discover-content">
+      <h2 class="discover-title">Pendant ce live <span class="hl">100% gratuit</span>, tu vas decouvrir...</h2>
+      <div class="bullet-list">
+        <div class="bullet-item">
+          <div class="bullet-dot"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+          <div class="bullet-text">Le modele exact que j'utilise pour generer 15 000 EUR/mois sans creer de contenu, sans audience et sans personal branding</div>
+        </div>
+        <div class="bullet-item">
+          <div class="bullet-dot"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+          <div class="bullet-text">Comment j'ai fait passer une creatrice de 0 a 70 000 EUR/mois de cash collecte en 6 mois - etape par etape</div>
+        </div>
+        <div class="bullet-item">
+          <div class="bullet-dot"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+          <div class="bullet-text">Pourquoi des milliers de createurs cherchent desesperement quelqu'un pour gerer leur acquisition - et comment te positionner</div>
+        </div>
+        <div class="bullet-item">
+          <div class="bullet-dot"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+          <div class="bullet-text">Les 3 erreurs qui bloquent 95% des debutants et comment les eviter pour toucher tes premieres commissions rapidement</div>
+        </div>
+      </div>
+    </div>
+    <div class="discover-photo">
+      <div class="photo-placeholder">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+        <span>Photo Matheo</span>
+      </div>
+      <p class="photo-caption">Matheo Cauwet - Fondateur de Strategie 30%</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA FINAL ===== -->
+<section class="cta-section" id="form-section">
+  <button class="cta-btn" onclick="window.open('#', '_blank')">Oui, je reserve ma place</button>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <p>ForCyclers LLC et toutes les personnes affiliees a cette organisation n'assument aucune responsabilite quant aux resultats ou au succes des services. Le succes depend de ton engagement, de ton travail et de nombreux facteurs. Les strategies et contenus presentes sont a but educatif uniquement.</p>
+  <p>Les temoignages et resultats presentes sont reels mais ne sont pas typiques. Ils ne doivent pas etre consideres comme representatifs des resultats que tu pourrais obtenir.</p>
+  <p style="margin-top:8px; opacity:0.5;">ForCyclers LLC - Tous droits reserves 2026</p>
 </footer>
 
 <script>
-// Countdown vers le 19 avril 2026 — remplacer l'heure quand definie
-const TARGET = new Date('2026-04-19T14:00:00+04:00'); // [HEURE] Dubai UTC+4
-
-function updateCountdown() {
-  const now = new Date();
-  const diff = TARGET - now;
-  if (diff <= 0) {
-    document.getElementById('cd-days').textContent = '0';
-    document.getElementById('cd-hours').textContent = '0';
-    document.getElementById('cd-mins').textContent = '0';
-    document.getElementById('cd-secs').textContent = '0';
-    return;
-  }
-  const d = Math.floor(diff / 86400000);
-  const h = Math.floor((diff % 86400000) / 3600000);
-  const m = Math.floor((diff % 3600000) / 60000);
-  const s = Math.floor((diff % 60000) / 1000);
-  document.getElementById('cd-days').textContent = d;
-  document.getElementById('cd-hours').textContent = h;
-  document.getElementById('cd-mins').textContent = m;
-  document.getElementById('cd-secs').textContent = s;
+const TARGET = new Date('2026-04-19T14:00:00+04:00');
+function tick() {
+  const d = TARGET - new Date();
+  if (d <= 0) return;
+  document.getElementById('cd-days').textContent = Math.floor(d/864e5);
+  document.getElementById('cd-hours').textContent = Math.floor((d%864e5)/36e5);
+  document.getElementById('cd-mins').textContent = Math.floor((d%36e5)/6e4);
+  document.getElementById('cd-secs').textContent = Math.floor((d%6e4)/1e3);
 }
-updateCountdown();
-setInterval(updateCountdown, 1000);
+tick(); setInterval(tick, 1000);
 </script>
 
 </body>
