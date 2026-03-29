@@ -35,7 +35,7 @@ a { color: inherit; text-decoration: none; }
   --max-width: 640px;
 }
 
-.container { max-width: var(--max-width); margin: 0 auto; padding: 0 20px; }
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
 .highlight { color: var(--accent); }
 
 /* ===== ELLIPSE GLOW ===== */
@@ -209,16 +209,9 @@ a { color: inherit; text-decoration: none; }
   margin-bottom: 20px;
   line-height: 1.25;
 }
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 10px;
-}
 .form-group {
   margin-bottom: 10px;
 }
-.form-row .form-group { margin-bottom: 0; }
 .form-group input {
   width: 100%;
   padding: 15px 16px;
@@ -349,8 +342,6 @@ a { color: inherit; text-decoration: none; }
   .proof-stats { grid-template-columns: 1fr; gap: 8px; }
   .proof-stat { padding: 14px 10px; }
   .form-card { padding: 28px 20px 24px; }
-  .form-row { grid-template-columns: 1fr; gap: 0; }
-  .form-row .form-group { margin-bottom: 10px; }
   .copy-section p { font-size: 15px; }
 }
 @media (max-width: 380px) {
@@ -367,7 +358,7 @@ a { color: inherit; text-decoration: none; }
 <div class="topbar">
   <div class="topbar-inner">
     <div class="topbar-dot"></div>
-    <span class="topbar-text">Webinaire live gratuit -- Samedi 19 avril 2026</span>
+    <span class="topbar-text">Webinaire live gratuit - Samedi 19 avril 2026</span>
   </div>
 </div>
 
@@ -403,19 +394,11 @@ a { color: inherit; text-decoration: none; }
     </div>
   </div>
 
-  <!-- COPY — Structure Fladien : ouverture perso → realite → benefice → preuve → secret → CTA -->
+  <!-- COPY — Structure Fladien courte -->
   <div class="copy-section">
-    <p>C'est Matheo. Il y a 2 ans, je gagnais 314 EUR par mois en tant que basketteur professionnel. Aujourd'hui, je vis a Dubai et je genere plus de 15 000 EUR par mois.</p>
+    <p>C'est Matheo. Il y a 2 ans, je gagnais 314 EUR par mois au basket. Aujourd'hui, je vis a Dubai et je genere plus de 15 000 EUR par mois -- sans creer de contenu.</p>
 
-    <p>Je ne te raconte pas ca pour me la raconter. Je te le dis parce que si tu es comme la majorite des gens que j'accompagne -- salarie, alternant, ou juste bloque dans un quotidien qui ne te ressemble pas -- <strong>tu merites de savoir qu'il existe autre chose.</strong></p>
-
-    <p>Samedi 19 avril, je fais un live exceptionnel ou je t'explique <strong>exactement</strong> comment fonctionne le modele d'Operateur de Croissance : le vehicule que j'utilise pour generer ces revenus, sans creer de contenu, sans personal branding, et sans les modeles classiques qui fatiguent tout le monde.</p>
-
-    <p>Pendant ce live, je vais te montrer comment j'ai fait passer une creatrice de <strong>0 a 70 000 EUR/mois de chiffre d'affaires</strong> en 6 mois. Pas de theorie. Le plan exact, etape par etape.</p>
-
-    <p>Il y a un truc que je n'ai jamais partage publiquement sur ma methode pour trouver et signer des createurs -- <strong>je le revele uniquement pendant ce live.</strong></p>
-
-    <p>Si tu cherches vraiment a changer ta situation, inscris-toi en dessous. C'est gratuit, mais les places sont limitees.</p>
+    <p>Samedi 19 avril, je t'explique <strong>exactement</strong> comment fonctionne le modele que j'utilise, etape par etape. Inscris-toi, c'est gratuit.</p>
   </div>
 
   <!-- FORM -->
@@ -423,13 +406,8 @@ a { color: inherit; text-decoration: none; }
     <div class="form-card">
       <h3 class="form-title">Reserve ta place</h3>
       <form action="#" method="POST">
-        <div class="form-row">
-          <div class="form-group">
-            <input type="text" name="prenom" placeholder="Prenom" required autocomplete="given-name">
-          </div>
-          <div class="form-group">
-            <input type="text" name="nom" placeholder="Nom" required autocomplete="family-name">
-          </div>
+        <div class="form-group">
+          <input type="text" name="prenom" placeholder="Ton prenom" required autocomplete="given-name">
         </div>
         <div class="form-group">
           <input type="email" name="email" placeholder="Ton adresse email" required autocomplete="email">
@@ -444,16 +422,16 @@ a { color: inherit; text-decoration: none; }
   <div class="proof-section">
     <div class="proof-stats">
       <div class="proof-stat">
-        <div class="proof-number">200+</div>
-        <div class="proof-label">Membres actifs</div>
-      </div>
-      <div class="proof-stat">
         <div class="proof-number">70K</div>
-        <div class="proof-label">EUR/mois record</div>
+        <div class="proof-label">EUR/mois generes pour une creatrice</div>
       </div>
       <div class="proof-stat">
-        <div class="proof-number">2 ans</div>
-        <div class="proof-label">D'experience</div>
+        <div class="proof-number">4</div>
+        <div class="proof-label">Lancements rentables en 2 ans</div>
+      </div>
+      <div class="proof-stat">
+        <div class="proof-number">0</div>
+        <div class="proof-label">Contenu cree</div>
       </div>
     </div>
   </div>
