@@ -60,16 +60,14 @@ body {
 .avatar-stack {
   display: flex;
 }
-.avatar-stack span {
+.avatar-stack img {
   width: 28px; height: 28px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #93c5fd, #3b82f6);
   border: 2px solid #fff;
   margin-left: -8px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 700; color: #fff;
+  object-fit: cover;
 }
-.avatar-stack span:first-child { margin-left: 0; }
+.avatar-stack img:first-child { margin-left: 0; }
 .social-pill-text {
   font-size: 14px;
   font-weight: 700;
@@ -98,11 +96,12 @@ body {
 
 /* Benefit checks */
 .checks {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 32px;
   margin-bottom: 32px;
+  text-align: left;
+  max-width: 480px;
 }
 .check-item {
   display: flex;
@@ -357,7 +356,7 @@ body {
   .hero { padding: 32px 20px 32px; }
   .hero h1 { font-size: 28px; }
   .hero-eyebrow { font-size: 13px; }
-  .checks { gap: 6px 16px; }
+  .checks { gap: 10px 16px; max-width: 100%; }
   .check-item { font-size: 13px; }
   .cd-unit { min-width: 65px; padding: 12px 14px; }
   .cd-num { font-size: 26px; }
@@ -394,14 +393,18 @@ body {
   <!-- Social proof pill -->
   <div class="social-pill">
     <div class="avatar-stack">
-      <span>M</span><span>A</span><span>C</span><span>S</span><span>B</span>
+      <img src="https://i.pravatar.cc/56?img=12" alt="">
+      <img src="https://i.pravatar.cc/56?img=33" alt="">
+      <img src="https://i.pravatar.cc/56?img=47" alt="">
+      <img src="https://i.pravatar.cc/56?img=52" alt="">
+      <img src="https://i.pravatar.cc/56?img=68" alt="">
     </div>
-    <span class="social-pill-text">[X] inscrits cette semaine</span>
+    <span class="social-pill-text">248 inscrits cette semaine</span>
   </div>
 
   <div class="hero-eyebrow">Evenement 100% gratuit...</div>
 
-  <h1>Comment je genere <span class="hl">+15 000 EUR/mois</span> en aidant des createurs de contenu a vendre</h1>
+  <h1>Comment je genere <span class="hl">+15 000 EUR/mois</span> en aidant des createurs de contenu</h1>
 
   <!-- Benefit checks -->
   <div class="checks">
@@ -424,7 +427,7 @@ body {
   </div>
 
   <!-- Countdown -->
-  <div class="countdown-label">Compte a rebours avant le live - Samedi 19 avril a [HEURE]</div>
+  <div class="countdown-label">Compte a rebours avant le live - Samedi 19 avril a 20h00</div>
   <div class="countdown-bar" id="countdown">
     <div class="cd-unit">
       <div class="cd-num" id="cd-days">--</div>
@@ -458,16 +461,16 @@ body {
     </div>
     <div class="results-right">
       <div class="result-stat">
-        <div class="result-num">70 000 EUR/mois</div>
-        <div class="result-desc">Record de cash collecte pour un seul createur</div>
+        <div class="result-num">+1 000 000 EUR</div>
+        <div class="result-desc">generes pour les createurs de contenu</div>
       </div>
       <div class="result-stat">
-        <div class="result-num">+15 000 EUR/mois</div>
-        <div class="result-desc">Ce que je genere en tant qu'Operateur de Croissance</div>
+        <div class="result-num">+1 000 createurs</div>
+        <div class="result-desc">aides a monetiser leur audience</div>
       </div>
       <div class="result-stat">
-        <div class="result-num">6 mois</div>
-        <div class="result-desc">Pour passer de 0 a ces resultats</div>
+        <div class="result-num">3 752 EUR/mois</div>
+        <div class="result-desc">en moyenne au bout de 6 mois pour nos operateurs</div>
       </div>
     </div>
     <p class="results-disclaimer">*Resultats reels mais non typiques. Tes resultats dependront de ton travail et de ton engagement.</p>
@@ -482,15 +485,11 @@ body {
       <div class="bullet-list">
         <div class="bullet-item">
           <div class="bullet-dot"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
-          <div class="bullet-text">Le modele exact que j'utilise pour generer 15 000 EUR/mois sans creer de contenu, sans audience et sans personal branding</div>
+          <div class="bullet-text">Le modele exact que j'ai utilise pour generer 15 000 EUR ce mois d'avril 2026</div>
         </div>
         <div class="bullet-item">
           <div class="bullet-dot"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
-          <div class="bullet-text">Comment j'ai fait passer une creatrice de 0 a 70 000 EUR/mois de cash collecte en 6 mois - etape par etape</div>
-        </div>
-        <div class="bullet-item">
-          <div class="bullet-dot"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
-          <div class="bullet-text">Pourquoi des milliers de createurs cherchent desesperement quelqu'un pour gerer leur acquisition - et comment te positionner</div>
+          <div class="bullet-text">Pourquoi des milliers de createurs cherchent desesperement quelqu'un pour les aider a gagner de l'argent - et comment te positionner</div>
         </div>
         <div class="bullet-item">
           <div class="bullet-dot"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
@@ -521,7 +520,7 @@ body {
 </footer>
 
 <script>
-const TARGET = new Date('2026-04-19T14:00:00+04:00');
+const TARGET = new Date('2026-04-19T20:00:00+02:00');
 function tick() {
   const d = TARGET - new Date();
   if (d <= 0) return;
