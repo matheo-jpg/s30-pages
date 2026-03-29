@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>33 Lecons — Joel Kaplan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0a0e1a;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .header-tag {
+            display: inline-block;
+            background: #1e2540;
+            border: 1px solid #2d3660;
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #60a5fa;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+        .header p {
+            color: #8b92a8;
+            font-size: 15px;
+        }
+
+        /* Who is Joel */
+        .who-card {
+            background: linear-gradient(145deg, #131829, #0f1322);
+            border: 1px solid #1e2540;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 40px;
+        }
+        .who-card h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #60a5fa;
+        }
+        .who-card p {
+            color: #b0b8d1;
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+        .who-card p:last-child { margin-bottom: 0; }
+
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            background: #0f1322;
+            border: 1px solid #1e2540;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .stat-item { text-align: center; }
+        .stat-number {
+            font-size: 22px;
+            font-weight: 800;
+            color: #60a5fa;
+        }
+        .stat-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #8b92a8;
+            letter-spacing: 0.5px;
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 40px;
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .section-number {
+            width: 36px;
+            height: 36px;
+            background: #2563eb;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        /* Lesson cards */
+        .lesson {
+            background: linear-gradient(145deg, #131829, #0f1322);
+            border: 1px solid #1e2540;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 12px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+        .lesson-num {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            background: #1e2540;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 800;
+            color: #60a5fa;
+        }
+        .lesson-content h3 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+        .lesson-content p {
+            font-size: 13px;
+            color: #8b92a8;
+            line-height: 1.7;
+        }
+        .highlight {
+            color: #60a5fa;
+            font-weight: 600;
+        }
+        .highlight-green {
+            color: #4ade80;
+            font-weight: 600;
+        }
+
+        /* Key takeaway */
+        .takeaway {
+            background: linear-gradient(145deg, #0f1d14, #0f1322);
+            border: 1px solid #1a3a25;
+            border-radius: 16px;
+            padding: 32px;
+            margin-top: 48px;
+            margin-bottom: 32px;
+        }
+        .takeaway h2 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #4ade80;
+            margin-bottom: 16px;
+        }
+        .takeaway p {
+            font-size: 14px;
+            color: #b0b8d1;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+        .takeaway p:last-child { margin-bottom: 0; }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding-top: 24px;
+            border-top: 1px solid #1e2540;
+            color: #4a5170;
+            font-size: 13px;
+        }
+
+        @media (max-width: 500px) {
+            .stats-bar { grid-template-columns: 1fr; }
+            .header h1 { font-size: 22px; }
+            .lesson { padding: 16px; gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <div class="header-tag">Ressource</div>
+            <h1>33 lecons pour scaler a $1M/mois</h1>
+            <p>Joel Kaplan — resume de sa serie de shorts Instagram</p>
+        </div>
+
+        <div class="who-card">
+            <h2>Qui est Joel Kaplan ?</h2>
+            <p>Joel Kaplan est un entrepreneur americain qui a scale ses business a <span class="highlight">+$1M/mois cash collecte</span> et genere <span class="highlight">+$30M de CA cumule</span>. Il dirige Agency Lab, un programme de coaching pour agences marketing (SMMA).</p>
+            <p>Il a aide <span class="highlight-green">+120 agences a atteindre les 7 figures</span>. Son approche : donner massivement (il a publie un cours gratuit de +100h sur YouTube) et se positionner comme l'anti-guru.</p>
+            <p>Il a recemment partage les 33 lecons qu'il a apprises en scalant a $1M/mois, en 6 shorts Instagram de 3 minutes chacun. Voici le resume complet.</p>
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <div class="stat-number">$1M+</div>
+                    <div class="stat-label">Cash / mois</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">120+</div>
+                    <div class="stat-label">Agences a 7 figures</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">$30M+</div>
+                    <div class="stat-label">CA cumule</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 1 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <div class="section-title">Offre et positionnement</div>
+            </div>
+
+            <div class="lesson">
+                <div class="lesson-num">1</div>
+                <div class="lesson-content">
+                    <h3>Si ton offre ne marche pas au lancement, pivot</h3>
+                    <p>Ne t'accroche pas a une offre qui ne convertit pas. Si ca ne marche pas des le debut, ca ne va probablement pas s'ameliorer.</p>
+                </div>
+            </div>
+            <div class="lesson">
+                <div class="lesson-num">3</div>
+                <div class="lesson-content">
+                    <h3>La bonne offre au bon moment > tout le reste</h3>
+                    <p>Si tu nail le timing et l'offre, tout le reste devient beaucoup plus facile.</p>
+                </div>
+            </div>
+            <div class="lesson">
+                <div class="lesson-num">9</div>
+                <div class="lesson-content">
+                    <h3>Lance des offres ou tu as un avantage competitif</h3>
+                    <p>Ca doit etre dur de perdre et facile de gagner. Si en entrant tu te dis "ca va etre dur de ne PAS reussir", c'est la bonne offre.</p>
+                </div>
+            </div>
+            <div class="lesson">
+                <div class="lesson-num">20</div>
+                <div class="lesson-content">
+                    <h3>Le funnel ne compte pas si ton offre est irresistible</h3>
+                    <p>VSL, webinaire, low ticket — tout marche si les gens veulent vraiment ce que tu vends. Le type de funnel est secondaire.</p>
+                </div>
+            </div>
+            <div class="lesson">
+                <div class="lesson-num">30</div>
+                <div class="lesson-content">
+                    <h3>Aie 3 offres en info</h3>
+                    <p><span class="highlight">1.</span> Coaching done-with-you. <span class="highlight">2.</span> 1-on-1 high ticket. <span class="highlight">3.</span> Done-for-you ou mastermind en backend. L'upsell backend est ou se trouve le vrai profit.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <div class="section-title">Marketing et acquisition</div>
+            </div>
+
+            <div class="lesson">
+                <div class="lesson-num">5</div>
+                <div class="lesson-content">
+                    <h3>Le Saint Graal = grosse marque + ads</h3>
+                    <p>La reponse c'est les deux, pas l'un ou l'autre. Les ads scalent vite, la marque consolide sur le long terme.</p>
+                </div>
+            </div>
+            <div class="lesson">
+                <div class="lesson-num">6</div>
+                <div class="lesson-content">
+                    <h3>Le B2B et les offres d'investissement marchent mieux en ads cold</h3>
+                    <p>Pour les offres ou les gens achetent quelque chose de tangible (services, investissement), le direct response est roi.</p>
+                </div>
+            </div>
+            <div class="lesson">
+                <div class="lesson-num">7</div>
+                <div class="lesson-content">
+                    <h3>L'organique marche mieux pour le "make money online"</h3>
+                    <p>Les gens achetent <span class="highlight">qui tu es</span>, pas ce que tu vends. Le contenu montre qui tu es mieux qu'une pub.</p>
+                </div>
+            </div>
+            <div class="lesson">
+                <div class="lesson-num">10</div>
+                <div class="lesson-content">
+                    <h3>Le marketing doit pre-vendre, pas l'equipe de vente</h3>
+                    <p><span class="highlight-green">Great marketing + good closers</span> bat toujours great closers + good marketing. Investis dans le marketing, pas dans des closers superstars.</p>
+                </div>
+            </div>
+            <div class="lesson">
+                <div class="lesson-num">14</div>
+                <div class="lesson-content">
+                    <h3>Ne scale pas sauf si tu as 4-6x ROAS au lancement</h3>
+                    <p>Le ROAS baisse TOUJOURS quand tu scale. Si tu n'as pas au moins 4-6x au debut, ca ne tiendra pas a grande echelle.</p>
+                </div>
+            </div>
+            <div class="lesson">
+                <div class="lesson-num">15</div>
+                <div class="lesson-content">
+                    <h3>Meilleur produit + meilleur marketing = la reponse</h3>
+                    <p>Quand ca stagne, la tentation c'est de changer l'equipe de vente. La vraie reponse c'est presque toujours un meilleur produit et un meilleur marketing.</p>
+                </div>
+            </div>
+            <div class="lesson">
+                <div class="lesson-num">16</div>
+                <div class="lesson-content">
+                    <h3>Ne lance pas d'ads sans poster du contenu organique</h3>
+                    <p>La moitie de tes prospects vont checker ton profil apres avoir vu ta pub. Si ton profil est vide, tu perds de l'argent. Poste <span class="highlight">3 a 10 fois par jour</span>.</p>
+                </div>
+            </div>
+            <div class="lesson">
+                <div class="lesson-num">23</div>
+                <div class="lesson-content">
+                    <h3>VSL pour les offres evidentes, webinaire pour les offres a eduquer</h3>
+                    <p>Si les gens savent deja ce que tu vends et le veulent, un VSL suffit. Si tu dois les eduquer sur l'opportunite, un webinaire est plus adapte.</p>
+                </div>
+            </div>
+            <div class="lesson">
+                <div class="lesson-num">27</div>
+                <div class="lesson-content">
+                    <h3>Nurture par le contenu, pas par email</h3>
+                    <p>Le meilleur nurturing c'est poster du contenu. 3-5x/jour en short form, 2x/semaine en long form. Tes prospects te voient partout, meme sans s'abonner.</p>
+                </div>
+            </div>
+            <div class="lesson">
+                <div class="lesson-num">29</div>
+                <div class="lesson-content">
+                    <h3>Campagne de reactivation hebdomadaire, pas mensuelle</h3>
+                    <p>Envoie un SMS + email chaque semaine a ta liste. Ca ne fait pas fuir les gens — ca les pousse a passer a l'action.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">3</div>
+                <div class="section-title">Vente et qualification</div>
+            </div>
+
+            <div class="lesson">
+                <div class="lesson-num">12</div>
+                <div class="lesson-content">
+                    <h3>Les donnees financieres des leads ne changent rien</h3>
+                    <p>Joel a depense des dizaines de milliers pour verifier le credit score et les revenus des leads. Resultat : <span class="highlight">ca ne fait aucune difference</span> sur la qualite.</p>
+                </div>
+            </div>
+            <div class="lesson">
+                <div class="lesson-num">22</div>
+                <div class="lesson-content">
+                    <h3>Book directement vers les closers, pas vers les setters</h3>
+                    <p>Le modele "setter filtre puis passe au closer" n'a jamais marche pour lui malgre des annees d'essais. Book directement vers le closer + un triage pour confirmer.</p>
+                </div>
+            </div>
+            <div class="lesson">
+                <div class="lesson-num">26</div>
+                <div class="lesson-content">
+                    <h3>Les acheteurs low ticket ne sont pas de meilleure qualite</h3>
+                    <p>Quelqu'un qui achete un produit a 67 EUR n'est pas forcement plus qualifie qu'un lead book-a-call bien cible. Le ciblage compte plus que le prix d'entree.</p>
+                </div>
+            </div>
+            <div class="lesson">
+                <div class="lesson-num">28</div>
+                <div class="lesson-content">
+                    <h3>Filtre dur sur les formulaires — les gens ne mentent pas</h3>
+                    <p>Les gens qui achetent ne mentent pas sur les questionnaires. Sois direct : combien tu as a investir ? Tu es pret a passer a l'action ? Filtre agressivement.</p>
+                </div>
+            </div>
+            <div class="lesson">
+                <div class="lesson-num">32</div>
+                <div class="lesson-content">
+                    <h3>Les garanties : double tranchant</h3>
+                    <p>Une garantie baisse le cout par lead mais baisse aussi la qualite. C'est un trade-off, pas une regle universelle. A tester selon l'offre.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 4 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">4</div>
+                <div class="section-title">Personal brand et preuve sociale</div>
+            </div>
+
+            <div class="lesson">
+                <div class="lesson-num">4</div>
+                <div class="lesson-content">
+                    <h3>Le visage de la marque compte enormement</h3>
+                    <p>Plus Joel fait du business, plus il realise que l'influenceur ou le fondateur qui porte la marque est le facteur #1.</p>
+                </div>
+            </div>
+            <div class="lesson">
+                <div class="lesson-num">8</div>
+                <div class="lesson-content">
+                    <h3>Les personal brands gagnent</h3>
+                    <p>Joel a disparu d'Instagram pendant 1 an, puis il est revenu. Le constat : la marque personnelle fait une difference enorme sur les ventes.</p>
+                </div>
+            </div>
+            <div class="lesson">
+                <div class="lesson-num">17</div>
+                <div class="lesson-content">
+                    <h3>Les gens achetent qui tu es, pas ce que tu offres</h3>
+                    <p>Surtout en info. Si tu postes 5-10 fois par jour et que tes prospects te voient a chaque fois qu'ils ouvrent Instagram, tu peux charger plus cher et avoir de meilleurs clients.</p>
+                </div>
+            </div>
+            <div class="lesson">
+                <div class="lesson-num">33</div>
+                <div class="lesson-content">
+                    <h3>Embauche quelqu'un dont le seul job est la preuve sociale</h3>
+                    <p>Temoignages video, reviews, screenshots de resultats, posts YouTube, thank you page. Cree un <span class="highlight-green">ecosysteme de preuve sociale</span>. C'est un des leviers les plus faciles pour faire acheter.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 5 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">5</div>
+                <div class="section-title">Equipe et scaling</div>
+            </div>
+
+            <div class="lesson">
+                <div class="lesson-num">2</div>
+                <div class="lesson-content">
+                    <h3>Surpaye les A-players</h3>
+                    <p>Un seul A-player qui coute cher vaut mieux que deux ou trois B-players. Toujours.</p>
+                </div>
+            </div>
+            <div class="lesson">
+                <div class="lesson-num">13</div>
+                <div class="lesson-content">
+                    <h3>Si tu dependes du financement pour que ton offre marche, t'es en danger</h3>
+                    <p>Tu peux perdre l'acces aux solutions de paiement en plusieurs fois du jour au lendemain. Ne construis pas ton business sur cette dependance.</p>
+                </div>
+            </div>
+            <div class="lesson">
+                <div class="lesson-num">18</div>
+                <div class="lesson-content">
+                    <h3>Change les protocoles, pas les objectifs de revenu</h3>
+                    <p>Un mec a $1M/mois a breakeven, ca ne sert a rien. Focus sur le <span class="highlight-green">profit</span>, pas le chiffre d'affaires.</p>
+                </div>
+            </div>
+            <div class="lesson">
+                <div class="lesson-num">19</div>
+                <div class="lesson-content">
+                    <h3>Un sales manager n'est necessaire qu'a partir de 7 commerciaux</h3>
+                    <p>Setters + closers inclus. Avant ca, c'est au fondateur de gerer la vente. Le sales manager ne resout pas l'acquisition — c'est ton job.</p>
+                </div>
+            </div>
+            <div class="lesson">
+                <div class="lesson-num">21</div>
+                <div class="lesson-content">
+                    <h3>En info, ne cherche pas a construire de la valeur d'entreprise</h3>
+                    <p>Personne n'achete un business de coaching. Maximise le profit et la marge. C'est un business de cash flow, pas de revente.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 6 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">6</div>
+                <div class="section-title">Info vs services</div>
+            </div>
+
+            <div class="lesson">
+                <div class="lesson-num">11</div>
+                <div class="lesson-content">
+                    <h3>L'info c'est du cash rapide, les services c'est du cash long terme</h3>
+                    <p>L'info scale vite et profite vite. Les services sont plus lents a demarrer mais plus durables.</p>
+                </div>
+            </div>
+            <div class="lesson">
+                <div class="lesson-num">25</div>
+                <div class="lesson-content">
+                    <h3>Les funnels low ticket marchent si tu ajoutes un webinaire hebdo</h3>
+                    <p>Acquiers des acheteurs low ticket en masse, puis upsell-les en high ticket via un webinaire chaque semaine.</p>
+                </div>
+            </div>
+            <div class="lesson">
+                <div class="lesson-num">31</div>
+                <div class="lesson-content">
+                    <h3>Les offres de service ne meurent jamais, les offres info si</h3>
+                    <p>Tu as vu des offres info apparaitre et disparaitre. Les services, eux, restent. L'info c'est la vitesse, les services c'est la stabilite.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAKEAWAY -->
+        <div class="takeaway">
+            <h2>Ce qu'il faut retenir</h2>
+            <p>Joel resume 7 ans d'experience en 33 points. Les 3 themes qui reviennent en boucle :</p>
+            <p><span class="highlight-green">1. Le marketing pre-vend, l'equipe de vente close.</span> Investis dans le marketing et le produit, pas dans des closers superstars. Si le prospect arrive convaincu, n'importe quel bon closer peut finir le job.</p>
+            <p><span class="highlight-green">2. La marque personnelle est le levier #1.</span> Poste massivement, sois visible partout. Les gens achetent qui tu es avant ce que tu vends.</p>
+            <p><span class="highlight-green">3. La preuve sociale fait tout le travail.</span> Temoignages, screenshots, videos de resultats. Embauche quelqu'un dont c'est le seul job.</p>
+        </div>
+
+        <div class="footer">
+            <p>Source : @officialjoelkaplan sur Instagram — serie "33 lessons on scaling to $1M/Month" (6 parties)</p>
+        </div>
+
+    </div>
+</body>
+</html>
