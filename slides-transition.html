@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Webinaire 19 avril 2026 - Slides Transition</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: #0a0a0f; color: #fff; overflow: hidden; -webkit-user-select: none; user-select: none; }
+
+.slide {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  padding: 60px 80px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  background: linear-gradient(180deg, #0a0a0f 0%, #0d1117 50%, #111827 100%);
+}
+.slide.active { display: flex; }
+
+/* Typography */
+.slide h1 { font-size: 72px; font-weight: 800; line-height: 1.12; max-width: 1100px; }
+.slide h2 { font-size: 56px; font-weight: 700; line-height: 1.18; max-width: 1050px; }
+.slide p { font-size: 48px; font-weight: 500; line-height: 1.35; max-width: 1000px; color: rgba(255,255,255,0.92); }
+.slide .sub { font-size: 36px; font-weight: 400; color: rgba(255,255,255,0.7); margin-top: 20px; }
+.slide .small { font-size: 28px; color: rgba(255,255,255,0.55); }
+.slide .quote { font-size: 44px; font-weight: 600; font-style: italic; line-height: 1.3; max-width: 1000px; color: rgba(255,255,255,0.95); }
+
+/* Accent color */
+.accent { color: #1BA7FF; }
+.accent-bg { background: linear-gradient(135deg, #1BA7FF, #00D4FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* Placeholder for images */
+.placeholder {
+  width: 600px;
+  height: 350px;
+  border: 2px dashed rgba(27,167,255,0.4);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(27,167,255,0.6);
+  font-size: 18px;
+  font-weight: 500;
+  margin: 30px auto;
+  background: rgba(27,167,255,0.05);
+  text-align: center;
+  padding: 20px;
+}
+.placeholder.wide { width: 900px; height: 420px; }
+.placeholder.small { width: 420px; height: 260px; }
+.placeholder.twin { width: 900px; height: 380px; }
+
+/* Two column layout */
+.two-col {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+  max-width: 1100px;
+}
+.two-col .col { flex: 1; text-align: left; }
+
+/* Option pills */
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+}
+.option-pill {
+  background: rgba(27,167,255,0.1);
+  border: 1px solid rgba(27,167,255,0.3);
+  border-radius: 50px;
+  padding: 18px 40px;
+  font-size: 32px;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* Bullet list */
+.bullets { text-align: left; max-width: 950px; }
+.bullets li {
+  font-size: 36px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  color: rgba(255,255,255,0.9);
+  list-style: none;
+  padding-left: 35px;
+  position: relative;
+}
+.bullets li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 14px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #1BA7FF;
+}
+
+/* Cards */
+.card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(27,167,255,0.2);
+  border-radius: 16px;
+  padding: 30px 40px;
+  margin: 15px 0;
+  backdrop-filter: blur(10px);
+  text-align: center;
+  max-width: 900px;
+}
+
+/* Glow effect for emphasis */
+.glow { text-shadow: 0 0 40px rgba(27,167,255,0.3); }
+
+/* Logo */
+.logo {
+  position: fixed;
+  bottom: 20px;
+  left: 30px;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(27,167,255,0.35);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  z-index: 100;
+}
+
+/* Navigation arrows */
+.nav-arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.3s;
+  background: rgba(255,255,255,0.05);
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.nav-arrow:hover { opacity: 1 !important; background: rgba(27,167,255,0.15); }
+.nav-arrow.left { left: 20px; }
+.nav-arrow.right { right: 20px; }
+body:hover .nav-arrow { opacity: 0.3; }
+.nav-arrow svg { width: 24px; height: 24px; fill: #fff; }
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.slide.active > * {
+  animation: fadeIn 0.4s ease-out both;
+}
+.slide.active > *:nth-child(2) { animation-delay: 0.1s; }
+.slide.active > *:nth-child(3) { animation-delay: 0.2s; }
+
+/* Pause overlay */
+.pause-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  font-size: 48px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.4);
+}
+
+/* Deal highlight */
+.deal-box {
+  border: 2px solid #1BA7FF;
+  border-radius: 20px;
+  padding: 40px 60px;
+  background: rgba(27,167,255,0.08);
+  margin-top: 20px;
+}
+
+/* Choice boxes */
+.choice-box {
+  border: 2px solid rgba(255,255,255,0.15);
+  border-radius: 20px;
+  padding: 40px 50px;
+  background: rgba(255,255,255,0.03);
+  max-width: 900px;
+  margin-top: 20px;
+}
+.choice-box.active-choice {
+  border-color: #1BA7FF;
+  background: rgba(27,167,255,0.08);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .slide { padding: 30px 25px; }
+  .slide h1 { font-size: 42px; }
+  .slide h2 { font-size: 36px; }
+  .slide p { font-size: 32px; }
+  .slide .sub { font-size: 24px; }
+  .slide .quote { font-size: 30px; }
+  .placeholder { width: 90vw; height: 220px; }
+  .placeholder.wide { width: 90vw; height: 260px; }
+  .placeholder.twin { width: 90vw; height: 240px; }
+  .option-pill { font-size: 22px; padding: 12px 24px; }
+  .bullets li { font-size: 26px; }
+  .nav-arrow { width: 44px; height: 44px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================= -->
+<!-- TRANSITION — PARTIE 1 : 60 MIN EN 60 SEC     -->
+<!-- ============================================= -->
+
+<div class="slide active" id="s1">
+  <h2 class="sub" style="font-size:36px;color:rgba(255,255,255,0.5);margin-bottom:20px;">TRANSITION</h2>
+  <h1 class="accent glow">Ce que tu as maintenant</h1>
+</div>
+
+<div class="slide" id="s2">
+  <p>On fait le point.</p>
+</div>
+
+<div class="slide" id="s3">
+  <p>Dans les derni&egrave;res minutes, je t'ai donn&eacute; le <span class="accent">framework exact</span> que j'ai utilis&eacute; pour g&eacute;n&eacute;rer plus de 100 000 euros de chiffre d'affaires pour des cr&eacute;ateurs de contenu.</p>
+  <div class="placeholder" style="margin-top:30px;">Screenshot preuve +100 000&#8364; CA (dashboard Stripe/Whop)</div>
+</div>
+
+<div class="slide" id="s4">
+  <p>Tu sais maintenant comment <span class="accent">identifier le cr&eacute;ateur id&eacute;al</span>.</p>
+</div>
+
+<div class="slide" id="s5">
+  <p>Celui qui a une audience passionn&eacute;e, avec du pouvoir d'achat, et qui n'a <span class="accent">jamais mon&eacute;tis&eacute;</span>.</p>
+</div>
+
+<div class="slide" id="s6">
+  <p>Tu as vu avec <span class="accent">Sirin</span> que 3 000 abonn&eacute;s suffisent pour faire 8 000 euros en une semaine.</p>
+  <div class="placeholder small" style="margin-top:30px;">Photo Sirin</div>
+</div>
+
+<div class="slide" id="s7">
+  <p>Tu sais comment <span class="accent">le signer</span>.</p>
+</div>
+
+<div class="slide" id="s8">
+  <p>Un message, un appel, un deal o&ugrave; il ne prend <span class="accent">z&eacute;ro risque</span>.</p>
+</div>
+
+<div class="slide" id="s9">
+  <p>Tu as vu <span class="accent">Brandon</span> signer en quelques jours et faire 5 000 euros dans sa poche en deux semaines.</p>
+  <div class="placeholder small" style="margin-top:30px;">Photo Brandon (23 ans)</div>
+</div>
+
+<div class="slide" id="s10">
+  <p>Tu sais comment <span class="accent">lancer</span>.</p>
+</div>
+
+<div class="slide" id="s11">
+  <p>Une offre, une page de vente, un lancement.</p>
+</div>
+
+<div class="slide" id="s12">
+  <p>Tu as vu <span class="accent">Florimond</span> le faire en un mois, en parall&egrave;le de son boulot &agrave; temps plein, et se r&eacute;veiller avec 6 ventes.</p>
+  <div class="placeholder small" style="margin-top:30px;">Photo Florimond</div>
+</div>
+
+<div class="slide" id="s13">
+  <p>Et tu sais ce qui t'attend quand tout &ccedil;a se met en place.</p>
+</div>
+
+<div class="slide" id="s14">
+  <p><span class="accent">Kamil</span>, minuit &agrave; 4 heures du matin, son premier virement.</p>
+  <div class="placeholder small" style="margin-top:30px;">Photo Kamil</div>
+</div>
+
+<div class="slide" id="s15">
+  <p>16 000 euros dans son meilleur mois. 5 cr&eacute;ateurs. <span class="accent">Bali. 22 ans.</span></p>
+</div>
+
+<!-- ============================================= -->
+<!-- TRANSITION — PARTIE 2 : LES 6 OUI            -->
+<!-- ============================================= -->
+
+<div class="slide" id="s16">
+  <h1 class="accent glow">Laisse-moi te poser quelques questions.</h1>
+</div>
+
+<div class="slide" id="s17">
+  <p>Est-ce que tu te sens <span class="accent">plus &agrave; l'aise</span> avec le concept d'Op&eacute;rateur de Croissance qu'avant le d&eacute;but de cette pr&eacute;sentation ?</p>
+</div>
+
+<div class="slide" id="s18">
+  <p>Est-ce que tu es <span class="accent">content d'&ecirc;tre venu</span> aujourd'hui ?</p>
+</div>
+
+<div class="slide" id="s19">
+  <p>Est-ce que tu r&eacute;alises <span class="accent">l'avantage que tu as</span> maintenant par rapport &agrave; quelqu'un qui n'a pas vu cette pr&eacute;sentation ?</p>
+</div>
+
+<div class="slide" id="s20">
+  <p>Est-ce que tu <span class="accent">te vois utiliser</span> ce que je t'ai montr&eacute; ?</p>
+</div>
+
+<div class="slide" id="s21">
+  <p>M&ecirc;me si tu n'utilises qu'une <span class="accent">toute petite partie</span> de ce que je t'ai partag&eacute;, est-ce que tu dirais que notre temps ensemble &eacute;tait bien investi ?</p>
+</div>
+
+<div class="slide" id="s22">
+  <h2>Et est-ce que tu aimerais aller <span class="accent">encore plus loin</span> ensemble ?</h2>
+</div>
+
+<div class="slide" id="s23">
+  <h1 class="accent glow">Beaucoup plus loin ?</h1>
+</div>
+
+<!-- ============================================= -->
+<!-- TRANSITION — PARTIE 3 : LES DEUX CHOIX       -->
+<!-- ============================================= -->
+
+<div class="slide" id="s24">
+  <p>Maintenant, voil&agrave; ce que je sais sur toi.</p>
+</div>
+
+<div class="slide" id="s25">
+  <p>M&ecirc;me si on avait <span class="accent">quatre heures</span> ensemble au lieu de quarante-cinq minutes, &ccedil;a resterait difficile de cr&eacute;er un vrai changement durable dans ta vie.</p>
+</div>
+
+<div class="slide" id="s26">
+  <p>Peu importe &agrave; quel point quelqu'un est bon, <span class="accent">une seule pr&eacute;sentation</span> ne va pas transformer ta situation.</p>
+</div>
+
+<div class="slide" id="s27">
+  <p>Ce que je t'ai donn&eacute; aujourd'hui, c'&eacute;tait <span class="accent">tr&egrave;s pr&eacute;cieux</span>.</p>
+</div>
+
+<div class="slide" id="s28">
+  <p>Tu me l'as dit toi-m&ecirc;me.</p>
+</div>
+
+<div class="slide" id="s29">
+  <h2>Mais sinc&egrave;rement, c'est <span class="accent">la pointe de l'iceberg</span>.</h2>
+</div>
+
+<div class="slide" id="s30">
+  <p>Avant de faire cette pr&eacute;sentation, j'&eacute;tais face &agrave; <span class="accent">deux choix</span>.</p>
+</div>
+
+<div class="slide" id="s31">
+  <h2>Choix num&eacute;ro 1</h2>
+</div>
+
+<div class="slide" id="s32">
+  <p>Te partager ce que je t'ai partag&eacute;, te souhaiter <span class="accent">bonne chance</span>, et esp&eacute;rer que tu arrives &agrave; tout faire tout seul.</p>
+</div>
+
+<div class="slide" id="s33">
+  <p>Trouver ton cr&eacute;ateur <span class="accent">seul</span>.</p>
+</div>
+
+<div class="slide" id="s34">
+  <p>Le signer <span class="accent">seul</span>.</p>
+</div>
+
+<div class="slide" id="s35">
+  <p>Construire ton arsenal <span class="accent">seul</span>.</p>
+</div>
+
+<div class="slide" id="s36">
+  <p>Sans m&eacute;thode, sans templates, sans personne pour t'aider quand tu <span class="accent">bloques</span>.</p>
+</div>
+
+<div class="slide" id="s37">
+  <h2>Choix num&eacute;ro 2</h2>
+</div>
+
+<div class="slide" id="s38">
+  <p>Prendre un <span class="accent">r&ocirc;le actif</span> dans ta r&eacute;ussite.</p>
+</div>
+
+<div class="slide" id="s39">
+  <p>Te donner non seulement la m&eacute;thode, mais les <span class="accent">outils</span>, l'<span class="accent">accompagnement</span>, la <span class="accent">communaut&eacute;</span>.</p>
+</div>
+
+<div class="slide" id="s40">
+  <p>Tout ce qu'il faut pour que tu <span class="accent">y arrives vraiment</span>.</p>
+</div>
+
+<div class="slide" id="s41">
+  <h2>J'ai choisi le <span class="accent">deuxi&egrave;me choix</span>.</h2>
+</div>
+
+<div class="slide" id="s42">
+  <h1 class="glow">Et quand tu vas voir ce que j'ai en r&eacute;serve pour toi,</h1>
+</div>
+
+<div class="slide" id="s43">
+  <h1 class="accent glow">tu seras content que je l'aie fait.</h1>
+</div>
+
+<!-- ============================================= -->
+<!-- LOGO + NAVIGATION                             -->
+<!-- ============================================= -->
+
+<div class="logo">STRATEGIE 30%</div>
+<div id="slide-num" style="position:fixed;bottom:20px;right:30px;font-size:14px;font-weight:500;color:rgba(255,255,255,0.3);z-index:100;"></div>
+
+<div class="nav-arrow left" onclick="prevSlide()">
+  <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+</div>
+<div class="nav-arrow right" onclick="nextSlide()">
+  <svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>
+</div>
+
+<div class="pause-overlay" id="pauseOverlay">PAUSE</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+let current = 0;
+
+function showSlide(n) {
+  if (n < 0 || n >= slides.length) return;
+  slides[current].classList.remove('active');
+  current = n;
+  slides[current].classList.add('active');
+  document.getElementById('slide-num').textContent = (current + 1);
+}
+
+function nextSlide() { showSlide(current + 1); }
+function prevSlide() { showSlide(current - 1); }
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter' || e.key === 'PageDown') {
+    e.preventDefault();
+    nextSlide();
+  } else if (e.key === 'ArrowLeft' || e.key === 'Backspace' || e.key === 'PageUp') {
+    e.preventDefault();
+    prevSlide();
+  } else if (e.key === 'Home') {
+    e.preventDefault();
+    showSlide(0);
+  } else if (e.key === 'End') {
+    e.preventDefault();
+    showSlide(slides.length - 1);
+  } else if (e.key === 'p' || e.key === 'P') {
+    const overlay = document.getElementById('pauseOverlay');
+    overlay.style.display = overlay.style.display === 'flex' ? 'none' : 'flex';
+  }
+});
+
+// Touch/swipe support for mobile
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener('touchstart', (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+}, false);
+
+document.addEventListener('touchend', (e) => {
+  touchEndX = e.changedTouches[0].screenX;
+  const diff = touchStartX - touchEndX;
+  if (Math.abs(diff) > 50) {
+    if (diff > 0) nextSlide();
+    else prevSlide();
+  }
+}, false);
+
+// Click on sides to navigate
+document.addEventListener('click', (e) => {
+  if (e.target.closest('.nav-arrow')) return;
+  const x = e.clientX;
+  const w = window.innerWidth;
+  if (x > w * 0.7) nextSlide();
+  else if (x < w * 0.3) prevSlide();
+});
+
+// Show slide number on load
+document.getElementById('slide-num').textContent = '1';
+</script>
+
+</body>
+</html>
