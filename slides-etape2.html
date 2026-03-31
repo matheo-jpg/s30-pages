@@ -56,6 +56,43 @@ body { font-family: 'Inter', sans-serif; background: #0a0a0f; color: #fff; overf
 .placeholder.small { width: 420px; height: 260px; }
 .placeholder.twin { width: 900px; height: 380px; }
 
+/* Red frame proof style */
+.placeholder.proof {
+  border: 3px solid rgba(255,60,60,0.7);
+  background: rgba(255,60,60,0.05);
+  color: rgba(255,60,60,0.7);
+}
+.placeholder.proof.wide { width: 900px; height: 420px; }
+.placeholder.proof.small { width: 420px; height: 260px; }
+
+/* Photo circle */
+.placeholder.photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 3px solid rgba(27,167,255,0.5);
+  background: rgba(27,167,255,0.08);
+  font-size: 14px;
+}
+.placeholder.photo.large {
+  width: 280px;
+  height: 280px;
+  font-size: 16px;
+}
+
+/* Proof grid */
+.proof-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+  max-width: 1100px;
+}
+.proof-grid .placeholder {
+  margin: 0;
+}
+
 /* Two column layout */
 .two-col {
   display: flex;
@@ -167,6 +204,7 @@ body:hover .nav-arrow { opacity: 0.3; }
 }
 .slide.active > *:nth-child(2) { animation-delay: 0.1s; }
 .slide.active > *:nth-child(3) { animation-delay: 0.2s; }
+.slide.active > *:nth-child(4) { animation-delay: 0.3s; }
 
 /* Deal highlight */
 .deal-box {
@@ -231,11 +269,13 @@ body:hover .nav-arrow { opacity: 0.3; }
   .placeholder { width: 90vw; height: 220px; }
   .placeholder.wide { width: 90vw; height: 260px; }
   .placeholder.twin { width: 90vw; height: 240px; }
+  .placeholder.photo { width: 140px; height: 140px; }
   .option-pill { font-size: 22px; padding: 12px 24px; }
   .bullets li { font-size: 26px; }
   .nav-arrow { width: 44px; height: 44px; }
   .roadmap { flex-direction: column; gap: 20px; }
   .step { font-size: 22px; padding: 20px 30px; }
+  .proof-grid { gap: 10px; }
 }
 </style>
 </head>
@@ -298,6 +338,11 @@ body:hover .nav-arrow { opacity: 0.3; }
   <p>Tu lui dis : "Je vais te faire gagner de l'argent que tu ne gagnes pas aujourd'hui, et <span class="accent">je prends un pourcentage</span>."</p>
 </div>
 
+<!-- PREUVE : Screenshot d'un vrai accord/deal signe avec un createur (montrer que ce modele existe pour de vrai) -->
+<div class="slide" id="s11b">
+  <div class="placeholder proof wide">P-DEAL-MODEL - Screenshot d'un vrai accord signe entre un eleve et un createur (montrer le modele % revenue en action, cadre rouge sur le pourcentage)</div>
+</div>
+
 <div class="slide" id="s12">
   <h1 class="glow">C'est tout.</h1>
 </div>
@@ -325,11 +370,19 @@ body:hover .nav-arrow { opacity: 0.3; }
 <div class="slide" id="s17">
   <h2><span class="accent">Brandon</span>, 23 ans.</h2>
   <p class="sub">Il etait en ecole de commerce.</p>
-  <div class="placeholder" style="margin-top:30px;">P29 - Photo Brandon + situation avant</div>
+  <div class="two-col" style="margin-top:30px;">
+    <div class="col" style="text-align:center;">
+      <div class="placeholder photo large">P29a - Photo visage Brandon (portrait, souriant)</div>
+    </div>
+    <div class="col" style="text-align:center;">
+      <div class="placeholder proof small" style="width:100%;">P29b - Screenshot profil LinkedIn ou carte etudiant ecole de commerce (preuve age + ecole, cadre rouge sur la date/ecole)</div>
+    </div>
+  </div>
 </div>
 
 <div class="slide" id="s18">
   <p>Il avait essaye le dropshipping, il avait teste d'autres trucs.</p>
+  <div class="placeholder proof" style="margin-top:30px;">P-BRANDON-AVANT - Screenshot conversation ou Brandon parle de ses echecs avant (dropshipping, autres business rates) — cadre rouge sur les passages cles</div>
 </div>
 
 <div class="slide" id="s19">
@@ -338,6 +391,7 @@ body:hover .nav-arrow { opacity: 0.3; }
 
 <div class="slide" id="s20">
   <p>Quand il a rejoint le programme, il a choisi une niche : <span class="accent">les relations amoureuses</span>.</p>
+  <div class="placeholder proof" style="margin-top:30px;">P-BRANDON-INSCRIPTION - Screenshot de l'inscription de Brandon au programme (date visible, preuve qu'il a rejoint, cadre rouge sur la date)</div>
 </div>
 
 <div class="slide" id="s21">
@@ -354,7 +408,7 @@ body:hover .nav-arrow { opacity: 0.3; }
 
 <div class="slide" id="s24">
   <p>Il a trouve une creatrice de contenu dans cette niche.</p>
-  <div class="placeholder" style="margin-top:30px;">P30 - Screenshot profil Instagram de la creatrice de Brandon (preuve qu'elle existe, niche relations)</div>
+  <div class="placeholder proof" style="margin-top:30px;">P30 - Screenshot profil Instagram de la creatrice de Brandon (niche relations, nombre d'abonnes visible, cadre rouge sur la bio/niche)</div>
 </div>
 
 <div class="slide" id="s25">
@@ -367,10 +421,12 @@ body:hover .nav-arrow { opacity: 0.3; }
 
 <div class="slide" id="s27">
   <p>Il lui a envoye un message sur Instagram, ils ont pris un appel, et <span class="accent">c'est parti</span>.</p>
+  <div class="placeholder proof" style="margin-top:30px;">P-BRANDON-DM - Screenshot du vrai DM Instagram de Brandon a la creatrice (premier message envoye, cadre rouge sur le message, flouter si besoin les infos perso)</div>
 </div>
 
 <div class="slide" id="s28">
   <h2>Deal signe : <span class="accent">30% des revenus</span> pour Brandon.</h2>
+  <div class="placeholder proof" style="margin-top:30px;">P-BRANDON-CONTRAT - Screenshot du contrat/accord signe entre Brandon et la creatrice (cadre rouge sur le 30%, date visible)</div>
 </div>
 
 <div class="slide" id="s29">
@@ -380,7 +436,16 @@ body:hover .nav-arrow { opacity: 0.3; }
 <div class="slide" id="s30">
   <h1 class="accent glow">5 000 euros dans sa poche.</h1>
   <p class="sub">En deux semaines. A 23 ans.</p>
-  <div class="placeholder" style="margin-top:30px;">P31 - Screenshot dashboard Stripe/paiement Brandon (5 000 EUR visible, preuve chiffree)</div>
+  <div class="placeholder proof wide" style="margin-top:30px;">P31 - Screenshot dashboard Stripe/paiement Brandon (5 000 EUR visible, DATE visible pour prouver les 2 semaines, cadre rouge sur le montant + la date)</div>
+</div>
+
+<!-- PREUVE SUPPLEMENTAIRE : Timeline visuelle des 2 semaines -->
+<div class="slide" id="s30b">
+  <div class="proof-grid">
+    <div class="placeholder proof small">P31b - Screenshot notification de la 1ere vente de Brandon (montant + date + heure, cadre rouge)</div>
+    <div class="placeholder proof small">P31c - Screenshot cumul des ventes sur les 14 jours (progression visible, cadre rouge sur le total)</div>
+  </div>
+  <p class="sub" style="margin-top:15px;">Les ventes jour par jour pendant les 2 premieres semaines</p>
 </div>
 
 <div class="slide" id="s31">
@@ -389,7 +454,7 @@ body:hover .nav-arrow { opacity: 0.3; }
 
 <div class="slide" id="s32">
   <p>A la base, Brandon partait en <span class="accent">Australie</span> pour travailler dans les mines.</p>
-  <div class="placeholder" style="margin-top:30px;">P32 - Photo Brandon dans l'avion ou en Australie (preuve du voyage)</div>
+  <div class="placeholder proof" style="margin-top:30px;">P32 - Photo Brandon dans l'avion ou billet d'avion pour l'Australie (preuve du voyage, cadre rouge sur la destination)</div>
 </div>
 
 <div class="slide" id="s33">
@@ -402,6 +467,7 @@ body:hover .nav-arrow { opacity: 0.3; }
 
 <div class="slide" id="s35">
   <p>Sauf que dans l'avion, <span class="accent">les ventes ont commence a tomber</span>.</p>
+  <div class="placeholder proof" style="margin-top:30px;">P-BRANDON-NOTIFS-AVION - Screenshot notifications de ventes recues pendant le vol (Stripe/notifications push, cadre rouge sur les montants et l'heure)</div>
 </div>
 
 <div class="slide" id="s36">
@@ -414,6 +480,7 @@ body:hover .nav-arrow { opacity: 0.3; }
 
 <div class="slide" id="s38">
   <p>Il a pris un appartement, il a continue a bosser avec sa creatrice a distance, et il est <span class="accent">revenu en France</span>.</p>
+  <div class="placeholder proof" style="margin-top:30px;">P-BRANDON-AUSTRALIE - Photo de Brandon en Australie travaillant sur son laptop / capture d'ecran localisation Australie (preuve qu'il bossait a distance)</div>
 </div>
 
 <div class="slide" id="s39">
@@ -422,11 +489,12 @@ body:hover .nav-arrow { opacity: 0.3; }
 
 <div class="slide" id="s40">
   <p>Regarde ce message.</p>
-  <div class="placeholder" style="margin-top:30px;">P33 - Screenshot message WhatsApp Brandon : "Quand tu as reussi a faire 7 000 euros en un mois, tu sais qu'apres tu as les competences pour faire encore plus. Tu n'as plus ce syndrome de l'imposteur."</div>
+  <div class="placeholder proof wide" style="margin-top:30px;">P33 - Screenshot REEL message WhatsApp Brandon : "Quand tu as reussi a faire 7 000 euros en un mois, tu sais qu'apres tu as les competences pour faire encore plus. Tu n'as plus ce syndrome de l'imposteur." (cadre rouge sur les chiffres, nom Brandon visible en haut de la conversation)</div>
 </div>
 
 <div class="slide" id="s41">
   <p>"Quand tu as reussi a faire <span class="accent">7 000 euros en un mois</span>, tu sais qu'apres tu as les competences pour faire encore plus."</p>
+  <div class="placeholder proof" style="margin-top:30px;">P-BRANDON-7K - Screenshot dashboard du mois complet a 7 000 EUR (Stripe ou plateforme de paiement, cadre rouge sur le total mensuel + la periode)</div>
 </div>
 
 <div class="slide" id="s42">
@@ -435,10 +503,25 @@ body:hover .nav-arrow { opacity: 0.3; }
 
 <div class="slide" id="s43">
   <p>C'est pas moi qui le dis. <span class="accent">C'est lui.</span></p>
+  <div class="placeholder proof" style="margin-top:30px;">P-BRANDON-VIDEO - Capture d'ecran video temoignage de Brandon disant cette phrase (visage visible, sous-titre incruste, ou lien vers la video)</div>
 </div>
 
 <div class="slide" id="s44">
   <p>Tu imagines ce que ca fait de recevoir <span class="accent">5 000 euros</span> sur ton compte a 23 ans, pour un travail que t'as fait en deux semaines ?</p>
+  <div class="placeholder proof" style="margin-top:30px;">P-BRANDON-VIREMENT - Screenshot du virement bancaire reel de Brandon (5 000 EUR recus sur son compte, cadre rouge sur le montant)</div>
+</div>
+
+<!-- SLIDE PREUVE RECAP : Toute la timeline Brandon sur une slide -->
+<div class="slide" id="s44b">
+  <p class="sub">Recapitulatif Brandon — les preuves</p>
+  <div class="proof-grid">
+    <div class="placeholder proof small">Photo Brandon avant (ecole de commerce)</div>
+    <div class="placeholder proof small">DM Instagram envoye</div>
+    <div class="placeholder proof small">Deal signe 30%</div>
+    <div class="placeholder proof small">Dashboard 5 000 EUR en 2 semaines</div>
+    <div class="placeholder proof small">Photo Australie</div>
+    <div class="placeholder proof small">Message WhatsApp 7 000 EUR/mois</div>
+  </div>
 </div>
 
 <!-- =============================== -->
@@ -451,6 +534,16 @@ body:hover .nav-arrow { opacity: 0.3; }
 
 <div class="slide" id="s46">
   <h2>La seule chose qui te separe de ton premier deal, c'est <span class="accent">un message</span>.</h2>
+</div>
+
+<!-- PREUVE : Montrer d'autres eleves qui ont signe avec un seul message -->
+<div class="slide" id="s46b">
+  <p class="sub">Des eleves qui ont signe leur deal grace a un seul message :</p>
+  <div class="proof-grid">
+    <div class="placeholder proof small">P-ELEVE1-DM - Screenshot DM d'un eleve qui a signe un deal (nom + premier message visible, cadre rouge)</div>
+    <div class="placeholder proof small">P-ELEVE2-DM - Screenshot DM d'un 2e eleve qui a signe (autre niche, cadre rouge sur la reponse positive du createur)</div>
+    <div class="placeholder proof small">P-ELEVE3-DM - Screenshot DM d'un 3e eleve (preuve que ca marche dans differentes niches, cadre rouge)</div>
+  </div>
 </div>
 
 <div class="slide" id="s47">
@@ -488,7 +581,11 @@ body:hover .nav-arrow { opacity: 0.3; }
 
 <div class="slide" id="s54">
   <p>Regarde les profils de certains de mes eleves.</p>
-  <div class="placeholder wide" style="margin-top:30px;">P34 - 2-3 profils Instagram d'eleves operateurs (preuve que des profils simples suffisent)</div>
+  <div class="proof-grid" style="margin-top:30px;">
+    <div class="placeholder proof small">P34a - Screenshot profil Instagram eleve 1 (bio visible, photo, nombre de posts, cadre rouge sur la bio pro)</div>
+    <div class="placeholder proof small">P34b - Screenshot profil Instagram eleve 2 (autre style, meme resultat, cadre rouge)</div>
+    <div class="placeholder proof small">P34c - Screenshot profil Instagram eleve 3 (montrer la diversite des profils qui marchent)</div>
+  </div>
 </div>
 
 <div class="slide" id="s55">
@@ -506,14 +603,20 @@ body:hover .nav-arrow { opacity: 0.3; }
 <div class="slide" id="s58">
   <div class="two-col">
     <div class="col">
-      <div class="placeholder small" style="width:100%;">P35 - Mauvais message generique (screenshot ou mockup)</div>
+      <div class="placeholder proof small" style="width:100%;">P35a - Screenshot REEL d'un mauvais DM generique recu par un createur (copie-colle visible, cadre rouge sur les red flags)</div>
       <p style="font-size:28px; color:rgba(255,100,100,0.8); margin-top:15px; text-align:center;">Mauvais message</p>
     </div>
     <div class="col">
-      <div class="placeholder small" style="width:100%;">P35 - Bon message personnalise (screenshot ou mockup)</div>
+      <div class="placeholder proof small" style="width:100%;">P35b - Screenshot REEL d'un bon DM personnalise d'un eleve (details specifiques au createur, cadre rouge sur les elements personnalises)</div>
       <p style="font-size:28px; color:rgba(27,167,255,0.9); margin-top:15px; text-align:center;">Bon message</p>
     </div>
   </div>
+</div>
+
+<!-- PREUVE : Le bon message a recu une reponse -->
+<div class="slide" id="s58b">
+  <div class="placeholder proof wide">P35c - Screenshot de la REPONSE du createur au bon message (preuve que le message personnalise a marche, cadre rouge sur la reponse positive)</div>
+  <p class="sub">Le createur a repondu en moins de 24h.</p>
 </div>
 
 <div class="slide" id="s59">
@@ -526,6 +629,7 @@ body:hover .nav-arrow { opacity: 0.3; }
 
 <div class="slide" id="s61">
   <h2><span class="accent">95%</span> des gens envoient des messages generiques.</h2>
+  <div class="placeholder proof" style="margin-top:30px;">P-STATS-DM - Screenshot de la boite de reception d'un createur montrant les DM generiques (masse de messages copie-colle, cadre rouge — preuve que 95% sont generiques)</div>
 </div>
 
 <div class="slide" id="s62">
@@ -534,6 +638,7 @@ body:hover .nav-arrow { opacity: 0.3; }
 
 <div class="slide" id="s63">
   <p>Et dans le programme, on te donne les <span class="accent">templates exacts</span> pour que ton premier message sorte du lot.</p>
+  <div class="placeholder proof" style="margin-top:30px;">P-TEMPLATES-APERCU - Screenshot floute/partiel des templates de messages dans le programme (montrer qu'ils existent vraiment, cadre rouge sur un extrait visible)</div>
 </div>
 
 <div class="slide" id="s64">
@@ -577,10 +682,20 @@ body:hover .nav-arrow { opacity: 0.3; }
 
 <div class="slide" id="s73">
   <p>C'est exactement ce que Brandon a fait avec sa creatrice.</p>
+  <div class="placeholder proof" style="margin-top:30px;">P-BRANDON-CALL - Screenshot calendrier ou recap de l'appel entre Brandon et sa creatrice (preuve que l'appel a eu lieu, date visible, cadre rouge)</div>
 </div>
 
 <div class="slide" id="s74">
   <h2>Un appel, une conversation honnete, et <span class="accent">c'etait parti</span>.</h2>
+</div>
+
+<!-- PREUVE : Montrer d'autres eleves qui ont signe apres un appel -->
+<div class="slide" id="s74b">
+  <p class="sub">D'autres eleves qui ont signe apres un seul appel :</p>
+  <div class="proof-grid">
+    <div class="placeholder proof small">P-ELEVE-CALL1 - Screenshot message d'un eleve annoncant "deal signe" apres son premier appel (date + contexte visible, cadre rouge)</div>
+    <div class="placeholder proof small">P-ELEVE-CALL2 - Screenshot message d'un 2e eleve (preuve de repetabilite, cadre rouge)</div>
+  </div>
 </div>
 
 <!-- Sous-etape 3 : Le deal -->
@@ -592,6 +707,11 @@ body:hover .nav-arrow { opacity: 0.3; }
 
 <div class="slide" id="s76">
   <h2>Le deal, c'est entre <span class="accent">20% et 40%</span> des revenus generes.</h2>
+  <div class="proof-grid" style="margin-top:30px;">
+    <div class="placeholder proof small">P-DEAL-20 - Screenshot d'un deal reel a ~20% (contrat ou message confirmant le %, cadre rouge sur le pourcentage)</div>
+    <div class="placeholder proof small">P-DEAL-30 - Screenshot d'un deal reel a 30% (ex: Brandon, cadre rouge)</div>
+    <div class="placeholder proof small">P-DEAL-40 - Screenshot d'un deal reel a ~40% (autre eleve, cadre rouge sur le pourcentage)</div>
+  </div>
 </div>
 
 <div class="slide" id="s77">
@@ -608,6 +728,7 @@ body:hover .nav-arrow { opacity: 0.3; }
 
 <div class="slide" id="s80">
   <p>C'est pour ca que c'est tellement <span class="accent">facile a signer</span>.</p>
+  <div class="placeholder proof" style="margin-top:30px;">P-TAUX-SIGNATURE - Screenshot ou visuel du taux de reponse/signature des eleves (stats reelles : X messages envoyes, Y reponses, Z deals signes — cadre rouge sur le taux)</div>
 </div>
 
 <div class="slide" id="s81">
@@ -616,6 +737,16 @@ body:hover .nav-arrow { opacity: 0.3; }
 
 <div class="slide" id="s82">
   <h1 class="accent glow">Aucune raison de dire non.</h1>
+</div>
+
+<!-- PREUVE : Reactions de createurs quand ils entendent la proposition -->
+<div class="slide" id="s82b">
+  <p class="sub">Reactions reelles de createurs quand ils entendent l'offre :</p>
+  <div class="proof-grid">
+    <div class="placeholder proof small">P-REACTION-CREATEUR1 - Screenshot message createur enthousiaste apres la proposition (cadre rouge sur sa reponse positive)</div>
+    <div class="placeholder proof small">P-REACTION-CREATEUR2 - Screenshot message d'un autre createur qui accepte (differente niche, cadre rouge)</div>
+    <div class="placeholder proof small">P-REACTION-CREATEUR3 - Screenshot message d'un 3e createur (montrer que le pattern se repete, cadre rouge)</div>
+  </div>
 </div>
 
 <!-- Persuasional Foreplay — Les templates -->
@@ -646,6 +777,19 @@ body:hover .nav-arrow { opacity: 0.3; }
 
 <div class="slide" id="s89">
   <p>Est-ce que tu commences a voir que signer un createur, c'est <span class="accent">pas si intimidant</span> que ca en a l'air ?</p>
+</div>
+
+<!-- PREUVE FINALE : Mur de preuves — plusieurs eleves qui ont signe -->
+<div class="slide" id="s89b">
+  <h2>Des eleves qui ont <span class="accent">signe</span> leur createur :</h2>
+  <div class="proof-grid" style="margin-top:30px;">
+    <div class="placeholder proof small">P-WALL1 - Photo eleve 1 + screenshot de son deal signe</div>
+    <div class="placeholder proof small">P-WALL2 - Photo eleve 2 + niche + montant premier mois</div>
+    <div class="placeholder proof small">P-WALL3 - Photo eleve 3 + screenshot DM createur</div>
+    <div class="placeholder proof small">P-WALL4 - Photo eleve 4 + message "deal signe"</div>
+    <div class="placeholder proof small">P-WALL5 - Photo eleve 5 + screenshot revenus generes</div>
+    <div class="placeholder proof small">P-WALL6 - Photo eleve 6 + temoignage ecrit</div>
+  </div>
 </div>
 
 <!-- =============================== -->
