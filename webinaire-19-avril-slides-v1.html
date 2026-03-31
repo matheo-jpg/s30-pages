@@ -217,8 +217,6 @@ body:hover .nav-arrow { opacity: 0.3; }
 <div class="slide active" id="s1">
   <h1>Comment passer de <span class="accent">"Vivement vendredi !"</span> à <span class="accent">"Je suis libre"</span></h1>
   <p class="sub" style="margin-top:30px;">en moins de 90 jours, grâce à l'Opération de Croissance</p>
-  <p class="small" style="margin-top:40px;">avec Mathéo Cauwet</p>
-  <div class="placeholder small" style="margin-top:30px;">P1 — Logo Stratégie 30%</div>
 </div>
 
 <!-- =============================== -->
@@ -815,6 +813,7 @@ body:hover .nav-arrow { opacity: 0.3; }
 <!-- =============================== -->
 
 <div class="logo">STRATEGIE 30%</div>
+<div id="slide-num" style="position:fixed;bottom:20px;right:30px;font-size:14px;font-weight:500;color:rgba(255,255,255,0.3);z-index:100;"></div>
 
 <div class="nav-arrow left" onclick="prevSlide()">
   <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
@@ -834,6 +833,7 @@ function showSlide(n) {
   slides[current].classList.remove('active');
   current = n;
   slides[current].classList.add('active');
+  document.getElementById('slide-num').textContent = (current + 1);
 }
 
 function nextSlide() { showSlide(current + 1); }
