@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Webinaire 19 avril 2026 - Étape 3 : CONSTRUIS</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: #0a0a0f; color: #fff; overflow: hidden; -webkit-user-select: none; user-select: none; }
+
+.slide {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  padding: 60px 80px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  background: linear-gradient(180deg, #0a0a0f 0%, #0d1117 50%, #111827 100%);
+}
+.slide.active { display: flex; }
+
+/* Typography */
+.slide h1 { font-size: 72px; font-weight: 800; line-height: 1.12; max-width: 1100px; }
+.slide h2 { font-size: 56px; font-weight: 700; line-height: 1.18; max-width: 1050px; }
+.slide p { font-size: 48px; font-weight: 500; line-height: 1.35; max-width: 1000px; color: rgba(255,255,255,0.92); }
+.slide .sub { font-size: 36px; font-weight: 400; color: rgba(255,255,255,0.7); margin-top: 20px; }
+.slide .small { font-size: 28px; color: rgba(255,255,255,0.55); }
+.slide .quote { font-size: 44px; font-weight: 600; font-style: italic; line-height: 1.3; max-width: 1000px; color: rgba(255,255,255,0.95); }
+
+/* Accent color */
+.accent { color: #1BA7FF; }
+.accent-bg { background: linear-gradient(135deg, #1BA7FF, #00D4FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* Placeholder for images */
+.placeholder {
+  width: 600px;
+  height: 350px;
+  border: 2px dashed rgba(27,167,255,0.4);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(27,167,255,0.6);
+  font-size: 18px;
+  font-weight: 500;
+  margin: 30px auto;
+  background: rgba(27,167,255,0.05);
+  text-align: center;
+  padding: 20px;
+}
+.placeholder.wide { width: 900px; height: 420px; }
+.placeholder.small { width: 420px; height: 260px; }
+.placeholder.twin { width: 900px; height: 380px; }
+
+/* Two column layout */
+.two-col {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+  max-width: 1100px;
+}
+.two-col .col { flex: 1; text-align: left; }
+
+/* Option pills */
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+}
+.option-pill {
+  background: rgba(27,167,255,0.1);
+  border: 1px solid rgba(27,167,255,0.3);
+  border-radius: 50px;
+  padding: 18px 40px;
+  font-size: 32px;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* Bullet list */
+.bullets { text-align: left; max-width: 950px; }
+.bullets li {
+  font-size: 36px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  color: rgba(255,255,255,0.9);
+  list-style: none;
+  padding-left: 35px;
+  position: relative;
+}
+.bullets li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 14px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #1BA7FF;
+}
+
+/* Cards */
+.card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(27,167,255,0.2);
+  border-radius: 16px;
+  padding: 30px 40px;
+  margin: 15px 0;
+  backdrop-filter: blur(10px);
+  text-align: center;
+  max-width: 900px;
+}
+
+/* Glow effect for emphasis */
+.glow { text-shadow: 0 0 40px rgba(27,167,255,0.3); }
+
+/* Logo */
+.logo {
+  position: fixed;
+  bottom: 20px;
+  left: 30px;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(27,167,255,0.35);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  z-index: 100;
+}
+
+/* Navigation arrows */
+.nav-arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.3s;
+  background: rgba(255,255,255,0.05);
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.nav-arrow:hover { opacity: 1 !important; background: rgba(27,167,255,0.15); }
+.nav-arrow.left { left: 20px; }
+.nav-arrow.right { right: 20px; }
+body:hover .nav-arrow { opacity: 0.3; }
+.nav-arrow svg { width: 24px; height: 24px; fill: #fff; }
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.slide.active > * {
+  animation: fadeIn 0.4s ease-out both;
+}
+.slide.active > *:nth-child(2) { animation-delay: 0.1s; }
+.slide.active > *:nth-child(3) { animation-delay: 0.2s; }
+
+/* Pause overlay */
+.pause-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  font-size: 48px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.4);
+}
+
+/* Deal highlight */
+.deal-box {
+  border: 2px solid #1BA7FF;
+  border-radius: 20px;
+  padding: 40px 60px;
+  background: rgba(27,167,255,0.08);
+  margin-top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .slide { padding: 30px 25px; }
+  .slide h1 { font-size: 42px; }
+  .slide h2 { font-size: 36px; }
+  .slide p { font-size: 32px; }
+  .slide .sub { font-size: 24px; }
+  .slide .quote { font-size: 30px; }
+  .placeholder { width: 90vw; height: 220px; }
+  .placeholder.wide { width: 90vw; height: 260px; }
+  .placeholder.twin { width: 90vw; height: 240px; }
+  .option-pill { font-size: 22px; padding: 12px 24px; }
+  .bullets li { font-size: 26px; }
+  .nav-arrow { width: 44px; height: 44px; }
+}
+</style>
+</head>
+<body>
+
+<!-- =============================== -->
+<!-- ROADMAP — ETAPE 3 EN SURBRILLANCE -->
+<!-- =============================== -->
+
+<div class="slide active" id="s1">
+  <h1>Étape 3 :</h1>
+  <h1 class="accent glow" style="margin-top:20px;">CONSTRUIS ton premier lancement</h1>
+  <p class="sub">Étapes 1 et 2 validées</p>
+</div>
+
+<!-- =============================== -->
+<!-- 3A — CONTEXTE                    -->
+<!-- =============================== -->
+
+<div class="slide" id="s2">
+  <p>Ok, tu as ton créateur, tu as signé ton deal.</p>
+</div>
+
+<div class="slide" id="s3">
+  <p>Maintenant, il faut construire ton <span class="accent">premier lancement</span>.</p>
+</div>
+
+<div class="slide" id="s4">
+  <p>En clair : tout ce qui va faire en sorte que les gens qui suivent ton créateur deviennent des <span class="accent">clients payants</span>.</p>
+</div>
+
+<div class="slide" id="s5">
+  <p>Concrètement, c'est <span class="accent">3 choses</span> :</p>
+</div>
+
+<div class="slide" id="s6">
+  <ul class="bullets">
+    <li><span class="accent">L'offre</span> : l'accompagnement que tu packages avec ton créateur</li>
+    <li><span class="accent">La page de vente</span> : l'endroit où les gens découvrent l'accompagnement et s'inscrivent</li>
+    <li><span class="accent">Le lancement</span> : le moment où tu annonces l'accompagnement à l'audience du créateur</li>
+  </ul>
+</div>
+
+<div class="slide" id="s7">
+  <p>Je sais que ça peut sembler beaucoup.</p>
+</div>
+
+<div class="slide" id="s8">
+  <p>Mais je vais te montrer que chaque pièce est <span class="accent">plus simple</span> que ce que tu imagines.</p>
+</div>
+
+<div class="slide" id="s9">
+  <p>Et surtout, je vais te montrer quelqu'un qui a fait tout ça en étant <span class="accent">salarié à temps plein avec des enfants</span>.</p>
+</div>
+
+<!-- =============================== -->
+<!-- 3B — VISION : FLORIMOND          -->
+<!-- =============================== -->
+
+<div class="slide" id="s10">
+  <h2><span class="accent">Florimond</span>, 29 ans.</h2>
+  <div class="placeholder" style="margin-top:30px;">P36 - Photo de Florimond</div>
+</div>
+
+<div class="slide" id="s11">
+  <p>Il est salarié, plus de 35 heures par semaine.</p>
+  <p style="margin-top:15px;">Il a une famille.</p>
+</div>
+
+<div class="slide" id="s12">
+  <p>Avant de rejoindre le programme, il était comptable, puis il a bossé dans les RH.</p>
+</div>
+
+<div class="slide" id="s13">
+  <p>Il a trouvé une créatrice dans une niche un peu particulière :</p>
+  <h2 style="margin-top:20px;">les <span class="accent">énergies et les chakras</span>.</h2>
+  <div class="placeholder" style="margin-top:30px;">P37 - Screenshot profil créatrice énergies/chakras de Florimond</div>
+</div>
+
+<div class="slide" id="s14">
+  <p>Et oui, les chakras.</p>
+  <p style="margin-top:15px;">Ça peut paraître surprenant.</p>
+</div>
+
+<div class="slide" id="s15">
+  <p>Mais rappelle-toi le mec du barbecue avec <span class="accent">2 600 membres payants</span>, et le joueur de pickleball à <span class="accent">63 000 dollars par mois</span>.</p>
+</div>
+
+<div class="slide" id="s16">
+  <p>Le principe est le même : si une audience est passionnée par un sujet, elle est <span class="accent">prête à payer</span> pour progresser.</p>
+</div>
+
+<div class="slide" id="s17">
+  <p>Peu importe le sujet.</p>
+</div>
+
+<div class="slide" id="s18">
+  <p>Et là, Florimond a suivi la méthode <span class="accent">étape par étape</span>.</p>
+</div>
+
+<div class="slide" id="s19">
+  <p>Et un mois après avoir rejoint le programme, <span class="accent">il a lancé</span>.</p>
+</div>
+
+<div class="slide" id="s20">
+  <h1><span class="accent">11 ventes</span> en deux jours.</h1>
+  <div class="placeholder" style="margin-top:30px;">P38 - Screenshot dashboard Florimond (11 ventes visible)</div>
+</div>
+
+<div class="slide" id="s21">
+  <h1><span class="accent">4 400 euros</span> dans sa poche.</h1>
+</div>
+
+<div class="slide" id="s22">
+  <p>Et regarde ce qu'il m'a envoyé.</p>
+  <p style="margin-top:15px;">C'est son message, pas mes mots.</p>
+</div>
+
+<div class="slide" id="s23">
+  <h2 class="quote">"Je me suis réveillé le matin et j'avais déjà <span class="accent">6 ventes</span>."</h2>
+  <div class="placeholder" style="margin-top:30px;">P39 - Screenshot message Florimond ("je me suis réveillé avec 6 ventes")</div>
+</div>
+
+<div class="slide" id="s24">
+  <p>Six personnes avaient acheté <span class="accent">pendant qu'il dormait</span>.</p>
+</div>
+
+<div class="slide" id="s25">
+  <p>Et regarde sa page de vente.</p>
+  <div class="placeholder" style="margin-top:30px;">P40 - Screenshot page de vente de Florimond</div>
+</div>
+
+<div class="slide" id="s26">
+  <p>C'est ça. C'est <span class="accent">simple</span>.</p>
+</div>
+
+<div class="slide" id="s27">
+  <p>C'est pas un truc de designer professionnel.</p>
+</div>
+
+<div class="slide" id="s28">
+  <p>C'est un mec qui a suivi la méthode, <span class="accent">étape par étape</span>, en un mois, à côté de son boulot.</p>
+</div>
+
+<div class="slide" id="s29">
+  <p>Depuis, il planifie déjà son <span class="accent">deuxième lancement</span> et son troisième.</p>
+</div>
+
+<div class="slide" id="s30">
+  <p>Il m'a dit un truc qui résume tout :</p>
+</div>
+
+<div class="slide" id="s31">
+  <h2 class="quote">"Mentalement, je suis beaucoup plus <span class="accent">cool et libéré</span>."</h2>
+</div>
+
+<div class="slide" id="s32">
+  <p>Il a emmené sa copine au restaurant et il a commandé tout ce qu'il voulait sur la carte <span class="accent">sans regarder les prix</span>.</p>
+</div>
+
+<div class="slide" id="s33">
+  <p>Pour la première fois.</p>
+</div>
+
+<div class="slide" id="s34">
+  <p>Tu te rends compte ?</p>
+</div>
+
+<div class="slide" id="s35">
+  <p>Un salarié à 35 heures par semaine, père de famille, avec <span class="accent">zéro background technique</span>.</p>
+</div>
+
+<div class="slide" id="s36">
+  <h1><span class="accent">4 400 euros</span> dans sa poche en un mois.</h1>
+</div>
+
+<div class="slide" id="s37">
+  <h2>Si lui peut le faire, qu'est-ce qui <span class="accent">t'empêche</span> de le faire ?</h2>
+</div>
+
+<!-- =============================== -->
+<!-- 3C — COMMITMENT                  -->
+<!-- =============================== -->
+
+<div class="slide" id="s38">
+  <p>Là, je veux qu'on fasse le point.</p>
+</div>
+
+<div class="slide" id="s39">
+  <p>On a vu <span class="accent">3 étapes</span>.</p>
+</div>
+
+<div class="slide" id="s40">
+  <p>Et à chaque étape, je t'ai montré quelqu'un de concret qui l'a fait.</p>
+</div>
+
+<div class="slide" id="s41">
+  <p><span class="accent">Dagan</span> en alternance, <span class="accent">Brandon</span> à 20 ans, <span class="accent">Florimond</span> en étant salarié avec des enfants.</p>
+</div>
+
+<div class="slide" id="s42">
+  <h2>Est-ce que tu commences à réaliser que <span class="accent">c'est accessible</span> ?</h2>
+</div>
+
+<div class="slide" id="s43">
+  <h2>Bien.</h2>
+  <p style="margin-top:20px;">Parce que la dernière étape, c'est celle que <span class="accent">tout le monde attend</span>.</p>
+</div>
+
+<!-- =============================== -->
+<!-- 3D — STRATEGIE                   -->
+<!-- =============================== -->
+
+<div class="slide" id="s44">
+  <p>Voilà ce que Florimond a construit en un mois, en parallèle de son boulot à temps plein :</p>
+</div>
+
+<div class="slide" id="s45">
+  <h2><span class="accent">L'offre</span></h2>
+  <p style="margin-top:20px;">Des appels de groupe avec sa créatrice, du suivi WhatsApp, des exercices pratiques.</p>
+</div>
+
+<div class="slide" id="s46">
+  <p>Ça lui a pris <span class="accent">une après-midi</span> à structurer.</p>
+</div>
+
+<div class="slide" id="s47">
+  <h2><span class="accent">La page de vente</span></h2>
+  <p style="margin-top:20px;">Une page simple. Tu l'as vue.</p>
+</div>
+
+<div class="slide" id="s48">
+  <p>Ça lui a pris <span class="accent">un week-end</span>.</p>
+</div>
+
+<div class="slide" id="s49">
+  <h2><span class="accent">Le lancement</span></h2>
+  <p style="margin-top:20px;">La créatrice a posté une story Instagram et envoyé un email à sa liste.</p>
+</div>
+
+<div class="slide" id="s50">
+  <p>C'est tout.</p>
+  <p style="margin-top:15px;">Et les inscriptions ont commencé à tomber.</p>
+</div>
+
+<div class="slide" id="s51">
+  <h2>Est-ce que ça te semble <span class="accent">insurmontable</span> ?</h2>
+</div>
+
+<div class="slide" id="s52">
+  <p>Une après-midi, un week-end, une story et un email.</p>
+</div>
+
+<div class="slide" id="s53">
+  <h2>C'est pas de la <span class="accent">science nucléaire</span>.</h2>
+</div>
+
+<!-- =============================== -->
+<!-- PERSUASIONAL FOREPLAY            -->
+<!-- =============================== -->
+
+<div class="slide" id="s54">
+  <p>Et si tu te demandes exactement comment construire la page de vente, exactement comment structurer l'offre, et exactement comment lancer...</p>
+</div>
+
+<div class="slide" id="s55">
+  <p>Je sais ce que tu te dis.</p>
+</div>
+
+<div class="slide" id="s56">
+  <h2 class="quote">"<span class="accent">Montre-moi</span> la méthode."</h2>
+</div>
+
+<div class="slide" id="s57">
+  <h2>On y arrive.</h2>
+</div>
+
+<!-- =============================== -->
+<!-- TRANSITION VERS ETAPE 4          -->
+<!-- =============================== -->
+
+<div class="slide" id="s58">
+  <p><span class="accent">Étape 1</span> : tu sais choisir.</p>
+  <p style="margin-top:15px;"><span class="accent">Étape 2</span> : tu sais signer.</p>
+  <p style="margin-top:15px;"><span class="accent">Étape 3</span> : tu sais lancer.</p>
+</div>
+
+<div class="slide" id="s59">
+  <p>Maintenant, la dernière étape.</p>
+</div>
+
+<div class="slide" id="s60">
+  <h2>Et c'est <span class="accent">la plus belle</span> :</h2>
+</div>
+
+<div class="slide" id="s61">
+  <h1 class="accent glow">ENCAISSER tes premiers revenus.</h1>
+</div>
+
+<!-- =============================== -->
+<!-- LOGO + NAVIGATION                -->
+<!-- =============================== -->
+
+<div class="logo">STRATEGIE 30%</div>
+<div id="slide-num" style="position:fixed;bottom:20px;right:30px;font-size:14px;font-weight:500;color:rgba(255,255,255,0.3);z-index:100;"></div>
+
+<div class="nav-arrow left" onclick="prevSlide()">
+  <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+</div>
+<div class="nav-arrow right" onclick="nextSlide()">
+  <svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>
+</div>
+
+<div class="pause-overlay" id="pauseOverlay">PAUSE</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+let current = 0;
+
+function showSlide(n) {
+  if (n < 0 || n >= slides.length) return;
+  slides[current].classList.remove('active');
+  current = n;
+  slides[current].classList.add('active');
+  document.getElementById('slide-num').textContent = (current + 1);
+}
+
+function nextSlide() { showSlide(current + 1); }
+function prevSlide() { showSlide(current - 1); }
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter' || e.key === 'PageDown') {
+    e.preventDefault();
+    nextSlide();
+  } else if (e.key === 'ArrowLeft' || e.key === 'Backspace' || e.key === 'PageUp') {
+    e.preventDefault();
+    prevSlide();
+  } else if (e.key === 'Home') {
+    e.preventDefault();
+    showSlide(0);
+  } else if (e.key === 'End') {
+    e.preventDefault();
+    showSlide(slides.length - 1);
+  } else if (e.key === 'p' || e.key === 'P') {
+    const overlay = document.getElementById('pauseOverlay');
+    overlay.style.display = overlay.style.display === 'flex' ? 'none' : 'flex';
+  }
+});
+
+// Touch/swipe support for mobile
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener('touchstart', (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+}, false);
+
+document.addEventListener('touchend', (e) => {
+  touchEndX = e.changedTouches[0].screenX;
+  const diff = touchStartX - touchEndX;
+  if (Math.abs(diff) > 50) {
+    if (diff > 0) nextSlide();
+    else prevSlide();
+  }
+}, false);
+
+// Click on sides to navigate
+document.addEventListener('click', (e) => {
+  if (e.target.closest('.nav-arrow')) return;
+  const x = e.clientX;
+  const w = window.innerWidth;
+  if (x > w * 0.7) nextSlide();
+  else if (x < w * 0.3) prevSlide();
+});
+</script>
+
+</body>
+</html>
