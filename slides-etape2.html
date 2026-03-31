@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Webinaire - Etape 2 : Signe ton premier deal</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: #0a0a0f; color: #fff; overflow: hidden; -webkit-user-select: none; user-select: none; }
+
+.slide {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  padding: 60px 80px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  background: linear-gradient(180deg, #0a0a0f 0%, #0d1117 50%, #111827 100%);
+}
+.slide.active { display: flex; }
+
+/* Typography */
+.slide h1 { font-size: 72px; font-weight: 800; line-height: 1.12; max-width: 1100px; }
+.slide h2 { font-size: 56px; font-weight: 700; line-height: 1.18; max-width: 1050px; }
+.slide p { font-size: 48px; font-weight: 500; line-height: 1.35; max-width: 1000px; color: rgba(255,255,255,0.92); }
+.slide .sub { font-size: 36px; font-weight: 400; color: rgba(255,255,255,0.7); margin-top: 20px; }
+.slide .small { font-size: 28px; color: rgba(255,255,255,0.55); }
+.slide .quote { font-size: 44px; font-weight: 600; font-style: italic; line-height: 1.3; max-width: 1000px; color: rgba(255,255,255,0.95); }
+
+/* Accent color */
+.accent { color: #1BA7FF; }
+.accent-bg { background: linear-gradient(135deg, #1BA7FF, #00D4FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* Placeholder for images */
+.placeholder {
+  width: 600px;
+  height: 350px;
+  border: 2px dashed rgba(27,167,255,0.4);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(27,167,255,0.6);
+  font-size: 18px;
+  font-weight: 500;
+  margin: 30px auto;
+  background: rgba(27,167,255,0.05);
+  text-align: center;
+  padding: 20px;
+}
+.placeholder.wide { width: 900px; height: 420px; }
+.placeholder.small { width: 420px; height: 260px; }
+.placeholder.twin { width: 900px; height: 380px; }
+
+/* Two column layout */
+.two-col {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+  max-width: 1100px;
+}
+.two-col .col { flex: 1; text-align: left; }
+
+/* Option pills */
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+}
+.option-pill {
+  background: rgba(27,167,255,0.1);
+  border: 1px solid rgba(27,167,255,0.3);
+  border-radius: 50px;
+  padding: 18px 40px;
+  font-size: 32px;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* Bullet list */
+.bullets { text-align: left; max-width: 950px; }
+.bullets li {
+  font-size: 36px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  color: rgba(255,255,255,0.9);
+  list-style: none;
+  padding-left: 35px;
+  position: relative;
+}
+.bullets li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 14px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #1BA7FF;
+}
+
+/* Cards */
+.card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(27,167,255,0.2);
+  border-radius: 16px;
+  padding: 30px 40px;
+  margin: 15px 0;
+  backdrop-filter: blur(10px);
+  text-align: center;
+  max-width: 900px;
+}
+
+/* Glow effect for emphasis */
+.glow { text-shadow: 0 0 40px rgba(27,167,255,0.3); }
+
+/* Logo */
+.logo {
+  position: fixed;
+  bottom: 20px;
+  left: 30px;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(27,167,255,0.35);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  z-index: 100;
+}
+
+/* Navigation arrows */
+.nav-arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.3s;
+  background: rgba(255,255,255,0.05);
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.nav-arrow:hover { opacity: 1 !important; background: rgba(27,167,255,0.15); }
+.nav-arrow.left { left: 20px; }
+.nav-arrow.right { right: 20px; }
+body:hover .nav-arrow { opacity: 0.3; }
+.nav-arrow svg { width: 24px; height: 24px; fill: #fff; }
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.slide.active > * {
+  animation: fadeIn 0.4s ease-out both;
+}
+.slide.active > *:nth-child(2) { animation-delay: 0.1s; }
+.slide.active > *:nth-child(3) { animation-delay: 0.2s; }
+
+/* Deal highlight */
+.deal-box {
+  border: 2px solid #1BA7FF;
+  border-radius: 20px;
+  padding: 40px 60px;
+  background: rgba(27,167,255,0.08);
+  margin-top: 20px;
+}
+
+/* Roadmap steps */
+.roadmap {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  margin-top: 30px;
+}
+.step {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 16px;
+  padding: 30px 40px;
+  font-size: 28px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.5);
+  position: relative;
+}
+.step.done {
+  border-color: rgba(27,167,255,0.4);
+  color: rgba(27,167,255,0.6);
+}
+.step.done::after {
+  content: '\2713';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #1BA7FF;
+  color: #fff;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+.step.active-step {
+  border-color: #1BA7FF;
+  color: #fff;
+  background: rgba(27,167,255,0.1);
+  box-shadow: 0 0 30px rgba(27,167,255,0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .slide { padding: 30px 25px; }
+  .slide h1 { font-size: 42px; }
+  .slide h2 { font-size: 36px; }
+  .slide p { font-size: 32px; }
+  .slide .sub { font-size: 24px; }
+  .slide .quote { font-size: 30px; }
+  .placeholder { width: 90vw; height: 220px; }
+  .placeholder.wide { width: 90vw; height: 260px; }
+  .placeholder.twin { width: 90vw; height: 240px; }
+  .option-pill { font-size: 22px; padding: 12px 24px; }
+  .bullets li { font-size: 26px; }
+  .nav-arrow { width: 44px; height: 44px; }
+  .roadmap { flex-direction: column; gap: 20px; }
+  .step { font-size: 22px; padding: 20px 30px; }
+}
+</style>
+</head>
+<body>
+
+<!-- =============================== -->
+<!-- SLIDE 1 : ROADMAP ETAPE 2       -->
+<!-- =============================== -->
+
+<div class="slide active" id="s1">
+  <h2>Les 3 etapes pour devenir<br/>operateur de croissance</h2>
+  <div class="roadmap">
+    <div class="step done">Etape 1<br/>IDENTIFIE</div>
+    <div class="step active-step">Etape 2<br/>SIGNE</div>
+    <div class="step">Etape 3<br/>LANCE</div>
+  </div>
+</div>
+
+<!-- =============================== -->
+<!-- 2A — CONTEXTE                    -->
+<!-- =============================== -->
+
+<div class="slide" id="s2">
+  <p>Ok, tu as identifie ton createur.</p>
+</div>
+
+<div class="slide" id="s3">
+  <p>Tu sais dans quelle niche chercher, tu sais quel profil viser.</p>
+</div>
+
+<div class="slide" id="s4">
+  <h2>Maintenant, il faut aller <span class="accent">lui parler</span>.</h2>
+</div>
+
+<div class="slide" id="s5">
+  <p>Et je sais que c'est la que la plupart des gens <span class="accent">bloquent</span>.</p>
+</div>
+
+<div class="slide" id="s6">
+  <p>Ils se disent : <span class="accent">"Pourquoi un createur accepterait de bosser avec moi ?"</span></p>
+</div>
+
+<div class="slide" id="s7">
+  <p>"J'ai pas d'experience, j'ai pas de portfolio, <span class="accent">j'ai rien a montrer.</span>"</p>
+</div>
+
+<div class="slide" id="s8">
+  <p>Mais rappelle-toi ce que je t'ai dit :</p>
+</div>
+
+<div class="slide" id="s9">
+  <h2>Tu ne lui <span class="accent">VENDS</span> rien.</h2>
+</div>
+
+<div class="slide" id="s10">
+  <h2>Tu ne lui <span class="accent">demandes pas d'argent</span>.</h2>
+</div>
+
+<div class="slide" id="s11">
+  <p>Tu lui dis : "Je vais te faire gagner de l'argent que tu ne gagnes pas aujourd'hui, et <span class="accent">je prends un pourcentage</span>."</p>
+</div>
+
+<div class="slide" id="s12">
+  <h1 class="glow">C'est tout.</h1>
+</div>
+
+<div class="slide" id="s13">
+  <p>C'est comme si tu allais voir quelqu'un qui a un <span class="accent">terrain vide</span></p>
+</div>
+
+<div class="slide" id="s14">
+  <p>et tu lui disais : "Laisse-moi construire un immeuble sur ton terrain. <span class="accent">Tu gardes 70%, je prends 30%.</span>"</p>
+</div>
+
+<div class="slide" id="s15">
+  <h1 class="accent glow">Qui dirait non a ca ?</h1>
+</div>
+
+<div class="slide" id="s16">
+  <p>Ca change ta facon de voir les choses, <span class="accent">non ?</span></p>
+</div>
+
+<!-- =============================== -->
+<!-- 2B — VISION : BRANDON            -->
+<!-- =============================== -->
+
+<div class="slide" id="s17">
+  <h2><span class="accent">Brandon</span>, 23 ans.</h2>
+  <p class="sub">Il etait en ecole de commerce.</p>
+  <div class="placeholder" style="margin-top:30px;">P29 - Photo Brandon + situation avant</div>
+</div>
+
+<div class="slide" id="s18">
+  <p>Il avait essaye le dropshipping, il avait teste d'autres trucs.</p>
+</div>
+
+<div class="slide" id="s19">
+  <h2><span class="accent">Rien</span> n'avait marche.</h2>
+</div>
+
+<div class="slide" id="s20">
+  <p>Quand il a rejoint le programme, il a choisi une niche : <span class="accent">les relations amoureuses</span>.</p>
+</div>
+
+<div class="slide" id="s21">
+  <p>Plus precisement, aider les gens a <span class="accent">recuperer leur ex</span>.</p>
+</div>
+
+<div class="slide" id="s22">
+  <p>Et quand tu souffres dans ta vie amoureuse, tu es pret a payer pour que ca s'arrete.</p>
+</div>
+
+<div class="slide" id="s23">
+  <h2>C'est une des niches les plus <span class="accent">puissantes</span> qui existe.</h2>
+</div>
+
+<div class="slide" id="s24">
+  <p>Il a trouve une creatrice de contenu dans cette niche.</p>
+  <div class="placeholder" style="margin-top:30px;">P30 - Screenshot profil Instagram de la creatrice de Brandon (preuve qu'elle existe, niche relations)</div>
+</div>
+
+<div class="slide" id="s25">
+  <p>Il ne s'est pas dit "je vais reflechir, je vais preparer le message parfait."</p>
+</div>
+
+<div class="slide" id="s26">
+  <h2><span class="accent">Non.</span></h2>
+</div>
+
+<div class="slide" id="s27">
+  <p>Il lui a envoye un message sur Instagram, ils ont pris un appel, et <span class="accent">c'est parti</span>.</p>
+</div>
+
+<div class="slide" id="s28">
+  <h2>Deal signe : <span class="accent">30% des revenus</span> pour Brandon.</h2>
+</div>
+
+<div class="slide" id="s29">
+  <p>Et deux semaines apres le lancement de cet accompagnement...</p>
+</div>
+
+<div class="slide" id="s30">
+  <h1 class="accent glow">5 000 euros dans sa poche.</h1>
+  <p class="sub">En deux semaines. A 23 ans.</p>
+  <div class="placeholder" style="margin-top:30px;">P31 - Screenshot dashboard Stripe/paiement Brandon (5 000 EUR visible, preuve chiffree)</div>
+</div>
+
+<div class="slide" id="s31">
+  <p>Et tu sais le plus fou ?</p>
+</div>
+
+<div class="slide" id="s32">
+  <p>A la base, Brandon partait en <span class="accent">Australie</span> pour travailler dans les mines.</p>
+  <div class="placeholder" style="margin-top:30px;">P32 - Photo Brandon dans l'avion ou en Australie (preuve du voyage)</div>
+</div>
+
+<div class="slide" id="s33">
+  <p>C'etait son plan B pour gagner un peu plus d'argent.</p>
+</div>
+
+<div class="slide" id="s34">
+  <p>Il avait deja son billet, il pouvait pas annuler.</p>
+</div>
+
+<div class="slide" id="s35">
+  <p>Sauf que dans l'avion, <span class="accent">les ventes ont commence a tomber</span>.</p>
+</div>
+
+<div class="slide" id="s36">
+  <p>Sa creatrice continuait d'accompagner ses clients pendant que lui volait au-dessus de l'ocean.</p>
+</div>
+
+<div class="slide" id="s37">
+  <p>Arrive sur place, il <span class="accent">n'est jamais alle travailler dans les mines</span>.</p>
+</div>
+
+<div class="slide" id="s38">
+  <p>Il a pris un appartement, il a continue a bosser avec sa creatrice a distance, et il est <span class="accent">revenu en France</span>.</p>
+</div>
+
+<div class="slide" id="s39">
+  <p>Il m'a dit un truc qui m'a marque.</p>
+</div>
+
+<div class="slide" id="s40">
+  <p>Regarde ce message.</p>
+  <div class="placeholder" style="margin-top:30px;">P33 - Screenshot message WhatsApp Brandon : "Quand tu as reussi a faire 7 000 euros en un mois, tu sais qu'apres tu as les competences pour faire encore plus. Tu n'as plus ce syndrome de l'imposteur."</div>
+</div>
+
+<div class="slide" id="s41">
+  <p>"Quand tu as reussi a faire <span class="accent">7 000 euros en un mois</span>, tu sais qu'apres tu as les competences pour faire encore plus."</p>
+</div>
+
+<div class="slide" id="s42">
+  <h2>"Tu n'as plus ce <span class="accent">syndrome de l'imposteur</span>."</h2>
+</div>
+
+<div class="slide" id="s43">
+  <p>C'est pas moi qui le dis. <span class="accent">C'est lui.</span></p>
+</div>
+
+<div class="slide" id="s44">
+  <p>Tu imagines ce que ca fait de recevoir <span class="accent">5 000 euros</span> sur ton compte a 23 ans, pour un travail que t'as fait en deux semaines ?</p>
+</div>
+
+<!-- =============================== -->
+<!-- 2C — COMMITMENT                  -->
+<!-- =============================== -->
+
+<div class="slide" id="s45">
+  <p>Maintenant, je veux que tu te <span class="accent">projettes</span>.</p>
+</div>
+
+<div class="slide" id="s46">
+  <h2>La seule chose qui te separe de ton premier deal, c'est <span class="accent">un message</span>.</h2>
+</div>
+
+<div class="slide" id="s47">
+  <h1 class="accent glow">Un seul message.</h1>
+</div>
+
+<div class="slide" id="s48">
+  <h2>Est-ce que tu es pret a envoyer ce message ?</h2>
+</div>
+
+<div class="slide" id="s49">
+  <p>Bien. Parce que je vais te montrer <span class="accent">exactement</span> comment approcher un createur pour qu'il te dise oui.</p>
+</div>
+
+<!-- =============================== -->
+<!-- 2D — STRATEGIE                   -->
+<!-- =============================== -->
+
+<div class="slide" id="s50">
+  <h2>Sous-etape 1</h2>
+  <h1 class="accent" style="margin-top:15px;">Le premier message</h1>
+</div>
+
+<div class="slide" id="s51">
+  <p>Tu vas contacter le createur sur <span class="accent">Instagram</span>.</p>
+</div>
+
+<div class="slide" id="s52">
+  <p>Tu n'as pas besoin d'un Instagram parfait.</p>
+</div>
+
+<div class="slide" id="s53">
+  <p>Tu as besoin d'un profil pour montrer que tu es un humain et que tu es <span class="accent">serieux</span>.</p>
+</div>
+
+<div class="slide" id="s54">
+  <p>Regarde les profils de certains de mes eleves.</p>
+  <div class="placeholder wide" style="margin-top:30px;">P34 - 2-3 profils Instagram d'eleves operateurs (preuve que des profils simples suffisent)</div>
+</div>
+
+<div class="slide" id="s55">
+  <p>C'est pas des influenceurs. C'est des profils <span class="accent">simples, professionnels</span>.</p>
+</div>
+
+<div class="slide" id="s56">
+  <h2>Ca suffit.</h2>
+</div>
+
+<div class="slide" id="s57">
+  <p>Ensuite, tu envoies un message ou tu montres que tu connais son contenu, que tu comprends son audience, et que tu as une <span class="accent">idee precise</span> de comment l'aider.</p>
+</div>
+
+<div class="slide" id="s58">
+  <div class="two-col">
+    <div class="col">
+      <div class="placeholder small" style="width:100%;">P35 - Mauvais message generique (screenshot ou mockup)</div>
+      <p style="font-size:28px; color:rgba(255,100,100,0.8); margin-top:15px; text-align:center;">Mauvais message</p>
+    </div>
+    <div class="col">
+      <div class="placeholder small" style="width:100%;">P35 - Bon message personnalise (screenshot ou mockup)</div>
+      <p style="font-size:28px; color:rgba(27,167,255,0.9); margin-top:15px; text-align:center;">Bon message</p>
+    </div>
+  </div>
+</div>
+
+<div class="slide" id="s59">
+  <p>Tu te rappelles les petites videos personnalisees de Dagan dans l'etape 1 ?</p>
+</div>
+
+<div class="slide" id="s60">
+  <p>C'est exactement ce type d'approche qui marche. Un message <span class="accent">personnalise</span> ou tu montres que tu connais le contenu du createur.</p>
+</div>
+
+<div class="slide" id="s61">
+  <h2><span class="accent">95%</span> des gens envoient des messages generiques.</h2>
+</div>
+
+<div class="slide" id="s62">
+  <h1 class="glow">La barre est <span class="accent">basse</span>.</h1>
+</div>
+
+<div class="slide" id="s63">
+  <p>Et dans le programme, on te donne les <span class="accent">templates exacts</span> pour que ton premier message sorte du lot.</p>
+</div>
+
+<div class="slide" id="s64">
+  <p class="sub">On en reparle tout a l'heure.</p>
+</div>
+
+<!-- Sous-etape 2 : L'appel de decouverte -->
+
+<div class="slide" id="s65">
+  <h2>Sous-etape 2</h2>
+  <h1 class="accent" style="margin-top:15px;">L'appel de decouverte</h1>
+</div>
+
+<div class="slide" id="s66">
+  <p>Si ton message est bon, le createur va te <span class="accent">repondre</span>.</p>
+</div>
+
+<div class="slide" id="s67">
+  <p>La, tu lui proposes <span class="accent">un appel</span>.</p>
+</div>
+
+<div class="slide" id="s68">
+  <p>Sur cet appel, tu ne vends rien. Tu poses des questions et tu <span class="accent">ecoutes</span>.</p>
+</div>
+
+<div class="slide" id="s69">
+  <p>A la fin de l'appel, tu lui dis :</p>
+</div>
+
+<div class="slide" id="s70">
+  <p>"Je pense que je peux t'aider a lancer un accompagnement pour ton audience."</p>
+</div>
+
+<div class="slide" id="s71">
+  <p>"Je m'occupe de tout le cote business. Toi, tu te concentres sur ce que tu sais faire."</p>
+</div>
+
+<div class="slide" id="s72">
+  <h2>"Et je prends un <span class="accent">pourcentage</span> sur ce qu'on genere ensemble."</h2>
+</div>
+
+<div class="slide" id="s73">
+  <p>C'est exactement ce que Brandon a fait avec sa creatrice.</p>
+</div>
+
+<div class="slide" id="s74">
+  <h2>Un appel, une conversation honnete, et <span class="accent">c'etait parti</span>.</h2>
+</div>
+
+<!-- Sous-etape 3 : Le deal -->
+
+<div class="slide" id="s75">
+  <h2>Sous-etape 3</h2>
+  <h1 class="accent" style="margin-top:15px;">Le deal</h1>
+</div>
+
+<div class="slide" id="s76">
+  <h2>Le deal, c'est entre <span class="accent">20% et 40%</span> des revenus generes.</h2>
+</div>
+
+<div class="slide" id="s77">
+  <p>Pas d'avance, pas de frais fixes.</p>
+</div>
+
+<div class="slide" id="s78">
+  <p>Le createur ne debourse <span class="accent">rien</span>.</p>
+</div>
+
+<div class="slide" id="s79">
+  <h2>Il a <span class="accent">zero risque</span>.</h2>
+</div>
+
+<div class="slide" id="s80">
+  <p>C'est pour ca que c'est tellement <span class="accent">facile a signer</span>.</p>
+</div>
+
+<div class="slide" id="s81">
+  <p>"Je vais te faire gagner de l'argent que tu ne gagnes pas aujourd'hui, et si je n'y arrive pas, <span class="accent">ca ne t'aura rien coute</span>."</p>
+</div>
+
+<div class="slide" id="s82">
+  <h1 class="accent glow">Aucune raison de dire non.</h1>
+</div>
+
+<!-- Persuasional Foreplay — Les templates -->
+
+<div class="slide" id="s83">
+  <p>Et si tu te demandes exactement quoi ecrire dans ce premier message...</p>
+</div>
+
+<div class="slide" id="s84">
+  <p>Exactement quoi dire sur cet appel...</p>
+</div>
+
+<div class="slide" id="s85">
+  <p>Et exactement comment structurer le deal...</p>
+</div>
+
+<div class="slide" id="s86">
+  <p>Je sais ce que tu te dis.</p>
+</div>
+
+<div class="slide" id="s87">
+  <h2>"<span class="accent">Donne-moi un template.</span>"</h2>
+</div>
+
+<div class="slide" id="s88">
+  <p class="sub">On en reparle plus tard.</p>
+</div>
+
+<div class="slide" id="s89">
+  <p>Est-ce que tu commences a voir que signer un createur, c'est <span class="accent">pas si intimidant</span> que ca en a l'air ?</p>
+</div>
+
+<!-- =============================== -->
+<!-- TRANSITION VERS ETAPE 3          -->
+<!-- =============================== -->
+
+<div class="slide" id="s90">
+  <h2>Les 3 etapes pour devenir<br/>operateur de croissance</h2>
+  <div class="roadmap">
+    <div class="step done">Etape 1<br/>IDENTIFIE</div>
+    <div class="step done">Etape 2<br/>SIGNE</div>
+    <div class="step active-step">Etape 3<br/>LANCE</div>
+  </div>
+</div>
+
+<div class="slide" id="s91">
+  <p>Etape 1 : tu sais <span class="accent">choisir</span>.</p>
+</div>
+
+<div class="slide" id="s92">
+  <p>Etape 2 : tu sais <span class="accent">signer</span>.</p>
+</div>
+
+<div class="slide" id="s93">
+  <h2>Maintenant : comment tu <span class="accent">CONSTRUIS</span> ton premier lancement pour faire rentrer l'argent ?</h2>
+</div>
+
+<!-- =============================== -->
+<!-- FOOTER ELEMENTS                  -->
+<!-- =============================== -->
+
+<div class="logo">STRATEGIE 30%</div>
+<div id="slide-num" style="position:fixed;bottom:20px;right:30px;font-size:14px;font-weight:500;color:rgba(255,255,255,0.3);z-index:100;"></div>
+
+<div class="nav-arrow left" onclick="prevSlide()">
+  <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+</div>
+<div class="nav-arrow right" onclick="nextSlide()">
+  <svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+let current = 0;
+
+function showSlide(n) {
+  if (n < 0 || n >= slides.length) return;
+  slides[current].classList.remove('active');
+  current = n;
+  slides[current].classList.add('active');
+  document.getElementById('slide-num').textContent = (current + 1);
+}
+
+function nextSlide() { showSlide(current + 1); }
+function prevSlide() { showSlide(current - 1); }
+
+// Init slide number
+document.getElementById('slide-num').textContent = 1;
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter' || e.key === 'PageDown') {
+    e.preventDefault();
+    nextSlide();
+  } else if (e.key === 'ArrowLeft' || e.key === 'Backspace' || e.key === 'PageUp') {
+    e.preventDefault();
+    prevSlide();
+  } else if (e.key === 'Home') {
+    e.preventDefault();
+    showSlide(0);
+  } else if (e.key === 'End') {
+    e.preventDefault();
+    showSlide(slides.length - 1);
+  }
+});
+
+// Touch/swipe support for mobile
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener('touchstart', (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+}, false);
+
+document.addEventListener('touchend', (e) => {
+  touchEndX = e.changedTouches[0].screenX;
+  const diff = touchStartX - touchEndX;
+  if (Math.abs(diff) > 50) {
+    if (diff > 0) nextSlide();
+    else prevSlide();
+  }
+}, false);
+
+// Click on sides to navigate
+document.addEventListener('click', (e) => {
+  if (e.target.closest('.nav-arrow')) return;
+  const x = e.clientX;
+  const w = window.innerWidth;
+  if (x > w * 0.7) nextSlide();
+  else if (x < w * 0.3) prevSlide();
+});
+</script>
+
+</body>
+</html>
