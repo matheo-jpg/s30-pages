@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', sans-serif; background: #0a0a0f; color: #fff; overflow: hidden; }
+body { font-family: 'Inter', sans-serif; background: #0a0a0f; color: #fff; overflow: hidden; -webkit-user-select: none; user-select: none; }
 
 .slide {
   display: none;
@@ -24,15 +24,16 @@ body { font-family: 'Inter', sans-serif; background: #0a0a0f; color: #fff; overf
 .slide.active { display: flex; }
 
 /* Typography */
-.slide h1 { font-size: 64px; font-weight: 800; line-height: 1.15; max-width: 1100px; }
-.slide h2 { font-size: 48px; font-weight: 700; line-height: 1.2; max-width: 1000px; }
-.slide p { font-size: 32px; font-weight: 400; line-height: 1.5; max-width: 900px; color: rgba(255,255,255,0.85); }
-.slide .small { font-size: 24px; color: rgba(255,255,255,0.6); }
-.slide .quote { font-size: 36px; font-weight: 500; font-style: italic; line-height: 1.4; max-width: 950px; color: rgba(255,255,255,0.9); }
+.slide h1 { font-size: 72px; font-weight: 800; line-height: 1.12; max-width: 1100px; }
+.slide h2 { font-size: 56px; font-weight: 700; line-height: 1.18; max-width: 1050px; }
+.slide p { font-size: 48px; font-weight: 500; line-height: 1.35; max-width: 1000px; color: rgba(255,255,255,0.92); }
+.slide .sub { font-size: 36px; font-weight: 400; color: rgba(255,255,255,0.7); margin-top: 20px; }
+.slide .small { font-size: 28px; color: rgba(255,255,255,0.55); }
+.slide .quote { font-size: 44px; font-weight: 600; font-style: italic; line-height: 1.3; max-width: 1000px; color: rgba(255,255,255,0.95); }
 
 /* Accent color */
 .accent { color: #1BA7FF; }
-.accent-bg { background: linear-gradient(135deg, #1BA7FF, #0080E0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.accent-bg { background: linear-gradient(135deg, #1BA7FF, #00D4FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
 /* Placeholder for images */
 .placeholder {
@@ -48,9 +49,12 @@ body { font-family: 'Inter', sans-serif; background: #0a0a0f; color: #fff; overf
   font-weight: 500;
   margin: 30px auto;
   background: rgba(27,167,255,0.05);
+  text-align: center;
+  padding: 20px;
 }
-.placeholder.wide { width: 900px; height: 400px; }
-.placeholder.small { width: 400px; height: 250px; }
+.placeholder.wide { width: 900px; height: 420px; }
+.placeholder.small { width: 420px; height: 260px; }
+.placeholder.twin { width: 900px; height: 380px; }
 
 /* Two column layout */
 .two-col {
@@ -61,6 +65,46 @@ body { font-family: 'Inter', sans-serif; background: #0a0a0f; color: #fff; overf
 }
 .two-col .col { flex: 1; text-align: left; }
 
+/* Option pills */
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+}
+.option-pill {
+  background: rgba(27,167,255,0.1);
+  border: 1px solid rgba(27,167,255,0.3);
+  border-radius: 50px;
+  padding: 18px 40px;
+  font-size: 32px;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* Bullet list */
+.bullets { text-align: left; max-width: 950px; }
+.bullets li {
+  font-size: 36px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  color: rgba(255,255,255,0.9);
+  list-style: none;
+  padding-left: 35px;
+  position: relative;
+}
+.bullets li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 14px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #1BA7FF;
+}
+
 /* Cards */
 .card {
   background: rgba(255,255,255,0.05);
@@ -69,53 +113,12 @@ body { font-family: 'Inter', sans-serif; background: #0a0a0f; color: #fff; overf
   padding: 30px 40px;
   margin: 15px 0;
   backdrop-filter: blur(10px);
-  text-align: left;
-  max-width: 800px;
+  text-align: center;
+  max-width: 900px;
 }
 
-/* Bullet points */
-.bullets { text-align: left; max-width: 900px; }
-.bullets li {
-  font-size: 28px;
-  line-height: 1.6;
-  margin-bottom: 16px;
-  color: rgba(255,255,255,0.85);
-  list-style: none;
-  padding-left: 30px;
-  position: relative;
-}
-.bullets li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 12px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #1BA7FF;
-}
-
-/* Progress bar */
-.progress {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #1BA7FF, #00D4FF);
-  transition: width 0.3s ease;
-  z-index: 100;
-}
-
-/* Slide counter */
-.counter {
-  position: fixed;
-  bottom: 20px;
-  right: 30px;
-  font-size: 14px;
-  color: rgba(255,255,255,0.3);
-  font-weight: 500;
-  z-index: 100;
-}
+/* Glow effect for emphasis */
+.glow { text-shadow: 0 0 40px rgba(27,167,255,0.3); }
 
 /* Logo */
 .logo {
@@ -123,407 +126,765 @@ body { font-family: 'Inter', sans-serif; background: #0a0a0f; color: #fff; overf
   bottom: 20px;
   left: 30px;
   font-size: 14px;
-  font-weight: 600;
-  color: rgba(27,167,255,0.4);
-  letter-spacing: 1px;
+  font-weight: 700;
+  color: rgba(27,167,255,0.35);
+  letter-spacing: 2px;
+  text-transform: uppercase;
   z-index: 100;
 }
 
-/* Highlight box */
-.highlight-box {
-  background: rgba(27,167,255,0.1);
-  border-left: 4px solid #1BA7FF;
-  padding: 25px 35px;
-  border-radius: 0 12px 12px 0;
-  text-align: left;
-  max-width: 800px;
-  margin: 20px auto;
-}
-
-/* Roadmap */
-.roadmap {
+/* Navigation arrows */
+.nav-arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 60px;
   display: flex;
-  gap: 30px;
-  margin: 40px 0;
-}
-.roadmap .step {
-  padding: 20px 30px;
-  border-radius: 12px;
-  font-size: 24px;
-  font-weight: 700;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.3s;
   background: rgba(255,255,255,0.05);
+  border-radius: 50%;
   border: 1px solid rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.5);
 }
-.roadmap .step.active {
-  background: rgba(27,167,255,0.15);
-  border-color: #1BA7FF;
-  color: #1BA7FF;
+.nav-arrow:hover { opacity: 1 !important; background: rgba(27,167,255,0.15); }
+.nav-arrow.left { left: 20px; }
+.nav-arrow.right { right: 20px; }
+body:hover .nav-arrow { opacity: 0.3; }
+.nav-arrow svg { width: 24px; height: 24px; fill: #fff; }
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-.roadmap .step.done {
-  background: rgba(27,167,255,0.1);
-  border-color: rgba(27,167,255,0.3);
-  color: rgba(27,167,255,0.7);
+.slide.active > * {
+  animation: fadeIn 0.4s ease-out both;
+}
+.slide.active > *:nth-child(2) { animation-delay: 0.1s; }
+.slide.active > *:nth-child(3) { animation-delay: 0.2s; }
+
+/* Pause overlay */
+.pause-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  font-size: 48px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.4);
 }
 
-/* Big number */
-.big-number {
-  font-size: 120px;
-  font-weight: 900;
-  background: linear-gradient(135deg, #1BA7FF, #00D4FF);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  line-height: 1;
+/* Deal highlight */
+.deal-box {
+  border: 2px solid #1BA7FF;
+  border-radius: 20px;
+  padding: 40px 60px;
+  background: rgba(27,167,255,0.08);
+  margin-top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .slide { padding: 30px 25px; }
+  .slide h1 { font-size: 42px; }
+  .slide h2 { font-size: 36px; }
+  .slide p { font-size: 32px; }
+  .slide .sub { font-size: 24px; }
+  .slide .quote { font-size: 30px; }
+  .placeholder { width: 90vw; height: 220px; }
+  .placeholder.wide { width: 90vw; height: 260px; }
+  .placeholder.twin { width: 90vw; height: 240px; }
+  .option-pill { font-size: 22px; padding: 12px 24px; }
+  .bullets li { font-size: 26px; }
+  .nav-arrow { width: 44px; height: 44px; }
 }
 </style>
 </head>
 <body>
 
-<!-- ==================== -->
-<!-- SLIDE TITRE          -->
-<!-- ==================== -->
+<!-- =============================== -->
+<!-- SLIDE TITRE                      -->
+<!-- =============================== -->
 
-<div class="slide" id="s1">
-  <div class="placeholder small">LOGO STRATEGIE 30%</div>
-  <h1 style="margin-top:30px">Comment lancer ton activite<br>et generer tes premiers revenus<br>en <span class="accent">moins de 30 jours</span></h1>
-  <p style="margin-top:20px; font-size:24px; color:rgba(255,255,255,0.5)">avec Matheo Cauwet</p>
+<div class="slide active" id="s1">
+  <h1>Comment passer de <span class="accent">"Vivement vendredi !"</span> à <span class="accent">"Je suis libre"</span></h1>
+  <p class="sub" style="margin-top:30px;">en moins de 90 jours, grâce à l'Opération de Croissance</p>
+  <p class="small" style="margin-top:40px;">avec Mathéo Cauwet</p>
+  <div class="placeholder small" style="margin-top:30px;">P1 — Logo Stratégie 30%</div>
 </div>
 
-<!-- ==================== -->
-<!-- MEGA-COMMITMENT      -->
-<!-- ==================== -->
+<!-- =============================== -->
+<!-- MEGA-COMMITMENT                  -->
+<!-- =============================== -->
 
 <div class="slide" id="s2">
-  <h2>Ce que je vais te partager aujourd'hui,</h2>
+  <p>Ce que je vais te partager aujourd'hui, c'est la <span class="accent">méthode exacte</span> que j'utilise pour générer des dizaines de milliers d'euros pour des créateurs de contenu.</p>
 </div>
 
 <div class="slide" id="s3">
-  <h2>c'est la <span class="accent">methode exacte</span> que j'utilise pour generer des dizaines de milliers d'euros.</h2>
+  <h2>C'est pas de la théorie.</h2>
 </div>
 
 <div class="slide" id="s4">
-  <h2>C'est pas de la theorie.</h2>
-  <h2 style="margin-top:20px">C'est pas du bla-bla.</h2>
+  <h2>C'est pas du bla-bla.</h2>
 </div>
 
 <div class="slide" id="s5">
-  <h2>C'est ce que je fais,<br><span class="accent">tous les jours.</span></h2>
+  <p>C'est ce que je fais, <span class="accent">tous les jours</span>, et ce que mes élèves font.</p>
 </div>
 
 <div class="slide" id="s6">
-  <h2>Mais ca va marcher uniquement<br>si tu es la a <span class="accent">100%.</span></h2>
+  <h2>Mais ça va marcher uniquement si tu es là à <span class="accent">100%</span>.</h2>
 </div>
 
 <div class="slide" id="s7">
-  <p style="font-size:36px">Pas en train de scroller sur ton telephone.</p>
-  <p style="font-size:36px; margin-top:15px">Pas en train de regarder Netflix a cote.</p>
-  <h2 style="margin-top:30px"><span class="accent">La. Present. Concentre.</span></h2>
+  <p>Pas en train de scroller sur ton téléphone.</p>
+  <p style="margin-top:20px;">Pas en train de regarder Netflix à côté.</p>
 </div>
 
 <div class="slide" id="s8">
-  <h2>Moi, je m'engage a te donner<br>le meilleur de ce que j'ai.</h2>
-  <p style="margin-top:20px">Pas de remplissage. Que du concret.</p>
+  <h1 class="glow">Là. Présent. Concentré.</h1>
 </div>
 
 <div class="slide" id="s9">
-  <h2>En echange, toi, tu t'engages<br>a rester jusqu'au bout.</h2>
-  <h1 style="margin-top:30px"><span class="accent">Deal ?</span></h1>
+  <p>Donc voilà ce que je te propose :</p>
 </div>
 
 <div class="slide" id="s10">
-  <h1>Tape <span class="accent">OUI</span> dans le chat.</h1>
+  <p>Moi, je m'engage à te donner <span class="accent">le meilleur</span> de ce que j'ai.</p>
 </div>
 
-<!-- ==================== -->
-<!-- EMPATHIE COLD        -->
-<!-- ==================== -->
-
 <div class="slide" id="s11">
-  <h2>Avant de te montrer quoi que ce soit,</h2>
-  <h2 style="margin-top:15px">j'ai une <span class="accent">question rapide</span> pour toi.</h2>
+  <p>Pas de remplissage, pas de blabla, <span class="accent">que du concret</span>.</p>
 </div>
 
 <div class="slide" id="s12">
-  <h2>Tape dans le chat<br>ta situation actuelle :</h2>
-  <div style="display:flex; gap:20px; margin-top:40px; flex-wrap:wrap; justify-content:center">
-    <div class="card" style="text-align:center; padding:20px 30px"><p style="font-size:28px; color:#fff">Salarie</p></div>
-    <div class="card" style="text-align:center; padding:20px 30px"><p style="font-size:28px; color:#fff">Alternant</p></div>
-    <div class="card" style="text-align:center; padding:20px 30px"><p style="font-size:28px; color:#fff">Etudiant</p></div>
-    <div class="card" style="text-align:center; padding:20px 30px"><p style="font-size:28px; color:#fff">Entrepreneur</p></div>
-    <div class="card" style="text-align:center; padding:20px 30px"><p style="font-size:28px; color:#fff">Autre</p></div>
-  </div>
+  <p>En échange, toi, tu t'engages à rester jusqu'au bout et à donner ton meilleur effort.</p>
 </div>
 
 <div class="slide" id="s13">
-  <h1>T'en as <span class="accent">marre.</span></h1>
+  <h1 class="accent glow">Deal ?</h1>
 </div>
 
 <div class="slide" id="s14">
-  <p style="font-size:34px">Marre de te lever tous les matins<br>pour aller bosser dans un truc<br>qui ne te ressemble pas.</p>
+  <p>Si c'est ok pour toi, tape <span class="accent">OUI</span> dans le chat.</p>
 </div>
 
 <div class="slide" id="s15">
-  <h2>Compter tes jours de conge.</h2>
-  <h2 style="margin-top:15px">Demander la permission<br>pour <span class="accent">vivre.</span></h2>
+  <h2>Parfait. <span class="accent">On est parti.</span></h2>
 </div>
 
+<!-- =============================== -->
+<!-- EMPATHIE COLD                    -->
+<!-- =============================== -->
+
 <div class="slide" id="s16">
-  <p style="font-size:30px">Peut-etre que t'es en alternance et que tu vois deja<br>que le chemin qu'on te trace ne te correspond pas.</p>
-  <p style="font-size:30px; margin-top:20px">Peut-etre que t'es en CDI et que tu sens<br>que t'es fait pour autre chose.</p>
-  <p style="font-size:30px; margin-top:20px">Peut-etre que t'es etudiant et que tu te dis<br><span class="accent">'c'est pas possible que ma vie ressemble a ca dans 5 ans.'</span></p>
+  <p>Avant de te montrer quoi que ce soit, j'ai une <span class="accent">question rapide</span> pour toi.</p>
 </div>
 
 <div class="slide" id="s17">
-  <h2>T'as regarde.</h2>
-  <h2 style="margin-top:10px">T'as hesite.</h2>
-  <h2 style="margin-top:10px"><span class="accent">T'as pas trouve.</span></h2>
+  <p>Tape dans le chat ta situation actuelle en un mot.</p>
 </div>
 
 <div class="slide" id="s18">
-  <h2>T'es fait pour plus.</h2>
-  <h2 style="margin-top:15px">T'as juste pas trouve<br><span class="accent">le bon chemin.</span></h2>
+  <h2>Ta situation actuelle ?</h2>
+  <div class="options">
+    <div class="option-pill">Salarié</div>
+    <div class="option-pill">Alternant</div>
+    <div class="option-pill">Étudiant</div>
+    <div class="option-pill">Entrepreneur</div>
+    <div class="option-pill">Autre</div>
+  </div>
 </div>
 
 <div class="slide" id="s19">
-  <h1>C'est pas toi.</h1>
-  <h1 style="margin-top:15px">C'est <span class="accent">le vehicule.</span></h1>
+  <p>OK. Salarié, alternant, alternant, salarié, étudiant...</p>
+  <p class="sub" style="margin-top:20px;">Merci. Je vois qui est là ce soir.</p>
 </div>
 
 <div class="slide" id="s20">
-  <p style="font-size:34px">Et ce soir, je vais te montrer un vehicule<br>completement different de tout ce que t'as pu voir.</p>
-  <p style="font-size:34px; margin-top:25px">Un truc <span class="accent">simple</span>, qui <span class="accent">marche</span>, et que des gens comme toi utilisent pour <span class="accent">changer de vie</span> en quelques mois.</p>
+  <p>Et justement, parce que je sais qui est là ce soir, je vais te dire un truc.</p>
 </div>
 
-<!-- ==================== -->
-<!-- AUTORITE             -->
-<!-- ==================== -->
-
 <div class="slide" id="s21">
-  <p style="font-size:28px; color:rgba(255,255,255,0.5)">Qui je suis</p>
-  <h2 style="margin-top:15px">Il y a deux ans, j'etais<br><span class="accent">basketteur professionnel.</span></h2>
+  <h1 class="accent glow">T'en as marre.</h1>
 </div>
 
 <div class="slide" id="s22">
-  <h1>Je gagnais</h1>
-  <div class="big-number">314 EUR</div>
-  <h1>par mois.</h1>
+  <p>Marre de te lever tous les matins pour aller bosser dans un truc qui <span class="accent">ne te ressemble pas</span>.</p>
 </div>
 
 <div class="slide" id="s23">
-  <div class="two-col">
-    <div class="col">
-      <div class="placeholder small">P2 — PHOTO BASKET ROUEN</div>
-      <p style="font-size:22px; text-align:center; margin-top:10px; color:rgba(255,255,255,0.4)">Avant</p>
-    </div>
-    <div class="col">
-      <div class="placeholder small">P3 — PHOTO VIE ACTUELLE</div>
-      <p style="font-size:22px; text-align:center; margin-top:10px; color:rgba(255,255,255,0.4)">Aujourd'hui</p>
-    </div>
-  </div>
+  <p>Marre de <span class="accent">compter tes jours de congé</span>.</p>
 </div>
 
 <div class="slide" id="s24">
-  <h2>Aujourd'hui, j'ai 22 ans,<br>j'habite un peu partout,<br>et j'ai cree un programme<br>qui a forme <span class="accent">des centaines d'operateurs.</span></h2>
+  <p>Marre de <span class="accent">demander la permission</span> pour partir en vacances.</p>
 </div>
 
-<!-- Resultats createurs — 1 slide chacun -->
-
 <div class="slide" id="s25">
-  <p style="font-size:24px; color:rgba(255,255,255,0.5)">Mes resultats en tant qu'operateur</p>
-  <h2 style="margin-top:15px"><span class="accent">Sirin</span> — 3 000 abonnes</h2>
-  <h2>8 000 EUR en 1 semaine</h2>
-  <div class="placeholder" style="margin-top:20px">P4 — DASHBOARD VENTES SIRIN</div>
+  <h2>Compter tes jours de congé.<br/><span class="accent">Demander la permission pour vivre.</span></h2>
 </div>
 
 <div class="slide" id="s26">
-  <h2><span class="accent">Fanny Marr</span> — cyclisme</h2>
-  <h2>De 0 a 70 000 EUR/mois en 6 mois</h2>
-  <div class="placeholder" style="margin-top:20px">P5 — DASHBOARD VENTES FANNY</div>
+  <p>Peut-être que t'es en alternance et que tu vois déjà que le chemin qu'on te trace <span class="accent">ne te correspond pas</span>.</p>
 </div>
 
 <div class="slide" id="s27">
-  <h2><span class="accent">Alexis Horax</span></h2>
-  <h2>23 000 EUR en 23 jours</h2>
-  <div class="placeholder" style="margin-top:20px">P6 — DASHBOARD VENTES ALEXIS</div>
+  <p>Peut-être que t'es en CDI et que tu sens que <span class="accent">t'es fait pour autre chose</span>.</p>
 </div>
 
 <div class="slide" id="s28">
-  <div class="placeholder wide">P7 — MOSAIQUE CREATEURS (niches + abonnes)</div>
-  <p style="margin-top:20px; font-size:28px">Langues, musique, relations, triathlon, cyclisme...<br>Des dizaines de niches.</p>
+  <p>Peut-être que t'es étudiant et que tu te dis <span class="accent">"c'est pas possible que ma vie ressemble à ça dans 5 ans"</span>.</p>
 </div>
 
-<!-- Resultats eleves — gros d'abord -->
-
 <div class="slide" id="s29">
-  <p style="font-size:24px; color:rgba(255,255,255,0.5)">Les resultats de mes eleves</p>
-  <h2 style="margin-top:10px">La vraie question, c'est :<br>est-ce que les gens que je forme <span class="accent">reussissent ?</span></h2>
+  <p>Peut-être que t'as déjà regardé des trucs sur internet.</p>
+  <p class="sub">Le dropshipping, le trading, l'affiliation.</p>
 </div>
 
 <div class="slide" id="s30">
-  <div class="two-col">
-    <div class="col"><div class="placeholder small">P8a — PHOTO KAMIL</div></div>
-    <div class="col" style="text-align:left">
-      <h2><span class="accent">Kamil</span>, 22 ans</h2>
-      <h2>16 000 EUR meilleur mois</h2>
-    </div>
-  </div>
+  <p>Et soit t'as essayé et <span class="accent">ça n'a rien donné</span>.</p>
+  <p style="margin-top:15px;">Soit t'as regardé de loin et t'as senti que c'était pas pour toi.</p>
 </div>
 
 <div class="slide" id="s31">
-  <div class="two-col">
-    <div class="col"><div class="placeholder small">P8b — PHOTO BRANDON</div></div>
-    <div class="col" style="text-align:left">
-      <h2><span class="accent">Brandon</span>, 20 ans</h2>
-      <h2>+15 000 EUR/mois</h2>
-    </div>
-  </div>
+  <h2>T'as regardé. T'as hésité.<br/><span class="accent">T'as pas trouvé.</span></h2>
 </div>
 
 <div class="slide" id="s32">
-  <div class="two-col">
-    <div class="col"><div class="placeholder small">P8c — PHOTO ELODIE</div></div>
-    <div class="col" style="text-align:left">
-      <h2><span class="accent">Elodie</span>, 20 ans</h2>
-      <h2>11 000 EUR meilleur mois</h2>
-      <p style="margin-top:10px">Ancienne serveuse</p>
-    </div>
-  </div>
+  <p>Dans les deux cas, t'es au même endroit ce soir :</p>
 </div>
 
 <div class="slide" id="s33">
-  <p style="font-size:28px; color:rgba(255,255,255,0.5)">Mais eux, ce sont des cas un peu hors norme.<br>Ca fait plus d'un an qu'ils sont devenus operateurs.</p>
+  <h2>T'es fait pour plus.<br/><span class="accent">T'as juste pas trouvé le bon chemin.</span></h2>
 </div>
 
 <div class="slide" id="s34">
-  <h2>On a aussi des resultats<br>tout a fait <span class="accent">ordinaires.</span></h2>
+  <p>Je vais te dire un truc très clairement :</p>
 </div>
 
 <div class="slide" id="s35">
-  <div class="two-col">
-    <div class="col"><div class="placeholder small">P8d — PHOTO FLORIMONT</div></div>
-    <div class="col" style="text-align:left">
-      <h2><span class="accent">Florimont</span>, 29 ans</h2>
-      <h2>4 400 EUR en parallele de son travail</h2>
-      <p style="margin-top:10px">Salarie a temps plein, pere de famille</p>
-    </div>
-  </div>
+  <h1 class="glow">C'est pas toi.</h1>
+  <h1 class="accent glow" style="margin-top:20px;">C'est le véhicule.</h1>
+  <div class="placeholder" style="margin-top:30px;">P1bis — Image de véhicule / voiture pour illustrer le concept de "véhicule"</div>
 </div>
 
 <div class="slide" id="s36">
-  <div class="two-col">
-    <div class="col"><div class="placeholder small">P8e — PHOTO DAGAN</div></div>
-    <div class="col" style="text-align:left">
-      <h2><span class="accent">Dagan</span>, 24 ans</h2>
-      <h2>3 000 EUR a cote de son alternance</h2>
-      <p style="margin-top:10px">Il m'a dit qu'il allait arreter.</p>
-    </div>
-  </div>
+  <p>Et ce soir, je vais te montrer un véhicule <span class="accent">complètement différent</span> de tout ce que t'as pu voir.</p>
 </div>
 
 <div class="slide" id="s37">
-  <h2>Et eux, tu vas les retrouver<br>tout au long de cette presentation.</h2>
-  <p style="margin-top:20px; font-size:30px">Je vais te raconter exactement<br><span class="accent">comment ils ont fait.</span></p>
+  <p>Un truc <span class="accent">simple</span>, qui <span class="accent">marche</span>, et que des gens comme toi utilisent pour changer de vie en quelques mois.</p>
 </div>
-
-<!-- ==================== -->
-<!-- OBJECTIONS           -->
-<!-- ==================== -->
 
 <div class="slide" id="s38">
-  <p style="font-size:28px; color:rgba(255,255,255,0.5)">Je sais ce que tu penses.</p>
-  <h2 style="margin-top:15px">"Un mec de 22 ans qui te dit<br>qu'il peut t'apprendre a gagner de l'argent,<br>ca sent <span class="accent">l'arnaque.</span>"</h2>
+  <p>D'ailleurs, certains d'entre eux <span class="accent">sont là ce soir</span>.</p>
 </div>
 
+<!-- =============================== -->
+<!-- AUTORITE + TEMOIGNAGES           -->
+<!-- =============================== -->
+
 <div class="slide" id="s39">
-  <h2>Je te comprends.</h2>
-  <h2 style="margin-top:15px">Internet est rempli<br>de <span class="accent">vendeurs de reve.</span></h2>
+  <p>Je vais te dire rapidement <span class="accent">qui je suis</span>.</p>
 </div>
 
 <div class="slide" id="s40">
-  <p style="font-size:28px; color:rgba(255,255,255,0.5)">"Si ca marche si bien,<br>pourquoi tu apprends aux gens a le faire<br>au lieu de le faire toi-meme ?"</p>
-  <h2 style="margin-top:25px">Moi, je <span class="accent">continue</span> de le faire.</h2>
+  <p>Pas pour me vanter, mais pour que tu comprennes pourquoi tu devrais m'écouter pendant les prochaines minutes.</p>
 </div>
 
 <div class="slide" id="s41">
-  <h2>J'ai <span class="accent">3 createurs</span><br>avec qui je travaille en ce moment.</h2>
+  <p>Il y a deux ans, j'étais <span class="accent">basketteur professionnel</span>.</p>
+  <div class="placeholder" style="margin-top:30px;">P2 — Photo de Mathéo en maillot basket Rouen</div>
 </div>
 
 <div class="slide" id="s42">
-  <div class="placeholder wide">P9a — PROFIL CHARLOTTE BILLIOQUE</div>
+  <h1>Je gagnais <span class="accent">314 euros</span> par mois.</h1>
+  <div class="placeholder small" style="margin-top:30px;">P2b — Photo du contrat de Mathéo</div>
 </div>
 
 <div class="slide" id="s43">
-  <div class="placeholder wide">P9b — PROFIL ALEXIS HORAX</div>
+  <p>Aujourd'hui, j'ai <span class="accent">22 ans</span>,</p>
+  <p style="margin-top:15px;">j'habite un peu partout,</p>
 </div>
 
 <div class="slide" id="s44">
-  <div class="placeholder wide">P9c — PROFIL LAURIE RAPHAELLE</div>
+  <p>et j'ai créé un programme qui a formé des <span class="accent">centaines d'opérateurs de croissance</span>.</p>
 </div>
 
 <div class="slide" id="s45">
-  <h2>C'est pas mon business<br><span class="accent">"d'il y a 3 ans".</span></h2>
-  <h2 style="margin-top:15px">C'est ce que je fais,<br><span class="accent">aujourd'hui.</span></h2>
+  <div class="placeholder twin">P2 — Photo basket AVANT &nbsp; vs &nbsp; P3 — Photo vie actuelle APRÈS (côté à côté)</div>
 </div>
 
 <div class="slide" id="s46">
-  <p style="font-size:30px">Des createurs me contactent<br>tous les jours.</p>
-  <div class="placeholder wide" style="margin-top:20px">P10 — DM CREATEURS QUI CONTACTENT</div>
+  <h2>Voilà mes résultats en tant qu'opérateur :</h2>
 </div>
 
+<!-- Sirin -->
 <div class="slide" id="s47">
-  <div class="placeholder wide">P28 — MISES EN RELATION WHATSAPP + SKOOL</div>
-  <p style="margin-top:20px; font-size:28px">Des operateurs que j'ai formes,<br>connectes avec des createurs. <span class="accent">Tous les jours.</span></p>
+  <h2>Ma première créatrice de contenu, <span class="accent">Sirin</span>.</h2>
 </div>
-
-<!-- ENNEMI COMMUN -->
 
 <div class="slide" id="s48">
-  <h2>Et je vais te dire un truc<br>que <span class="accent">personne ne te dit.</span></h2>
+  <p><span class="accent">3 000</span> abonnés.</p>
+  <h1 style="margin-top:20px;"><span class="accent">8 000 euros</span> en une semaine.</h1>
+  <div class="placeholder" style="margin-top:30px;">P4 — Dashboard ventes Sirin</div>
 </div>
 
+<!-- Fanny -->
 <div class="slide" id="s49">
-  <h2>La plupart des mecs qui te vendent<br>du dropshipping ou du trading,</h2>
-  <h1 style="margin-top:20px">ils ne <span class="accent">FONT PAS</span><br>de dropshipping.</h1>
+  <h2><span class="accent">Fanny Marré</span>, une coach dans le cyclisme.</h2>
 </div>
 
 <div class="slide" id="s50">
-  <h2>Leur seul et unique business,</h2>
-  <h2 style="margin-top:15px">c'est de te vendre<br>une <span class="accent">formation</span> la-dessus.</h2>
+  <p>De 0 à <span class="accent">70 000 euros par mois</span> en 6 mois.</p>
+  <p style="margin-top:15px;">Je prenais plus de <span class="accent">15 000 euros par mois</span>.</p>
+  <div class="placeholder" style="margin-top:30px;">P5 — Dashboard ventes Fanny</div>
 </div>
 
-<!-- NAVIGATION -->
-<div class="progress" id="progress"></div>
-<div class="counter" id="counter"></div>
+<!-- Alexis -->
+<div class="slide" id="s51">
+  <h2><span class="accent">Alexis Horax</span>.</h2>
+</div>
+
+<div class="slide" id="s52">
+  <h1><span class="accent">23 000 euros</span> en 23 jours.</h1>
+  <div class="placeholder" style="margin-top:30px;">P6 — Dashboard ventes Alexis</div>
+</div>
+
+<div class="slide" id="s53">
+  <p>Et je me suis associé avec tous les créateurs de contenu que tu vois s'afficher à ton écran.</p>
+  <div class="placeholder wide" style="margin-top:30px;">P7 — Mosaïque de créateurs</div>
+</div>
+
+<div class="slide" id="s54">
+  <p>Apprentissage de langues, instruments de musique, relations amoureuses, triathlon, cyclisme, et des <span class="accent">dizaines d'autres niches</span>.</p>
+</div>
+
+<div class="slide" id="s55">
+  <p>Mais c'est pas mes résultats qui comptent.</p>
+</div>
+
+<div class="slide" id="s56">
+  <h2>C'est ceux de <span class="accent">mes élèves</span>.</h2>
+</div>
+
+<div class="slide" id="s57">
+  <p>Parce que n'importe qui peut se vanter de ses propres chiffres.</p>
+</div>
+
+<div class="slide" id="s58">
+  <h2>La vraie question, c'est : est-ce que les gens que je forme <span class="accent">réussissent</span> ?</h2>
+</div>
+
+<!-- Kamil -->
+<div class="slide" id="s59">
+  <h2><span class="accent">Kamil</span>, 22 ans.</h2>
+  <h1 style="margin-top:20px;"><span class="accent">16 000 euros</span> dans son meilleur mois.</h1>
+  <div class="placeholder" style="margin-top:30px;">P8a — Photo Kamil + screenshot résultat</div>
+</div>
+
+<!-- Brandon -->
+<div class="slide" id="s60">
+  <h2><span class="accent">Brandon</span>, 20 ans.</h2>
+  <h1 style="margin-top:20px;">Plus de <span class="accent">15 000 euros</span> par mois.</h1>
+  <div class="placeholder" style="margin-top:30px;">P8b — Photo Brandon + screenshot résultat</div>
+</div>
+
+<!-- Elodie -->
+<div class="slide" id="s61">
+  <h2><span class="accent">Élodie</span>, 20 ans, ancienne serveuse.</h2>
+  <h1 style="margin-top:20px;"><span class="accent">11 000 euros</span> dans son meilleur mois.</h1>
+  <div class="placeholder" style="margin-top:30px;">P8c — Photo Élodie + screenshot résultat</div>
+</div>
+
+<div class="slide" id="s62">
+  <p>Mais eux, ce sont des cas un peu <span class="accent">hors norme</span>.</p>
+  <p class="sub">Ça fait plus d'un an qu'ils sont devenus opérateurs.</p>
+</div>
+
+<div class="slide" id="s63">
+  <h2>On a aussi des résultats tout à fait <span class="accent">ordinaires</span>.</h2>
+</div>
+
+<!-- Florimont -->
+<div class="slide" id="s64">
+  <h2><span class="accent">Florimont</span>, 29 ans.</h2>
+  <p style="margin-top:10px;">Salarié à temps plein, père de famille.</p>
+  <h1 style="margin-top:20px;"><span class="accent">4 400 euros</span> en parallèle de son travail.</h1>
+  <div class="placeholder" style="margin-top:25px;">P8d — Photo Florimont + screenshot résultat</div>
+</div>
+
+<!-- Dagan -->
+<div class="slide" id="s65">
+  <h2><span class="accent">Dagan</span>, 24 ans, alternant.</h2>
+  <h1 style="margin-top:20px;"><span class="accent">3 000 euros</span> à côté de son alternance.</h1>
+  <p class="sub" style="margin-top:15px;">Il m'a d'ailleurs dit qu'il allait arrêter.</p>
+  <div class="placeholder" style="margin-top:25px;">P8e — Photo Dagan + screenshot résultat</div>
+</div>
+
+<div class="slide" id="s66">
+  <p>Et eux, tu vas les retrouver <span class="accent">tout au long</span> de cette présentation.</p>
+</div>
+
+<div class="slide" id="s67">
+  <p>Je vais te raconter <span class="accent">exactement</span> comment ils ont fait.</p>
+</div>
+
+<!-- =============================== -->
+<!-- OBJECTIONS TRAITEES EN AVANCE    -->
+<!-- =============================== -->
+
+<div class="slide" id="s68">
+  <p>Je sais ce que certains d'entre vous pensent.</p>
+</div>
+
+<div class="slide" id="s69">
+  <h2 class="quote">"Un mec de 22 ans qui te dit qu'il peut t'apprendre à gagner de l'argent, <span class="accent">ça sent l'arnaque</span>."</h2>
+</div>
+
+<div class="slide" id="s70">
+  <p>Et honnêtement, <span class="accent">je te comprends</span>.</p>
+</div>
+
+<div class="slide" id="s71">
+  <p>Internet est rempli de <span class="accent">vendeurs de rêve</span>.</p>
+</div>
+
+<div class="slide" id="s72">
+  <p>Donc laisse-moi te dire un truc qui va peut-être te surprendre.</p>
+</div>
+
+<div class="slide" id="s73">
+  <p>On me pose souvent cette question :</p>
+</div>
+
+<div class="slide" id="s74">
+  <h2 class="quote">"Si ça marche si bien, pourquoi tu apprends aux gens à le faire au lieu de <span class="accent">le faire toi-même</span> ?"</h2>
+</div>
+
+<div class="slide" id="s75">
+  <h2>La réponse est simple.</h2>
+</div>
+
+<div class="slide" id="s76">
+  <h2>Moi, <span class="accent">je continue de le faire</span>.</h2>
+</div>
+
+<div class="slide" id="s77">
+  <p>J'ai 3 créateurs avec qui je travaille <span class="accent">en ce moment</span> :</p>
+</div>
+
+<div class="slide" id="s78">
+  <h2><span class="accent">Charlotte</span></h2>
+  <div class="placeholder" style="margin-top:30px;">P9a — Profil Charlotte Billioque</div>
+</div>
+
+<div class="slide" id="s79">
+  <h2><span class="accent">Alexis</span></h2>
+  <div class="placeholder" style="margin-top:30px;">P9b — Profil Alexis Horax</div>
+</div>
+
+<div class="slide" id="s80">
+  <h2><span class="accent">Laurie</span></h2>
+  <div class="placeholder" style="margin-top:30px;">P9c — Profil Laurie Raphaëlle</div>
+</div>
+
+<div class="slide" id="s81">
+  <p>C'est pas mon business <span class="accent">"d'il y a 3 ans"</span>.</p>
+  <p style="margin-top:15px;">C'est ce que je fais, <span class="accent">aujourd'hui</span>.</p>
+</div>
+
+<div class="slide" id="s82">
+  <p>Mais en parallèle, quasiment tous les jours, il y a des créateurs de contenu qui me contactent parce qu'ils veulent travailler avec un opérateur.</p>
+</div>
+
+<div class="slide" id="s83">
+  <p>Ils sont <span class="accent">beaucoup plus nombreux</span> que ce que je peux gérer seul.</p>
+  <div class="placeholder" style="margin-top:30px;">P10 — DM de créateurs qui contactent</div>
+</div>
+
+<div class="slide" id="s84">
+  <p>Donc j'ai un <span class="accent">système de mise en relation</span>.</p>
+</div>
+
+<div class="slide" id="s85">
+  <p>Je forme des opérateurs, et je les <span class="accent">mets en relation</span> avec des créateurs.</p>
+</div>
+
+<div class="slide" id="s86">
+  <div class="placeholder wide">P28 — Screenshots WhatsApp mises en relation + Skool</div>
+  <p class="sub" style="margin-top:20px;">Des vraies conversations. Des opérateurs connectés avec des créateurs. Tous les jours.</p>
+</div>
+
+<div class="slide" id="s87">
+  <p>Je prends un <span class="accent">petit pourcentage</span> sur la mise en relation.</p>
+</div>
+
+<div class="slide" id="s88">
+  <p>J'ai tout intérêt à ce que les opérateurs que je forme soient <span class="accent">excellents</span> — parce que plus ils réussissent, plus les créateurs gagnent, et plus moi j'en gagne aussi.</p>
+</div>
+
+<div class="slide" id="s89">
+  <h2>Tout le monde gagne.<br/><span class="accent">C'est pour ça que ça marche.</span></h2>
+</div>
+
+<!-- =============================== -->
+<!-- ENNEMI COMMUN                    -->
+<!-- =============================== -->
+
+<div class="slide" id="s90">
+  <p>Et je vais te dire un truc que <span class="accent">personne ne te dit</span>.</p>
+</div>
+
+<div class="slide" id="s91">
+  <p>La plupart des mecs qui te vendent du dropshipping ou du trading,</p>
+</div>
+
+<div class="slide" id="s92">
+  <h2>ils ne <span class="accent">FONT PAS</span> de dropshipping.</h2>
+  <h2 style="margin-top:15px;">Ils ne <span class="accent">FONT PAS</span> de trading.</h2>
+</div>
+
+<div class="slide" id="s93">
+  <p>Leur seul et unique business, c'est de <span class="accent">te vendre une formation</span> là-dessus.</p>
+</div>
+
+<div class="slide" id="s94">
+  <h2>Ils t'ont vendu un modèle qu'eux-mêmes <span class="accent">n'utilisent pas</span>.</h2>
+</div>
+
+<div class="slide" id="s95">
+  <p>Moi, je travaille encore avec <span class="accent">3 créateurs</span> en ce moment.</p>
+  <p style="margin-top:15px;">Charlotte, Alexis et Laurie. Tu les as vus.</p>
+</div>
+
+<div class="slide" id="s96">
+  <p>C'est pas mon seul business "d'il y a 3 ans".</p>
+  <h2 style="margin-top:15px;">C'est ce que je fais, <span class="accent">aujourd'hui</span>.</h2>
+</div>
+
+<!-- Kamil ennemi commun -->
+<div class="slide" id="s97">
+  <h2><span class="accent">Kamil</span> avait tout essayé.</h2>
+</div>
+
+<div class="slide" id="s98">
+  <p>Dropshipping, crypto, SMMA, NFT, YouTube Automation.</p>
+  <h2 style="margin-top:20px;"><span class="accent">Rien</span> n'avait marché.</h2>
+</div>
+
+<div class="slide" id="s99">
+  <p>Et pourtant, <span class="accent">16 000 euros</span> dans son meilleur mois avec l'Opération de Croissance.</p>
+  <div class="placeholder" style="margin-top:30px;">P11 — Photo Kamil + message avant/après</div>
+</div>
+
+<div class="slide" id="s100">
+  <p><span class="accent">Brandon</span> avait essayé le dropshipping avant.</p>
+  <p style="margin-top:15px;">Pareil, ça n'avait rien donné.</p>
+</div>
+
+<div class="slide" id="s101">
+  <h1>Et pourtant, <span class="accent">5 000 euros</span> en deux semaines.</h1>
+</div>
+
+<div class="slide" id="s102">
+  <h2>Le problème, c'était jamais eux.</h2>
+  <h1 class="accent glow" style="margin-top:20px;">C'était le véhicule.</h1>
+</div>
+
+<!-- =============================== -->
+<!-- ESPOIR POUR LE FUTUR             -->
+<!-- =============================== -->
+
+<div class="slide" id="s103">
+  <p>Je veux que tu fasses un truc avec moi.</p>
+</div>
+
+<div class="slide" id="s104">
+  <h2>Ferme les yeux <span class="accent">deux secondes</span>.</h2>
+  <p class="sub" style="margin-top:15px;">Sérieusement, ferme les yeux.</p>
+</div>
+
+<div class="slide" id="s105">
+  <p class="small" style="font-size:36px; color:rgba(255,255,255,0.4);">[ Pause — 2 secondes ]</p>
+</div>
+
+<div class="slide" id="s106">
+  <h2>Imagine qu'on est dans <span class="accent">6 mois</span>.</h2>
+</div>
+
+<div class="slide" id="s107">
+  <p>Tu te réveilles le matin.</p>
+</div>
+
+<div class="slide" id="s108">
+  <h2>T'as <span class="accent">pas de réveil</span>.</h2>
+  <h2 style="margin-top:10px;">T'as <span class="accent">pas de patron</span>.</h2>
+  <h2 style="margin-top:10px;">T'as <span class="accent">pas de trajet</span>.</h2>
+</div>
+
+<div class="slide" id="s109">
+  <p>Tu ouvres ton appli bancaire et tu vois des <span class="accent">virements qui tombent</span> —</p>
+  <p style="margin-top:15px;">des virements que <span class="accent">TU</span> as générés, avec une activité que <span class="accent">TU</span> contrôles.</p>
+</div>
+
+<div class="slide" id="s110">
+  <p>Tu décides <span class="accent">où</span> tu bosses.</p>
+  <p style="margin-top:10px;">Tu décides <span class="accent">quand</span> tu bosses.</p>
+  <p style="margin-top:10px;">Tu décides <span class="accent">combien</span> tu gagnes.</p>
+</div>
+
+<div class="slide" id="s111">
+  <p>T'es au restaurant avec ta copine, tes potes, ta famille.</p>
+</div>
+
+<div class="slide" id="s112">
+  <h2>Tu commandes ce que tu veux <span class="accent">sans regarder les prix</span>.</h2>
+</div>
+
+<div class="slide" id="s113">
+  <p>Pas parce que t'es riche.</p>
+  <p style="margin-top:15px;">Parce que t'as construit un truc qui te donne cette <span class="accent">liberté</span>.</p>
+</div>
+
+<div class="slide" id="s114">
+  <h2 class="accent">Comment tu te sens ?</h2>
+  <p class="sub" style="margin-top:15px;">Qu'est-ce que tu dis à tes proches ?</p>
+</div>
+
+<div class="slide" id="s115">
+  <p class="small" style="font-size:36px; color:rgba(255,255,255,0.4);">[ Pause — 3 secondes ]</p>
+</div>
+
+<div class="slide" id="s116">
+  <h1 class="glow">Ouvre les yeux.</h1>
+</div>
+
+<div class="slide" id="s117">
+  <p>Ce que tu viens de voir, c'est <span class="accent">exactement</span> ce que vivent Kamil, Brandon, Florimont, Dagan, Élodie, et des centaines d'autres personnes en ce moment.</p>
+</div>
+
+<div class="slide" id="s118">
+  <h2>Et c'est exactement ce que je vais te montrer <span class="accent">comment faire aujourd'hui</span>.</h2>
+</div>
+
+<!-- =============================== -->
+<!-- MYSTERE ET INTRIGUE — Open Loops -->
+<!-- =============================== -->
+
+<div class="slide" id="s119">
+  <h2>Voilà ce que je vais te montrer dans les <span class="accent">prochaines minutes</span> :</h2>
+</div>
+
+<div class="slide" id="s120">
+  <p>Pourquoi tu n'as <span class="accent">PAS besoin</span> de créer un produit, un site web, ou d'investir le moindre euro pour lancer cette activité</p>
+</div>
+
+<div class="slide" id="s121">
+  <p>La raison pour laquelle <span class="accent">200 000 personnes</span> en France sont assises sur une mine d'or sans le savoir — et comment toi tu vas en profiter</p>
+</div>
+
+<div class="slide" id="s122">
+  <p>Le <span class="accent">message exact</span> qu'un de mes élèves a envoyé pour signer son premier deal et faire <span class="accent">10 000 euros</span> en un mois — je vais te le montrer mot pour mot</p>
+</div>
+
+<div class="slide" id="s123">
+  <p>Pourquoi les mecs qui te vendent du dropshipping et du trading ne font eux-mêmes <span class="accent">NI dropshipping NI trading</span> — et ce que ça veut dire pour toi</p>
+</div>
+
+<div class="slide" id="s124">
+  <p>Le truc le plus <span class="accent">contre-intuitif</span> que tu vas entendre ce soir : moins tu as d'expérience, <span class="accent">plus c'est facile</span> de commencer</p>
+</div>
+
+<div class="slide" id="s125">
+  <h1 class="accent glow">On commence.</h1>
+</div>
+
+<!-- =============================== -->
+<!-- LOGO + NAVIGATION                -->
+<!-- =============================== -->
+
 <div class="logo">STRATEGIE 30%</div>
+
+<div class="nav-arrow left" onclick="prevSlide()">
+  <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+</div>
+<div class="nav-arrow right" onclick="nextSlide()">
+  <svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>
+</div>
+
+<div class="pause-overlay" id="pauseOverlay">PAUSE</div>
 
 <script>
 const slides = document.querySelectorAll('.slide');
 let current = 0;
 
 function showSlide(n) {
+  if (n < 0 || n >= slides.length) return;
   slides[current].classList.remove('active');
-  current = Math.max(0, Math.min(n, slides.length - 1));
+  current = n;
   slides[current].classList.add('active');
-  document.getElementById('progress').style.width = ((current + 1) / slides.length * 100) + '%';
-  document.getElementById('counter').textContent = (current + 1) + ' / ' + slides.length;
 }
 
+function nextSlide() { showSlide(current + 1); }
+function prevSlide() { showSlide(current - 1); }
+
+// Keyboard navigation
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); showSlide(current + 1); }
-  if (e.key === 'ArrowLeft') { e.preventDefault(); showSlide(current - 1); }
-  if (e.key === 'Home') { e.preventDefault(); showSlide(0); }
-  if (e.key === 'End') { e.preventDefault(); showSlide(slides.length - 1); }
+  if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter' || e.key === 'PageDown') {
+    e.preventDefault();
+    nextSlide();
+  } else if (e.key === 'ArrowLeft' || e.key === 'Backspace' || e.key === 'PageUp') {
+    e.preventDefault();
+    prevSlide();
+  } else if (e.key === 'Home') {
+    e.preventDefault();
+    showSlide(0);
+  } else if (e.key === 'End') {
+    e.preventDefault();
+    showSlide(slides.length - 1);
+  } else if (e.key === 'p' || e.key === 'P') {
+    // Toggle pause overlay
+    const overlay = document.getElementById('pauseOverlay');
+    overlay.style.display = overlay.style.display === 'flex' ? 'none' : 'flex';
+  }
 });
 
-// Touch support
+// Touch/swipe support for mobile
 let touchStartX = 0;
-document.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
-document.addEventListener('touchend', (e) => {
-  const diff = touchStartX - e.changedTouches[0].clientX;
-  if (Math.abs(diff) > 50) { diff > 0 ? showSlide(current + 1) : showSlide(current - 1); }
-});
+let touchEndX = 0;
 
-showSlide(0);
+document.addEventListener('touchstart', (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+}, false);
+
+document.addEventListener('touchend', (e) => {
+  touchEndX = e.changedTouches[0].screenX;
+  const diff = touchStartX - touchEndX;
+  if (Math.abs(diff) > 50) {
+    if (diff > 0) nextSlide();
+    else prevSlide();
+  }
+}, false);
+
+// Click on sides to navigate
+document.addEventListener('click', (e) => {
+  if (e.target.closest('.nav-arrow')) return;
+  const x = e.clientX;
+  const w = window.innerWidth;
+  if (x > w * 0.7) nextSlide();
+  else if (x < w * 0.3) prevSlide();
+});
 </script>
 
 </body>
