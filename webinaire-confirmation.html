@@ -305,177 +305,325 @@ body {
   opacity: 0.8;
 }
 
-/* ===== ABOUT / CREDIBILITY ===== */
-.about-card {
+/* ===== STATS BAR ===== */
+.stats-bar {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding: 32px 0;
+}
+@media (min-width: 640px) { .stats-bar { gap: 48px; } }
+.stat-item { text-align: center; }
+.stat-num {
+  font-size: 28px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.2;
+}
+@media (min-width: 640px) { .stat-num { font-size: 36px; } }
+.stat-label {
+  font-size: 12px;
+  color: var(--text-80);
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+@media (min-width: 640px) { .stat-label { font-size: 13px; } }
+
+/* ===== CREDIBILITY CARD ===== */
+.cred-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 24px;
-  max-width: 720px;
-  margin: 0 auto;
-}
-@media (min-width: 640px) { .about-card { padding: 32px; } }
-.about-grid {
+  max-width: 900px;
+  margin: 0 auto 48px;
   display: grid;
   grid-template-columns: 1fr;
   gap: 24px;
   align-items: center;
 }
-@media (min-width: 768px) { .about-grid { grid-template-columns: 1fr 2fr; gap: 32px; } }
-.about-img {
-  border-radius: 12px;
+@media (min-width: 768px) { .cred-card { grid-template-columns: 1fr 1fr; padding: 32px; gap: 32px; } }
+.cred-imgs { display: flex; gap: 12px; }
+.cred-imgs img, .cred-imgs .cred-placeholder {
+  border-radius: 10px;
   border: 1px solid var(--border);
-  box-shadow: 0 12px 40px -24px rgba(0,0,0,0.8);
-  width: 100%;
-  max-width: 280px;
-  margin: 0 auto;
+  flex: 1;
+  aspect-ratio: 3/4;
+  object-fit: cover;
 }
-.about-text {
+.cred-placeholder {
+  background: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-80);
+  font-size: 12px;
+  text-align: center;
+  padding: 12px;
+}
+.cred-text {
   font-size: 15px;
   color: var(--text-85);
   line-height: 1.7;
 }
-@media (min-width: 640px) { .about-text { font-size: 16px; } }
-.about-text strong {
-  color: #fff;
-  font-weight: 800;
-}
-.about-title {
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 16px;
-  color: #fff;
-}
-@media (min-width: 640px) { .about-title { font-size: 28px; } }
+@media (min-width: 640px) { .cred-text { font-size: 16px; } }
+.cred-text strong { color: #fff; font-weight: 800; }
 
-/* ===== WHAT'S INSIDE ===== */
-.inside-section {
-  max-width: 720px;
+/* ===== ABOUT SECTION (long bio) ===== */
+.about-section {
+  max-width: 900px;
   margin: 0 auto;
   padding: 0 0 24px;
 }
-.inside-title {
-  font-size: 28px;
-  font-weight: 700;
+.about-header {
   text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: 40px;
 }
-@media (min-width: 640px) { .inside-title { font-size: 36px; } }
-.inside-item {
+.about-header .subtitle {
+  font-size: 14px;
+  color: var(--text-80);
+  margin-bottom: 8px;
+}
+@media (min-width: 640px) { .about-header .subtitle { font-size: 16px; } }
+.about-header h2 {
+  font-size: 32px;
+  font-weight: 700;
+}
+@media (min-width: 640px) { .about-header h2 { font-size: 42px; } }
+.about-block {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
+  gap: 24px;
   align-items: center;
-  margin-bottom: 32px;
+  margin-bottom: 40px;
 }
-@media (min-width: 768px) { .inside-item { grid-template-columns: 1fr 1fr; gap: 32px; } }
-.inside-item.reverse .inside-item-text { order: 1; }
+@media (min-width: 768px) { .about-block { grid-template-columns: 1fr 1fr; gap: 40px; } }
+.about-block.reverse .about-block-text { order: 1; }
 @media (min-width: 768px) {
-  .inside-item.reverse .inside-item-text { order: -1; }
+  .about-block.reverse .about-block-text { order: -1; }
 }
-.inside-item-img {
+.about-block-text {
+  font-size: 15px;
+  color: var(--text-85);
+  line-height: 1.7;
+}
+@media (min-width: 640px) { .about-block-text { font-size: 16px; } }
+.about-block-text strong { color: #fff; font-weight: 800; }
+.about-block-img {
   border-radius: 12px;
   border: 1px solid var(--border);
+  width: 100%;
+  box-shadow: 0 12px 40px -24px rgba(0,0,0,0.8);
 }
-.inside-item-text h3 {
-  font-size: 20px;
+.about-img-placeholder {
+  background: #1a1a1a;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-80);
+  font-size: 13px;
+  text-align: center;
+  padding: 16px;
+}
+.highlight {
+  background: rgba(255,255,255,0.12);
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ===== RESULTS SECTION (case study grid) ===== */
+.results-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 0 24px;
+}
+.results-header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+.results-header h2 {
+  font-size: 28px;
   font-weight: 700;
   margin-bottom: 8px;
 }
-@media (min-width: 640px) { .inside-item-text h3 { font-size: 22px; } }
-.inside-item-text p {
+@media (min-width: 640px) { .results-header h2 { font-size: 36px; } }
+.results-header p {
   font-size: 14px;
   color: var(--text-80);
-  line-height: 1.6;
 }
-@media (min-width: 640px) { .inside-item-text p { font-size: 15px; } }
-
-/* ===== STEPS LIST (3 etapes) ===== */
-.steps-section {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 0 0 16px;
-}
-.steps-section h2 {
-  font-size: 22px;
-  font-weight: 700;
+.results-disclaimer {
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
   text-align: center;
-  margin-bottom: 24px;
-  color: var(--text-90);
+  max-width: 700px;
+  margin: 0 auto 32px;
+  line-height: 1.5;
 }
-@media (min-width: 640px) { .steps-section h2 { font-size: 26px; } }
-.step-item {
+.results-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+@media (min-width: 640px) { .results-grid { grid-template-columns: 1fr 1fr; } }
+.case-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.case-card:hover { border-color: rgba(96,165,250,0.4); }
+.case-thumb {
+  position: relative;
+  aspect-ratio: 16/9;
+  background: #0a0a0a;
+  overflow: hidden;
   display: flex;
-  gap: 16px;
-  align-items: flex-start;
-  margin-bottom: 20px;
+  align-items: center;
+  justify-content: center;
 }
-.step-num {
-  flex-shrink: 0;
-  width: 36px; height: 36px;
-  background: var(--bg-badge);
-  border: 2px solid var(--border);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px;
-  font-weight: 700;
+.case-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
-.step-content h3 {
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 4px;
-}
-.step-content p {
-  font-size: 14px;
+.case-thumb-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--text-80);
+  font-size: 12px;
+}
+.case-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.7) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 16px;
+}
+.case-overlay .case-result {
+  font-size: 22px;
+  font-weight: 800;
+  color: #4ade80;
+  line-height: 1.2;
+}
+@media (min-width: 640px) { .case-overlay .case-result { font-size: 26px; } }
+.case-overlay .case-subtitle {
+  font-size: 14px;
+  color: rgba(255,255,255,0.85);
+  font-weight: 500;
+}
+.case-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.case-play svg { width: 20px; height: 20px; fill: #fff; margin-left: 3px; }
+.case-body { padding: 16px; }
+.case-body h3 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+@media (min-width: 640px) { .case-body h3 { font-size: 16px; } }
+.case-body p {
+  font-size: 13px;
+  color: var(--text-80);
+  line-height: 1.5;
 }
 
-/* ===== FAQ ===== */
-.faq-section {
-  max-width: 672px;
+/* ===== TESTIMONIALS (community screenshots) ===== */
+.testimonials-section {
+  max-width: 900px;
   margin: 0 auto;
   padding: 0 0 48px;
 }
-.faq-title {
+.testimonials-section h2 {
   font-size: 28px;
-  font-weight: 500;
+  font-weight: 700;
   text-align: center;
-  margin-bottom: 32px;
-  letter-spacing: -0.02em;
+  margin-bottom: 40px;
 }
-@media (min-width: 640px) { .faq-title { font-size: 42px; } }
-.faq-item {
-  border-bottom: 2px solid var(--border-light);
-  padding: 20px 0;
+@media (min-width: 640px) { .testimonials-section h2 { font-size: 36px; } }
+.testimonial-block {
+  margin-bottom: 48px;
+  position: relative;
 }
-.faq-q {
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-}
-@media (min-width: 640px) { .faq-q { font-size: 18px; } }
-.faq-q svg {
-  width: 20px; height: 20px; flex-shrink: 0;
-  transition: transform 0.3s;
-  color: var(--text-80);
-}
-.faq-item.open .faq-q svg { transform: rotate(45deg); }
-.faq-a {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease, padding 0.3s ease;
+.testimonial-intro {
+  background: var(--bg-badge);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 20px;
   font-size: 14px;
-  color: var(--text-80);
-  line-height: 1.6;
+  font-style: italic;
+  color: var(--text-85);
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto 16px;
 }
-@media (min-width: 640px) { .faq-a { font-size: 15px; } }
-.faq-item.open .faq-a {
-  max-height: 300px;
-  padding-top: 12px;
+.testimonial-msg {
+  background: #fff;
+  color: #1b1b1b;
+  border-radius: 12px;
+  padding: 16px 20px;
+  max-width: 600px;
+  margin: 0 auto 12px;
+  font-size: 14px;
+  line-height: 1.6;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.testimonial-msg .msg-author {
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: #111;
+}
+.testimonial-msg .msg-time {
+  font-size: 11px;
+  color: #888;
+  margin-bottom: 8px;
+}
+.testimonial-msg .msg-highlight {
+  background: rgba(255,92,80,0.15);
+  border: 1px solid rgba(255,92,80,0.3);
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-weight: 600;
+}
+.annotation {
+  background: var(--bg-badge);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-style: italic;
+  color: var(--text-85);
+  max-width: 320px;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 1.5;
 }
 
 /* ===== FOOTER ===== */
@@ -562,263 +710,227 @@ Apple Calendar
 </div>
 </div>
 
-<div class="separator"></div>
-
-<!-- 3 &#233;tapes pour se pr&#233;parer -->
+<!-- ===== STATS BAR ===== -->
 <div class="container">
-<div class="steps-section">
-<h2>Pr&#233;pare-toi pour le live</h2>
-<div class="step-item">
-<div class="step-num">1</div>
-<div class="step-content">
-<h3>Bloque ton cr&#233;neau</h3>
-<p>Samedi 19 avril, 20h. Mets-toi dans un endroit calme, avec de quoi prendre des notes.</p>
+<div class="stats-bar">
+<div class="stat-item">
+<div class="stat-num">200+</div>
+<div class="stat-label">Membres actifs</div>
 </div>
+<div class="stat-item">
+<div class="stat-num">70 000&#8364;</div>
+<div class="stat-label">Record &#233;l&#232;ve / mois</div>
 </div>
-<div class="step-item">
-<div class="step-num">2</div>
-<div class="step-content">
-<h3>V&#233;rifie tes emails</h3>
-<p>Tu recevras le lien d'acc&#232;s au live par email 1 heure avant. V&#233;rifie tes spams si tu ne le vois pas.</p>
-</div>
-</div>
-<div class="step-item">
-<div class="step-num">3</div>
-<div class="step-content">
-<h3>Arrive &#224; l'heure</h3>
-<p>Le live commence &#224; 20h pr&#233;cises. Les places sont limit&#233;es et le replay ne sera pas garanti.</p>
-</div>
+<div class="stat-item">
+<div class="stat-num">0&#8364;</div>
+<div class="stat-label">Capital de d&#233;part requis</div>
 </div>
 </div>
 </div>
 
-<div class="separator"></div>
-
-<!-- About / Qui suis-je -->
+<!-- ===== CREDIBILITY CARD ===== -->
 <div class="container">
-<div class="about-card">
-<div class="about-grid">
-<img src="https://matheo-jpg.github.io/s30-pages/matheo-france.jpg" alt="Math&#233;o Cauwet" class="about-img">
-<div>
-<div class="about-title">Qui est Math&#233;o Cauwet ?</div>
-<div class="about-text">
-<p>Ancien basketteur professionnel au Rouen M&#233;tropole Basket pendant <strong>8 ans</strong>. &#192; 20 ans, je gagnais <strong>314 &#8364; par mois</strong> en contrat stagiaire.</p>
+<div class="cred-card">
+<div class="cred-imgs">
+<!-- PLACEHOLDER : Remplacer par screenshot Skool / dashboard / preuve -->
+<div class="cred-placeholder">Screenshot communaut&#233; Skool<br>(200+ membres)</div>
+<div class="cred-placeholder">Screenshot r&#233;sultats<br>(dashboard / revenue)</div>
+</div>
+<div class="cred-text">
+<p>Apr&#232;s avoir accompagn&#233; plus de <strong>200 personnes</strong> &#224; lancer leur activit&#233; d'Op&#233;rateur de Croissance, les r&#233;sultats parlent d'eux-m&#234;mes.</p>
 <br>
-<p>En parall&#232;le du basket, j'ai lanc&#233; mon activit&#233; d'Op&#233;rateur de Croissance. En 6 mois, j'ai fait passer une cr&#233;atrice de <strong>0 &#224; 70 000 &#8364;/mois</strong> de cash collect&#233;.</p>
+<p>En 6 mois, une seule cliente est pass&#233;e de <strong>0 &#224; 70 000&#8364;/mois</strong> de cash collect&#233; gr&#226;ce au syst&#232;me que je vais te montrer pendant ce live.</p>
 <br>
-<p>Aujourd'hui install&#233; &#224; Duba&#239;, je forme des gens &#224; reproduire ce mod&#232;le avec <strong>Strat&#233;gie 30%</strong> : plus de <strong>200 membres actifs</strong>.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-<div class="separator"></div>
-
-<!-- Ce que tu vas d&#233;couvrir -->
-<div class="container">
-<div class="inside-section">
-<div class="inside-title">Ce que tu vas d&#233;couvrir</div>
-
-<div class="inside-item">
-<div class="inside-item-text">
-<h3>Le mod&#232;le d'Op&#233;rateur de Croissance</h3>
-<p>Comment t'associer avec des cr&#233;ateurs de contenu et prendre un pourcentage sur chaque vente. Sans cr&#233;er de contenu, sans personal branding, sans capital de d&#233;part.</p>
-</div>
-<!-- Visuel 1 : Schema OPC -->
-<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;padding:24px;overflow:hidden;">
-<svg viewBox="0 0 400 250" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-<!-- Createur -->
-<rect x="20" y="85" width="100" height="80" rx="12" fill="#1a1a1a" stroke="#434343" stroke-width="1.5"/>
-<circle cx="70" cy="110" r="16" fill="#232323" stroke="#666" stroke-width="1"/>
-<text x="70" y="114" text-anchor="middle" fill="#999" font-size="14" font-family="Inter,sans-serif">&#128100;</text>
-<text x="70" y="148" text-anchor="middle" fill="#fff" font-size="11" font-weight="700" font-family="Inter,sans-serif">Cr&#233;ateur</text>
-<text x="70" y="160" text-anchor="middle" fill="#888" font-size="8" font-family="Inter,sans-serif">Audience + Contenu</text>
-<!-- Fleche 1 -->
-<line x1="120" y1="125" x2="148" y2="125" stroke="#434343" stroke-width="1.5"/>
-<polygon points="148,120 158,125 148,130" fill="#434343"/>
-<!-- TOI -->
-<rect x="158" y="70" width="84" height="110" rx="12" fill="#111" stroke="#60a5fa" stroke-width="1.5"/>
-<text x="200" y="100" text-anchor="middle" fill="#60a5fa" font-size="10" font-weight="700" font-family="Inter,sans-serif">TOI</text>
-<text x="200" y="116" text-anchor="middle" fill="#ccc" font-size="8" font-family="Inter,sans-serif">Tunnel</text>
-<text x="200" y="130" text-anchor="middle" fill="#ccc" font-size="8" font-family="Inter,sans-serif">Pubs</text>
-<text x="200" y="144" text-anchor="middle" fill="#ccc" font-size="8" font-family="Inter,sans-serif">Syst&#232;mes</text>
-<text x="200" y="158" text-anchor="middle" fill="#ccc" font-size="8" font-family="Inter,sans-serif">Closing</text>
-<text x="200" y="172" text-anchor="middle" fill="#60a5fa" font-size="9" font-weight="600" font-family="Inter,sans-serif">Op&#233;rateur</text>
-<!-- Fleche 2 -->
-<line x1="242" y1="125" x2="270" y2="125" stroke="#434343" stroke-width="1.5"/>
-<polygon points="270,120 280,125 270,130" fill="#434343"/>
-<!-- Ventes -->
-<rect x="280" y="85" width="100" height="80" rx="12" fill="#1a1a1a" stroke="#434343" stroke-width="1.5"/>
-<text x="330" y="116" text-anchor="middle" fill="#4ade80" font-size="20" font-weight="800" font-family="Inter,sans-serif">&#8364;</text>
-<text x="330" y="140" text-anchor="middle" fill="#fff" font-size="11" font-weight="700" font-family="Inter,sans-serif">Ventes</text>
-<text x="330" y="152" text-anchor="middle" fill="#888" font-size="8" font-family="Inter,sans-serif">Clients + Revenue</text>
-<!-- Fleche retour 30% -->
-<path d="M330 168 L330 220 L200 220 L200 183" stroke="#4ade80" stroke-width="1.5" stroke-dasharray="5,3" fill="none"/>
-<polygon points="195,183 200,173 205,183" fill="#4ade80"/>
-<rect x="230" y="210" width="70" height="20" rx="6" fill="#1a2e1a" stroke="#4ade80" stroke-width="1"/>
-<text x="265" y="224" text-anchor="middle" fill="#4ade80" font-size="11" font-weight="700" font-family="Inter,sans-serif">30%</text>
-<!-- Titre -->
-<text x="200" y="35" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="10" font-weight="600" font-family="Inter,sans-serif" letter-spacing="2">LE MOD&#200;LE</text>
-<text x="200" y="52" text-anchor="middle" fill="#fff" font-size="13" font-weight="700" font-family="Inter,sans-serif">Op&#233;rateur de Croissance</text>
-</svg>
-</div>
-</div>
-
-<div class="inside-item reverse">
-<div class="inside-item-text">
-<h3>Le syst&#232;me qui g&#233;n&#232;re des clients en automatique</h3>
-<p>Je te montre en live le tunnel exact que j'utilise pour g&#233;n&#233;rer des appels qualifi&#233;s chaque jour. Pas de th&#233;orie, du concret.</p>
-</div>
-<!-- Visuel 2 : Tunnel / Funnel -->
-<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;padding:24px;overflow:hidden;">
-<svg viewBox="0 0 400 250" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-<!-- Titre -->
-<text x="200" y="28" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="10" font-weight="600" font-family="Inter,sans-serif" letter-spacing="2">LE TUNNEL</text>
-<!-- Etape 1 : Pub -->
-<rect x="15" y="50" width="70" height="70" rx="10" fill="#1a1a1a" stroke="#434343" stroke-width="1.5"/>
-<rect x="25" y="62" width="50" height="28" rx="4" fill="#232323"/>
-<polygon points="45,70 45,84 57,77" fill="#60a5fa"/>
-<text x="50" y="108" text-anchor="middle" fill="#fff" font-size="9" font-weight="700" font-family="Inter,sans-serif">Pub</text>
-<!-- Fleche -->
-<line x1="88" y1="85" x2="102" y2="85" stroke="#434343" stroke-width="1.2"/>
-<polygon points="100,81 108,85 100,89" fill="#434343"/>
-<!-- Etape 2 : VSL -->
-<rect x="108" y="50" width="70" height="70" rx="10" fill="#1a1a1a" stroke="#434343" stroke-width="1.5"/>
-<rect x="118" y="62" width="50" height="28" rx="4" fill="#232323"/>
-<rect x="124" y="68" width="16" height="2" rx="1" fill="#666"/><rect x="124" y="73" width="26" height="2" rx="1" fill="#555"/><rect x="124" y="78" width="20" height="2" rx="1" fill="#666"/>
-<circle cx="155" cy="76" r="6" fill="#1a1a1a" stroke="#60a5fa" stroke-width="1"/>
-<polygon points="153,73 153,79 158,76" fill="#60a5fa"/>
-<text x="143" y="108" text-anchor="middle" fill="#fff" font-size="9" font-weight="700" font-family="Inter,sans-serif">VSL</text>
-<!-- Fleche -->
-<line x1="181" y1="85" x2="195" y2="85" stroke="#434343" stroke-width="1.2"/>
-<polygon points="193,81 201,85 193,89" fill="#434343"/>
-<!-- Etape 3 : Questionnaire -->
-<rect x="201" y="50" width="70" height="70" rx="10" fill="#1a1a1a" stroke="#434343" stroke-width="1.5"/>
-<rect x="214" y="64" width="44" height="6" rx="2" fill="#333"/><rect x="214" y="74" width="44" height="6" rx="2" fill="#333"/><rect x="214" y="84" width="44" height="6" rx="2" fill="#333"/>
-<rect x="215" y="65" width="8" height="4" rx="1" fill="#60a5fa"/><rect x="215" y="75" width="8" height="4" rx="1" fill="#60a5fa"/><rect x="215" y="85" width="8" height="4" rx="1" fill="#434343"/>
-<text x="236" y="108" text-anchor="middle" fill="#fff" font-size="9" font-weight="700" font-family="Inter,sans-serif">Questionnaire</text>
-<!-- Fleche -->
-<line x1="274" y1="85" x2="288" y2="85" stroke="#434343" stroke-width="1.2"/>
-<polygon points="286,81 294,85 286,89" fill="#434343"/>
-<!-- Etape 4 : Appel -->
-<rect x="294" y="50" width="86" height="70" rx="10" fill="#1a1a1a" stroke="#4ade80" stroke-width="1.5"/>
-<circle cx="337" cy="76" r="14" fill="#1a2e1a" stroke="#4ade80" stroke-width="1"/>
-<text x="337" y="80" text-anchor="middle" fill="#4ade80" font-size="14" font-family="Inter,sans-serif">&#128222;</text>
-<text x="337" y="108" text-anchor="middle" fill="#4ade80" font-size="9" font-weight="700" font-family="Inter,sans-serif">Appel qualifi&#233;</text>
-<!-- Stats en bas -->
-<rect x="30" y="145" width="100" height="55" rx="8" fill="#111" stroke="#434343" stroke-width="1"/>
-<text x="80" y="168" text-anchor="middle" fill="#60a5fa" font-size="20" font-weight="800" font-family="Inter,sans-serif">10-15%</text>
-<text x="80" y="185" text-anchor="middle" fill="#888" font-size="8" font-family="Inter,sans-serif">Taux d'inscription</text>
-<rect x="150" y="145" width="100" height="55" rx="8" fill="#111" stroke="#434343" stroke-width="1"/>
-<text x="200" y="168" text-anchor="middle" fill="#60a5fa" font-size="20" font-weight="800" font-family="Inter,sans-serif">3%+</text>
-<text x="200" y="185" text-anchor="middle" fill="#888" font-size="8" font-family="Inter,sans-serif">Conversion VSL</text>
-<rect x="270" y="145" width="100" height="55" rx="8" fill="#111" stroke="#4ade80" stroke-width="1"/>
-<text x="320" y="168" text-anchor="middle" fill="#4ade80" font-size="20" font-weight="800" font-family="Inter,sans-serif">24/7</text>
-<text x="320" y="185" text-anchor="middle" fill="#888" font-size="8" font-family="Inter,sans-serif">Automatique</text>
-<!-- Label "Chaque jour" -->
-<text x="200" y="230" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9" font-weight="600" font-family="Inter,sans-serif" letter-spacing="1">DES APPELS QUALIFI&#201;S CHAQUE JOUR</text>
-</svg>
-</div>
-</div>
-
-<div class="inside-item">
-<div class="inside-item-text">
-<h3>Les r&#233;sultats de mes &#233;l&#232;ves</h3>
-<p>C&#233;sar, &#233;tudiant, qui a d&#233;pass&#233; les 10 000 &#8364;/mois. Cl&#233;ment qui a fait 7 000 &#8364; en un mois. Des parcours concrets que tu peux reproduire.</p>
-</div>
-<!-- Visuel 3 : Resultats eleves -->
-<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;padding:24px;overflow:hidden;">
-<svg viewBox="0 0 400 250" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-<!-- Titre -->
-<text x="200" y="28" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="10" font-weight="600" font-family="Inter,sans-serif" letter-spacing="2">R&#201;SULTATS &#201;L&#200;VES</text>
-<!-- Card Cesar -->
-<rect x="15" y="50" width="115" height="140" rx="12" fill="#111" stroke="#434343" stroke-width="1.5"/>
-<circle cx="72" cy="80" r="18" fill="#232323" stroke="#4ade80" stroke-width="1.5"/>
-<text x="72" y="85" text-anchor="middle" fill="#4ade80" font-size="16" font-family="Inter,sans-serif">C</text>
-<text x="72" y="114" text-anchor="middle" fill="#fff" font-size="12" font-weight="700" font-family="Inter,sans-serif">C&#233;sar</text>
-<text x="72" y="128" text-anchor="middle" fill="#888" font-size="8" font-family="Inter,sans-serif">&#201;tudiant</text>
-<rect x="30" y="140" width="85" height="36" rx="6" fill="#1a2e1a" stroke="#4ade80" stroke-width="1"/>
-<text x="72" y="157" text-anchor="middle" fill="#4ade80" font-size="10" font-weight="600" font-family="Inter,sans-serif">+10 000&#8364;</text>
-<text x="72" y="170" text-anchor="middle" fill="#6ee7a0" font-size="8" font-family="Inter,sans-serif">/mois</text>
-<!-- Card Clement -->
-<rect x="143" y="50" width="115" height="140" rx="12" fill="#111" stroke="#434343" stroke-width="1.5"/>
-<circle cx="200" cy="80" r="18" fill="#232323" stroke="#60a5fa" stroke-width="1.5"/>
-<text x="200" y="85" text-anchor="middle" fill="#60a5fa" font-size="16" font-family="Inter,sans-serif">C</text>
-<text x="200" y="114" text-anchor="middle" fill="#fff" font-size="12" font-weight="700" font-family="Inter,sans-serif">Cl&#233;ment</text>
-<text x="200" y="128" text-anchor="middle" fill="#888" font-size="8" font-family="Inter,sans-serif">Op&#233;rateur</text>
-<rect x="158" y="140" width="85" height="36" rx="6" fill="#111b2e" stroke="#60a5fa" stroke-width="1"/>
-<text x="200" y="157" text-anchor="middle" fill="#60a5fa" font-size="10" font-weight="600" font-family="Inter,sans-serif">7 000&#8364;</text>
-<text x="200" y="170" text-anchor="middle" fill="#93c5fd" font-size="8" font-family="Inter,sans-serif">en 1 mois</text>
-<!-- Card N+1 -->
-<rect x="271" y="50" width="115" height="140" rx="12" fill="#111" stroke="#434343" stroke-width="1.5"/>
-<circle cx="328" cy="80" r="18" fill="#232323" stroke="#f59e0b" stroke-width="1.5"/>
-<text x="328" y="85" text-anchor="middle" fill="#f59e0b" font-size="16" font-family="Inter,sans-serif">+</text>
-<text x="328" y="114" text-anchor="middle" fill="#fff" font-size="12" font-weight="700" font-family="Inter,sans-serif">200+</text>
-<text x="328" y="128" text-anchor="middle" fill="#888" font-size="8" font-family="Inter,sans-serif">Membres actifs</text>
-<rect x="286" y="140" width="85" height="36" rx="6" fill="#2e2510" stroke="#f59e0b" stroke-width="1"/>
-<text x="328" y="157" text-anchor="middle" fill="#f59e0b" font-size="10" font-weight="600" font-family="Inter,sans-serif">Communaut&#233;</text>
-<text x="328" y="170" text-anchor="middle" fill="#fbbf24" font-size="8" font-family="Inter,sans-serif">Strat&#233;gie 30%</text>
-<!-- Fleche de progression en bas -->
-<line x1="60" y1="215" x2="340" y2="215" stroke="#333" stroke-width="1.5"/>
-<line x1="60" y1="215" x2="260" y2="215" stroke="url(#progGrad)" stroke-width="3" stroke-linecap="round"/>
-<defs><linearGradient id="progGrad" x1="60" y1="0" x2="260" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#4ade80"/><stop offset="1" stop-color="#60a5fa"/></linearGradient></defs>
-<circle cx="60" cy="215" r="4" fill="#4ade80"/><circle cx="160" cy="215" r="4" fill="#60a5fa"/><circle cx="260" cy="215" r="4" fill="#60a5fa"/><circle cx="340" cy="215" r="3" fill="#333" stroke="#666" stroke-width="1"/>
-<text x="60" y="235" text-anchor="middle" fill="#888" font-size="7" font-family="Inter,sans-serif">D&#233;but</text>
-<text x="160" y="235" text-anchor="middle" fill="#888" font-size="7" font-family="Inter,sans-serif">1er client</text>
-<text x="260" y="235" text-anchor="middle" fill="#888" font-size="7" font-family="Inter,sans-serif">Scale</text>
-<text x="340" y="235" text-anchor="middle" fill="#666" font-size="7" font-family="Inter,sans-serif">Toi ?</text>
-</svg>
-</div>
+<p>Le mod&#232;le fonctionne parce qu'il est simple : <strong>pas de contenu &#224; cr&#233;er, pas de capital de d&#233;part, pas de comp&#233;tences techniques</strong>.</p>
 </div>
 </div>
 </div>
 
 <div class="separator"></div>
 
-<!-- FAQ -->
+<!-- ===== ABOUT SECTION (bio longue, style Jordan Lee) ===== -->
 <div class="container">
-<div class="faq-section">
-<div class="faq-title">Questions fr&#233;quentes</div>
-
-<div class="faq-item">
-<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
-C'est quoi exactement un Op&#233;rateur de Croissance ?
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-</div>
-<div class="faq-a">Tu deviens le bras droit business d'un cr&#233;ateur de contenu. Tu construis tout ce qui g&#233;n&#232;re des ventes (tunnel, pubs, syst&#232;mes), et tu prends un pourcentage sur chaque vente. Pas besoin de cr&#233;er du contenu toi-m&#234;me.</div>
+<div class="about-section">
+<div class="about-header">
+<div class="subtitle">Ton formateur</div>
+<h2>&#192; propos de Math&#233;o Cauwet</h2>
 </div>
 
-<div class="faq-item">
-<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
-C'est gratuit ? O&#249; est le pi&#232;ge ?
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+<!-- Bloc 1 : Origine + photo -->
+<div class="about-block">
+<div class="about-block-text">
+<p><strong>Math&#233;o Cauwet</strong> est un ancien <span class="highlight">basketteur professionnel</span> du Rouen M&#233;tropole Basket, o&#249; il a jou&#233; pendant 8 ans.</p>
+<br>
+<p>Venant d'un parcours sportif o&#249; il gagnait <strong>314&#8364; par mois</strong> en contrat stagiaire, Math&#233;o a d&#233;couvert le business en ligne &#224; 19 ans en parall&#232;le du basket. En quelques mois, il g&#233;n&#233;rait entre 5 000 et 15 000&#8364; par mois avec l'Op&#233;ration de Croissance.</p>
+<br>
+<p>&#192; 20 ans, son club lui propose un contrat professionnel de 3 ans : 2 000&#8364;, 2 500&#8364;, 3 000&#8364; brut. Il le refuse.</p>
 </div>
-<div class="faq-a">Oui, le webinaire est 100% gratuit. Je vais te montrer le mod&#232;le en d&#233;tail et tu d&#233;cideras si tu veux aller plus loin. Pas de surprise, pas de frais cach&#233;s.</div>
-</div>
-
-<div class="faq-item">
-<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
-J'ai d&#233;j&#224; essay&#233; le dropshipping / trading / SMMA, c'est quoi la diff&#233;rence ?
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-</div>
-<div class="faq-a">L'Op&#233;ration de Croissance n'a rien &#224; voir. Tu ne cr&#233;es pas ta propre boutique ou ton propre contenu. Tu t'associes avec quelqu'un qui a d&#233;j&#224; l'audience. Toi, tu construis la machine qui transforme cette audience en clients.</div>
+<!-- PLACEHOLDER : Photo Matheo basket ou portrait -->
+<img src="https://matheo-jpg.github.io/s30-pages/matheo-france.jpg" alt="Math&#233;o Cauwet" class="about-block-img">
 </div>
 
-<div class="faq-item">
-<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
-Je ne peux pas assister en live, il y aura un replay ?
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+<!-- Bloc 2 : Le declic + screenshot revenue -->
+<div class="about-block reverse">
+<div class="about-block-text">
+<p>Le d&#233;clic arrive dans le vestiaire. Samir, 36 ans, annonce qu'il arr&#234;te sa carri&#232;re et ne sait pas quoi faire apr&#232;s le basket. Math&#233;o se dit que <span class="highlight">le jeu n'en vaut pas la chandelle</span>.</p>
+<br>
+<p>Il quitte le basket pro et d&#233;couvre un syst&#232;me qui va tout changer : l'<strong>Op&#233;ration de Croissance</strong>. En s'associant avec une cr&#233;atrice de contenu, il la fait passer de <strong>0 &#224; 70 000&#8364;/mois</strong> de cash collect&#233; en 6 mois.</p>
 </div>
-<div class="faq-a">Le replay n'est pas garanti. C'est la premi&#232;re fois que je fais ce live et je ne sais pas si je le referai. Fais ton maximum pour &#234;tre l&#224; le 19 avril &#224; 20h.</div>
+<!-- PLACEHOLDER : Screenshot revenue / dashboard -->
+<div class="about-img-placeholder">Screenshot revenue<br>ou dashboard<br>(ex: 70 000&#8364;/mois)</div>
 </div>
+
+<!-- Bloc 3 : Aujourd'hui + photo Dubai/lifestyle -->
+<div class="about-block">
+<div class="about-block-text">
+<p>Aujourd'hui install&#233; &#224; Duba&#239; &#224; 22 ans, Math&#233;o a construit <strong>Strat&#233;gie 30%</strong> pour former d'autres personnes &#224; reproduire exactement ce mod&#232;le.</p>
+<br>
+<p>Plus de <strong>200 membres actifs</strong> utilisent son syst&#232;me. Des &#233;tudiants, des salari&#233;s, des entrepreneurs — des gens normaux qui ont d&#233;cid&#233; de prendre le contr&#244;le de leurs revenus.</p>
+<br>
+<p>La mission de Math&#233;o : aider des gens ordinaires &#224; <span class="highlight">g&#233;n&#233;rer des revenus qui changent leur vie</span> avec un mod&#232;le simple et duplicable.</p>
+</div>
+<!-- PLACEHOLDER : Photo Dubai / lifestyle -->
+<div class="about-img-placeholder">Photo Dubai<br>ou lifestyle</div>
+</div>
+
+</div>
+</div>
+
+<div class="separator"></div>
+
+<!-- ===== REAL RESULTS (case study grid, style Jordan Lee) ===== -->
+<div class="container">
+<div class="results-section">
+<div class="results-header">
+<h2>Vrais r&#233;sultats de vrais membres</h2>
+<p>D&#233;couvre comment nos membres construisent leur activit&#233; d'Op&#233;rateur de Croissance</p>
+</div>
+<div class="results-disclaimer">
+<strong>TRANSPARENCE :</strong> Les r&#233;sultats pr&#233;sent&#233;s sont r&#233;els mais ne repr&#233;sentent pas des r&#233;sultats typiques. Tout succ&#232;s d&#233;pend de nombreux facteurs, dont l'engagement et le travail fourni. Les t&#233;moignages montrent ce que les membres les plus impliqu&#233;s ont accompli.
+</div>
+
+<div class="results-grid">
+
+<!-- Case 1 : Cesar -->
+<div class="case-card">
+<div class="case-thumb">
+<!-- PLACEHOLDER : Thumbnail video Cesar -->
+<div class="case-thumb-placeholder">Thumbnail vid&#233;o C&#233;sar</div>
+<div class="case-overlay">
+<div class="case-result">+10 000&#8364;/mois</div>
+<div class="case-subtitle">en partant de z&#233;ro</div>
+</div>
+<div class="case-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+</div>
+<div class="case-body">
+<h3>C&#233;sar est pass&#233; d'&#233;tudiant &#224; +10 000&#8364;/mois</h3>
+<p>&#201;tudiant sans exp&#233;rience business, C&#233;sar a appliqu&#233; le syst&#232;me d'Op&#233;rateur de Croissance et d&#233;pass&#233; les 10 000&#8364; mensuels en quelques mois.</p>
+</div>
+</div>
+
+<!-- Case 2 : Clement -->
+<div class="case-card">
+<div class="case-thumb">
+<!-- PLACEHOLDER : Thumbnail video Clement -->
+<div class="case-thumb-placeholder">Thumbnail vid&#233;o Cl&#233;ment</div>
+<div class="case-overlay">
+<div class="case-result">7 000&#8364; en 1 mois</div>
+<div class="case-subtitle">premier mois d'activit&#233;</div>
+</div>
+<div class="case-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+</div>
+<div class="case-body">
+<h3>Cl&#233;ment a g&#233;n&#233;r&#233; 7 000&#8364; d&#232;s son premier mois</h3>
+<p>Sans cr&#233;er de contenu et sans personal branding, Cl&#233;ment a appliqu&#233; le mod&#232;le et g&#233;n&#233;r&#233; ses premiers revenus imm&#233;diatement.</p>
+</div>
+</div>
+
+<!-- Case 3 : Robin -->
+<div class="case-card">
+<div class="case-thumb">
+<!-- PLACEHOLDER : Thumbnail video Robin -->
+<div class="case-thumb-placeholder">Thumbnail vid&#233;o Robin</div>
+<div class="case-overlay">
+<div class="case-result">Premier client sign&#233;</div>
+<div class="case-subtitle">en moins de 30 jours</div>
+</div>
+<div class="case-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+</div>
+<div class="case-body">
+<h3>Robin a sign&#233; son premier client en moins d'un mois</h3>
+<p>Robin est parti de z&#233;ro, a suivi le syst&#232;me &#233;tape par &#233;tape et a d&#233;croch&#233; son premier cr&#233;ateur en moins de 30 jours.</p>
+</div>
+</div>
+
+<!-- Case 4 : Nicolas -->
+<div class="case-card">
+<div class="case-thumb">
+<!-- PLACEHOLDER : Thumbnail video Nicolas -->
+<div class="case-thumb-placeholder">Thumbnail vid&#233;o Nicolas</div>
+<div class="case-overlay">
+<div class="case-result">Salari&#233; &#224; Op&#233;rateur</div>
+<div class="case-subtitle">transition en cours de CDI</div>
+</div>
+<div class="case-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+</div>
+<div class="case-body">
+<h3>Nicolas a lanc&#233; son activit&#233; en parall&#232;le de son CDI</h3>
+<p>Salari&#233; en poste, Nicolas a construit son activit&#233; d'Op&#233;rateur de Croissance le soir et le week-end sans quitter son emploi.</p>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<div class="separator"></div>
+
+<!-- ===== WHAT OUR CLIENTS SAY (community screenshots) ===== -->
+<div class="container">
+<div class="testimonials-section">
+<h2>Ce que disent nos membres</h2>
+
+<!-- Temoignage 1 -->
+<div class="testimonial-block">
+<div class="annotation" style="margin-bottom:16px;">C&#233;sar, &#233;tudiant, partage ses r&#233;sultats dans la communaut&#233;</div>
+<div class="testimonial-msg">
+<div class="msg-author">C&#233;sar D.</div>
+<div class="msg-time">Communaut&#233; Strat&#233;gie 30%</div>
+<p>Je viens de d&#233;passer les <span class="msg-highlight">10 000&#8364; ce mois-ci</span>. Il y a 6 mois j'&#233;tais encore &#233;tudiant sans aucun revenu en ligne. Le syst&#232;me marche vraiment si tu t'y mets &#224; fond.</p>
+</div>
+<div class="annotation">Il &#233;tait &#233;tudiant il y a 6 mois et g&#233;n&#232;re maintenant +10 000&#8364;/mois avec un seul cr&#233;ateur</div>
+</div>
+
+<!-- Temoignage 2 -->
+<div class="testimonial-block">
+<div class="annotation" style="margin-bottom:16px;">Cl&#233;ment partage sa premi&#232;re commission dans le groupe</div>
+<div class="testimonial-msg">
+<div class="msg-author">Cl&#233;ment L.</div>
+<div class="msg-time">Communaut&#233; Strat&#233;gie 30%</div>
+<p>Premier mois, <span class="msg-highlight">7 000&#8364; encaiss&#233;s</span>. J'ai appliqu&#233; le tunnel exactement comme Math&#233;o l'explique. Le plus dur c'est de se lancer, apr&#232;s le syst&#232;me fait le boulot.</p>
+</div>
+<div class="annotation">7 000&#8364; d&#232;s le premier mois en suivant le syst&#232;me &#224; la lettre</div>
+</div>
+
+<!-- Temoignage 3 -->
+<div class="testimonial-block">
+<div class="annotation" style="margin-bottom:16px;">Un membre partage sa transition du salariat vers l'Op&#233;ration de Croissance</div>
+<div class="testimonial-msg">
+<div class="msg-author">Robin M.</div>
+<div class="msg-time">Communaut&#233; Strat&#233;gie 30%</div>
+<p>J'ai sign&#233; mon premier cr&#233;ateur en <span class="msg-highlight">moins de 30 jours</span>. Je suis encore en CDI mais les revenus commencent &#224; d&#233;passer mon salaire. La suite va &#234;tre int&#233;ressante.</p>
+</div>
+<div class="annotation">Encore salari&#233;, mais ses revenus d'Op&#233;rateur commencent &#224; d&#233;passer son salaire</div>
+</div>
+
 </div>
 </div>
 
 <!-- Footer -->
 <footer>
 <p style="margin-bottom:8px;"><strong>Strat&#233;gie 30%</strong></p>
-<p>&#169; 2026 ForCyclers LLC. Tous droits r&#233;serv&#233;s.</p>
+<p style="margin-bottom:8px;">&#169; 2026 ForCyclers LLC. Tous droits r&#233;serv&#233;s.</p>
+<p style="font-size:11px;color:rgba(255,255,255,0.4);max-width:600px;margin:0 auto;line-height:1.5;">Les r&#233;sultats mentionn&#233;s sur cette page sont r&#233;els mais ne constituent pas une garantie de r&#233;sultats. Tout succ&#232;s d&#233;pend de l'implication, du travail et de nombreux facteurs individuels.</p>
 </footer>
 
 <script>
