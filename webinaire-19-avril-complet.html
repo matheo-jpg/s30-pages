@@ -1,0 +1,4081 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Présentation 19 avril 2026 - Complète</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: #0a0a0f; color: #fff; overflow: hidden; -webkit-user-select: none; user-select: none; }
+
+.slide {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  padding: 60px 80px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  background: linear-gradient(180deg, #0a0a0f 0%, #0d1117 50%, #111827 100%);
+}
+.slide.active { display: flex; }
+
+/* Typography */
+.slide h1 { font-size: 72px; font-weight: 800; line-height: 1.12; max-width: 1100px; }
+.slide h2 { font-size: 56px; font-weight: 700; line-height: 1.18; max-width: 1050px; }
+.slide p { font-size: 48px; font-weight: 500; line-height: 1.35; max-width: 1000px; color: rgba(255,255,255,0.92); }
+.slide .sub { font-size: 36px; font-weight: 400; color: rgba(255,255,255,0.7); margin-top: 20px; }
+.slide .small { font-size: 28px; color: rgba(255,255,255,0.55); }
+.slide .quote { font-size: 44px; font-weight: 600; font-style: italic; line-height: 1.3; max-width: 1000px; color: rgba(255,255,255,0.95); }
+
+/* Accent color */
+.accent { color: #1BA7FF; }
+.accent-bg { background: linear-gradient(135deg, #1BA7FF, #00D4FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* Placeholder for images */
+.placeholder {
+  width: 600px;
+  height: 350px;
+  border: 2px dashed rgba(27,167,255,0.4);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(27,167,255,0.6);
+  font-size: 18px;
+  font-weight: 500;
+  margin: 30px auto;
+  background: rgba(27,167,255,0.05);
+  text-align: center;
+  padding: 20px;
+}
+.placeholder.wide { width: 900px; height: 420px; }
+.placeholder.small { width: 420px; height: 260px; }
+.placeholder.twin { width: 900px; height: 380px; }
+
+/* Red frame proof style */
+.placeholder.proof {
+  border: 3px solid rgba(255,60,60,0.7);
+  background: rgba(255,60,60,0.05);
+  color: rgba(255,60,60,0.7);
+}
+.placeholder.proof.wide { width: 900px; height: 420px; }
+.placeholder.proof.small { width: 420px; height: 260px; }
+
+/* Photo circle */
+.placeholder.photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 3px solid rgba(27,167,255,0.5);
+  background: rgba(27,167,255,0.08);
+  font-size: 14px;
+}
+.placeholder.photo.large {
+  width: 280px;
+  height: 280px;
+  font-size: 16px;
+}
+
+/* Proof grid */
+.proof-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+  max-width: 1100px;
+}
+.proof-grid .placeholder {
+  margin: 0;
+}
+
+/* Two column layout */
+.two-col {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+  max-width: 1100px;
+}
+.two-col .col { flex: 1; text-align: left; }
+
+/* Option pills */
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+}
+.option-pill {
+  background: rgba(27,167,255,0.1);
+  border: 1px solid rgba(27,167,255,0.3);
+  border-radius: 50px;
+  padding: 18px 40px;
+  font-size: 32px;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* Bullet list */
+.bullets { text-align: left; max-width: 950px; }
+.bullets li {
+  font-size: 36px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  color: rgba(255,255,255,0.9);
+  list-style: none;
+  padding-left: 35px;
+  position: relative;
+}
+.bullets li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 14px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #1BA7FF;
+}
+
+/* Cards */
+.card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(27,167,255,0.2);
+  border-radius: 16px;
+  padding: 30px 40px;
+  margin: 15px 0;
+  backdrop-filter: blur(10px);
+  text-align: center;
+  max-width: 900px;
+}
+
+/* Glow effect for emphasis */
+.glow { text-shadow: 0 0 40px rgba(27,167,255,0.3); }
+
+/* Logo */
+.logo {
+  position: fixed;
+  bottom: 20px;
+  left: 30px;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(27,167,255,0.35);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  z-index: 100;
+}
+
+/* Navigation arrows */
+.nav-arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.3s;
+  background: rgba(255,255,255,0.05);
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.nav-arrow:hover { opacity: 1 !important; background: rgba(27,167,255,0.15); }
+.nav-arrow.left { left: 20px; }
+.nav-arrow.right { right: 20px; }
+body:hover .nav-arrow { opacity: 0.3; }
+.nav-arrow svg { width: 24px; height: 24px; fill: #fff; }
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.slide.active > * {
+  animation: fadeIn 0.4s ease-out both;
+}
+.slide.active > *:nth-child(2) { animation-delay: 0.1s; }
+.slide.active > *:nth-child(3) { animation-delay: 0.2s; }
+.slide.active > *:nth-child(4) { animation-delay: 0.3s; }
+
+/* Deal highlight */
+.deal-box {
+  border: 2px solid #1BA7FF;
+  border-radius: 20px;
+  padding: 40px 60px;
+  background: rgba(27,167,255,0.08);
+  margin-top: 20px;
+}
+
+/* Roadmap steps */
+.roadmap {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  margin-top: 30px;
+}
+.step {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 16px;
+  padding: 30px 40px;
+  font-size: 28px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.5);
+  position: relative;
+}
+.step.done {
+  border-color: rgba(27,167,255,0.4);
+  color: rgba(27,167,255,0.6);
+}
+.step.done::after {
+  content: '\2713';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #1BA7FF;
+  color: #fff;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+.step.active-step {
+  border-color: #1BA7FF;
+  color: #fff;
+  background: rgba(27,167,255,0.1);
+  box-shadow: 0 0 30px rgba(27,167,255,0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .slide { padding: 30px 25px; }
+  .slide h1 { font-size: 42px; }
+  .slide h2 { font-size: 36px; }
+  .slide p { font-size: 32px; }
+  .slide .sub { font-size: 24px; }
+  .slide .quote { font-size: 30px; }
+  .placeholder { width: 90vw; height: 220px; }
+  .placeholder.wide { width: 90vw; height: 260px; }
+  .placeholder.twin { width: 90vw; height: 240px; }
+  .placeholder.photo { width: 140px; height: 140px; }
+  .option-pill { font-size: 22px; padding: 12px 24px; }
+  .bullets li { font-size: 26px; }
+  .nav-arrow { width: 44px; height: 44px; }
+  .roadmap { flex-direction: column; gap: 20px; }
+  .step { font-size: 22px; padding: 20px 30px; }
+  .proof-grid { gap: 10px; }
+}
+
+/* Extra styles from other sections */
+.strike-list {
+  list-style: none;
+  max-width: 900px;
+  text-align: left;
+}
+.strike-list li {
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.35);
+  text-decoration: line-through;
+  text-decoration-color: rgba(255,60,60,0.7);
+  text-decoration-thickness: 3px;
+  padding-left: 20px;
+}
+.mega-glow { text-shadow: 0 0 60px rgba(27,167,255,0.5), 0 0 120px rgba(27,167,255,0.2); }
+.choice-box {
+  border: 2px solid rgba(255,255,255,0.15);
+  border-radius: 20px;
+  padding: 40px 50px;
+  background: rgba(255,255,255,0.03);
+  max-width: 900px;
+  margin-top: 20px;
+}
+.choice-box.active-choice {
+  border-color: #1BA7FF;
+  background: rgba(27,167,255,0.08);
+}
+@media (max-width: 768px) {
+  .strike-list li { font-size: 30px; }
+}
+</style>
+</head>
+<body>
+
+<div class="slide active" id="intro-s1">
+  <h1>Comment passer de <span class="accent">"Vivement vendredi !"</span> à <span class="accent">"Je suis libre"</span></h1>
+  <p class="sub" style="margin-top:30px;">en moins de 90 jours, grâce à l'Opération de Croissance</p>
+</div>
+
+<!-- =============================== -->
+<!-- MEGA-COMMITMENT                  -->
+<!-- =============================== -->
+
+<div class="slide" id="intro-s2">
+  <p>Ce que je vais te partager aujourd'hui, c'est la <span class="accent">méthode exacte</span> que j'utilise pour générer des dizaines de milliers d'euros pour des créateurs de contenu.</p>
+  <div class="placeholder" style="margin-top:30px;">Screenshot dashboard revenus createurs (Stripe/Whop) — avec cadre rouge autour du chiffre cle</div>
+</div>
+
+<!-- PREUVE SUPPLEMENTAIRE : dizaines de milliers d'euros -->
+
+<div class="slide" id="intro-s2b">
+  <div class="placeholder wide">Screenshot Stripe/Whop ZOOM sur un mois specifique — montant floute sauf le total, avec cadre rouge autour du chiffre cle</div>
+  <div class="placeholder" style="margin-top:20px;">2e screenshot dashboard d'un AUTRE createur — pour montrer que c'est reproductible, avec cadre rouge autour du chiffre cle</div>
+</div>
+
+<div class="slide" id="intro-s3">
+  <h2>C'est pas de la théorie.</h2>
+</div>
+
+<div class="slide" id="intro-s4">
+  <h2>C'est pas du bla-bla.</h2>
+</div>
+
+<div class="slide" id="intro-s5">
+  <p>C'est ce que je fais, <span class="accent">tous les jours</span>, et ce que mes élèves font.</p>
+  <div class="placeholder" style="margin-top:30px;">Mosaique photos/screenshots eleves en action</div>
+</div>
+
+<!-- PREUVE SUPPLEMENTAIRE : mes eleves font -->
+
+<div class="slide" id="intro-s5b">
+  <div class="placeholder wide">Capture ecran groupe Skool ou WhatsApp — messages d'eleves partageant leurs resultats du jour (dates visibles, avec cadre rouge autour des montants)</div>
+</div>
+
+<div class="slide" id="intro-s6">
+  <h2>Mais ça va marcher uniquement si tu es là à <span class="accent">100%</span>.</h2>
+</div>
+
+<div class="slide" id="intro-s7">
+  <p>Pas en train de scroller sur ton téléphone.</p>
+  <p style="margin-top:20px;">Pas en train de regarder Netflix à côté.</p>
+</div>
+
+<div class="slide" id="intro-s8">
+  <h1 class="glow">Là. Présent. Concentré.</h1>
+</div>
+
+<div class="slide" id="intro-s9">
+  <p>Donc voilà ce que je te propose :</p>
+</div>
+
+<div class="slide" id="intro-s10">
+  <p>Moi, je m'engage à te donner <span class="accent">le meilleur</span> de ce que j'ai.</p>
+</div>
+
+<div class="slide" id="intro-s11">
+  <p>Pas de remplissage, pas de blabla, <span class="accent">que du concret</span>.</p>
+</div>
+
+<div class="slide" id="intro-s12">
+  <p>En échange, toi, tu t'engages à rester jusqu'au bout et à donner ton meilleur effort.</p>
+</div>
+
+<div class="slide" id="intro-s13">
+  <h1 class="accent glow">Deal ?</h1>
+</div>
+
+<div class="slide" id="intro-s14">
+  <p>Si c'est ok pour toi, tape <span class="accent">OUI</span> dans le chat.</p>
+</div>
+
+<div class="slide" id="intro-s15">
+  <h2>Parfait. <span class="accent">On est parti.</span></h2>
+</div>
+
+<!-- =============================== -->
+<!-- EMPATHIE COLD                    -->
+<!-- =============================== -->
+
+<div class="slide" id="intro-s16">
+  <p>Avant de te montrer quoi que ce soit, j'ai une <span class="accent">question rapide</span> pour toi.</p>
+</div>
+
+<div class="slide" id="intro-s17">
+  <p>Tape dans le chat ta situation actuelle en un mot.</p>
+</div>
+
+<div class="slide" id="intro-s18">
+  <h2>Ta situation actuelle ?</h2>
+  <div class="options">
+    <div class="option-pill">Salarié</div>
+    <div class="option-pill">Alternant</div>
+    <div class="option-pill">Étudiant</div>
+    <div class="option-pill">Entrepreneur</div>
+    <div class="option-pill">Autre</div>
+  </div>
+</div>
+
+<div class="slide" id="intro-s19">
+  <h1>Merci. Je vois qui est là ce soir.</h1>
+</div>
+
+<div class="slide" id="intro-s20">
+  <p>Et justement, parce que je sais qui est là ce soir, je vais te dire un truc.</p>
+</div>
+
+<div class="slide" id="intro-s21">
+  <h1 class="accent glow">T'en as marre.</h1>
+</div>
+
+<div class="slide" id="intro-s22">
+  <p>Marre de te lever tous les matins pour aller bosser dans un truc qui <span class="accent">ne te ressemble pas</span>.</p>
+</div>
+
+<div class="slide" id="intro-s23">
+  <p>Marre de <span class="accent">compter tes jours de congé</span>.</p>
+</div>
+
+<div class="slide" id="intro-s24">
+  <p>Marre de <span class="accent">demander la permission</span> pour partir en vacances.</p>
+</div>
+
+<div class="slide" id="intro-s26">
+  <p>Peut-être que t'es en alternance et que tu vois déjà que le chemin qu'on te trace <span class="accent">ne te correspond pas</span>.</p>
+</div>
+
+<div class="slide" id="intro-s27">
+  <p>Peut-être que t'es en CDI et que tu sens que <span class="accent">t'es fait pour autre chose</span>.</p>
+</div>
+
+<div class="slide" id="intro-s28">
+  <p>Peut-être que t'es étudiant et que tu te dis <span class="accent">"c'est pas possible que ma vie ressemble à ça dans 5 ans"</span>.</p>
+</div>
+
+<div class="slide" id="intro-s29">
+  <p>Peut-être que t'as déjà regardé des trucs sur internet.</p>
+  <p class="sub">Le dropshipping, le trading, l'affiliation.</p>
+  <div style="display:flex; gap:20px; margin-top:30px; justify-content:center;">
+    <div class="placeholder small">Illustration dropshipping</div>
+    <div class="placeholder small">Illustration trading</div>
+    <div class="placeholder small">Illustration affiliation</div>
+  </div>
+</div>
+
+<div class="slide" id="intro-s30">
+  <p>Et soit t'as essayé et <span class="accent">ça n'a rien donné</span>.</p>
+  <p style="margin-top:15px;">Soit t'as regardé de loin et t'as senti que c'était pas pour toi.</p>
+</div>
+
+<div class="slide" id="intro-s31">
+  <h2>T'as regardé. T'as hésité.<br/><span class="accent">T'as pas trouvé.</span></h2>
+</div>
+
+<div class="slide" id="intro-s32">
+  <p>Dans les deux cas, t'es au même endroit ce soir :</p>
+</div>
+
+<div class="slide" id="intro-s33">
+  <h2>T'es fait pour plus.<br/><span class="accent">T'as juste pas trouvé le bon chemin.</span></h2>
+</div>
+
+<div class="slide" id="intro-s34">
+  <p>Je vais te dire un truc très clairement :</p>
+</div>
+
+<div class="slide" id="intro-s35">
+  <h1 class="glow">C'est pas toi.</h1>
+  <h1 class="accent glow" style="margin-top:20px;">C'est le véhicule.</h1>
+  <div class="placeholder" style="margin-top:30px;">Photo Porsche GT3 RS</div>
+</div>
+
+<div class="slide" id="intro-s36">
+  <p>Et ce soir, je vais te montrer un véhicule <span class="accent">complètement différent</span> de tout ce que t'as pu voir.</p>
+</div>
+
+<div class="slide" id="intro-s37">
+  <p>Un truc <span class="accent">simple</span>, qui <span class="accent">marche</span>, et que des gens comme toi utilisent pour changer de vie en quelques mois.</p>
+  <div class="placeholder small" style="margin-top:25px;">Mini-mosaique 3-4 photos d'eleves "normaux" (salaries, alternants, etudiants) — visages reels, pas des stock photos</div>
+</div>
+
+<div class="slide" id="intro-s38">
+  <p>D'ailleurs, certains d'entre eux <span class="accent">sont là ce soir</span>.</p>
+  <div class="placeholder small" style="margin-top:25px;">Screenshot du chat en direct montrant des eleves qui se manifestent (prenoms + messages) — preuve sociale en temps reel</div>
+</div>
+
+<!-- =============================== -->
+<!-- AUTORITE + TEMOIGNAGES           -->
+<!-- =============================== -->
+
+<div class="slide" id="intro-s39">
+  <p>Je vais te dire rapidement <span class="accent">qui je suis</span>.</p>
+</div>
+
+<div class="slide" id="intro-s40">
+  <p>Pas pour me vanter, mais pour que tu comprennes pourquoi tu devrais m'écouter pendant les prochaines minutes.</p>
+</div>
+
+<div class="slide" id="intro-s41">
+  <p>Il y a deux ans, j'étais <span class="accent">basketteur professionnel</span>.</p>
+  <div class="placeholder" style="margin-top:30px;">P2 - Photo de Mathéo en maillot basket Rouen</div>
+</div>
+
+<div class="slide" id="intro-s42">
+  <h1>Je gagnais <span class="accent">314 euros</span> par mois.</h1>
+  <div class="placeholder small" style="margin-top:30px;">P2b - Photo du contrat de Matheo — cadre rouge autour du montant 314 EUR</div>
+</div>
+
+<!-- PREUVE SUPPLEMENTAIRE : 314 EUR/mois -->
+
+<div class="slide" id="intro-s42b">
+  <div class="placeholder">Screenshot fiche de paie ou virement bancaire basket — 314 EUR visibles, cadre rouge autour du montant (pour que Yassine voie que c'est REEL)</div>
+</div>
+
+<div class="slide" id="intro-s43">
+  <p>Aujourd'hui, j'ai <span class="accent">22 ans</span>,</p>
+  <p style="margin-top:15px;">j'habite un peu partout,</p>
+  <div class="placeholder small" style="margin-top:20px;">Photo recente de Matheo — lifestyle actuel (voyage, bureau, lieu de vie) avec date visible</div>
+</div>
+
+<div class="slide" id="intro-s44">
+  <p>et j'ai créé un programme qui a formé des <span class="accent">centaines d'opérateurs de croissance</span>.</p>
+  <div class="placeholder" style="margin-top:30px;">Screenshot communaute Skool avec nombre de membres visible — avec cadre rouge autour du nombre de membres</div>
+</div>
+
+<!-- PREUVE SUPPLEMENTAIRE : centaines d'operateurs -->
+
+<div class="slide" id="intro-s44b">
+  <div class="placeholder wide">Screenshot Skool ZOOM — nombre de membres + activite recente (posts, commentaires) pour prouver que c'est actif et pas mort</div>
+</div>
+
+<div class="slide" id="intro-s45">
+  <div class="placeholder twin">P2 - Photo basket AVANT &nbsp; vs &nbsp; P3 - Photo vie actuelle APRÈS (côté à côté)</div>
+</div>
+
+<div class="slide" id="intro-s46">
+  <h2>Voilà mes résultats en tant qu'opérateur :</h2>
+</div>
+
+<!-- Sirin -->
+
+<div class="slide" id="intro-s47">
+  <h2>Ma première créatrice de contenu, <span class="accent">Sirin</span>.</h2>
+  <div class="placeholder small" style="margin-top:25px;">Photo de Sirin + screenshot profil Instagram avec nombre d'abonnes visible (cadre rouge autour du 3 000)</div>
+</div>
+
+<div class="slide" id="intro-s48">
+  <p><span class="accent">3 000</span> abonnés.</p>
+  <h1 style="margin-top:20px;"><span class="accent">8 000 euros</span> en une semaine.</h1>
+  <div class="placeholder" style="margin-top:30px;">P4 - Dashboard ventes Sirin — avec cadre rouge autour du 8 000 EUR</div>
+</div>
+
+<!-- PREUVE SUPPLEMENTAIRE : Sirin 8000 EUR -->
+
+<div class="slide" id="intro-s48b">
+  <div class="placeholder wide">Screenshot Stripe/Whop Sirin ZOOM semaine precise — avec cadre rouge autour du montant total et dates visibles</div>
+</div>
+
+<!-- Fanny -->
+
+<div class="slide" id="intro-s49">
+  <h2><span class="accent">Fanny Marre</span>, une coach dans le cyclisme.</h2>
+  <div class="placeholder small" style="margin-top:25px;">Photo de Fanny Marre + screenshot profil Instagram/YouTube</div>
+</div>
+
+<div class="slide" id="intro-s50">
+  <p>De 0 à <span class="accent">70 000 euros par mois</span> en 6 mois.</p>
+  <p style="margin-top:15px;">Je prenais plus de <span class="accent">15 000 euros par mois</span>.</p>
+  <div class="placeholder" style="margin-top:30px;">P5 - Dashboard ventes Fanny — avec cadre rouge autour du 70 000 EUR/mois</div>
+</div>
+
+<!-- PREUVE SUPPLEMENTAIRE : Fanny 70k/mois -->
+
+<div class="slide" id="intro-s50b">
+  <div style="display:flex; gap:20px; justify-content:center;">
+    <div class="placeholder small">Screenshot dashboard Fanny AVANT (0 EUR) — mois de depart</div>
+    <div class="placeholder small">Screenshot dashboard Fanny APRES (70 000 EUR) — 6 mois plus tard, cadre rouge autour du chiffre</div>
+  </div>
+</div>
+
+<!-- PREUVE SUPPLEMENTAIRE : 15 000 EUR/mois commission Matheo -->
+
+<div class="slide" id="intro-s50c">
+  <div class="placeholder">Screenshot virement ou facture commission Matheo — 15 000 EUR visibles, avec cadre rouge autour du montant</div>
+</div>
+
+<!-- Alexis -->
+
+<div class="slide" id="intro-s51">
+  <h2><span class="accent">Alexis Horax</span>.</h2>
+  <div class="placeholder small" style="margin-top:25px;">Photo d'Alexis Horax + screenshot profil Instagram/YouTube</div>
+</div>
+
+<div class="slide" id="intro-s52">
+  <h1><span class="accent">23 000 euros</span> en 23 jours.</h1>
+  <div class="placeholder" style="margin-top:30px;">P6 - Dashboard ventes Alexis — avec cadre rouge autour du 23 000 EUR et des dates (23 jours visibles)</div>
+</div>
+
+<!-- PREUVE SUPPLEMENTAIRE : Alexis 23k en 23 jours -->
+
+<div class="slide" id="intro-s52b">
+  <div class="placeholder wide">Screenshot dashboard Alexis ZOOM — timeline des ventes jour par jour sur les 23 jours, cadre rouge autour du total</div>
+</div>
+
+<div class="slide" id="intro-s53">
+  <p>Et je me suis associé avec tous les créateurs de contenu que tu vois s'afficher à ton écran.</p>
+  <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center;max-width:1100px;margin:20px auto;">
+    <div style="flex:1;min-width:200px;"><img src="assets/p7-1.png" style="width:100%;border-radius:10px;object-fit:contain;" alt=""></div>
+    <div style="flex:1;min-width:200px;"><img src="assets/p7-2.png" style="width:100%;border-radius:10px;object-fit:contain;" alt=""></div>
+    <div style="flex:1;min-width:200px;"><img src="assets/p7-3.png" style="width:100%;border-radius:10px;object-fit:contain;" alt=""></div>
+    <div style="flex:1;min-width:200px;"><img src="assets/p7-4.png" style="width:100%;border-radius:10px;object-fit:contain;" alt=""></div>
+    <div style="flex:1;min-width:200px;"><img src="assets/p7-5.png" style="width:100%;border-radius:10px;object-fit:contain;" alt=""></div>
+    <div style="flex:1;min-width:200px;"><img src="assets/p7-6.png" style="width:100%;border-radius:10px;object-fit:contain;" alt=""></div>
+</div>
+  <p class="sub" style="margin-top:15px;">Apprentissage de langues, instruments de musique, relations amoureuses, triathlon, cyclisme, et des dizaines d'autres niches.</p>
+</div>
+
+<!-- PREUVE SUPPLEMENTAIRE : diversite des niches -->
+
+<div class="slide" id="intro-s53b">
+  <div style="display:flex; gap:15px; justify-content:center; flex-wrap:wrap;">
+    <div class="placeholder small">Screenshot profil createur niche langues (nom + abonnes visibles)</div>
+    <div class="placeholder small">Screenshot profil createur niche musique (nom + abonnes visibles)</div>
+  </div>
+  <div style="display:flex; gap:15px; justify-content:center; flex-wrap:wrap; margin-top:15px;">
+    <div class="placeholder small">Screenshot profil createur niche sport (nom + abonnes visibles)</div>
+    <div class="placeholder small">Screenshot profil createur niche relations (nom + abonnes visibles)</div>
+  </div>
+</div>
+
+<div class="slide" id="intro-s55">
+  <p>Mais c'est pas mes résultats qui comptent.</p>
+</div>
+
+<div class="slide" id="intro-s56">
+  <h2>C'est ceux de <span class="accent">mes élèves</span>.</h2>
+  <div class="placeholder" style="margin-top:30px;">Photo de Matheo avec ses eleves (photo de groupe REELLE, evenement, chalet, meetup)</div>
+</div>
+
+<!-- PREUVE SUPPLEMENTAIRE : vrais eleves, vrais gens -->
+
+<div class="slide" id="intro-s56b">
+  <div style="display:flex; gap:15px; justify-content:center;">
+    <div class="placeholder small">Photo de groupe #2 — autre angle ou autre evenement avec les eleves</div>
+    <div class="placeholder small">Screenshot Skool ou WhatsApp montrant l'activite de la communaute (nombre de messages/jour, membres actifs)</div>
+  </div>
+</div>
+
+<div class="slide" id="intro-s57">
+  <p>Parce que n'importe qui peut se vanter de ses propres chiffres.</p>
+</div>
+
+<div class="slide" id="intro-s58">
+  <h2>La vraie question, c'est : est-ce que les gens que je forme <span class="accent">réussissent</span> ?</h2>
+</div>
+
+<!-- Kamil -->
+
+<div class="slide" id="intro-s59">
+  <h2><span class="accent">Kamil</span>, 22 ans.</h2>
+  <h1 style="margin-top:20px;"><span class="accent">16 000 euros</span> dans son meilleur mois.</h1>
+  <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center;max-width:1100px;margin:20px auto;">
+    <div style="flex:1;min-width:200px;"><img src="assets/p8a-1.png" style="width:100%;border-radius:10px;object-fit:contain;" alt=""></div>
+    <div style="flex:1;min-width:200px;"><img src="assets/p8a-2.png" style="width:100%;border-radius:10px;object-fit:contain;" alt=""></div>
+</div>
+</div>
+
+<!-- PREUVE SUPPLEMENTAIRE : Kamil 16k -->
+
+<div class="slide" id="intro-s59b">
+  <div class="placeholder wide">Screenshot REEL du dashboard/Stripe de Kamil — mois complet visible, cadre rouge autour du total 16 000 EUR</div>
+  <div class="placeholder small" style="margin-top:15px;">Screenshot message WhatsApp/Skool de Kamil partageant son resultat (date + message authentique visible)</div>
+</div>
+
+<!-- Brandon -->
+
+<div class="slide" id="intro-s60">
+  <h2><span class="accent">Brandon</span>, 23 ans.</h2>
+  <h1 style="margin-top:20px;">Plus de <span class="accent">15 000 euros</span> par mois.</h1>
+  <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center;max-width:1100px;margin:20px auto;">
+    <div style="flex:1;min-width:200px;"><img src="assets/p8b-1.png" style="width:100%;border-radius:10px;object-fit:contain;" alt=""></div>
+    <div style="flex:1;min-width:200px;"><img src="assets/p8b-2.png" style="width:100%;border-radius:10px;object-fit:contain;" alt=""></div>
+</div>
+</div>
+
+<!-- PREUVE SUPPLEMENTAIRE : Brandon 15k -->
+
+<div class="slide" id="intro-s60b">
+  <div class="placeholder wide">Screenshot REEL du dashboard/Stripe de Brandon — mois complet visible, cadre rouge autour du montant 15 000+ EUR</div>
+  <div class="placeholder small" style="margin-top:15px;">Screenshot message WhatsApp/Skool de Brandon partageant son resultat (date + message authentique visible)</div>
+</div>
+
+<!-- Elodie -->
+
+<div class="slide" id="intro-s61">
+  <h2><span class="accent">Élodie</span>, 20 ans, ancienne serveuse.</h2>
+  <h1 style="margin-top:20px;"><span class="accent">11 000 euros</span> dans son meilleur mois.</h1>
+  <div class="placeholder" style="margin-top:30px;">P8c - Photo Élodie + screenshot résultat — cadre rouge autour du 11 000 EUR</div>
+</div>
+
+<!-- PREUVE SUPPLEMENTAIRE : Elodie 11k + ancienne serveuse -->
+
+<div class="slide" id="intro-s61b">
+  <div class="placeholder">Screenshot REEL du dashboard/Stripe d'Elodie — cadre rouge autour du total 11 000 EUR</div>
+  <div class="placeholder small" style="margin-top:15px;">Screenshot message ou temoignage video d'Elodie mentionnant son ancien job de serveuse (authenticite de la transformation)</div>
+</div>
+
+<div class="slide" id="intro-s62">
+  <p>Mais eux, ce sont des cas un peu <span class="accent">hors norme</span>.</p>
+  <p class="sub">Ça fait plus d'un an qu'ils sont devenus opérateurs.</p>
+</div>
+
+<div class="slide" id="intro-s63">
+  <h2>On a aussi des résultats tout à fait <span class="accent">ordinaires</span>.</h2>
+</div>
+
+<!-- Florimond -->
+
+<div class="slide" id="intro-s64">
+  <h2><span class="accent">Florimond</span>, 29 ans.</h2>
+  <p style="margin-top:10px;">Salarié à temps plein, père de famille.</p>
+  <h1 style="margin-top:20px;"><span class="accent">4 400 euros</span> en parallèle de son travail.</h1>
+  <div class="placeholder" style="margin-top:25px;">P8d - Photo Florimond + screenshot résultat — cadre rouge autour du 4 400 EUR</div>
+</div>
+
+<!-- PREUVE SUPPLEMENTAIRE : Florimond salarie + 4400 -->
+
+<div class="slide" id="intro-s64b">
+  <div class="placeholder wide">Screenshot REEL du dashboard de Florimond — cadre rouge autour du 4 400 EUR + screenshot message Skool/WhatsApp ou il mentionne faire ca a cote de son CDI</div>
+</div>
+
+<!-- Dagan -->
+
+<div class="slide" id="intro-s65">
+  <h2><span class="accent">Dagan</span>, 24 ans, alternant.</h2>
+  <h1 style="margin-top:20px;"><span class="accent">3 000 euros</span> à côté de son alternance.</h1>
+  <p class="sub" style="margin-top:15px;">Il m'a d'ailleurs dit qu'il allait arrêter.</p>
+  <div class="placeholder" style="margin-top:25px;">P8e - Photo Dagan + screenshot résultat — cadre rouge autour du 3 000 EUR</div>
+</div>
+
+<!-- PREUVE SUPPLEMENTAIRE : Dagan va arreter son alternance -->
+
+<div class="slide" id="intro-s65b">
+  <div class="placeholder wide">Screenshot du VRAI message de Dagan disant qu'il va arreter son alternance (WhatsApp/Skool, date visible, message authentique) — cadre rouge autour de la phrase cle</div>
+</div>
+
+<div class="slide" id="intro-s66">
+  <p>Et eux, tu vas les retrouver <span class="accent">tout au long</span> de cette présentation.</p>
+</div>
+
+<div class="slide" id="intro-s67">
+  <p>Je vais te raconter <span class="accent">exactement</span> comment ils ont fait.</p>
+</div>
+
+<!-- =============================== -->
+<!-- OBJECTIONS TRAITEES EN AVANCE    -->
+<!-- =============================== -->
+
+<div class="slide" id="intro-s68">
+  <p>Je sais ce que certains d'entre vous pensent.</p>
+</div>
+
+<div class="slide" id="intro-s69">
+  <h2 class="quote">"Un mec de 22 ans qui te dit qu'il peut t'apprendre à gagner de l'argent, <span class="accent">ça sent l'arnaque</span>."</h2>
+</div>
+
+<div class="slide" id="intro-s70">
+  <p>Et honnêtement, <span class="accent">je te comprends</span>.</p>
+</div>
+
+<div class="slide" id="intro-s71">
+  <p>Internet est rempli de <span class="accent">vendeurs de rêve</span>.</p>
+</div>
+
+<div class="slide" id="intro-s72">
+  <p>Donc laisse-moi te dire un truc qui va peut-être te surprendre.</p>
+</div>
+
+<div class="slide" id="intro-s73">
+  <p>On me pose souvent cette question :</p>
+</div>
+
+<div class="slide" id="intro-s74">
+  <h2 class="quote">"Si ça marche si bien, pourquoi tu apprends aux gens à le faire au lieu de <span class="accent">le faire toi-même</span> ?"</h2>
+</div>
+
+<div class="slide" id="intro-s75">
+  <h2>La réponse est simple.</h2>
+</div>
+
+<div class="slide" id="intro-s76">
+  <h2>Moi, <span class="accent">je continue de le faire</span>.</h2>
+</div>
+
+<div class="slide" id="intro-s77">
+  <p>J'ai 3 créateurs avec qui je travaille <span class="accent">en ce moment</span> :</p>
+</div>
+
+<div class="slide" id="intro-s78">
+  <h2><span class="accent">Charlotte</span></h2>
+  <img src="assets/p9a.png" class="proof-img" style="max-width:100%; max-height:70vh; border-radius:12px; object-fit:contain;" alt="">
+</div>
+
+<!-- PREUVE SUPPLEMENTAIRE : Charlotte resultats -->
+
+<div class="slide" id="intro-s78b">
+  <div class="placeholder">Screenshot dashboard ventes Charlotte — chiffres recents avec cadre rouge autour du montant cle</div>
+</div>
+
+<div class="slide" id="intro-s79">
+  <h2><span class="accent">Alexis</span></h2>
+  <img src="assets/p9b.png" class="proof-img" style="max-width:100%; max-height:70vh; border-radius:12px; object-fit:contain;" alt="">
+</div>
+
+<!-- PREUVE SUPPLEMENTAIRE : Alexis resultats actuels -->
+
+<div class="slide" id="intro-s79b">
+  <div class="placeholder">Screenshot dashboard ventes Alexis — chiffres recents avec cadre rouge autour du montant cle</div>
+</div>
+
+<div class="slide" id="intro-s80">
+  <h2><span class="accent">Laurie</span></h2>
+  <img src="assets/p9c.png" class="proof-img" style="max-width:100%; max-height:70vh; border-radius:12px; object-fit:contain;" alt="">
+</div>
+
+<!-- PREUVE SUPPLEMENTAIRE : Laurie resultats -->
+
+<div class="slide" id="intro-s80b">
+  <div class="placeholder">Screenshot dashboard ventes Laurie — chiffres recents avec cadre rouge autour du montant cle</div>
+</div>
+
+<div class="slide" id="intro-s81">
+  <p>C'est pas mon business <span class="accent">"d'il y a 3 ans"</span>.</p>
+  <p style="margin-top:15px;">C'est ce que je fais, <span class="accent">aujourd'hui</span>.</p>
+  <div class="placeholder" style="margin-top:30px;">Screenshot recent - dashboard ou conversation avec Charlotte/Alexis/Laurie (date visible, MOINS de 7 jours)</div>
+</div>
+
+<!-- PREUVE SUPPLEMENTAIRE : je travaille encore avec eux aujourd'hui -->
+
+<div class="slide" id="intro-s81b">
+  <div style="display:flex; gap:20px; justify-content:center;">
+    <div class="placeholder small">Screenshot conversation WhatsApp/Slack RECENTE avec Charlotte (date du jour/semaine visible)</div>
+    <div class="placeholder small">Screenshot conversation WhatsApp/Slack RECENTE avec Alexis ou Laurie (date du jour/semaine visible)</div>
+  </div>
+</div>
+
+<div class="slide" id="intro-s82">
+  <p>Mais en parallèle, quasiment tous les jours, il y a des créateurs de contenu qui me contactent parce qu'ils veulent travailler avec un opérateur.</p>
+  <div class="placeholder wide" style="margin-top:25px;">Compilation 4-5 screenshots DMs Instagram de createurs contactant Matheo — noms floutes mais messages visibles (dates recentes)</div>
+</div>
+
+<div class="slide" id="intro-s83">
+  <p>Ils sont <span class="accent">beaucoup plus nombreux</span> que ce que je peux gérer seul.</p>
+  <div style="display:flex; gap:20px; margin-top:30px; justify-content:center;">
+    <div class="placeholder small">P10a - DM créateur 1</div>
+    <div class="placeholder small">P10b - DM créateur 2</div>
+    <div class="placeholder small">P10c - DM créateur 3</div>
+  </div>
+</div>
+
+<div class="slide" id="intro-s84">
+  <p>Donc j'ai un <span class="accent">système de mise en relation</span>.</p>
+</div>
+
+<div class="slide" id="intro-s85">
+  <p>Je forme des opérateurs, et je les <span class="accent">mets en relation</span> avec des créateurs.</p>
+</div>
+
+<div class="slide" id="intro-s86">
+  <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center;max-width:1100px;margin:20px auto;">
+    <div style="flex:1;min-width:200px;"><img src="assets/p28-1.png" style="width:100%;border-radius:10px;object-fit:contain;" alt=""></div>
+    <div style="flex:1;min-width:200px;"><img src="assets/p28-2.png" style="width:100%;border-radius:10px;object-fit:contain;" alt=""></div>
+    <div style="flex:1;min-width:200px;"><img src="assets/p28-3.png" style="width:100%;border-radius:10px;object-fit:contain;" alt=""></div>
+</div>
+  <p class="sub" style="margin-top:20px;">Des vraies conversations. Des opérateurs connectés avec des créateurs. Tous les jours.</p>
+</div>
+
+<!-- PREUVE SUPPLEMENTAIRE : mises en relation reelles -->
+
+<div class="slide" id="intro-s86b">
+  <div style="display:flex; gap:20px; justify-content:center;">
+    <div class="placeholder small">Screenshot WhatsApp mise en relation #1 — operateur + createur connectes (noms floutes, message visible)</div>
+    <div class="placeholder small">Screenshot WhatsApp mise en relation #2 — autre operateur + createur (dates recentes visibles)</div>
+  </div>
+  <div class="placeholder small" style="margin-top:15px;">Screenshot WhatsApp mise en relation #3 — encore un autre (pour montrer que c'est frequent, pas un cas isole)</div>
+</div>
+
+<div class="slide" id="intro-s87">
+  <p>Je prends un <span class="accent">petit pourcentage</span> sur la mise en relation.</p>
+</div>
+
+<div class="slide" id="intro-s87b">
+  <p>Exemple concret :</p>
+</div>
+
+<div class="slide" id="intro-s87c">
+  <div style="display:flex;gap:40px;justify-content:center;align-items:stretch;max-width:1100px;flex-wrap:wrap;">
+    <div style="flex:1;min-width:380px;background:rgba(27,167,255,0.08);border:2px solid rgba(27,167,255,0.25);border-radius:20px;padding:40px 36px;text-align:center;">
+      <p style="font-size:24px;color:rgba(255,255,255,0.5);margin-bottom:12px;">Si l'operateur gagne</p>
+      <h1 style="font-size:56px;font-weight:800;">1 000 <span class="accent">EUR</span>/mois</h1>
+      <p style="font-size:24px;color:rgba(255,255,255,0.5);margin-top:20px;">Je prends 5%</p>
+      <h2 style="margin-top:8px;font-size:40px;"><span class="accent">50 EUR</span>/mois</h2>
+    </div>
+    <div style="flex:1;min-width:380px;background:rgba(27,167,255,0.15);border:2px solid #1BA7FF;border-radius:20px;padding:40px 36px;text-align:center;">
+      <p style="font-size:24px;color:rgba(255,255,255,0.5);margin-bottom:12px;">Si l'operateur gagne</p>
+      <h1 style="font-size:56px;font-weight:800;">50 000 <span class="accent">EUR</span>/mois</h1>
+      <p style="font-size:24px;color:rgba(255,255,255,0.5);margin-top:20px;">Je prends 5%</p>
+      <h2 style="margin-top:8px;font-size:40px;"><span class="accent">2 500 EUR</span>/mois</h2>
+    </div>
+  </div>
+</div>
+
+<div class="slide" id="intro-s88">
+  <h2>Tu comprends que j'ai <span class="accent">tout interet</span> a ce que les gens que je forme soient excellents.</h2>
+</div>
+
+<div class="slide" id="intro-s88b">
+  <p>Plus ils reussissent, plus les createurs gagnent.</p>
+  <p style="margin-top:15px;">Et plus moi <span class="accent">j'en gagne aussi</span>.</p>
+</div>
+
+<div class="slide" id="intro-s88c">
+  <div style="display:flex; align-items:center; justify-content:center; gap:0; max-width:1000px; flex-wrap:nowrap;">
+    <div style="background:rgba(27,167,255,0.12); border:2px solid #1BA7FF; border-radius:16px; padding:28px 32px; text-align:center; min-width:200px;">
+      <p style="font-size:20px; color:rgba(255,255,255,0.6); margin-bottom:8px;">FONDATEUR</p>
+      <p style="font-size:28px; font-weight:700; color:#fff;">Mathéo</p>
+      <p style="font-size:18px; color:rgba(255,255,255,0.7); margin-top:8px;">forme des opérateurs</p>
+    </div>
+    <div style="font-size:48px; color:#1BA7FF; padding:0 20px; font-weight:700;">→</div>
+    <div style="background:rgba(27,167,255,0.12); border:2px solid #1BA7FF; border-radius:16px; padding:28px 32px; text-align:center; min-width:200px;">
+      <p style="font-size:20px; color:rgba(255,255,255,0.6); margin-bottom:8px;">OPÉRATEUR</p>
+      <p style="font-size:28px; font-weight:700; color:#fff;">Toi</p>
+      <p style="font-size:18px; color:rgba(255,255,255,0.7); margin-top:8px;">travaille avec un créateur</p>
+    </div>
+    <div style="font-size:48px; color:#1BA7FF; padding:0 20px; font-weight:700;">→</div>
+    <div style="background:rgba(27,167,255,0.12); border:2px solid #1BA7FF; border-radius:16px; padding:28px 32px; text-align:center; min-width:200px;">
+      <p style="font-size:20px; color:rgba(255,255,255,0.6); margin-bottom:8px;">CRÉATEUR</p>
+      <p style="font-size:28px; font-weight:700; color:#fff;">Résultats</p>
+      <p style="font-size:18px; color:rgba(255,255,255,0.7); margin-top:8px;">le créateur explose</p>
+    </div>
+  </div>
+  <div style="margin-top:30px; background:rgba(27,167,255,0.08); border:1px solid rgba(27,167,255,0.3); border-radius:12px; padding:16px 32px; text-align:center;">
+    <p style="font-size:24px; color:rgba(255,255,255,0.85);">Mathéo prend un <span class="accent" style="font-weight:700;">petit pourcentage</span> sur la mise en relation</p>
+  </div>
+</div>
+
+<!-- PREUVE SUPPLEMENTAIRE : tout le monde gagne -->
+
+<div class="slide" id="intro-s88d">
+  <div style="display:flex; gap:20px; justify-content:center;">
+    <div class="placeholder small">Screenshot temoignage d'un CREATEUR satisfait du travail de son operateur (message authentique, date visible)</div>
+    <div class="placeholder small">Screenshot temoignage d'un OPERATEUR satisfait d'avoir ete mis en relation (message authentique, date visible)</div>
+  </div>
+</div>
+
+<div class="slide" id="intro-s89">
+  <h2>Tout le monde gagne.<br/><span class="accent">C'est pour ça que ça marche.</span></h2>
+</div>
+
+<!-- =============================== -->
+<!-- ENNEMI COMMUN                    -->
+<!-- =============================== -->
+
+<div class="slide" id="intro-s90">
+  <p>Et je vais te dire un truc que <span class="accent">personne ne te dit</span>.</p>
+</div>
+
+<div class="slide" id="intro-s91">
+  <p>La plupart des mecs qui te vendent du dropshipping ou du trading,</p>
+</div>
+
+<div class="slide" id="intro-s92">
+  <h2>ils ne <span class="accent">FONT PAS</span> de dropshipping.</h2>
+  <h2 style="margin-top:15px;">Ils ne <span class="accent">FONT PAS</span> de trading.</h2>
+</div>
+
+<div class="slide" id="intro-s93">
+  <p>Leur seul et unique business, c'est de <span class="accent">te vendre une formation</span> là-dessus.</p>
+</div>
+
+<div class="slide" id="intro-s94">
+  <h2>Ils t'ont vendu un modèle qu'eux-mêmes <span class="accent">n'utilisent pas</span>.</h2>
+</div>
+
+<div class="slide" id="intro-s95">
+  <p>Moi, je travaille encore avec <span class="accent">3 créateurs</span> en ce moment.</p>
+  <p style="margin-top:15px;">Charlotte, Alexis et Laurie. Tu les as vus.</p>
+  <div style="display:flex; gap:15px; margin-top:25px; justify-content:center;">
+    <div class="placeholder small">Rappel visuel : mini-photo Charlotte</div>
+    <div class="placeholder small">Rappel visuel : mini-photo Alexis</div>
+    <div class="placeholder small">Rappel visuel : mini-photo Laurie</div>
+  </div>
+</div>
+
+<div class="slide" id="intro-s96">
+  <p>C'est pas mon seul business "d'il y a 3 ans".</p>
+  <h2 style="margin-top:15px;">C'est ce que je fais, <span class="accent">aujourd'hui</span>.</h2>
+</div>
+
+<!-- Transition ennemi commun -->
+
+<div class="slide" id="intro-s96b">
+  <h2 class="quote">"Oui mais Matheo, moi j'ai <span class="accent">deja essaye</span> des trucs. Qu'est-ce qui fait que ca vaut le coup de t'ecouter ?"</h2>
+</div>
+
+<div class="slide" id="intro-s96c">
+  <p>Tres bonne question.</p>
+  <p style="margin-top:15px;">Laisse-moi te raconter l'histoire de <span class="accent">Kamil</span>.</p>
+</div>
+
+<!-- Kamil ennemi commun -->
+
+<div class="slide" id="intro-s97">
+  <h2><span class="accent">Kamil</span> avait tout essaye.</h2>
+</div>
+
+<div class="slide" id="intro-s98">
+  <p>Dropshipping, crypto, SMMA, NFT, YouTube Automation.</p>
+  <h2 style="margin-top:20px;"><span class="accent">Rien</span> n'avait marché.</h2>
+</div>
+
+<!-- PREUVE SUPPLEMENTAIRE : Kamil avait tout essaye -->
+
+<div class="slide" id="intro-s98b">
+  <div class="placeholder wide">Screenshot temoignage video ou message de Kamil racontant ses echecs passes (dropshipping, crypto, SMMA) — ses propres mots, pas un resume</div>
+</div>
+
+<div class="slide" id="intro-s99">
+  <p>Et pourtant, <span class="accent">16 000 euros</span> dans son meilleur mois avec l'Opération de Croissance.</p>
+  <div class="placeholder" style="margin-top:30px;">P11 - Photo Kamil + message avant/apres — cadre rouge autour du 16 000 EUR</div>
+</div>
+
+<!-- PREUVE SUPPLEMENTAIRE : Kamil avant/apres -->
+
+<div class="slide" id="intro-s99b">
+  <div style="display:flex; gap:20px; justify-content:center;">
+    <div class="placeholder small">Screenshot message Kamil AVANT (frustration, echecs, 0 EUR) — ses propres mots</div>
+    <div class="placeholder small">Screenshot message Kamil APRES (16 000 EUR, fierte) — ses propres mots, cadre rouge autour du chiffre</div>
+  </div>
+</div>
+
+<div class="slide" id="intro-s100">
+  <p><span class="accent">Brandon</span> avait essayé le dropshipping avant.</p>
+  <p style="margin-top:15px;">Pareil, ça n'avait rien donné.</p>
+  <div class="placeholder" style="margin-top:30px;">Photo Brandon + temoignage video ou message mentionnant son echec en dropshipping</div>
+</div>
+
+<!-- PREUVE SUPPLEMENTAIRE : Brandon echec dropshipping -->
+
+<div class="slide" id="intro-s100b">
+  <div class="placeholder wide">Screenshot message de Brandon racontant son echec en dropshipping — ses propres mots, pas un resume (WhatsApp/Skool)</div>
+</div>
+
+<div class="slide" id="intro-s101">
+  <h1>Et pourtant, <span class="accent">5 000 euros</span> en deux semaines.</h1>
+  <div class="placeholder" style="margin-top:30px;">Screenshot resultat Brandon - 5 000 EUR en 2 semaines — cadre rouge autour du montant + dates des 2 semaines visibles</div>
+</div>
+
+<div class="slide" id="intro-s102">
+  <h2>Le problème, c'était jamais eux.</h2>
+  <h1 class="accent glow" style="margin-top:20px;">C'était le véhicule.</h1>
+</div>
+
+<!-- =============================== -->
+<!-- ESPOIR POUR LE FUTUR             -->
+<!-- =============================== -->
+
+<div class="slide" id="intro-s103">
+  <p>Je veux que tu fasses un truc avec moi.</p>
+</div>
+
+<div class="slide" id="intro-s106">
+  <h2>Imagine qu'on est dans <span class="accent">6 mois</span>.</h2>
+</div>
+
+<div class="slide" id="intro-s107">
+  <p>Tu te réveilles le matin.</p>
+</div>
+
+<div class="slide" id="intro-s108">
+  <h2>T'as <span class="accent">pas de réveil</span>.</h2>
+  <h2 style="margin-top:10px;">T'as <span class="accent">pas de patron</span>.</h2>
+  <h2 style="margin-top:10px;">T'as <span class="accent">pas de trajet</span>.</h2>
+</div>
+
+<div class="slide" id="intro-s109">
+  <p>Tu ouvres ton appli bancaire et tu vois des <span class="accent">virements qui tombent</span>.</p>
+  <div class="placeholder small" style="margin-top:25px;">Screenshot appli bancaire d'un eleve (floute sauf les virements entrants) — cadre rouge autour des montants, pour MONTRER pas juste dire</div>
+</div>
+
+<div class="slide" id="intro-s109b">
+  <p>Des virements que <span class="accent">TU</span> as générés.</p>
+  <p style="margin-top:15px;">Avec une activité que <span class="accent">TU</span> contrôles.</p>
+</div>
+
+<div class="slide" id="intro-s110">
+  <p>Tu décides <span class="accent">où</span> tu bosses.</p>
+  <p style="margin-top:10px;">Tu décides <span class="accent">quand</span> tu bosses.</p>
+  <p style="margin-top:10px;">Tu décides <span class="accent">combien</span> tu gagnes.</p>
+</div>
+
+<div class="slide" id="intro-s111">
+  <p>T'es au restaurant avec ta copine, tes potes, ta famille.</p>
+</div>
+
+<div class="slide" id="intro-s112">
+  <h2>Tu commandes ce que tu veux <span class="accent">sans regarder les prix</span>.</h2>
+</div>
+
+<div class="slide" id="intro-s113">
+  <p>Pas parce que t'es riche.</p>
+  <p style="margin-top:15px;">Parce que t'as construit un truc qui te donne cette <span class="accent">liberté</span>.</p>
+</div>
+
+<div class="slide" id="intro-s114">
+  <h2 class="accent">Comment tu te sens ?</h2>
+  <p class="sub" style="margin-top:15px;">Qu'est-ce que tu dis à tes proches ?</p>
+</div>
+
+<div class="slide" id="intro-s117">
+  <p>Ce que tu viens de voir, c'est <span class="accent">exactement</span> ce que vivent Kamil, Brandon, Florimond, Dagan, Élodie.</p>
+  <div class="placeholder twin" style="margin-top:30px;">Photos lifestyle eleves : Kamil, Brandon, Florimond, Dagan, Elodie (vie quotidienne, voyages, liberte)</div>
+</div>
+
+<!-- PREUVE SUPPLEMENTAIRE : eleves vivent cette vie -->
+
+<div class="slide" id="intro-s117c">
+  <div style="display:flex; gap:15px; justify-content:center; flex-wrap:wrap;">
+    <div class="placeholder small">Screenshot story Instagram ou Skool d'un eleve montrant sa liberte (voyage, bureau a la maison, pas de reveil)</div>
+    <div class="placeholder small">Screenshot message Skool d'un eleve disant "j'ai quitte mon job" ou "j'ai pose ma dem" (date visible)</div>
+  </div>
+</div>
+
+<div class="slide" id="intro-s117b">
+  <p>Et des <span class="accent">centaines d'autres personnes</span> en ce moment.</p>
+  <div class="placeholder wide" style="margin-top:30px;">Screenshot communaute Skool - nombre de membres + messages recents</div>
+</div>
+
+<div class="slide" id="intro-s118">
+  <h2>Et c'est exactement ce que je vais te montrer <span class="accent">comment faire aujourd'hui</span>.</h2>
+</div>
+
+<!-- =============================== -->
+<!-- MYSTERE ET INTRIGUE - Open Loops -->
+<!-- =============================== -->
+
+<div class="slide" id="intro-s119">
+  <h2>Voilà ce que je vais te montrer dans les <span class="accent">prochaines minutes</span> :</h2>
+</div>
+
+<div class="slide" id="intro-s120">
+  <h1 class="accent glow" style="font-size:80px;">1.</h1>
+  <p style="margin-top:20px;">Pourquoi tu n'as <span class="accent">PAS besoin</span> de créer un produit, un site web, ou d'investir le moindre euro pour lancer cette activité</p>
+</div>
+
+<div class="slide" id="intro-s121">
+  <h1 class="accent glow" style="font-size:80px;">2.</h1>
+  <p style="margin-top:20px;">La raison pour laquelle <span class="accent">200 000 personnes</span> en France sont assises sur une mine d'or sans le savoir. Et comment toi tu vas en profiter</p>
+  <div class="placeholder small" style="margin-top:20px;">Screenshot source du chiffre 200 000 (etude, article, statistique officielle) — cadre rouge autour du chiffre pour credibiliser le claim</div>
+</div>
+
+<div class="slide" id="intro-s122">
+  <h1 class="accent glow" style="font-size:80px;">3.</h1>
+  <p style="margin-top:20px;">Le <span class="accent">message exact</span> qu'un de mes élèves a envoyé pour signer son premier deal et faire 10 000 euros en un mois. Je vais te le montrer <span class="accent">mot pour mot</span></p>
+  <div class="placeholder small" style="margin-top:20px;">Preview FLOUTEE du message exact (on devine la forme mais pas le contenu) — teaser visuel pour creer la curiosite, avec cadre rouge autour</div>
+</div>
+
+<div class="slide" id="intro-s123">
+  <h1 class="accent glow" style="font-size:80px;">4.</h1>
+  <p style="margin-top:20px;">Pourquoi les mecs qui te vendent du dropshipping et du trading ne font eux-mêmes <span class="accent">NI dropshipping NI trading</span>. Et ce que ça veut dire pour toi</p>
+</div>
+
+<div class="slide" id="intro-s124">
+  <h1 class="accent glow" style="font-size:80px;">5.</h1>
+  <p style="margin-top:20px;">Le truc le plus <span class="accent">contre-intuitif</span> que tu vas entendre ce soir : moins tu as d'expérience, <span class="accent">plus c'est facile</span> de commencer</p>
+</div>
+
+<div class="slide" id="intro-s125">
+  <h1 class="accent glow">On commence.</h1>
+</div>
+
+<!-- =============================== -->
+<!-- LOGO + NAVIGATION                -->
+<!-- =============================== -->
+
+<div class="slide" id="e1-s1">
+  <h2>Les <span class="accent">4 étapes</span> pour lancer ton activité d'Opérateur de Croissance</h2>
+  <div class="roadmap">
+    <div class="roadmap-step active-step">
+      <div class="step-num">Étape 1</div>
+      <div class="step-label">CHOISIS</div>
+    </div>
+    <div class="roadmap-step">
+      <div class="step-num">Étape 2</div>
+      <div class="step-label">SIGNE</div>
+    </div>
+    <div class="roadmap-step">
+      <div class="step-num">Étape 3</div>
+      <div class="step-label">CONSTRUIS</div>
+    </div>
+    <div class="roadmap-step">
+      <div class="step-num">Étape 4</div>
+      <div class="step-label">ENCAISSE</div>
+    </div>
+  </div>
+</div>
+
+<div class="slide" id="e1-s2">
+  <p>On va voir ensemble les <span class="accent">4 étapes exactes</span> pour lancer ton activité d'Opérateur de Croissance.</p>
+</div>
+
+<div class="slide" id="e1-s3">
+  <p>Pas 15, pas 20. <span class="accent">Quatre.</span></p>
+</div>
+
+<div class="slide" id="e1-s4">
+  <p>Et à la fin de cette présentation, tu sauras <span class="accent">exactement par où commencer</span>.</p>
+</div>
+
+<!-- =============================== -->
+<!-- ETAPE 1 EN SURBRILLANCE          -->
+<!-- =============================== -->
+
+<div class="slide" id="e1-s5">
+  <h1 class="accent glow">Étape 1 : CHOISIS ton créateur</h1>
+</div>
+
+<!-- =============================== -->
+<!-- 1A — CONTEXTE                    -->
+<!-- =============================== -->
+
+<div class="slide" id="e1-s6">
+  <p>L'étape numéro 1, c'est la <span class="accent">plus importante de toutes</span>.</p>
+</div>
+
+<div class="slide" id="e1-s7">
+  <p>Parce que si tu choisis le mauvais créateur, tu peux tout faire parfaitement et <span class="accent">quand même ne pas gagner d'argent</span>.</p>
+</div>
+
+<div class="slide" id="e1-s8">
+  <p>À l'inverse, si tu choisis le <span class="accent">BON</span> créateur, même si tu fais des erreurs, ça va marcherr.</p>
+</div>
+
+<div class="slide" id="e1-s9">
+  <p>Et quand je te dis ça, c'est pas de la magie. C'est de la <span class="accent">logique</span>. Tu vas comprendre par toi-même dans les prochaines minutes.</p>
+</div>
+
+<div class="slide" id="e1-s10">
+  <h2>Mais d'abord, regarde <span class="accent">cette stat</span>.</h2>
+</div>
+
+<div class="slide" id="e1-s11">
+  <h1>Plus de <span class="accent">200 000</span> créateurs de contenu en France gagnent moins de <span class="accent">400 EUR/mois</span> avec leur audience</h1>
+  <div class="placeholder" style="margin-top:30px;">[P13] Screenshot article source / étude créateurs FR</div>
+</div>
+
+<div class="slide" id="e1-s12">
+  <p>Il y a plus de <span class="accent">200 000 créateurs</span> de contenu en France qui gagnent moins de 400 euros par mois.</p>
+</div>
+
+<div class="slide" id="e1-s13">
+  <p>Ces gens-là, ils ont une audience, ils ont de l'influence, mais ils <span class="accent">ne savent pas comment la monétiser</span>.</p>
+  <div class="placeholder wide" style="margin-top:30px;">[P67] Screenshots tweets/posts de créateurs FR qui se plaignent de ne pas savoir monétiser (vrais messages, pas des fakes)</div>
+</div>
+
+<div class="slide" id="e1-s14">
+  <p>Regarde. Ca, c'est des messages que je reçois <span class="accent">quasiment tous les jours</span>.</p>
+  <div class="placeholder wide" style="margin-top:30px;">[P10] Screenshots messages de créateurs qui veulent monétiser</div>
+</div>
+
+<div class="slide" id="e1-s15">
+  <p>Des créateurs qui me disent : "J'ai une audience, mais je <span class="accent">ne gagne rien</span> avec."</p>
+</div>
+
+<div class="slide" id="e1-s16">
+  <p>Ils sont partout. Et ils attendent juste que <span class="accent">quelqu'un vienne les aider</span>.</p>
+</div>
+
+<div class="slide" id="e1-s17">
+  <h2>Ce quelqu'un, ça peut etre <span class="accent">toi</span>.</h2>
+</div>
+
+<div class="slide" id="e1-s18">
+  <p>Et je vais te montrer exactement comment. Avec <span class="accent">une histoire vraie</span>.</p>
+</div>
+
+<!-- =============================== -->
+<!-- 1B — VISION : MICRO-STORY SIRIN  -->
+<!-- =============================== -->
+
+<div class="slide" id="e1-s19">
+  <p>On est en <span class="accent">juillet 2024</span>. À ce moment-là, j'étais encore basketteur.</p>
+  <div class="placeholder small" style="margin-top:30px;">[P30] Photo Matheo en maillot de basket / sur le terrain à Rouen</div>
+</div>
+
+<div class="slide" id="e1-s20">
+  <p>Je jouais au Rouen Metropole Basket depuis mes 14 ans.</p>
+  <div class="placeholder small" style="margin-top:30px;">[P31] Photo équipe Rouen Metropole Basket ou article local mentionnant Matheo</div>
+</div>
+
+<div class="slide" id="e1-s21">
+  <p>A 16 ans, j'avais signé ce qu'on appelle un contrat aspirant pro.</p>
+  <div class="placeholder" style="margin-top:30px;">[P32] Screenshot / photo du contrat aspirant pro (flouté si besoin, cadre rouge sur "aspirant")</div>
+</div>
+
+<div class="slide" id="e1-s22">
+  <h1 class="accent glow">314 EUR/mois</h1>
+  <p class="sub">Pendant trois ans.</p>
+  <div class="placeholder small" style="margin-top:30px;">[P33] Screenshot fiche de paie ou virement montrant 314 EUR (cadre rouge sur le montant)</div>
+</div>
+
+<div class="slide" id="e1-s23">
+  <p>314 euros par mois. T'imagines ?</p>
+</div>
+
+<div class="slide" id="e1-s24">
+  <p>J'avais un patron, des contraintes, des entraînements tous les jours.</p>
+</div>
+
+<div class="slide" id="e1-s25">
+  <p>Et au bout de 3 ans, la seule chose qu'ils m'ont proposée, c'est un contrat pro a <span class="accent">2 000 euros brut</span>.</p>
+  <div class="placeholder small" style="margin-top:30px;">[P34] Screenshot proposition de contrat pro ou fiche de paie 2 000 EUR brut (cadre rouge sur le montant)</div>
+</div>
+
+<div class="slide" id="e1-s26">
+  <p>Sauf qu'avec l'appart, les factures, il me restait <span class="accent">quasiment rien</span>.</p>
+</div>
+
+<div class="slide" id="e1-s27">
+  <p>J'en avais marre. J'avais essayé des trucs à côté : du dropshipping, du trading, des sites web.</p>
+  <div class="placeholder wide" style="margin-top:30px;">[P72] Screenshots des vrais fails : store Shopify dropshipping abandonne, historique trading en perte, ancien site web qui n'a rien généré — preuves que c'était réel, pas juste des mots</div>
+</div>
+
+<div class="slide" id="e1-s28">
+  <h2><span class="accent">Rien</span> n'avait marché.</h2>
+</div>
+
+<div class="slide" id="e1-s29">
+  <p>Et un jour, j'avais rapidement entendu parler d'un concept qui s'appelle l'<span class="accent">Opération de Croissance</span> par un Américain.</p>
+  <div class="placeholder small" style="margin-top:30px;">[P35] Screenshot vidéo YouTube ou post de l'Américain qui parle d'Opération de Croissance</div>
+</div>
+
+<div class="slide" id="e1-s30">
+  <p>J'avais regardé vite fait, je m'étais dit que c'était pas pour moi, et j'étais passé à autre chose.</p>
+</div>
+
+<div class="slide" id="e1-s31">
+  <p>Mais là, j'en pouvais plus du basket.</p>
+</div>
+
+<div class="slide" id="e1-s32">
+  <p>Donc j'ai fait un choix : j'ai signé dans une équipe de National 2 à Cergy, un seul entraînement par jour.</p>
+  <div class="placeholder small" style="margin-top:30px;">[P36] Photo Matheo à Cergy ou article local mentionnant le transfert en National 2</div>
+</div>
+
+<div class="slide" id="e1-s33">
+  <p>Et le reste du temps, je me suis replongé <span class="accent">a fond</span> dans ce concept d'Opération de Croissance.</p>
+</div>
+
+<div class="slide" id="e1-s34">
+  <p>Et là, j'ai fait un truc tout simple : j'ai envoyé <span class="accent">un message à Sirin</span> sur Instagram.</p>
+</div>
+
+<div class="slide" id="e1-s35">
+  <p>Elle avait <span class="accent">3 000 abonnés</span>. Elle parlait de développement personnel pour les femmes.</p>
+  <div class="placeholder" style="margin-top:30px;">[P37] Screenshot profil Instagram de Sirin a l'époque (~3 000 abonnés, cadre rouge sur le compteur)</div>
+</div>
+
+<div class="slide" id="e1-s36">
+  <p>Regarde, c'est ce message-la. C'est tout ce que je lui ai envoyé.</p>
+  <div class="placeholder" style="margin-top:30px;">[P19] Screenshot du vrai DM envoyé à Sirin sur Instagram</div>
+</div>
+
+<div class="slide" id="e1-s37">
+  <p>Rien de fou. <span class="accent">Rien de compliqué.</span></p>
+</div>
+
+<div class="slide" id="e1-s38">
+  <p>Elle a voulu prendre un appel. <span class="accent">Ça a matché.</span></p>
+  <div class="placeholder" style="margin-top:30px;">[P38] Screenshot réponse de Sirin au DM (son message qui accepte l'appel)</div>
+</div>
+
+<div class="slide" id="e1-s39">
+  <p>Et tu sais le plus fou ? Je n'avais <span class="accent">RIEN</span> à lui vendre.</p>
+</div>
+
+<div class="slide" id="e1-s40">
+  <p>C'est pas comme le dropshipping où tu vends des produits chinois de mauvaise qualité à tatie Mireille qui passe son temps à scroller sur Facebook.</p>
+  <div class="placeholder small" style="margin-top:25px;">Photo d'une vieille dame sur Facebook (illustration humoristique)</div>
+</div>
+
+<div class="slide" id="e1-s41">
+  <p>C'est pas comme l'OFM où tu aides des femmes à vendre des photos de leurs pieds sur internet.</p>
+  <div class="placeholder small" style="margin-top:25px;">Photo d'un pied barré d'une croix rouge (illustration)</div>
+</div>
+
+<div class="slide" id="e1-s42">
+  <p>Non. Je lui ai dit : "Écoute, je prends un pourcentage sur les revenus que je te <span class="accent">FAIS générer</span>."</p>
+</div>
+
+<div class="slide" id="e1-s43">
+  <p>Elle gagnait <span class="accent">zéro euro</span> avec ses abonnés. Donc pour elle, c'était une évidence.</p>
+  <div class="placeholder small" style="margin-top:30px;">[P39] Screenshot message de Sirin confirmant qu'elle ne gagnait rien avant (ou témoignage vidéo freeze frame)</div>
+</div>
+
+<!-- =============================== -->
+<!-- CONCRETEMENT, ON A FAIT QUOI ?  -->
+<!-- =============================== -->
+
+<div class="slide" id="e1-s44">
+  <h2>Concrètement, on a fait quoi ?</h2>
+</div>
+
+<div class="slide" id="e1-s45">
+  <p>On a pris l'expertise de Sirin, le développement personnel pour les femmes, et on a créé un <span class="accent">accompagnement payant</span> pour son audience.</p>
+  <div class="placeholder" style="margin-top:30px;">[P40] Screenshot page de vente ou landing page de l'accompagnement de Sirin</div>
+</div>
+
+<div class="slide" id="e1-s46">
+  <p>Concrètement, les femmes avaient un appel par semaine avec Sirin, et entre les appels, elles pouvaient lui écrire sur WhatsApp.</p>
+  <div class="placeholder" style="margin-top:30px;">[P41] Screenshot appel Zoom avec Sirin + ses clientes (ou screenshot groupe WhatsApp)</div>
+</div>
+
+<div class="slide" id="e1-s47">
+  <p>C'est tout. Pas de studio, pas de monteur vidéo, pas de site compliqué.</p>
+</div>
+
+<div class="slide" id="e1-s48">
+  <p>Juste Sirin, son telephone et son expertise.</p>
+</div>
+
+<div class="slide" id="e1-s49">
+  <p>Prix : <span class="accent">1 200 euros</span> par personne.</p>
+  <div class="placeholder small" style="margin-top:30px;">[P42] Screenshot page de paiement ou checkout montrant 1 200 EUR (cadre rouge sur le prix)</div>
+</div>
+
+<div class="slide" id="e1-s50">
+  <h1>Et en une semaine, on a fait <span class="accent">7 ventes</span></h1>
+  <p class="sub">soit 8 400 euros de chiffre d'affaires</p>
+  <div class="placeholder" style="margin-top:30px;">[P43] Screenshot notifications de paiement en temps réel (Stripe/PayPal) montrant les 7 ventes une par une (cadre rouge sur les montants)</div>
+</div>
+
+<div class="slide" id="e1-s51">
+  <p>Regarde. <span class="accent">8 400 euros.</span> En une semaine.</p>
+  <div class="placeholder wide" style="margin-top:30px;">[P4] Screenshot dashboard de ventes Sirin</div>
+</div>
+
+<div class="slide" id="e1-s52">
+  <p>Avec une creatrice de <span class="accent">3 000 abonnés</span> que personne ne connaissait.</p>
+  <div class="placeholder small" style="margin-top:30px;">[P44] Photo de Sirin (visage réel, pas un avatar) pour humaniser</div>
+</div>
+
+<div class="slide" id="e1-s53">
+  <p>Et les femmes qui ont rejoint l'accompagnement ? Regarde ce qu'elles disent.</p>
+  <div class="placeholder wide" style="margin-top:30px;">[P20] Screenshots témoignages clientes de Sirin</div>
+</div>
+
+<div class="slide" id="e1-s54">
+  <p>Le créateur gagne de l'argent, toi tu gagnes de l'argent, et l'audience recoit un vrai accompagnement qui change leur quotidien.</p>
+  <div class="placeholder wide" style="margin-top:30px;">[P68] Triptyque de preuves : 1) Screenshot Sirin celebrant ses revenus 2) Screenshot commission de Matheo 3) Screenshot témoignage d'une cliente satisfaite — les 3 cote à côté</div>
+</div>
+
+<div class="slide" id="e1-s55">
+  <h2><span class="accent">Tout le monde gagne.</span></h2>
+</div>
+
+<div class="slide" id="e1-s56">
+  <p>C'est pas moi qui le dis. C'est <span class="accent">les résultats</span>.</p>
+  <div class="placeholder wide" style="margin-top:30px;">[P69] Compilation 4-6 screenshots de résultats differents : dashboard Stripe, témoignages créateurs, messages de clientes, posts Skool — le maximum de preuves visuelles empilees</div>
+</div>
+
+<div class="slide" id="e1-s57">
+  <p>Tu vois la différence entre vendre un truc à quelqu'un qui n'en veut pas, et <span class="accent">apporter de la valeur</span> à quelqu'un qui en a besoin ?</p>
+</div>
+
+<!-- =============================== -->
+<!-- C'EST QUOI UN OPC ?              -->
+<!-- =============================== -->
+
+<div class="slide" id="e1-s58">
+  <h2>C'est quoi un <span class="accent">Opérateur de Croissance</span>, concrètement ?</h2>
+</div>
+
+<div class="slide" id="e1-s59">
+  <p>En fait, ton role, c'est celui d'un <span class="accent">agent</span>.</p>
+</div>
+
+<div class="slide" id="e1-s60">
+  <p>Tu sais, si tu devais apprendre à jouer au football, tu préférerais prendre des cours avec <span class="accent">Messi</span>, ou avec l'entraîneur de ton club de quartier ?</p>
+</div>
+
+<div class="slide" id="e1-s61">
+  <p>La réponse est évidente. Les gens veulent apprendre <span class="accent">du meilleur</span>.</p>
+</div>
+
+<div class="slide" id="e1-s62">
+  <p>Du créateur qu'ils suivent depuis des mois, qu'ils admirent, en qui ils ont <span class="accent">confiance</span>.</p>
+</div>
+
+<div class="slide" id="e1-s63">
+  <p>Et le créateur, lui, il est fait pour créer du contenu et enseigner ce qu'il sait.</p>
+</div>
+
+<div class="slide" id="e1-s64">
+  <p>Mais générer des revenus avec son audience, attirer des clients, les convertir en acheteurs ? Ca, c'est un <span class="accent">métier à part entière</span>.</p>
+</div>
+
+<div class="slide" id="e1-s65">
+  <p>C'est comme un agent sportif : Cristiano Ronaldo est le meilleur joueur du monde, mais c'est <span class="accent">Jorge Mendes</span> qui négocie ses contrats.</p>
+  <div class="placeholder" style="margin-top:30px;">[P66] Photo Cristiano Ronaldo + Jorge Mendes ensemble (photo réelle, pas un montage). Cadre rouge autour de Mendes pour montrer qui c'est</div>
+</div>
+
+<div class="slide" id="e1-s66">
+  <p>Un créateur de contenu, c'est pareil. La partie business, les tunnels de vente, les pubs, le marketing, c'est pas ce qui le passionne.</p>
+</div>
+
+<div class="slide" id="e1-s67">
+  <p>C'est pas pour ça qu'il s'est lancé. Et c'est exactement pour ça qu'il accepte de <span class="accent">bosser avec toi</span>.</p>
+</div>
+
+<div class="slide" id="e1-s68">
+  <p>Tu prends en charge tout ce qui ne l'intéresse pas, et tu lui permets de se concentrer sur <span class="accent">sa passion</span>.</p>
+</div>
+
+<div class="slide" id="e1-s69">
+  <p>Et ce que j'ai appris a faire, <span class="accent">toi aussi tu vas l'apprendre</span>. Ca s'apprend.</p>
+</div>
+
+<div class="slide" id="e1-s70">
+  <p>Dagan ne savait rien de tout ça il y a 6 mois. Brandon non plus.</p>
+  <div class="placeholder twin" style="margin-top:30px;">[P45] Cote à côté : photo Dagan + photo Brandon (visages réels). Sous chaque photo : screenshot de leur premier message quand ils debutaient (avant/apres implicite)</div>
+</div>
+
+<div class="slide" id="e1-s71">
+  <p>La seule différence entre eux et les autres, c'est qu'ils ont eu la <span class="accent">bonne méthode</span> et les bonnes personnes autour d'eux pour avancer vite.</p>
+</div>
+
+<div class="slide" id="e1-s72">
+  <p>On en reparle tout à l'heure.</p>
+</div>
+
+<!-- =============================== -->
+<!-- MICRO-STORY : DAGAN              -->
+<!-- =============================== -->
+
+<div class="slide" id="e1-s73">
+  <p>Et je suis pas le seul à l'avoir vécu.</p>
+</div>
+
+<div class="slide" id="e1-s74">
+  <p><span class="accent">Dagan</span>, justement, il a 24 ans, il était alternant en marketing.</p>
+  <div class="placeholder" style="margin-top:30px;">[P21] Photo de Dagan (visage réel) + screenshot messages Dagan avant de commencer</div>
+</div>
+
+<div class="slide" id="e1-s75">
+  <p>Il avait regardé mes vidéos sur YouTube.</p>
+</div>
+
+<div class="slide" id="e1-s76">
+  <p>Quand il a commencé à démarcher des créateurs, il a fait un truc malin.</p>
+</div>
+
+<div class="slide" id="e1-s77">
+  <p>Au lieu d'envoyér des messages génériques comme tout le monde, il a enregistre des <span class="accent">petites vidéos personnalisées</span> d'une minute chacune.</p>
+  <div class="placeholder" style="margin-top:30px;">[P46] Screenshot DM Instagram de Dagan montrant la vidéo personnalisée envoyée au créateur (le vrai message, pas une reconstitution)</div>
+</div>
+
+<div class="slide" id="e1-s78">
+  <p>Où il expliquait au créateur qu'il pouvait l'aider.</p>
+</div>
+
+<div class="slide" id="e1-s80">
+  <p>Résultat : il a signé son premier créateur <span class="accent">en deux semaines</span>.</p>
+  <div class="placeholder" style="margin-top:30px;">[P47] Screenshot message/conversation ou le créateur confirme qu'il signe avec Dagan (cadre rouge sur la confirmation)</div>
+</div>
+
+<div class="slide" id="e1-s81">
+  <p>Premier mois : <span class="accent">10 000 euros</span> de chiffre d'affaires. 3 000 euros dans sa poche. En etant alternant.</p>
+  <div class="placeholder" style="margin-top:30px;">[P22] Screenshot dashboard de ventes OU notifications Stripe montrant 10 000 EUR (cadre rouge sur le total)</div>
+</div>
+
+<div class="slide" id="e1-s81b">
+  <p>Regarde. C'est son <span class="accent">vrai virement</span>.</p>
+  <div class="placeholder" style="margin-top:30px;">[P48] Screenshot virement bancaire de Dagan recevant sa commission ~3 000 EUR (cadre rouge sur le montant, infos perso floutees)</div>
+</div>
+
+<div class="slide" id="e1-s82">
+  <p>Le créateur lui a dit : "Si tu innoves pour me contacter, <span class="accent">tu vas innover pour mon business</span>."</p>
+  <div class="placeholder" style="margin-top:30px;">[P23] Screenshot message créateur a Dagan</div>
+</div>
+
+<div class="slide" id="e1-s83">
+  <p>Regarde, c'est son message. <span class="accent">Ça resume tout.</span></p>
+</div>
+
+<div class="slide" id="e1-s85">
+  <h2>C'est <span class="accent">complètement différent</span>, non ?</h2>
+</div>
+
+<!-- =============================== -->
+<!-- 1C — POURQUOI CA MARCHE          -->
+<!-- =============================== -->
+
+<div class="slide" id="e1-s86">
+  <p>Maintenant que tu as vu comment ça marche concrètement, je veux que tu comprennes un truc <span class="accent">fondamental</span>.</p>
+</div>
+
+<div class="slide" id="e1-s87">
+  <h2>Les gens payent <span class="accent">DÉJÀ</span> pour progresser. Tous les jours.</h2>
+</div>
+
+<div class="slide" id="e1-s88">
+  <p>Toi, là, tu as déjà payé pour quelque chose qui te fait progresser plus vite.</p>
+</div>
+
+<div class="slide" id="e1-s89">
+  <p>Un abonnement a une <span class="accent">salle de sport</span> au lieu de faire des pompes chez toi.</p>
+</div>
+
+<div class="slide" id="e1-s90">
+  <p>Tu t'es sûrement déjà inscrit à un <span class="accent">sport</span>. Et tu avais un coach pour progresser plus vite. Tu n'as pas tout appris tout seul dans ton coin.</p>
+</div>
+
+<div class="slide" id="e1-s91">
+  <p>T'as peut-être même payé un <span class="accent">prof particulier</span> quand tu étais au lycée.</p>
+</div>
+
+<div class="slide" id="e1-s92">
+  <p>Les audiences des créateurs de contenu, c'est <span class="accent">exactement la même chose</span>.</p>
+</div>
+
+<div class="slide" id="e1-s93">
+  <p>Ils suivent un créateur parce qu'ils veulent progresser. Et quand on leur propose un accompagnement structure pour y arriver plus vite, ils disent <span class="accent">oui</span>.</p>
+</div>
+
+<!-- =============================== -->
+<!-- CE MODELE EXISTE DEJA            -->
+<!-- =============================== -->
+
+<div class="slide" id="e1-s94">
+  <p>Et ce que je te montre là, c'est pas un concept que j'ai inventé dans mon coin.</p>
+</div>
+
+<div class="slide" id="e1-s94b">
+  <p>C'est un <span class="accent">modèle prouvé</span> qui existe déjà à grande échelle.</p>
+</div>
+
+<div class="slide" id="e1-s94c">
+  <p>Des experts qui enseignent, des opérateurs qui gèrent le business, et des clients qui progressent.</p>
+  <div style="display:flex;gap:40px;margin-top:40px;align-items:center;justify-content:center;">
+    <div class="card" style="min-width:220px;">
+      <p style="font-size:28px;font-weight:700;color:#1BA7FF;">Expert</p>
+      <p style="font-size:20px;color:rgba(255,255,255,0.7);margin-top:8px;">Crée le contenu et enseigne</p>
+    </div>
+    <p style="font-size:36px;color:rgba(27,167,255,0.5);">→</p>
+    <div class="card" style="min-width:220px;">
+      <p style="font-size:28px;font-weight:700;color:#1BA7FF;">Opérateur</p>
+      <p style="font-size:20px;color:rgba(255,255,255,0.7);margin-top:8px;">Gère le business et le marketing</p>
+    </div>
+    <p style="font-size:36px;color:rgba(27,167,255,0.5);">→</p>
+    <div class="card" style="min-width:220px;">
+      <p style="font-size:28px;font-weight:700;color:#1BA7FF;">Client</p>
+      <p style="font-size:20px;color:rgba(255,255,255,0.7);margin-top:8px;">Progresse et obtient des résultats</p>
+    </div>
+  </div>
+</div>
+
+<div class="slide" id="e1-s95">
+  <h2>Ça existe déjà à <span class="accent">très grande échelle</span>.</h2>
+</div>
+
+<div class="slide" id="e1-s96">
+  <p>Tu connais <span class="accent">MasterClass</span> ?</p>
+  <div class="placeholder" style="margin-top:30px;">[P14] Screenshot page MasterClass</div>
+</div>
+
+<div class="slide" id="e1-s97">
+  <p>Gordon Ramsay, un des meilleurs cuisiniers du monde, t'apprend la cuisine. Serena Williams t'apprend le tennis.</p>
+  <div class="placeholder wide" style="margin-top:25px;">Screenshots du site MasterClass avec Serena Williams et Gordon Ramsay</div>
+</div>
+
+<div class="slide" id="e1-s98">
+  <p>Résultat ? MasterClass est une entreprise valorisée à plus d'<span class="accent">un milliard de dollars</span>.</p>
+  <div class="placeholder" style="margin-top:30px;">[P50] Screenshot article TechCrunch/Forbes montrant la valorisation MasterClass (cadre rouge sur "$800M+ valuation" ou "unicorn")</div>
+</div>
+
+<div class="slide" id="e1-s99">
+  <p>C'est <span class="accent">exactement</span> le même principe.</p>
+</div>
+
+<div class="slide" id="e1-s100">
+  <p>Et là, tu te dis peut-être : "Ouais Matheo, mais ça c'est des stars mondiales. Ça marche parce que c'est Gordon Ramsay."</p>
+</div>
+
+<div class="slide" id="e1-s101">
+  <p>Et je te comprends. Donc laisse-moi te montrer <span class="accent">un truc</span>.</p>
+</div>
+
+<div class="slide" id="e1-s102">
+  <p>Regarde ce créateur. Personne ne le connait en dehors de sa niche.</p>
+  <div class="placeholder" style="margin-top:30px;">[P14b] Screenshot petit créateur FR ~5-10K abonnés avec accompagnement lancé</div>
+</div>
+
+<div class="slide" id="e1-s103">
+  <p>Et pourtant, quand il a lancé un accompagnement pour son audience, il a fait <span class="accent">plusieurs milliers d'euros</span>.</p>
+  <div class="placeholder" style="margin-top:30px;">[P51] Screenshot résultats de vente du petit créateur (dashboard, notifications de paiement, cadre rouge sur le CA)</div>
+</div>
+
+<div class="slide" id="e1-s104">
+  <p>Pourquoi ? Parce que ses abonnés le suivent depuis des mois, ils lui font <span class="accent">confiance</span>, et ils rêvaient d'aller plus loin avec lui.</p>
+</div>
+
+<div class="slide" id="e1-s105">
+  <p>T'as pas besoin d'etre Gordon Ramsay. T'as besoin d'un créateur dont l'audience <span class="accent">veut progresser</span>.</p>
+</div>
+
+<div class="slide" id="e1-s106">
+  <p>Et même en France, les gros s'y mettent.</p>
+  <div class="placeholder" style="margin-top:30px;">[P15] Screenshot Maître Gims formation</div>
+</div>
+
+<div class="slide" id="e1-s107">
+  <p><span class="accent">Maître Gims</span> a sorti une formation pour apprendre comment devenir un chanteur à succès. Parce que son audience veut apprendre de LUI.</p>
+  <div class="placeholder" style="margin-top:30px;">[P52] Screenshot page de vente de la formation de Maître Gims (cadre rouge sur le prix et l'offre)</div>
+</div>
+
+<div class="slide" id="e1-s107b">
+  <p>Est-ce que tu penses que c'est <span class="accent">Maître Gims</span> qui est parti créer son site web ?</p>
+  <p style="margin-top:15px;">Qui a construit toute la stratégie autour de lui ?</p>
+</div>
+
+<div class="slide" id="e1-s107c">
+  <h2>Non. C'est quelqu'un <span class="accent">dans l'ombre</span>.</h2>
+  <p class="sub" style="margin-top:15px;">Un opérateur de croissance.</p>
+</div>
+
+<div class="slide" id="e1-s108">
+  <p>Le mouvement est déjà la aux États-Unis. En France, on est <span class="accent">en retard</span>.</p>
+  <div class="placeholder" style="margin-top:30px;">[P53] Screenshot exemples US (Skool communities, coaching platforms) montrant le volume de business la-bas vs quasi rien en France</div>
+</div>
+
+<div class="slide" id="e1-s109">
+  <p>Et c'est pour ça que c'est une <span class="accent">opportunité en or</span> pour toi. Tu arrives au debut de la vague.</p>
+</div>
+
+<!-- =============================== -->
+<!-- LES CHIFFRES                     -->
+<!-- =============================== -->
+
+<div class="slide" id="e1-s110">
+  <h2>Les chiffres</h2>
+  <div class="placeholder" style="margin-top:30px;">[P17] Source marché e-learning FR</div>
+</div>
+
+<div class="slide" id="e1-s111">
+  <p>Le marché de l'e-learning en France est passé de <span class="accent">1 milliard</span> d'euros en 2020 à plus de <span class="accent">4 milliards</span> en 2024.</p>
+  <div class="placeholder" style="margin-top:30px;">[P54] Screenshot graphique croissance marché e-learning FR (source Statista, OECD, ou article presse, cadre rouge sur les chiffres clés)</div>
+</div>
+
+<div class="slide" id="e1-s112">
+  <p>Et il continue de grossir de <span class="accent">20 a 30%</span> par an.</p>
+  <div class="placeholder small" style="margin-top:30px;">[P55] Screenshot source montrant le taux de croissance 20-30%/an (cadre rouge sur le pourcentage)</div>
+</div>
+
+<div class="slide" id="e1-s113">
+  <p>Le marché de la formation professionnelle en France, c'est entre <span class="accent">27 et 29 milliards</span> d'euros.</p>
+  <div class="placeholder" style="margin-top:30px;">[P18] Source marché formation pro FR</div>
+</div>
+
+<div class="slide" id="e1-s114">
+  <p>L'État a investi plus de <span class="accent">15 milliards</span> en 2024 dans la formation et la montée en compétences.</p>
+  <div class="placeholder" style="margin-top:30px;">[P56] Screenshot article officiel ou rapport gouvernemental montrant les 15 milliards (cadre rouge sur le montant)</div>
+</div>
+
+<div class="slide" id="e1-s115">
+  <p>Les gens dépensent déjà des fortunes pour progresser. Des velos à 5 000 euros, des montres connectees à 800 euros, des stages de golf à 2 000 euros la semaine.</p>
+  <div class="placeholder wide" style="margin-top:30px;">[P57] 3 screenshots cote à côté : velo route à 5 000 EUR sur Decathlon/Canyon, montre Garmin à 800 EUR, stage de golf à 2 000 EUR/semaine (cadre rouge sur chaque prix)</div>
+</div>
+
+<div class="slide" id="e1-s116">
+  <p>Investir 500 ou 1 000 euros dans un accompagnement avec un créateur qu'ils admirent ? C'est <span class="accent">rien</span> pour eux.</p>
+</div>
+
+<!-- =============================== -->
+<!-- CA MARCHE DANS TOUTES LES NICHES -->
+<!-- =============================== -->
+
+<div class="slide" id="e1-s117">
+  <h2>Et ça marche dans <span class="accent">toutes les niches</span>. Regarde.</h2>
+</div>
+
+<div class="slide" id="e1-s118">
+  <p><span class="accent">Simon Camirand.</span> Une chaîne YouTube 100% golf francophone.</p>
+  <div class="placeholder" style="margin-top:30px;">[P16] Screenshot chaîne YouTube Simon Camirand - 82K abonnés, 911 vidéos</div>
+</div>
+
+<div class="slide" id="e1-s119">
+  <p><span class="accent">82 000 abonnés.</span> 911 vidéos. 16 millions de vues.</p>
+  <div class="placeholder" style="margin-top:30px;">[P58] Screenshot page YouTube Simon Camirand avec cadre rouge sur 82K abonnés, 911 vidéos et 16M vues</div>
+</div>
+
+<div class="slide" id="e1-s120">
+  <p>Et tu sais quelle est sa seule source de revenus ?</p>
+</div>
+
+<div class="slide" id="e1-s121">
+  <p>Un lien YouTube Premium dans sa bio qui <span class="accent">ne fonctionne même pas</span> quand tu cliques dessus.</p>
+  <div class="placeholder" style="margin-top:30px;">[P16b] Screenshot bio Simon Camirand - lien YouTube Premium casse</div>
+</div>
+
+<div class="slide" id="e1-s122">
+  <p>Ce mec a une audience de golfeurs passionnés, prêts a dépenser des <span class="accent">milliers d'euros</span> pour progresser.</p>
+  <div class="placeholder" style="margin-top:30px;">[P59] Screenshot commentaires sous les vidéos de Simon Camirand : golfeurs qui demandent du coaching, qui veulent aller plus loin (cadre rouge sur les commentaires clés)</div>
+</div>
+
+<div class="slide" id="e1-s123">
+  <p>Et il ne gagne <span class="accent">quasiment rien</span> avec.</p>
+</div>
+
+<div class="slide" id="e1-s124">
+  <p>Maintenant imagine : tu le contactes, tu lui proposes de lancer un accompagnement sur 3 mois.</p>
+</div>
+
+<div class="slide" id="e1-s125">
+  <p>Il fait ce qu'il sait faire, enseigner le golf. Toi, tu gères <span class="accent">le business</span>.</p>
+</div>
+
+<div class="slide" id="e1-s126">
+  <h2>Tu commences à voir <span class="accent">le potentiel</span> ?</h2>
+</div>
+
+<!-- =============================== -->
+<!-- 1D — STRATEGIE : LES 4 CRITERES -->
+<!-- =============================== -->
+
+<div class="slide" id="e1-s127">
+  <h1>Les <span class="accent">4 critères</span> du créateur ideal</h1>
+</div>
+
+<div class="slide" id="e1-s128">
+  <p>Ok, concrètement, comment tu fais pour trouver le bon créateur ?</p>
+</div>
+
+<div class="slide" id="e1-s129">
+  <p>Tu évalues chaque créateur sur <span class="accent">4 critères</span>. Si les 4 sont là, fonce. S'il en manque un, passe au suivant.</p>
+</div>
+
+<!-- CRITERE 1 -->
+
+<div class="slide" id="e1-s130">
+  <h2>Critère 1 : <span class="accent">Douleur OU passion</span></h2>
+  <p class="sub">Une audience qui veut progresser</p>
+</div>
+
+<div class="slide" id="e1-s131">
+  <p>Premier critère : est-ce que les gens qui suivent ce créateur <span class="accent">veulent progresser</span> dans quelque chose ?</p>
+</div>
+
+<div class="slide" id="e1-s132">
+  <p>Ça peut etre une <span class="accent">douleur</span> : sauver son couple, perdre du poids, sortir d'une situation financière compliquée.</p>
+</div>
+
+<div class="slide" id="e1-s133">
+  <p>Ou une <span class="accent">passion</span> : progresser au piano, au golf, en triathlon, en langues étrangères.</p>
+</div>
+
+<div class="slide" id="e1-s134">
+  <p>Le running en France, c'est <span class="accent">12 millions</span> de pratiquants. Le coaching en langues, c'est <span class="accent">49 milliards de dollars</span> dans le monde.</p>
+  <div class="placeholder" style="margin-top:30px;">[P60] Screenshot sources : article running FR 12M pratiquants + rapport marché mondial coaching langues 49 milliards (cadre rouge sur chaque chiffre)</div>
+</div>
+
+<div class="slide" id="e1-s135">
+  <p>Dans chacune de ces niches, il y a des centaines de milliers de personnes qui <span class="accent">dépensent déjà de l'argent</span> pour progresser.</p>
+  <div class="placeholder wide" style="margin-top:30px;">[P61] Screenshots achats réels dans ces niches : abonnements coaching running (Garmin Coach, Strava Premium), applis langues (Babbel, Italki), inscriptions stages sportifs (cadre rouge sur les prix)</div>
+</div>
+
+<div class="slide" id="e1-s136">
+  <h2>Ça fait du sens ?</h2>
+</div>
+
+<!-- CRITERE 2 -->
+
+<div class="slide" id="e1-s137">
+  <h2>Critère 2 : <span class="accent">Qui sont ses abonnés ?</span></h2>
+  <p class="sub">Le pouvoir d'achat de l'audience</p>
+</div>
+
+<div class="slide" id="e1-s138">
+  <p>Deuxième critère : <span class="accent">qui</span> sont les gens qui suivent ce créateur ?</p>
+</div>
+
+<div class="slide" id="e1-s139">
+  <p>Un créateur gaming avec une audience de <span class="accent">14-16 ans</span> ? Oublie. Ils n'ont pas de carte bleue.</p>
+  <div class="placeholder small" style="margin-top:30px;">[P62] Screenshot analytics audience d'un créateur gaming montrant 70%+ de 13-17 ans (cadre rouge sur la tranche d'age)</div>
+</div>
+
+<div class="slide" id="e1-s140">
+  <p>Un créateur de triathlon dont l'audience, c'est des <span class="accent">hommes qui ont de l'argent entre 30 et 45 ans</span> ? La, tu parles.</p>
+  <div class="placeholder small" style="margin-top:30px;">[P63] Screenshot analytics audience d'un créateur triathlon/sport endurance montrant 30-45 ans majoritaires (cadre rouge sur la tranche d'age)</div>
+</div>
+
+<div class="slide" id="e1-s141">
+  <p>Regarde, on a créé un outil qui te permet de voir en un clic l'âge moyen de l'audience d'un créateur. Mais ça, on en reparle plus tard.</p>
+  <div class="placeholder" style="margin-top:30px;">[P25] Screenshot outil analyse audience (age, localisation, profil)</div>
+</div>
+
+<div class="slide" id="e1-s142">
+  <p>Où ils habitent, quel est leur profil. Tu sais même <span class="accent">plus de choses</span> sur son audience que le créateur lui-meme.</p>
+</div>
+
+<div class="slide" id="e1-s143">
+  <p>Et ça, ça te met dans une <span class="accent">position de force</span> quand tu vas lui parler.</p>
+</div>
+
+<div class="slide" id="e1-s144">
+  <h2>C'est logique, non ?</h2>
+</div>
+
+<!-- CRITERE 3 -->
+
+<div class="slide" id="e1-s145">
+  <h2>Critère 3 : <span class="accent">Il n'a PAS encore monétisé</span></h2>
+</div>
+
+<div class="slide" id="e1-s146">
+  <p>Troisième critère : idealement, ton créateur n'a PAS encore de formation, pas de coaching, <span class="accent">pas de produit payant</span>. Juste du contenu gratuit.</p>
+</div>
+
+<div class="slide" id="e1-s147">
+  <p>Pourquoi c'est en or pour toi ?</p>
+</div>
+
+<div class="slide" id="e1-s148">
+  <p>Parce que son audience le suit depuis des mois, parfois des années. Ils n'attendent qu'<span class="accent">une seule chose</span> : pouvoir aller plus loin avec lui.</p>
+</div>
+
+<div class="slide" id="e1-s149">
+  <p>Et quand cette personne leur propose enfin un accompagnement, ils <span class="accent">se ruent dessus</span>.</p>
+</div>
+
+<div class="slide" id="e1-s150">
+  <p>C'est exactement ce qui s'est passé avec Sirin. Elle gagnait zéro euro avec ses 3 000 abonnés.</p>
+</div>
+
+<div class="slide" id="e1-s151">
+  <p>La première semaine où on a lancé un accompagnement, <span class="accent">8 400 euros</span>. Parce que la confiance était déjà là.</p>
+</div>
+
+<div class="slide" id="e1-s152">
+  <p>Et la conversation avec le créateur, c'est : "Tu as une audience qui t'aime, mais tu gagnes <span class="accent">zéro euro</span> avec. Je peux changer ça."</p>
+</div>
+
+<div class="slide" id="e1-s153">
+  <p>Pour Sirin, c'était <span class="accent">oui direct</span>.</p>
+</div>
+
+<!-- CRITERE 4 -->
+
+<div class="slide" id="e1-s154">
+  <h2>Critère 4 : <span class="accent">Tu apportes de la valeur</span></h2>
+</div>
+
+<div class="slide" id="e1-s155">
+  <p>Dernier critère : est-ce que c'est un domaine où <span class="accent">tu fais le bien</span> ?</p>
+</div>
+
+<div class="slide" id="e1-s156">
+  <p>C'est pas forcément ta passion. Moi, le dev perso pour les femmes, c'était pas ma passion.</p>
+</div>
+
+<div class="slide" id="e1-s157">
+  <p>Mais c'est un domaine où <span class="accent">tu aides des gens</span>.</p>
+</div>
+
+<div class="slide" id="e1-s158">
+  <p>Regarde ces témoignages. Ce sont les <span class="accent">VRAIS clients</span>.</p>
+  <div class="placeholder wide" style="margin-top:30px;">[P27] Screenshots témoignages clients finaux - vies changées</div>
+</div>
+
+<div class="slide" id="e1-s159">
+  <p>Les gens qui ont acheté un accompagnement et dont la <span class="accent">vie a changé</span>.</p>
+</div>
+
+<div class="slide" id="e1-s160">
+  <p>Le créateur gagne, l'audience gagne, et <span class="accent">toi tu gagnes</span>.</p>
+</div>
+
+<!-- =============================== -->
+<!-- COMMITMENT                       -->
+<!-- =============================== -->
+
+<div class="slide" id="e1-s161">
+  <p>Là, je vais te montrer un truc. Regarde ces <span class="accent">profils Instagram</span>.</p>
+</div>
+
+<div class="slide" id="e1-s162">
+  <p>Coach de tennis, <span class="accent">3 600 abonnés</span>. Pas de formation, pas de coaching payant.</p>
+  <div class="placeholder" style="margin-top:25px;">Screenshot profil Instagram coach de tennis (~3 600 abonnés)</div>
+</div>
+
+<div class="slide" id="e1-s162b">
+  <p>Coach de golf, <span class="accent">8 500 abonnés</span>.</p>
+  <div class="placeholder" style="margin-top:25px;">Screenshot profil Instagram coach de golf (~8 500 abonnés)</div>
+</div>
+
+<div class="slide" id="e1-s163">
+  <p>Prof de guitare, <span class="accent">9 900 abonnés</span>.</p>
+  <div class="placeholder" style="margin-top:25px;">Screenshot profil Instagram prof de guitare (~9 900 abonnés)</div>
+</div>
+
+<div class="slide" id="e1-s164">
+  <p>Prof de running, <span class="accent">63 000 abonnés</span>.</p>
+  <div class="placeholder" style="margin-top:25px;">Screenshot profil Instagram prof de running (~63 000 abonnés)</div>
+</div>
+
+<div class="slide" id="e1-s165">
+  <p>Ces gens-là, ils font du contenu tous les jours, ils aident leur audience gratuitement, et ils ne gagnent <span class="accent">quasiment rien</span>.</p>
+</div>
+
+<div class="slide" id="e1-s166">
+  <p>C'est exactement eux que <span class="accent">tu vas aller voir</span>.</p>
+</div>
+
+<div class="slide" id="e1-s167">
+  <p>Alors, dis-moi. Maintenant que tu as vu tout ça, les créateurs qui ne monétisent pas, les preuves que ça marche, les résultats de Sirin et de Dagan.</p>
+</div>
+
+<div class="slide" id="e1-s168">
+  <h2>Est-ce que tu commences à voir l'<span class="accent">opportunité</span> qui est devant toi ?</h2>
+</div>
+
+<div class="slide" id="e1-s169">
+  <h2>Bien. Maintenant que tu <span class="accent">SAIS</span> comment identifier le bon créateur...</h2>
+</div>
+
+<!-- =============================== -->
+<!-- PERSUASIONAL FOREPLAY            -->
+<!-- =============================== -->
+
+<div class="slide" id="e1-s170">
+  <p>Je vais te montrer un truc.</p>
+</div>
+
+<div class="slide" id="e1-s171">
+  <p>Moi, quasiment tous les jours, il y à des créateurs de contenu qui viennent me voir parce qu'ils veulent travailler avec <span class="accent">un opérateur</span>.</p>
+  <div class="placeholder wide" style="margin-top:30px;">[P64] Screenshot boite de reception DM Instagram de Matheo montrant le volume de messages entrants de créateurs (pas 1 ou 2, mais une dizaine visible, cadre rouge sur les noms/messages)</div>
+</div>
+
+<div class="slide" id="e1-s172">
+  <p>Regarde. Ca, c'est des <span class="accent">vraies conversations</span>.</p>
+  <div class="placeholder wide" style="margin-top:30px;">[P10] Screenshots messages créateurs</div>
+</div>
+
+<div class="slide" id="e1-s173">
+  <p>Des opérateurs que j'ai formés, <span class="accent">connectés avec des créateurs</span>. Ca passe tous les jours.</p>
+  <div class="placeholder wide" style="margin-top:30px;">[P28] Screenshots WhatsApp mises en relation + posts Skool</div>
+</div>
+
+<div class="slide" id="e1-s174">
+  <p>Il y a des créateurs dans le fitness, dans les relations, dans la musique, dans les langues, dans le sport...</p>
+  <div class="placeholder wide" style="margin-top:30px;max-width:90%;max-height:75vh;">Mosaïque de profils Instagram de créateurs réels dans ces niches (fitness, relations, musique, langues, sport) avec leur nombre d'abonnés visible</div>
+</div>
+
+<div class="slide" id="e1-s175">
+  <p>Et ils cherchent <span class="accent">TOUS</span> la même chose : quelqu'un qui sait transformer une audience en revenus.</p>
+</div>
+
+<div class="slide" id="e1-s176">
+  <p>Tu imagines si tu avais acces à des créateurs qui <span class="accent">VEULENT</span> travailler avec toi, au lieu de devoir les convaincre ?</p>
+</div>
+
+<div class="slide" id="e1-s177">
+  <p>On en reparle <span class="accent">plus tard</span>.</p>
+</div>
+
+<!-- =============================== -->
+<!-- TRANSITION VERS ETAPE 2          -->
+<!-- =============================== -->
+
+<div class="slide" id="e1-s178">
+  <h2>Les <span class="accent">4 étapes</span> pour lancer ton activité d'Opérateur de Croissance</h2>
+  <div class="roadmap">
+    <div class="roadmap-step done-step">
+      <div class="step-num">Étape 1</div>
+      <div class="step-label">CHOISIS</div>
+    </div>
+    <div class="roadmap-step active-step">
+      <div class="step-num">Étape 2</div>
+      <div class="step-label">SIGNE</div>
+    </div>
+    <div class="roadmap-step">
+      <div class="step-num">Étape 3</div>
+      <div class="step-label">CONSTRUIS</div>
+    </div>
+    <div class="roadmap-step">
+      <div class="step-num">Étape 4</div>
+      <div class="step-label">ENCAISSE</div>
+    </div>
+  </div>
+</div>
+
+<div class="slide" id="e1-s179">
+  <h2>Étape 1 : <span class="accent">terminée</span>.</h2>
+  <p class="sub">Tu sais exactement comment identifier le bon créateur.</p>
+</div>
+
+<div class="slide" id="e1-s180">
+  <h1>Maintenant, la question c'est : comment tu le <span class="accent">SIGNES</span> ?</h1>
+</div>
+
+<!-- =============================== -->
+<!-- LOGO + NAVIGATION                -->
+<!-- =============================== -->
+
+<div class="slide" id="e2-s1">
+  <h2>Les 4 étapes pour devenir<br/>opérateur de croissance</h2>
+  <div class="roadmap">
+    <div class="step done">Étape 1<br/>CHOISIS</div>
+    <div class="step active-step">Étape 2<br/>SIGNE</div>
+    <div class="step">Étape 3<br/>CONSTRUIS</div>
+    <div class="step">Étape 4<br/>ENCAISSE</div>
+  </div>
+</div>
+
+<!-- =============================== -->
+<!-- 2A — CONTEXTE                    -->
+<!-- =============================== -->
+
+<div class="slide" id="e2-s2">
+  <p>Ok, tu as identifié ton créateur.</p>
+</div>
+
+<div class="slide" id="e2-s3">
+  <p>Tu sais dans quelle niche chercher, tu sais quel profil viser.</p>
+</div>
+
+<div class="slide" id="e2-s4">
+  <h2>Maintenant, il faut aller <span class="accent">lui parler</span>.</h2>
+</div>
+
+<div class="slide" id="e2-s5">
+  <p>Et je sais que c'est là que la plupart des gens <span class="accent">bloquent</span>.</p>
+</div>
+
+<div class="slide" id="e2-s6">
+  <p>Ils se disent : <span class="accent">"Pourquoi un créateur accepterait de bosser avec moi ?"</span></p>
+</div>
+
+<div class="slide" id="e2-s7">
+  <p>"J'ai pas d'expérience, j'ai pas de portfolio, <span class="accent">j'ai rien à montrer.</span>"</p>
+</div>
+
+<div class="slide" id="e2-s8">
+  <p>Mais rappelle-toi ce que je t'ai dit :</p>
+</div>
+
+<div class="slide" id="e2-s9">
+  <h2>Tu ne lui <span class="accent">VENDS</span> rien.</h2>
+</div>
+
+<div class="slide" id="e2-s10">
+  <h2>Tu ne lui <span class="accent">demandes pas d'argent</span>.</h2>
+</div>
+
+<div class="slide" id="e2-s11">
+  <p>Tu lui dis : "Je vais te faire gagner de l'argent que tu ne gagnes pas aujourd'hui, et <span class="accent">je prends un pourcentage</span>."</p>
+</div>
+
+<!-- PREUVE : Screenshot d'un vrai accord/deal signé avec un créateur (montrer que ce modèle existe pour de vrai) -->
+
+<div class="slide" id="e2-s11b">
+  <div class="placeholder proof wide">P-DEAL-MODEL - Screenshot d'un vrai accord signé entre un élève et un créateur (montrer le modèle % revenue en action, cadre rouge sur le pourcentage)</div>
+</div>
+
+<div class="slide" id="e2-s12">
+  <h1 class="glow">C'est tout.</h1>
+</div>
+
+<div class="slide" id="e2-s13">
+  <p>C'est comme si tu allais voir quelqu'un qui a un <span class="accent">terrain vide</span></p>
+  <div class="placeholder" style="margin-top:25px;">Schéma : terrain vide (avant)</div>
+</div>
+
+<div class="slide" id="e2-s14">
+  <p>et tu lui disais : "Laisse-moi construire un immeuble sur ton terrain. <span class="accent">Tu gardes 70%, je prends 30%.</span>"</p>
+  <div class="placeholder" style="margin-top:25px;">Schéma : immeuble construit sur le terrain (après)</div>
+</div>
+
+<div class="slide" id="e2-s15">
+  <h1 class="accent glow">Qui dirait non à ça ?</h1>
+</div>
+
+<div class="slide" id="e2-s16">
+  <p>Ça change ta façon de voir les choses, <span class="accent">non ?</span></p>
+</div>
+
+<!-- =============================== -->
+<!-- 2B — VISION : BRANDON            -->
+<!-- =============================== -->
+
+<div class="slide" id="e2-s17">
+  <h2><span class="accent">Brandon</span>, 23 ans.</h2>
+  <p class="sub">Il était en école de commerce.</p>
+  <div class="two-col" style="margin-top:30px;">
+    <div class="col" style="text-align:center;">
+      <div class="placeholder photo large">P29a - Photo visage Brandon (portrait, souriant)</div>
+    </div>
+    <div class="col" style="text-align:center;">
+      <div class="placeholder proof small" style="width:100%;">P29b - Screenshot profil LinkedIn ou carte étudiant école de commerce (preuve âge + école, cadre rouge sur la date/école)</div>
+    </div>
+  </div>
+</div>
+
+<div class="slide" id="e2-s18">
+  <p>Il avait essayé le dropshipping, il avait testé d'autres trucs.</p>
+  <div class="placeholder proof" style="margin-top:30px;">P-BRANDON-AVANT - Screenshot conversation où Brandon parle de ses échecs avant (dropshipping, autres business ratés) — cadre rouge sur les passages clés</div>
+</div>
+
+<div class="slide" id="e2-s19">
+  <h2><span class="accent">Rien</span> n'avait marché.</h2>
+</div>
+
+<div class="slide" id="e2-s20">
+  <p>Quand il a rejoint le programme, il a choisi une niche : <span class="accent">les relations amoureuses</span>.</p>
+  <div class="placeholder proof" style="margin-top:30px;">P-BRANDON-INSCRIPTION - Screenshot de l'inscription de Brandon au programme (date visible, preuve qu'il a rejoint, cadre rouge sur la date)</div>
+</div>
+
+<div class="slide" id="e2-s21">
+  <p>Plus précisément, aider les gens à <span class="accent">récupérer leur ex</span>.</p>
+</div>
+
+<div class="slide" id="e2-s22">
+  <p>Et quand tu souffres dans ta vie amoureuse, tu es prêt à payer pour que ça s'arrête.</p>
+</div>
+
+<div class="slide" id="e2-s23">
+  <h2>C'est une des niches les plus <span class="accent">puissantes</span> qui existe.</h2>
+</div>
+
+<div class="slide" id="e2-s24">
+  <p>Il a trouvé un créateur de contenu dans cette niche.</p>
+  <div class="placeholder proof" style="margin-top:30px;">P30 - Screenshot profil Instagram du créateur de Brandon (niche relations, nombre d'abonnés visible, cadre rouge sur la bio/niche)</div>
+</div>
+
+<div class="slide" id="e2-s25">
+  <p>Il ne s'est pas dit "je vais réfléchir, je vais préparer le message parfait."</p>
+</div>
+
+<div class="slide" id="e2-s26">
+  <h2><span class="accent">Non.</span></h2>
+</div>
+
+<div class="slide" id="e2-s27">
+  <p>Il lui a envoyé un message sur Instagram, ils ont pris un appel, et <span class="accent">c'est parti</span>.</p>
+  <div class="placeholder proof" style="margin-top:30px;">P-BRANDON-DM - Screenshot du vrai DM Instagram de Brandon au créateur (premier message envoyé, cadre rouge sur le message, flouter si besoin les infos perso)</div>
+</div>
+
+<div class="slide" id="e2-s28">
+  <h2>Deal signé : <span class="accent">30% des revenus</span> pour Brandon.</h2>
+  <div class="placeholder proof" style="margin-top:30px;">P-BRANDON-CONTRAT - Screenshot du contrat/accord signé entre Brandon et le créateur (cadre rouge sur le 30%, date visible)</div>
+</div>
+
+<div class="slide" id="e2-s29">
+  <p>Et deux semaines après le lancement de cet accompagnement...</p>
+</div>
+
+<div class="slide" id="e2-s30">
+  <h1 class="accent glow">5 000 euros dans sa poche.</h1>
+  <p class="sub">En deux semaines. À 23 ans.</p>
+  <div class="placeholder proof wide" style="margin-top:30px;">P31 - Screenshot dashboard Stripe/paiement Brandon (5 000 EUR visible, DATE visible pour prouver les 2 semaines, cadre rouge sur le montant + la date)</div>
+</div>
+
+<!-- PREUVE SUPPLEMENTAIRE : Timeline visuelle des 2 semaines -->
+
+<div class="slide" id="e2-s30b">
+  <div class="proof-grid">
+    <div class="placeholder proof small">P31b - Screenshot notification de la 1ère vente de Brandon (montant + date + heure, cadre rouge)</div>
+    <div class="placeholder proof small">P31c - Screenshot cumul des ventes sur les 14 jours (progression visible, cadre rouge sur le total)</div>
+  </div>
+  <p class="sub" style="margin-top:15px;">Les ventes jour par jour pendant les 2 premières semaines</p>
+</div>
+
+<div class="slide" id="e2-s31">
+  <p>Et tu sais le plus fou ?</p>
+</div>
+
+<div class="slide" id="e2-s32">
+  <p>À la base, Brandon partait en <span class="accent">Australie</span> pour travailler dans les mines.</p>
+  <div class="placeholder proof" style="margin-top:30px;">P32 - Photo Brandon dans l'avion ou billet d'avion pour l'Australie (preuve du voyage, cadre rouge sur la destination)</div>
+</div>
+
+<div class="slide" id="e2-s33">
+  <p>C'était son plan B pour gagner un peu plus d'argent.</p>
+</div>
+
+<div class="slide" id="e2-s34">
+  <p>Il avait déjà son billet, il pouvait pas annuler.</p>
+</div>
+
+<div class="slide" id="e2-s35">
+  <p>Sauf que dans l'avion, <span class="accent">les ventes ont commencé à tomber</span>.</p>
+  <div class="placeholder proof" style="margin-top:30px;">P-BRANDON-NOTIFS-AVION - Screenshot notifications de ventes reçues pendant le vol (Stripe/notifications push, cadre rouge sur les montants et l'heure)</div>
+</div>
+
+<div class="slide" id="e2-s36">
+  <p>Son créateur continuait d'accompagner ses clients pendant que lui volait au-dessus de l'océan.</p>
+</div>
+
+<div class="slide" id="e2-s37">
+  <p>Arrivé sur place, il <span class="accent">n'est jamais allé travailler dans les mines</span>.</p>
+</div>
+
+<div class="slide" id="e2-s38">
+  <p>Il a pris un appartement, il a continué à bosser avec son créateur à distance, et il est <span class="accent">revenu en France</span>.</p>
+  <div class="placeholder proof" style="margin-top:30px;">P-BRANDON-AUSTRALIE - Photo de Brandon en Australie travaillant sur son laptop / capture d'écran localisation Australie (preuve qu'il bossait à distance)</div>
+</div>
+
+<div class="slide" id="e2-s39">
+  <p>Il m'a dit un truc qui m'a marqué.</p>
+</div>
+
+<div class="slide" id="e2-s40">
+  <p>Regarde ce message.</p>
+  <div class="placeholder proof wide" style="margin-top:30px;">P33 - Screenshot REEL message WhatsApp Brandon : "Quand tu as réussi à faire 7 000 euros en un mois, tu sais qu'après tu as les compétences pour faire encore plus. Tu n'as plus ce syndrome de l'imposteur." (cadre rouge sur les chiffres, nom Brandon visible en haut de la conversation)</div>
+</div>
+
+<div class="slide" id="e2-s41">
+  <p>"Quand tu as réussi à faire <span class="accent">7 000 euros en un mois</span>, tu sais qu'après tu as les compétences pour faire encore plus."</p>
+  <div class="placeholder proof" style="margin-top:30px;">P-BRANDON-7K - Screenshot dashboard du mois complet à 7 000 EUR (Stripe ou plateforme de paiement, cadre rouge sur le total mensuel + la période)</div>
+</div>
+
+<div class="slide" id="e2-s42">
+  <h2>"Tu n'as plus ce <span class="accent">syndrome de l'imposteur</span>."</h2>
+</div>
+
+<div class="slide" id="e2-s43">
+  <p>C'est pas moi qui le dis. <span class="accent">C'est lui.</span></p>
+  <div class="placeholder proof" style="margin-top:30px;">P-BRANDON-VIDEO - Capture d'écran vidéo témoignage de Brandon disant cette phrase (visage visible, sous-titre incrusté, ou lien vers la vidéo)</div>
+</div>
+
+<div class="slide" id="e2-s44">
+  <p>Tu imagines ce que ça fait de recevoir <span class="accent">5 000 euros</span> sur ton compte à 23 ans, pour un travail que t'as fait en deux semaines ?</p>
+  <div class="placeholder proof" style="margin-top:30px;">P-BRANDON-VIREMENT - Screenshot du virement bancaire réel de Brandon (5 000 EUR reçus sur son compte, cadre rouge sur le montant)</div>
+</div>
+
+<!-- SLIDE PREUVE RECAP : Toute la timeline Brandon sur une slide -->
+
+<div class="slide" id="e2-s44b">
+  <p class="sub">Récapitulatif Brandon — les preuves</p>
+  <div class="proof-grid">
+    <div class="placeholder proof small">Photo Brandon avant (école de commerce)</div>
+    <div class="placeholder proof small">DM Instagram envoyé</div>
+    <div class="placeholder proof small">Deal signé 30%</div>
+    <div class="placeholder proof small">Dashboard 5 000 EUR en 2 semaines</div>
+    <div class="placeholder proof small">Photo Australie</div>
+    <div class="placeholder proof small">Message WhatsApp 7 000 EUR/mois</div>
+  </div>
+</div>
+
+<!-- =============================== -->
+<!-- 2C — COMMITMENT                  -->
+<!-- =============================== -->
+
+<div class="slide" id="e2-s45">
+  <p>Maintenant, je veux que tu te <span class="accent">projettes</span>.</p>
+</div>
+
+<div class="slide" id="e2-s46">
+  <h2>La seule chose qui te sépare de ton premier deal, c'est <span class="accent">un message</span>.</h2>
+</div>
+
+<!-- PREUVE : Montrer d'autres élèves qui ont signé avec un seul message -->
+
+<div class="slide" id="e2-s46b">
+  <p class="sub">Des élèves qui ont signé leur deal grâce à un seul message :</p>
+  <div class="proof-grid">
+    <div class="placeholder proof small">P-ELEVE1-DM - Screenshot DM d'un élève qui a signé un deal (nom + premier message visible, cadre rouge)</div>
+    <div class="placeholder proof small">P-ELEVE2-DM - Screenshot DM d'un 2e élève qui a signé (autre niche, cadre rouge sur la réponse positive du créateur)</div>
+    <div class="placeholder proof small">P-ELEVE3-DM - Screenshot DM d'un 3e élève (preuve que ça marche dans différentes niches, cadre rouge)</div>
+  </div>
+</div>
+
+<div class="slide" id="e2-s47">
+  <h1 class="accent glow">Un seul message.</h1>
+</div>
+
+<div class="slide" id="e2-s48">
+  <h2>Est-ce que tu es prêt à envoyer ce message ?</h2>
+</div>
+
+<div class="slide" id="e2-s49">
+  <p>Bien. Parce que je vais te montrer <span class="accent">exactement</span> comment approcher un créateur pour qu'il te dise oui.</p>
+</div>
+
+<!-- =============================== -->
+<!-- 2D — STRATEGIE                   -->
+<!-- =============================== -->
+
+<div class="slide" id="e2-s50">
+  <h2>Sous-étape 1</h2>
+  <h1 class="accent" style="margin-top:15px;">Le premier message</h1>
+</div>
+
+<div class="slide" id="e2-s51">
+  <p>Tu vas contacter le créateur sur <span class="accent">Instagram</span>.</p>
+</div>
+
+<div class="slide" id="e2-s52">
+  <p>Tu n'as pas besoin d'un Instagram parfait.</p>
+</div>
+
+<div class="slide" id="e2-s53">
+  <p>Tu as besoin d'un profil pour montrer que tu es un humain et que tu es <span class="accent">sérieux</span>.</p>
+</div>
+
+<div class="slide" id="e2-s54">
+  <p>Regarde les profils de certains de mes élèves.</p>
+  <div class="proof-grid" style="margin-top:30px;">
+    <div class="placeholder proof small">P34a - Screenshot profil Instagram élève 1 (bio professionnelle visible, photo, peu d'abonnés, cadre rouge sur la bio pro)</div>
+    <div class="placeholder proof small">P34b - Screenshot profil Instagram élève 2 (autre style, bio pro, peu de followers, cadre rouge)</div>
+    <div class="placeholder proof small">P34c - Screenshot profil Instagram élève 3 (montrer la diversité des profils qui marchent, peu de followers mais bios pros)</div>
+  </div>
+</div>
+
+<div class="slide" id="e2-s55">
+  <p>C'est pas des influenceurs. C'est des profils <span class="accent">simples, professionnels</span>.</p>
+</div>
+
+<div class="slide" id="e2-s56">
+  <h2>Ça suffit.</h2>
+</div>
+
+<div class="slide" id="e2-s57">
+  <p>Ensuite, tu envoies un message où tu montres que tu connais son contenu, que tu comprends son audience, et que tu as une <span class="accent">idée précise</span> de comment l'aider.</p>
+</div>
+
+<div class="slide" id="e2-s58">
+  <div class="two-col">
+    <div class="col">
+      <div class="placeholder proof small" style="width:100%;">P35a - Screenshot REEL d'un mauvais DM générique reçu par un créateur (copié-collé visible, cadre rouge sur les red flags)</div>
+      <p style="font-size:28px; color:rgba(255,100,100,0.8); margin-top:15px; text-align:center;">Mauvais message</p>
+    </div>
+    <div class="col">
+      <div class="placeholder proof small" style="width:100%;">P35b - Screenshot REEL d'un bon DM personnalisé d'un élève (détails spécifiques au créateur, cadre rouge sur les éléments personnalisés)</div>
+      <p style="font-size:28px; color:rgba(27,167,255,0.9); margin-top:15px; text-align:center;">Bon message</p>
+    </div>
+  </div>
+</div>
+
+<!-- PREUVE : Le bon message a reçu une réponse -->
+
+<div class="slide" id="e2-s58b">
+  <div class="placeholder proof wide">P35c - Screenshot de la RÉPONSE du créateur au bon message (preuve que le message personnalisé a marché, cadre rouge sur la réponse positive)</div>
+  <p class="sub">Le créateur a répondu en moins de 24h.</p>
+</div>
+
+<div class="slide" id="e2-s59">
+  <p>Tu te rappelles les petites vidéos personnalisées de Dagan dans l'étape 1 ?</p>
+</div>
+
+<div class="slide" id="e2-s60">
+  <p>C'est exactement ce type d'approche qui marche. Un message <span class="accent">personnalisé</span> où tu montres que tu connais le contenu du créateur.</p>
+</div>
+
+<div class="slide" id="e2-s61">
+  <h2><span class="accent">95%</span> des gens envoient des messages génériques.</h2>
+  <div class="placeholder proof" style="margin-top:30px;">P-STATS-DM - Screenshot de la boîte de réception d'un créateur montrant les DM génériques (masse de messages copié-collé, cadre rouge — preuve que 95% sont génériques)</div>
+</div>
+
+<div class="slide" id="e2-s62">
+  <h1 class="glow">La barre est <span class="accent">basse</span>.</h1>
+</div>
+
+<div class="slide" id="e2-s63">
+  <p>Et il existe des <span class="accent">templates exacts</span> pour que ton premier message sorte du lot.</p>
+  <div class="placeholder proof" style="margin-top:30px;">P-TEMPLATES-APERCU - Screenshot flouté de templates de messages de prospection (cadre rouge sur un extrait visible)</div>
+</div>
+
+<div class="slide" id="e2-s64">
+  <p class="sub">On en reparle tout à l'heure.</p>
+</div>
+
+<!-- Sous-étape 2 : L'appel de découverte -->
+
+<div class="slide" id="e2-s65">
+  <h2>Sous-étape 2</h2>
+  <h1 class="accent" style="margin-top:15px;">L'appel de découverte</h1>
+</div>
+
+<div class="slide" id="e2-s66">
+  <p>Si ton message est bon, le créateur va te <span class="accent">répondre</span>.</p>
+</div>
+
+<div class="slide" id="e2-s67">
+  <p>Là, tu lui proposes <span class="accent">un appel</span>.</p>
+</div>
+
+<div class="slide" id="e2-s68">
+  <p>Sur cet appel, tu ne vends rien. Tu poses des questions et tu <span class="accent">écoutes</span>.</p>
+</div>
+
+<div class="slide" id="e2-s69">
+  <p>À la fin de l'appel, tu lui dis :</p>
+</div>
+
+<div class="slide" id="e2-s70">
+  <p>"Je pense que je peux t'aider à lancer un accompagnement pour ton audience."</p>
+</div>
+
+<div class="slide" id="e2-s71">
+  <p>"Je m'occupe de tout le côté business. Toi, tu te concentres sur ce que tu sais faire."</p>
+</div>
+
+<div class="slide" id="e2-s72">
+  <h2>"Et je prends un <span class="accent">pourcentage</span> sur ce qu'on génère ensemble."</h2>
+</div>
+
+<div class="slide" id="e2-s73">
+  <p>C'est exactement ce que Brandon a fait avec son créateur.</p>
+  <div class="placeholder proof" style="margin-top:30px;">P-BRANDON-CALL - Screenshot calendrier ou récap de l'appel entre Brandon et son créateur (preuve que l'appel a eu lieu, date visible, cadre rouge)</div>
+</div>
+
+<div class="slide" id="e2-s74">
+  <h2>Un appel, une conversation honnête, et <span class="accent">c'était parti</span>.</h2>
+</div>
+
+<!-- PREUVE : Montrer d'autres élèves qui ont signé après un appel -->
+
+<div class="slide" id="e2-s74b">
+  <p class="sub">D'autres élèves qui ont signé après un seul appel :</p>
+  <div class="proof-grid">
+    <div class="placeholder proof small">P-ELEVE-CALL1 - Screenshot message d'un élève annonçant "deal signé" après son premier appel (date + contexte visible, cadre rouge)</div>
+    <div class="placeholder proof small">P-ELEVE-CALL2 - Screenshot message d'un 2e élève (preuve de répétabilité, cadre rouge)</div>
+  </div>
+</div>
+
+<!-- Sous-étape 3 : Le deal -->
+
+<div class="slide" id="e2-s75">
+  <h2>Sous-étape 3</h2>
+  <h1 class="accent" style="margin-top:15px;">Le deal</h1>
+</div>
+
+<div class="slide" id="e2-s76">
+  <h2>Le deal, c'est entre <span class="accent">20% et 40%</span> des revenus générés.</h2>
+  <div class="proof-grid" style="margin-top:30px;">
+    <div class="placeholder proof small">P-DEAL-20 - Screenshot d'un deal réel à ~20% (contrat ou message confirmant le %, cadre rouge sur le pourcentage)</div>
+    <div class="placeholder proof small">P-DEAL-30 - Screenshot d'un deal réel à 30% (ex: Brandon, cadre rouge)</div>
+    <div class="placeholder proof small">P-DEAL-40 - Screenshot d'un deal réel à ~40% (autre élève, cadre rouge sur le pourcentage)</div>
+  </div>
+</div>
+
+<div class="slide" id="e2-s77">
+  <p>Pas d'avance, pas de frais fixes.</p>
+</div>
+
+<div class="slide" id="e2-s78">
+  <p>Le créateur ne débourse <span class="accent">rien</span>.</p>
+</div>
+
+<div class="slide" id="e2-s79">
+  <h2>Il a <span class="accent">zéro risque</span>.</h2>
+</div>
+
+<div class="slide" id="e2-s80">
+  <p>C'est pour ça que c'est tellement <span class="accent">facile à signer</span>.</p>
+  <div class="placeholder proof" style="margin-top:30px;">P-TAUX-SIGNATURE - Screenshot ou visuel du taux de réponse/signature des élèves (stats réelles : X messages envoyés, Y réponses, Z deals signés — cadre rouge sur le taux)</div>
+</div>
+
+<div class="slide" id="e2-s81">
+  <p>"Je vais te faire gagner de l'argent que tu ne gagnes pas aujourd'hui, et si je n'y arrive pas, <span class="accent">ça ne t'aura rien coûté</span>."</p>
+</div>
+
+<div class="slide" id="e2-s82">
+  <h1 class="accent glow">Aucune raison de dire non.</h1>
+</div>
+
+<!-- PREUVE : Réactions de créateurs quand ils entendent la proposition -->
+
+<div class="slide" id="e2-s82b">
+  <p class="sub">Réactions réelles de créateurs quand ils entendent l'offre :</p>
+  <div class="proof-grid">
+    <div class="placeholder proof small">P-REACTION-CREATEUR1 - Screenshot message créateur enthousiaste après la proposition (cadre rouge sur sa réponse positive)</div>
+    <div class="placeholder proof small">P-REACTION-CREATEUR2 - Screenshot message d'un autre créateur qui accepte (différente niche, cadre rouge)</div>
+    <div class="placeholder proof small">P-REACTION-CREATEUR3 - Screenshot message d'un 3e créateur (montrer que le pattern se répète, cadre rouge)</div>
+  </div>
+</div>
+
+<!-- Persuasional Foreplay — Les templates -->
+
+<div class="slide" id="e2-s83">
+  <p>Et si tu te demandes exactement quoi écrire dans ce premier message...</p>
+</div>
+
+<div class="slide" id="e2-s84">
+  <p>Exactement quoi dire sur cet appel...</p>
+</div>
+
+<div class="slide" id="e2-s85">
+  <p>Et exactement comment structurer le deal...</p>
+</div>
+
+<div class="slide" id="e2-s86">
+  <p>Je sais ce que tu te dis.</p>
+</div>
+
+<div class="slide" id="e2-s87">
+  <h2>"<span class="accent">Donne-moi un template.</span>"</h2>
+</div>
+
+<div class="slide" id="e2-s88">
+  <p class="sub">On en reparle plus tard.</p>
+</div>
+
+<div class="slide" id="e2-s89">
+  <p>Est-ce que tu commences à voir que signer un créateur, c'est <span class="accent">pas si intimidant</span> que ça en a l'air ?</p>
+</div>
+
+<!-- PREUVE FINALE : Mur de preuves — plusieurs élèves qui ont signé -->
+
+<div class="slide" id="e2-s89b">
+  <h2>Des élèves qui ont <span class="accent">signé</span> leur créateur :</h2>
+  <div class="proof-grid" style="margin-top:30px;">
+    <div class="placeholder proof small">P-WALL1 - Photo élève 1 + screenshot de son deal signé</div>
+    <div class="placeholder proof small">P-WALL2 - Photo élève 2 + niche + montant premier mois</div>
+    <div class="placeholder proof small">P-WALL3 - Photo élève 3 + screenshot DM créateur</div>
+    <div class="placeholder proof small">P-WALL4 - Photo élève 4 + message "deal signé"</div>
+    <div class="placeholder proof small">P-WALL5 - Photo élève 5 + screenshot revenus générés</div>
+    <div class="placeholder proof small">P-WALL6 - Photo élève 6 + témoignage écrit</div>
+  </div>
+</div>
+
+<!-- =============================== -->
+<!-- TRANSITION VERS ETAPE 3          -->
+<!-- =============================== -->
+
+<div class="slide" id="e2-s90">
+  <h2>Les 4 étapes pour devenir<br/>opérateur de croissance</h2>
+  <div class="roadmap">
+    <div class="step done">Étape 1<br/>CHOISIS</div>
+    <div class="step done">Étape 2<br/>SIGNE</div>
+    <div class="step active-step">Étape 3<br/>CONSTRUIS</div>
+    <div class="step">Étape 4<br/>ENCAISSE</div>
+  </div>
+</div>
+
+<div class="slide" id="e2-s91">
+  <p>Étape 1 : tu sais <span class="accent">choisir</span>.</p>
+</div>
+
+<div class="slide" id="e2-s92">
+  <p>Étape 2 : tu sais <span class="accent">signer</span>.</p>
+</div>
+
+<div class="slide" id="e2-s93">
+  <h2>Maintenant : comment tu <span class="accent">CONSTRUIS</span> ton premier lancement pour faire rentrer l'argent ?</h2>
+</div>
+
+<div class="slide" id="e2-s101b">
+  <h2 class="quote">"Mathéo, tu es bien gentil. Si on signe un créateur, comment on lui fait <span class="accent">gagner de l'argent</span> ?"</h2>
+</div>
+
+<div class="slide" id="e2-s101c">
+  <p>C'est exactement ce qu'on va voir <span class="accent">maintenant</span>.</p>
+</div>
+
+<!-- =============================== -->
+<!-- FOOTER ELEMENTS                  -->
+<!-- =============================== -->
+
+<div class="slide" id="e3-s1">
+  <h1>Étape 3 :</h1>
+  <h1 class="accent glow" style="margin-top:20px;">CONSTRUIS ton premier lancement</h1>
+  <p class="sub">Étapes 1 et 2 validées</p>
+</div>
+
+<!-- =============================== -->
+<!-- 3A — CONTEXTE                    -->
+<!-- =============================== -->
+
+<div class="slide" id="e3-s2">
+  <p>Ok, tu as ton créateur, tu as signé ton deal.</p>
+</div>
+
+<div class="slide" id="e3-s3">
+  <p>Maintenant, il faut construire ton <span class="accent">premier lancement</span>.</p>
+</div>
+
+<div class="slide" id="e3-s4">
+  <p>En clair : tout ce qui va faire en sorte que les gens qui suivent ton créateur deviennent des <span class="accent">clients payants</span>.</p>
+</div>
+
+<div class="slide" id="e3-s5">
+  <p>Concrètement, c'est <span class="accent">3 choses</span> :</p>
+</div>
+
+<div class="slide" id="e3-s6">
+  <ul class="bullets">
+    <li><span class="accent">L'offre</span> : l'accompagnement que tu packages avec ton créateur</li>
+    <li><span class="accent">La page de vente</span> : l'endroit où les gens découvrent l'accompagnement et s'inscrivent</li>
+    <li><span class="accent">Le lancement</span> : le moment où tu annonces l'accompagnement à l'audience du créateur</li>
+  </ul>
+</div>
+
+<div class="slide" id="e3-s7">
+  <p>Je sais que ça peut sembler beaucoup.</p>
+</div>
+
+<div class="slide" id="e3-s8">
+  <p>Mais je vais te montrer que chaque pièce est <span class="accent">plus simple</span> que ce que tu imagines.</p>
+</div>
+
+<div class="slide" id="e3-s9">
+  <p>Et surtout, je vais te montrer quelqu'un qui a fait tout ça en étant <span class="accent">salarié à temps plein avec des enfants</span>.</p>
+</div>
+
+<!-- =============================== -->
+<!-- 3B — VISION : FLORIMOND          -->
+<!-- =============================== -->
+
+<div class="slide" id="e3-s10">
+  <h2><span class="accent">Florimond</span>, 29 ans.</h2>
+  <div class="placeholder" style="margin-top:30px;">P36 - Photo de Florimond (vraie photo, pas un avatar)</div>
+</div>
+
+<div class="slide" id="e3-s11">
+  <p>Il est salarié, plus de 35 heures par semaine.</p>
+  <p style="margin-top:15px;">Il a une famille.</p>
+  <div class="placeholder small" style="margin-top:25px;">P36b - Screenshot message Florimond confirmant qu'il est salarié 35h + famille</div>
+</div>
+
+<div class="slide" id="e3-s12">
+  <p>Avant de rejoindre le programme, il était comptable, puis il a bossé dans les RH.</p>
+  <div class="placeholder small" style="margin-top:25px;">P36c - Screenshot profil LinkedIn Florimond (comptable / RH visible)</div>
+</div>
+
+<div class="slide" id="e3-s13">
+  <p>Il a trouvé une créatrice dans une niche un peu particulière :</p>
+  <h2 style="margin-top:20px;">les <span class="accent">énergies et les chakras</span>.</h2>
+  <div class="placeholder" style="margin-top:30px;">P37 - Screenshot profil créatrice énergies/chakras de Florimond</div>
+</div>
+
+<div class="slide" id="e3-s14">
+  <p>Et oui, les chakras.</p>
+  <p style="margin-top:15px;">Ça peut paraître surprenant.</p>
+</div>
+
+<div class="slide" id="e3-s15">
+  <p>Mais rappelle-toi le mec du barbecue avec <span class="accent">2 600 membres payants</span>, et le joueur de pickleball à <span class="accent">63 000 dollars par mois</span>.</p>
+  <div class="placeholder twin" style="margin-top:25px;">P37b - Rappel visuel : screenshot barbecue 2 600 membres + screenshot pickleball $63K/mois (côte à côte)</div>
+</div>
+
+<div class="slide" id="e3-s16">
+  <p>Le principe est le même : si une audience est passionnée par un sujet, elle est <span class="accent">prête à payer</span> pour progresser.</p>
+</div>
+
+<div class="slide" id="e3-s17">
+  <p>Peu importe le sujet.</p>
+</div>
+
+<div class="slide" id="e3-s18">
+  <p>Et là, Florimond a suivi la méthode <span class="accent">étape par étape</span>.</p>
+</div>
+
+<div class="slide" id="e3-s19">
+  <p>Et un mois après avoir rejoint le programme, <span class="accent">il a lancé</span>.</p>
+  <div class="placeholder small" style="margin-top:25px;">P37c - Screenshot date d'inscription Florimond au programme (prouve "1 mois")</div>
+</div>
+
+<div class="slide" id="e3-s20">
+  <h1><span class="accent">11 ventes</span> en deux jours.</h1>
+  <div class="placeholder" style="margin-top:30px;">P38 - Screenshot dashboard Florimond (11 ventes visible)</div>
+</div>
+
+<div class="slide" id="e3-s21">
+  <h1><span class="accent">4 400 euros</span> dans sa poche.</h1>
+  <div class="placeholder" style="margin-top:30px;">P38b - Screenshot virement bancaire ou Stripe/Whop de Florimond (4 400 EUR visible)</div>
+</div>
+
+<div class="slide" id="e3-s22">
+  <p>Et regarde ce qu'il m'a envoyé.</p>
+  <p style="margin-top:15px;">C'est son message, pas mes mots.</p>
+</div>
+
+<div class="slide" id="e3-s23">
+  <h2 class="quote">"Je me suis réveillé le matin et j'avais déjà <span class="accent">6 ventes</span>."</h2>
+  <div class="placeholder" style="margin-top:30px;">P39 - Screenshot message Florimond ("je me suis réveillé avec 6 ventes")</div>
+</div>
+
+<div class="slide" id="e3-s24">
+  <p>Six personnes avaient acheté <span class="accent">pendant qu'il dormait</span>.</p>
+</div>
+
+<div class="slide" id="e3-s25">
+  <p>Et regarde sa page de vente.</p>
+  <div class="placeholder" style="margin-top:30px;">P40 - Screenshot page de vente de Florimond</div>
+</div>
+
+<div class="slide" id="e3-s26">
+  <p>C'est ça. C'est <span class="accent">simple</span>.</p>
+</div>
+
+<div class="slide" id="e3-s27">
+  <p>C'est pas un truc de designer professionnel.</p>
+</div>
+
+<div class="slide" id="e3-s28">
+  <p>C'est un mec qui a suivi la méthode, <span class="accent">étape par étape</span>, en un mois, à côté de son boulot.</p>
+</div>
+
+<div class="slide" id="e3-s29">
+  <p>Depuis, il planifie déjà son <span class="accent">deuxième lancement</span> et son troisième.</p>
+  <div class="placeholder small" style="margin-top:25px;">P40b - Screenshot message Florimond parlant de son 2e et 3e lancement</div>
+</div>
+
+<div class="slide" id="e3-s30">
+  <p>Il m'a dit un truc qui résume tout :</p>
+</div>
+
+<div class="slide" id="e3-s31">
+  <h2 class="quote">"Mentalement, je suis beaucoup plus <span class="accent">cool et libéré</span>."</h2>
+  <div class="placeholder" style="margin-top:30px;">P40c - Screenshot message Florimond "mentalement je suis beaucoup plus cool et libéré"</div>
+</div>
+
+<div class="slide" id="e3-s32">
+  <p>Il a emmené sa copine au restaurant et il a commandé tout ce qu'il voulait sur la carte <span class="accent">sans regarder les prix</span>.</p>
+  <div class="placeholder small" style="margin-top:25px;">P40d - Screenshot message Florimond "restaurant sans regarder les prix"</div>
+</div>
+
+<div class="slide" id="e3-s33">
+  <p>Pour la première fois.</p>
+</div>
+
+<div class="slide" id="e3-s34">
+  <p>Tu te rends compte ?</p>
+</div>
+
+<div class="slide" id="e3-s35">
+  <p>Un salarié à 35 heures par semaine, père de famille, avec <span class="accent">zéro background technique</span>.</p>
+  <div class="placeholder small" style="margin-top:25px;">P40e - Screenshot témoignage vidéo ou message Florimond "zéro background technique"</div>
+</div>
+
+<div class="slide" id="e3-s36">
+  <h1><span class="accent">4 400 euros</span> dans sa poche en un mois.</h1>
+  <div class="placeholder" style="margin-top:30px;">P40f - Screenshot recap complet : dashboard 11 ventes + montant 4 400 EUR + date (tout sur 1 image)</div>
+</div>
+
+<div class="slide" id="e3-s37">
+  <h2>Si lui peut le faire, qu'est-ce qui <span class="accent">t'empêche</span> de le faire ?</h2>
+</div>
+
+<!-- =============================== -->
+<!-- 3C — COMMITMENT                  -->
+<!-- =============================== -->
+
+<div class="slide" id="e3-s38">
+  <p>Là, je veux qu'on fasse le point.</p>
+</div>
+
+<div class="slide" id="e3-s39">
+  <p>On a vu <span class="accent">3 étapes</span>.</p>
+</div>
+
+<div class="slide" id="e3-s40">
+  <p>Et à chaque étape, je t'ai montré quelqu'un de concret qui l'a fait.</p>
+</div>
+
+<div class="slide" id="e3-s41">
+  <p><span class="accent">Dagan</span> en alternance, <span class="accent">Brandon</span> à 20 ans, <span class="accent">Florimond</span> en étant salarié avec des enfants.</p>
+  <div class="placeholder twin" style="margin-top:25px;">P40g - 3 photos cote a cote : Dagan + Brandon + Florimond (rappel visuel des 3 profils)</div>
+</div>
+
+<div class="slide" id="e3-s42">
+  <h2>Est-ce que tu commences à réaliser que <span class="accent">c'est accessible</span> ?</h2>
+</div>
+
+<div class="slide" id="e3-s43">
+  <h2>Bien.</h2>
+  <p style="margin-top:20px;">Parce que la dernière étape, c'est celle que <span class="accent">tout le monde attend</span>.</p>
+</div>
+
+<!-- =============================== -->
+<!-- 3D — STRATEGIE                   -->
+<!-- =============================== -->
+
+<div class="slide" id="e3-s44">
+  <p>Voilà ce que Florimond a construit en un mois, en parallèle de son boulot à temps plein :</p>
+</div>
+
+<div class="slide" id="e3-s45">
+  <h2><span class="accent">L'offre</span></h2>
+  <p style="margin-top:20px;">Des appels de groupe avec sa créatrice, du suivi WhatsApp, des exercices pratiques.</p>
+</div>
+
+<div class="slide" id="e3-s46">
+  <p>Ça lui a pris <span class="accent">une après-midi</span> à structurer.</p>
+  <div class="placeholder small" style="margin-top:25px;">P40h - Screenshot message Florimond confirmant le temps ("une après-midi")</div>
+</div>
+
+<div class="slide" id="e3-s47">
+  <h2><span class="accent">La page de vente</span></h2>
+  <p style="margin-top:20px;">Une page simple. Tu l'as vue.</p>
+</div>
+
+<div class="slide" id="e3-s48">
+  <p>Ça lui a pris <span class="accent">un week-end</span>.</p>
+  <div class="placeholder small" style="margin-top:25px;">P40i - Screenshot message Florimond confirmant le temps ("un week-end")</div>
+</div>
+
+<div class="slide" id="e3-s49">
+  <h2><span class="accent">Le lancement</span></h2>
+  <p style="margin-top:20px;">La créatrice a posté une story Instagram et envoyé un email à sa liste.</p>
+  <div class="placeholder" style="margin-top:25px;">P40j - Screenshot story Instagram de la créatrice le jour du lancement</div>
+</div>
+
+<div class="slide" id="e3-s50">
+  <p>C'est tout.</p>
+  <p style="margin-top:15px;">Et les inscriptions ont commencé à tomber.</p>
+  <div class="placeholder small" style="margin-top:25px;">P40k - Screenshot notifications de ventes qui tombent (Stripe/Whop/email)</div>
+</div>
+
+<div class="slide" id="e3-s51">
+  <h2>Est-ce que ça te semble <span class="accent">insurmontable</span> ?</h2>
+</div>
+
+<div class="slide" id="e3-s52">
+  <p>Une après-midi, un week-end, une story et un email.</p>
+</div>
+
+<div class="slide" id="e3-s53">
+  <h2>C'est pas de la <span class="accent">science nucléaire</span>.</h2>
+</div>
+
+<!-- =============================== -->
+<!-- PERSUASIONAL FOREPLAY            -->
+<!-- =============================== -->
+
+<div class="slide" id="e3-s54">
+  <p>Et si tu te demandes exactement comment construire la page de vente, exactement comment structurer l'offre, et exactement comment lancer...</p>
+</div>
+
+<div class="slide" id="e3-s55">
+  <p>Je sais ce que tu te dis.</p>
+</div>
+
+<div class="slide" id="e3-s56">
+  <h2 class="quote">"<span class="accent">Montre-moi</span> la méthode."</h2>
+</div>
+
+<div class="slide" id="e3-s57">
+  <h2>On y arrive.</h2>
+</div>
+
+<!-- =============================== -->
+<!-- TRANSITION VERS ETAPE 4          -->
+<!-- =============================== -->
+
+<div class="slide" id="e3-s58">
+  <p><span class="accent">Étape 1</span> : tu sais choisir.</p>
+  <p style="margin-top:15px;"><span class="accent">Étape 2</span> : tu sais signer.</p>
+  <p style="margin-top:15px;"><span class="accent">Étape 3</span> : tu sais lancer.</p>
+</div>
+
+<div class="slide" id="e3-s59">
+  <p>Maintenant, la dernière étape.</p>
+</div>
+
+<div class="slide" id="e3-s60">
+  <h2>Et c'est <span class="accent">la plus belle</span> :</h2>
+</div>
+
+<div class="slide" id="e3-s61">
+  <h1 class="accent glow">ENCAISSER tes premiers revenus.</h1>
+</div>
+
+<!-- =============================== -->
+<!-- LOGO + NAVIGATION                -->
+<!-- =============================== -->
+
+<div class="slide" id="e4-s1">
+  <h1 class="glow">Je vais te raconter une dernière histoire.</h1>
+  <p style="margin-top:25px;">Et c'est celle qui m'a le plus marqué personnellement.</p>
+</div>
+
+<!-- =============================== -->
+<!-- 4A — CONTEXTE                   -->
+<!-- =============================== -->
+
+<div class="slide" id="e4-s2">
+  <h2>On arrive à la dernière étape.</h2>
+  <p class="sub">Et c'est la plus belle.</p>
+</div>
+
+<div class="slide" id="e4-s3">
+  <p>Parce que c'est le moment où tu vois de l'argent apparaître sur ton compte.</p>
+</div>
+
+<div class="slide" id="e4-s4">
+  <p>De l'argent que <span class="accent">TU</span> as généré, pour un créateur que <span class="accent">TU</span> as trouvé, avec un système que <span class="accent">TU</span> as construit.</p>
+</div>
+
+<div class="slide" id="e4-s5">
+  <p>Et je vais être honnête avec toi :</p>
+</div>
+
+<div class="slide" id="e4-s6">
+  <h1 class="glow">Ce moment-là, c'est pas juste de l'argent.</h1>
+  <p style="margin-top:25px;">C'est la preuve que <span class="accent">ta vie peut changer</span>.</p>
+</div>
+
+<!-- =============================== -->
+<!-- 4B — VISION : KAMIL             -->
+<!-- =============================== -->
+
+<div class="slide" id="e4-s7">
+  <h2><span class="accent">Kamil</span>, 21 ans.</h2>
+  <p class="sub">Né au Maroc. Il a arrêté l'école.</p>
+  <div class="placeholder" style="margin-top:30px;">P41 - Photo de Kamil (vraie photo, pas un avatar)</div>
+</div>
+
+<div class="slide" id="e4-s8">
+  <p>Avant de découvrir l'Opération de Croissance, il avait <span class="accent">tout essayé</span>.</p>
+</div>
+
+<div class="slide" id="e4-s9">
+  <p>Et quand je dis tout, c'est <span class="accent">TOUT</span>.</p>
+</div>
+
+<div class="slide" id="e4-s10">
+  <ul class="strike-list">
+    <li>Dropshipping à 16 ans</li>
+    <li>Crypto</li>
+    <li>SMMA</li>
+    <li>NFT</li>
+    <li>YouTube Automation</li>
+    <li>TikTok</li>
+    <li>Agences salons de beauté</li>
+  </ul>
+  <div class="placeholder small" style="margin-top:25px;">P41b - Screenshot message/témoignage Kamil listant tous ses échecs passés</div>
+</div>
+
+<div class="slide" id="e4-s11">
+  <p>Il a tout fait.</p>
+  <p style="margin-top:15px;">Rien n'avait vraiment marché.</p>
+</div>
+
+<div class="slide" id="e4-s12">
+  <p><span class="accent">700 euros</span> pour passer ses journées au téléphone à se faire raccrocher au nez.</p>
+  <div class="placeholder small" style="margin-top:25px;">P41c - Screenshot message Kamil "700 euros" / "raccrocher au nez" (SMMA)</div>
+</div>
+
+<div class="slide" id="e4-s13">
+  <h2 class="quote">"Prends un seul truc, deviens un monstre dedans, et lâche pas pendant trois ans."</h2>
+  <div class="placeholder" style="margin-top:30px;">P41d - Screenshot message Kamil avec cette citation exacte</div>
+</div>
+
+<div class="slide" id="e4-s14">
+  <p>Il a signé son premier créateur.</p>
+  <div class="placeholder small" style="margin-top:25px;">P41e - Screenshot message Kamil annonçant sa première signature créateur</div>
+</div>
+
+<div class="slide" id="e4-s15">
+  <p>Il a construit son premier lancement.</p>
+</div>
+
+<div class="slide" id="e4-s16">
+  <p>Et il a lancé.</p>
+</div>
+
+<div class="slide" id="e4-s17">
+  <h1>Son premier mois : <span class="accent">11 000 euros</span> collectés.</h1>
+  <p class="sub">Entièrement pour lui.</p>
+  <div class="placeholder" style="margin-top:30px;">P42 - Screenshot dashboard Kamil 11 000 EUR</div>
+</div>
+
+<div class="slide" id="e4-s18">
+  <h1>Son meilleur mois : <span class="accent">16 000 euros</span> collectés.</h1>
+  <div class="placeholder" style="margin-top:30px;">P43 - Screenshot dashboard Kamil 16 000 EUR</div>
+</div>
+
+<div class="slide" id="e4-s19">
+  <p>Mais c'est pas les chiffres qui m'ont marqué.</p>
+</div>
+
+<div class="slide" id="e4-s20">
+  <p>C'est ce qu'il m'a raconté sur son <span class="accent">premier virement</span>.</p>
+</div>
+
+<div class="slide" id="e4-s21">
+  <p>Le soir de son premier lancement, Kamil s'est assis devant son ordinateur.</p>
+</div>
+
+<div class="slide" id="e4-s22">
+  <p>Il a attendu.</p>
+  <p style="margin-top:15px;">Minuit. 1 heure du matin. 2 heures. 3 heures.</p>
+</div>
+
+<div class="slide" id="e4-s23">
+  <p>Il n'arrivait pas à dormir.</p>
+  <p style="margin-top:15px;">Il rafraîchissait sa page de banque encore et encore.</p>
+</div>
+
+<div class="slide" id="e4-s24">
+  <h1 class="glow">Et à <span class="accent">4 heures du matin</span>, le virement est tombé.</h1>
+  <div class="placeholder" style="margin-top:30px;">P44 - Screenshot du virement de Kamil</div>
+</div>
+
+<div class="slide" id="e4-s25">
+  <h2 class="quote">"J'étais trop content."</h2>
+  <p class="sub">C'est tout ce qu'il a dit.</p>
+  <div class="placeholder" style="margin-top:30px;">P44b - Screenshot message Kamil "j'étais trop content" (le vrai message)</div>
+</div>
+
+<div class="slide" id="e4-s26">
+  <p>Parce qu'après des années à sauter de business en business, à échouer, à douter de lui-même...</p>
+</div>
+
+<div class="slide" id="e4-s27">
+  <h1 class="accent glow">Là, c'était réel.</h1>
+</div>
+
+<div class="slide" id="e4-s28">
+  <p>Aujourd'hui, il travaille avec <span class="accent">5 créateurs de contenu</span>.</p>
+  <div class="placeholder" style="margin-top:30px;">P44c - Screenshot dashboard ou liste des 5 créateurs de Kamil (noms/profils visibles)</div>
+</div>
+
+<div class="slide" id="e4-s29">
+  <p>Regarde. Il habite à <span class="accent">Bali</span>. Il a 22 ans.</p>
+  <div class="placeholder" style="margin-top:30px;">P46 - Photo de Kamil à Bali (lieu reconnaissable, pas juste une plage random)</div>
+  <div class="placeholder small" style="margin-top:15px;">P46b - Screenshot story/post Instagram Kamil géolocalisé Bali</div>
+</div>
+
+<div class="slide" id="e4-s30">
+  <p>Et il vient de signer le <span class="accent">coach de boxe</span> qui a coaché les plus grands, comme Fury et Joshua.</p>
+  <div class="placeholder" style="margin-top:30px;">P45 - Screenshot profil du coach de boxe Fury/Joshua</div>
+</div>
+
+<div class="slide" id="e4-s31">
+  <p>Regarde le profil. <span class="accent">C'est réel.</span></p>
+</div>
+
+<div class="slide" id="e4-s32">
+  <h2 class="quote">"Ce que vous allez faire en 2 ans tout seul, vous pouvez le faire en <span class="accent">3 à 6 mois</span> avec la bonne méthode."</h2>
+  <div class="placeholder" style="margin-top:30px;">P46c - Screenshot message ou extrait video Kamil avec cette citation exacte</div>
+</div>
+
+<!-- =============================== -->
+<!-- 4C — COMMITMENT                 -->
+<!-- =============================== -->
+
+<div class="slide" id="e4-s33">
+  <p>On vient de voir les <span class="accent">4 étapes</span> ensemble.</p>
+</div>
+
+<div class="slide" id="e4-s34">
+  <h2><span class="accent">CHOISIS</span>, <span class="accent">SIGNE</span>, <span class="accent">CONSTRUIS</span>, <span class="accent">ENCAISSE</span>.</h2>
+</div>
+
+<div class="slide" id="e4-s35">
+  <p>Et à chaque étape, je t'ai montré des gens comme toi qui l'ont fait.</p>
+  <div class="placeholder twin" style="margin-top:25px;">P46d - Mosaique 4 photos : Dagan + Brandon + Florimond + Kamil (rappel visuel des 4 profils)</div>
+</div>
+
+<div class="slide" id="e4-s36">
+  <p>Des alternants, des salariés, des gens qui avaient échoué partout ailleurs.</p>
+  <div class="placeholder twin" style="margin-top:25px;">P46e - Compilation screenshots : resultats cles de chaque membre (4 400 EUR, 11 000 EUR, 16 000 EUR, etc.)</div>
+</div>
+
+<div class="slide" id="e4-s37">
+  <p>Maintenant, je veux te poser une question.</p>
+</div>
+
+<div class="slide" id="e4-s38">
+  <p>Et je veux une <span class="accent">réponse honnête</span>.</p>
+</div>
+
+<div class="slide" id="e4-s39">
+  <h1 class="mega-glow">Si je t'avais montré ces 4 étapes <span class="accent">il y a un an</span>, est-ce que ta vie serait différente aujourd'hui ?</h1>
+</div>
+
+<div class="slide" id="e4-s40">
+  <h1 class="mega-glow">Et si tu ne fais <span class="accent">rien</span> avec ce que tu viens d'apprendre, est-ce que ta vie sera différente <span class="accent">dans un an</span> ?</h1>
+</div>
+
+<div class="slide" id="e4-s41">
+  <h2>Bien.</h2>
+  <p style="margin-top:25px;">Parce que ce que je vais te montrer maintenant, c'est comment <span class="accent">accélérer tout ce processus</span> de manière massive.</p>
+</div>
+
+<!-- =============================== -->
+<!-- LOGO + NAVIGATION                -->
+<!-- =============================== -->
+
+<div class="slide" id="tr-s1">
+  <h2 class="sub" style="font-size:36px;color:rgba(255,255,255,0.5);margin-bottom:20px;">TRANSITION</h2>
+  <h1 class="accent glow">Ce que tu as maintenant</h1>
+</div>
+
+<div class="slide" id="tr-s2">
+  <p>On fait le point.</p>
+</div>
+
+<div class="slide" id="tr-s3">
+  <p>Dans les derni&egrave;res minutes, je t'ai donn&eacute; la <span class="accent">m&eacute;thode exacte</span> que j'ai utilis&eacute; pour g&eacute;n&eacute;rer plus de 100 000 euros de chiffre d'affaires pour des cr&eacute;ateurs de contenu.</p>
+  <div class="placeholder" style="margin-top:30px;">Screenshot preuve +100 000&#8364; CA (dashboard Stripe/Whop)</div>
+</div>
+
+<div class="slide" id="tr-s4">
+  <p>Tu sais maintenant comment <span class="accent">identifier le cr&eacute;ateur id&eacute;al</span>.</p>
+</div>
+
+<div class="slide" id="tr-s5">
+  <p>Celui qui a une audience passionn&eacute;e, avec du pouvoir d'achat, et qui n'a <span class="accent">jamais mon&eacute;tis&eacute;</span>.</p>
+</div>
+
+<div class="slide" id="tr-s6">
+  <p>Tu as vu avec <span class="accent">Sirin</span> que 3 000 abonn&eacute;s suffisent pour faire 8 000 euros en une semaine.</p>
+  <div style="display:flex; gap:20px; margin-top:30px; justify-content:center; flex-wrap:wrap;">
+    <div class="placeholder small">Photo Sirin</div>
+    <div class="placeholder small">Screenshot 8 000&#8364; en 1 semaine (dashboard Sirin)</div>
+  </div>
+</div>
+
+<div class="slide" id="tr-s7">
+  <p>Tu sais comment <span class="accent">le signer</span>.</p>
+</div>
+
+<div class="slide" id="tr-s8">
+  <p>Un message, un appel, un deal o&ugrave; il ne prend <span class="accent">z&eacute;ro risque</span>.</p>
+</div>
+
+<div class="slide" id="tr-s9">
+  <p>Tu as vu <span class="accent">Brandon</span> signer en quelques jours et faire 5 000 euros dans sa poche en deux semaines.</p>
+  <div style="display:flex; gap:20px; margin-top:30px; justify-content:center; flex-wrap:wrap;">
+    <div class="placeholder small">Photo Brandon (23 ans)</div>
+    <div class="placeholder small">Screenshot 5 000&#8364; en 2 semaines (preuve Brandon)</div>
+  </div>
+</div>
+
+<div class="slide" id="tr-s10">
+  <p>Tu sais comment <span class="accent">lancer</span>.</p>
+</div>
+
+<div class="slide" id="tr-s11">
+  <p>Une offre, une page de vente, un lancement.</p>
+</div>
+
+<div class="slide" id="tr-s12">
+  <p>Tu as vu <span class="accent">Florimond</span> le faire en un mois, en parall&egrave;le de son boulot &agrave; temps plein, et se r&eacute;veiller avec 6 ventes.</p>
+  <div style="display:flex; gap:20px; margin-top:30px; justify-content:center; flex-wrap:wrap;">
+    <div class="placeholder small">Photo Florimond</div>
+    <div class="placeholder small">Screenshot 6 ventes au r&eacute;veil (notif Florimond)</div>
+  </div>
+</div>
+
+<div class="slide" id="tr-s13">
+  <p>Et tu sais ce qui t'attend quand tout &ccedil;a se met en place.</p>
+</div>
+
+<div class="slide" id="tr-s14">
+  <p><span class="accent">Kamil</span>, minuit &agrave; 4 heures du matin, son premier virement.</p>
+  <div style="display:flex; gap:20px; margin-top:30px; justify-content:center; flex-wrap:wrap;">
+    <div class="placeholder small">Photo Kamil</div>
+    <div class="placeholder small">Screenshot premier virement Kamil (notif bancaire)</div>
+  </div>
+</div>
+
+<div class="slide" id="tr-s15">
+  <p>16 000 euros dans son meilleur mois. 5 cr&eacute;ateurs. <span class="accent">Bali. 22 ans.</span></p>
+  <div style="display:flex; gap:20px; margin-top:30px; justify-content:center; flex-wrap:wrap;">
+    <div class="placeholder small">Screenshot dashboard Kamil 16 000&#8364;/mois</div>
+    <div class="placeholder small">Photo Kamil &agrave; Bali</div>
+  </div>
+</div>
+
+<!-- ============================================= -->
+<!-- TRANSITION — PARTIE 2 : LES 6 OUI            -->
+<!-- ============================================= -->
+
+<div class="slide" id="tr-s16">
+  <h1 class="accent glow">Laisse-moi te poser quelques questions.</h1>
+</div>
+
+<div class="slide" id="tr-s17">
+  <p>Est-ce que tu te sens <span class="accent">plus &agrave; l'aise</span> avec le concept d'Op&eacute;rateur de Croissance qu'avant le d&eacute;but de cette pr&eacute;sentation ?</p>
+</div>
+
+<div class="slide" id="tr-s18">
+  <p>Est-ce que tu es <span class="accent">content d'&ecirc;tre venu</span> aujourd'hui ?</p>
+</div>
+
+<div class="slide" id="tr-s19">
+  <p>Est-ce que tu r&eacute;alises <span class="accent">l'avantage que tu as</span> maintenant par rapport &agrave; quelqu'un qui n'a pas vu cette pr&eacute;sentation ?</p>
+</div>
+
+<div class="slide" id="tr-s20">
+  <p>Est-ce que tu <span class="accent">te vois utiliser</span> ce que je t'ai montr&eacute; ?</p>
+</div>
+
+<div class="slide" id="tr-s21">
+  <p>M&ecirc;me si tu n'utilises qu'une <span class="accent">toute petite partie</span> de ce que je t'ai partag&eacute;, est-ce que tu dirais que notre temps ensemble &eacute;tait bien investi ?</p>
+</div>
+
+<div class="slide" id="tr-s22">
+  <h2>Et est-ce que tu aimerais aller <span class="accent">encore plus loin</span> ensemble ?</h2>
+</div>
+
+<div class="slide" id="tr-s23">
+  <h1 class="accent glow">Beaucoup plus loin ?</h1>
+</div>
+
+<!-- ============================================= -->
+<!-- TRANSITION — PARTIE 3 : LES DEUX CHOIX       -->
+<!-- ============================================= -->
+
+<div class="slide" id="tr-s24">
+  <p>Maintenant, voil&agrave; ce que je sais sur toi.</p>
+</div>
+
+<div class="slide" id="tr-s25">
+  <p>M&ecirc;me si on avait <span class="accent">quatre heures</span> ensemble au lieu de quarante-cinq minutes, &ccedil;a resterait difficile de cr&eacute;er un vrai changement durable dans ta vie.</p>
+</div>
+
+<div class="slide" id="tr-s26">
+  <p>Peu importe &agrave; quel point quelqu'un est bon, <span class="accent">une seule pr&eacute;sentation</span> ne va pas transformer ta situation.</p>
+</div>
+
+<div class="slide" id="tr-s27">
+  <p>Ce que je t'ai donn&eacute; aujourd'hui, c'&eacute;tait <span class="accent">tr&egrave;s pr&eacute;cieux</span>.</p>
+</div>
+
+<div class="slide" id="tr-s28">
+  <p>Tu me l'as dit toi-m&ecirc;me.</p>
+</div>
+
+<div class="slide" id="tr-s29">
+  <h2>Mais sinc&egrave;rement, c'est <span class="accent">la pointe de l'iceberg</span>.</h2>
+  <div class="placeholder" style="margin-top:25px;">Image d'un iceberg (la pointe visible au-dessus de l'eau)</div>
+</div>
+
+<div class="slide" id="tr-s30">
+  <p>Avant de faire cette pr&eacute;sentation, j'&eacute;tais face &agrave; <span class="accent">deux choix</span>.</p>
+</div>
+
+<div class="slide" id="tr-s31">
+  <h2>Choix num&eacute;ro 1</h2>
+</div>
+
+<div class="slide" id="tr-s32">
+  <p>Te partager ce que je t'ai partag&eacute;, te souhaiter <span class="accent">bonne chance</span>, et esp&eacute;rer que tu arrives &agrave; tout faire tout seul.</p>
+</div>
+
+<div class="slide" id="tr-s33">
+  <p>Trouver ton cr&eacute;ateur <span class="accent">seul</span>.</p>
+</div>
+
+<div class="slide" id="tr-s34">
+  <p>Le signer <span class="accent">seul</span>.</p>
+</div>
+
+<div class="slide" id="tr-s35">
+  <p>Tout faire <span class="accent">seul</span>.</p>
+</div>
+
+<div class="slide" id="tr-s36">
+  <p>Sans m&eacute;thode, sans templates, sans personne pour t'aider quand tu <span class="accent">bloques</span>.</p>
+</div>
+
+<div class="slide" id="tr-s37">
+  <h2>Choix num&eacute;ro 2</h2>
+</div>
+
+<div class="slide" id="tr-s38">
+  <p>Prendre un <span class="accent">r&ocirc;le actif</span> dans ta r&eacute;ussite.</p>
+</div>
+
+<div class="slide" id="tr-s39">
+  <p>Te donner non seulement la m&eacute;thode, mais les <span class="accent">outils</span>, l'<span class="accent">accompagnement</span>, la <span class="accent">communaut&eacute;</span>.</p>
+</div>
+
+<div class="slide" id="tr-s40">
+  <p>Tout ce qu'il faut pour que tu <span class="accent">y arrives vraiment</span>.</p>
+</div>
+
+<div class="slide" id="tr-s41">
+  <h2>J'ai choisi le <span class="accent">deuxi&egrave;me choix</span>.</h2>
+</div>
+
+<div class="slide" id="tr-s42">
+  <h1 class="glow">Et quand tu vas voir ce que j'ai en r&eacute;serve pour toi,</h1>
+</div>
+
+<div class="slide" id="tr-s43">
+  <h1 class="accent glow">tu seras content que je l'aie fait.</h1>
+</div>
+
+<!-- ============================================= -->
+<!-- LOGO + NAVIGATION                             -->
+<!-- ============================================= -->
+
+<div class="slide" id="cl-s1">
+  <h1 class="accent glow">CLOSE</h1>
+  <p class="sub">Stratégie 30%</p>
+</div>
+
+<div class="slide" id="cl-s2">
+  <p>Tu viens de voir les <span class="accent">4 étapes</span>.</p>
+</div>
+
+<div class="slide" id="cl-s3">
+  <p>Et tu as vu des gens comme toi le faire et <span class="accent">réussir</span>.</p>
+  <div style="display:flex; gap:16px; margin-top:30px; justify-content:center; flex-wrap:wrap;">
+    <div class="placeholder small" style="width:180px;height:180px;">Photo Kamil</div>
+    <div class="placeholder small" style="width:180px;height:180px;">Photo Brandon</div>
+    <div class="placeholder small" style="width:180px;height:180px;">Photo Florimond</div>
+    <div class="placeholder small" style="width:180px;height:180px;">Photo Dagan</div>
+    <div class="placeholder small" style="width:180px;height:180px;">Photo Elodie</div>
+  </div>
+</div>
+
+<div class="slide" id="cl-s4">
+  <p>Maintenant, je sais ce que tu te dis.</p>
+</div>
+
+<div class="slide" id="cl-s5">
+  <h2 class="quote">"Ok Mathéo, c'est bien beau, mais concrètement, <span class="accent">comment je fais</span> ?"</h2>
+</div>
+
+<div class="slide" id="cl-s6">
+  <p>"Tu m'as montré les étapes, mais j'ai besoin qu'on <span class="accent">me prenne par la main</span>."</p>
+</div>
+
+<div class="slide" id="cl-s7">
+  <p>C'est exactement pour ça que j'ai créé <span class="accent">Stratégie 30%</span>.</p>
+</div>
+
+<div class="slide" id="cl-s8">
+  <h1 class="accent-bg glow">Stratégie 30%</h1>
+</div>
+
+<div class="slide" id="cl-s9">
+  <p>Stratégie 30%, c'est un <span class="accent">accompagnement sur 6 mois</span> où je te prends par la main, étape par étape,</p>
+</div>
+
+<div class="slide" id="cl-s10">
+  <p>pour que tu lances ton activité d'Opérateur de Croissance et que tu génères tes <span class="accent">premiers revenus</span>.</p>
+</div>
+
+<div class="slide" id="cl-s11">
+  <h2>Concrètement, voilà ce que tu reçois :</h2>
+</div>
+
+<div class="slide" id="cl-s12">
+  <h2>La <span class="accent">méthode complète</span> en vidéo</h2>
+  <p class="sub">Chaque étape décomposée en modules, du choix du créateur jusqu'aux premiers revenus.</p>
+  <div class="placeholder" style="margin-top:30px;">Screenshot interface Skool - modules du programme</div>
+</div>
+
+<div class="slide" id="cl-s13">
+  <h2>Un <span class="accent">appel par jour</span> en live avec des experts</h2>
+  <p class="sub">Des gens qui font ça au quotidien et qui répondent à tes questions en direct.</p>
+  <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center;max-width:1100px;margin:20px auto;">
+    <div class="placeholder small">Screenshot appel live #1 (Zoom/Skool)</div>
+    <div class="placeholder small">Screenshot appel live #2 (Zoom/Skool)</div>
+    <div class="placeholder small">Screenshot appel live #3 (Zoom/Skool)</div>
+</div>
+</div>
+
+<div class="slide" id="cl-s14">
+  <h2>La <span class="accent">communauté</span></h2>
+  <p class="sub">Des centaines d'opérateurs qui partagent leurs résultats, leurs blocages, leurs solutions.</p>
+  <div class="placeholder wide">Screenshot communauté Skool (fil d'actualité, messages membres)</div>
+</div>
+
+<!-- Fermeture des 3 open loops -->
+
+<div class="slide" id="cl-s15">
+  <p>Et tu te rappelles les <span class="accent">3 choses</span> que je t'ai promis de te montrer ?</p>
+</div>
+
+<div class="slide" id="cl-s16">
+  <h2>Le <span class="accent">répertoire de créateurs</span></h2>
+  <p class="sub">Ces créateurs de contenu qui viennent me voir tous les jours ?</p>
+</div>
+
+<div class="slide" id="cl-s17">
+  <p>Quand tu rejoins Stratégie 30%, tu as accès à ces <span class="accent">mises en relation</span>.</p>
+</div>
+
+<div class="slide" id="cl-s18">
+  <p>Je te connecte directement avec des créateurs qui <span class="accent">VEULENT</span> bosser avec toi.</p>
+  <div class="placeholder" style="margin-top:30px;">Screenshot répertoire de créateurs</div>
+</div>
+
+<div class="slide" id="cl-s19">
+  <h2>Le <span class="accent">template de l'appel</span> avec le créateur de contenu</h2>
+  <p class="sub">Exactement quoi dire dans l'appel et quoi lui présenter pour qu'il accepte de travailler avec toi.</p>
+</div>
+
+<div class="slide" id="cl-s20">
+  <p>Tout est dans le programme. <span class="accent">Mot pour mot</span>.</p>
+  <div class="placeholder" style="margin-top:30px;">Aperçu template appel créateur</div>
+</div>
+
+<div class="slide" id="cl-s21">
+  <h2>La <span class="accent">méthode complète</span> pour lancer l'activité de ton créateur</h2>
+  <p class="sub">La page de vente, l'offre, le lancement. C'est le coeur du programme.</p>
+  <div class="placeholder" style="margin-top:30px;">Screenshot module - aperçu du contenu (page de vente, offre, lancement)</div>
+</div>
+
+<!-- =============================== -->
+<!-- 2. PREUVE SOCIALE               -->
+<!-- =============================== -->
+
+<div class="slide" id="cl-s22">
+  <p>Et les résultats, tu les as vus toi-même pendant cette présentation.</p>
+</div>
+
+<div class="slide" id="cl-s23">
+  <p>Kamil, Brandon, Florimond, Dagan, Élodie.</p>
+  <div style="display:flex; gap:16px; margin-top:30px; justify-content:center; flex-wrap:wrap;">
+    <div class="placeholder small" style="width:180px;height:180px;">Photo Kamil</div>
+    <div class="placeholder small" style="width:180px;height:180px;">Photo Brandon</div>
+    <div class="placeholder small" style="width:180px;height:180px;">Photo Florimond</div>
+    <div class="placeholder small" style="width:180px;height:180px;">Photo Dagan</div>
+    <div class="placeholder small" style="width:180px;height:180px;">Photo Elodie</div>
+  </div>
+</div>
+
+<div class="slide" id="cl-s24">
+  <h2>Mais ce ne sont <span class="accent">pas les seuls</span>.</h2>
+</div>
+
+<div class="slide" id="cl-s25">
+  <p>Regarde.</p>
+  <p class="sub" style="margin-top:10px;">Ça, c'est d'autres membres du programme. Des gens dont je ne t'ai pas parlé ce soir, mais qui vivent la même chose.</p>
+  <div class="mosaic" style="margin-top:30px; grid-template-columns: repeat(4, 1fr);">
+    <div class="mosaic-item">Membre 1 - Screenshot message r&eacute;sultat</div>
+    <div class="mosaic-item">Membre 2 - Screenshot message r&eacute;sultat</div>
+    <div class="mosaic-item">Membre 3 - Screenshot message r&eacute;sultat</div>
+    <div class="mosaic-item">Membre 4 - Screenshot message r&eacute;sultat</div>
+    <div class="mosaic-item">Membre 5 - Screenshot message r&eacute;sultat</div>
+    <div class="mosaic-item">Membre 6 - Screenshot message r&eacute;sultat</div>
+    <div class="mosaic-item">Membre 7 - Screenshot message r&eacute;sultat</div>
+    <div class="mosaic-item">Membre 8 - Screenshot message r&eacute;sultat</div>
+    <div class="mosaic-item">Membre 9 - Screenshot message r&eacute;sultat</div>
+    <div class="mosaic-item">Membre 10 - Screenshot message r&eacute;sultat</div>
+    <div class="mosaic-item">Membre 11 - Screenshot message r&eacute;sultat</div>
+    <div class="mosaic-item">Membre 12 - Screenshot message r&eacute;sultat</div>
+    <div class="mosaic-item">Membre 13 - Screenshot message r&eacute;sultat</div>
+    <div class="mosaic-item">Membre 14 - Screenshot message r&eacute;sultat</div>
+    <div class="mosaic-item">Membre 15 - Screenshot message r&eacute;sultat</div>
+    <div class="mosaic-item">Membre 16 - Screenshot message r&eacute;sultat</div>
+  </div>
+</div>
+
+<div class="slide" id="cl-s26">
+  <p>Et regarde ces messages.</p>
+</div>
+
+<div class="slide" id="cl-s27">
+  <p>Ce sont des élèves qui me disent qu'ils ont <span class="accent">récupéré leur investissement</span> en quelques semaines.</p>
+  <div class="mosaic" style="margin-top:30px; grid-template-columns: repeat(3, 1fr);">
+    <div class="mosaic-item">Message ROI #1 - "J'ai r&eacute;cup&eacute;r&eacute; mon investissement"</div>
+    <div class="mosaic-item">Message ROI #2 - Screenshot conversation</div>
+    <div class="mosaic-item">Message ROI #3 - Screenshot conversation</div>
+    <div class="mosaic-item">Message ROI #4 - Screenshot conversation</div>
+    <div class="mosaic-item">Message ROI #5 - Screenshot conversation</div>
+    <div class="mosaic-item">Message ROI #6 - Screenshot conversation</div>
+  </div>
+</div>
+
+<div class="slide" id="cl-s28">
+  <h2>C'est pas moi qui le dis. <span class="accent">C'est eux.</span></h2>
+</div>
+
+<!-- =============================== -->
+<!-- 3. LE CTA — BOOKER UN APPEL     -->
+<!-- =============================== -->
+
+<div class="slide" id="cl-s29">
+  <p>Maintenant, si ce que tu as vu aujourd'hui te parle, voilà ce que je te propose.</p>
+</div>
+
+<div class="slide" id="cl-s30">
+  <h2>Je t'invite à réserver un <span class="accent">appel</span> avec mon équipe.</h2>
+</div>
+
+<div class="slide" id="cl-s31">
+  <p>C'est un appel <span class="accent">gratuit</span>, sans engagement.</p>
+</div>
+
+<div class="slide" id="cl-s32">
+  <p>L'objectif, c'est simple : on discute de ta situation, on regarde si Stratégie 30% est <span class="accent">fait pour toi</span>, et on répond à toutes tes questions.</p>
+</div>
+
+<div class="slide" id="cl-s33">
+  <p>Je dis bien : <span class="accent">SI</span> c'est fait pour toi.</p>
+</div>
+
+<div class="slide" id="cl-s34">
+  <p>On veut des gens <span class="accent">motivés</span>, <span class="accent">coachables</span>, qui sont prêts à passer à l'action.</p>
+</div>
+
+<div class="slide" id="cl-s35">
+  <h2>Pour réserver ton appel, clique sur le lien qui s'affiche <span class="accent">dans le chat</span>.</h2>
+</div>
+
+<div class="slide" id="cl-s36">
+  <div class="cta-box">
+    <p style="font-size:36px; color:rgba(255,255,255,0.7); margin-bottom:20px;">Réserve ton appel gratuit</p>
+    <p class="cta-link">[LIEN BOOKING]</p>
+    <p class="sub" style="margin-top:25px;">Court questionnaire, puis tu choisis ton créneau.</p>
+  </div>
+</div>
+
+<div class="slide" id="cl-s37">
+  <p>Tu vas tomber sur un <span class="accent">court questionnaire</span>.</p>
+  <p style="margin-top:15px;">Réponds-y bien. Ensuite, tu choisis ton créneau.</p>
+</div>
+
+<!-- Rareté réelle -->
+
+<div class="slide" id="cl-s38">
+  <p>Petit détail important :</p>
+</div>
+
+<div class="slide" id="cl-s39">
+  <h2>On a une <span class="accent">capacité limitée</span> d'appels par semaine.</h2>
+</div>
+
+<div class="slide" id="cl-s40">
+  <p>Là, sur les prochains jours, il reste <span class="accent">30 créneaux</span> disponibles.</p>
+</div>
+
+<div class="slide" id="cl-s41">
+  <p>Si tu attends trop, tu vas devoir attendre <span class="accent">la prochaine session</span>.</p>
+</div>
+
+<div class="slide" id="cl-s42">
+  <h1 class="glow">Est-ce que tu veux que <span class="accent">rien ne change</span> ?</h1>
+</div>
+
+<div class="slide" id="cl-s43">
+  <h1 class="accent glow">Alors clique sur le lien maintenant.</h1>
+</div>
+
+<!-- =============================== -->
+<!-- 4. GESTION DES OBJECTIONS       -->
+<!-- =============================== -->
+
+<!-- Objection : C'est quoi le prix ? -->
+
+<div class="slide" id="cl-s44">
+  <h2 class="quote">"C'est quoi le <span class="accent">prix</span> ?"</h2>
+</div>
+
+<div class="slide" id="cl-s45">
+  <p>Beaucoup d'entre vous se demandent combien ça coûte.</p>
+  <p style="margin-top:15px;">Et c'est normal.</p>
+</div>
+
+<div class="slide" id="cl-s46">
+  <p>Je ne vais pas te donner le prix sur cette présentation.</p>
+</div>
+
+<div class="slide" id="cl-s47">
+  <p>Pas parce que c'est un secret, mais parce qu'on a <span class="accent">plusieurs options</span> et que la bonne pour toi dépend de ta situation.</p>
+</div>
+
+<div class="slide" id="cl-s48">
+  <p>C'est exactement pour ça que <span class="accent">l'appel existe</span>.</p>
+</div>
+
+<div class="slide" id="cl-s49">
+  <p>On en discute ensemble, en toute <span class="accent">transparence</span>.</p>
+</div>
+
+<div class="slide" id="cl-s50">
+  <p>Ce que je peux te dire, c'est que la quasi-totalité de mes élèves récupèrent leur investissement <span class="accent">en quelques mois</span>.</p>
+</div>
+
+<div class="slide" id="cl-s51">
+  <p>Brandon l'a récupéré en <span class="accent">deux semaines</span>.</p>
+  <p style="margin-top:15px;">Dagan en <span class="accent">un mois et demi</span>.</p>
+  <div style="display:flex; gap:20px; margin-top:30px; justify-content:center; flex-wrap:wrap;">
+    <div class="placeholder small">Screenshot preuve ROI Brandon (2 semaines)</div>
+    <div class="placeholder small">Screenshot preuve ROI Dagan (1,5 mois)</div>
+  </div>
+</div>
+
+<div class="slide" id="cl-s52">
+  <h2>C'est pas une dépense, c'est un <span class="accent">investissement qui se rembourse</span>.</h2>
+</div>
+
+<!-- Objection : J'ai pas le temps -->
+
+<div class="slide" id="cl-s53">
+  <h2 class="quote">"J'ai pas le <span class="accent">temps</span>"</h2>
+</div>
+
+<div class="slide" id="cl-s54">
+  <p>Je sais que tu es occupé.</p>
+</div>
+
+<div class="slide" id="cl-s55">
+  <p>Florimond bossait <span class="accent">35 heures par semaine</span> avec des enfants.</p>
+  <div class="placeholder small" style="margin-top:20px;width:200px;height:200px;">Photo Florimond</div>
+</div>
+
+<div class="slide" id="cl-s56">
+  <p>Dagan était en <span class="accent">alternance</span>.</p>
+  <div class="placeholder small" style="margin-top:20px;width:200px;height:200px;">Photo Dagan</div>
+</div>
+
+<div class="slide" id="cl-s57">
+  <p>Élodie faisait <span class="accent">49 heures</span> en restauration.</p>
+  <div class="placeholder small" style="margin-top:20px;width:200px;height:200px;">Photo Elodie</div>
+</div>
+
+<div class="slide" id="cl-s58">
+  <p>Ils ont tous trouvé le temps.</p>
+</div>
+
+<div class="slide" id="cl-s59">
+  <h2>Pourquoi ? Parce qu'ils ne cherchaient pas du temps libre. Ils cherchaient une <span class="accent">sortie</span>.</h2>
+</div>
+
+<div class="slide" id="cl-s60">
+  <p>L'appel dure <span class="accent">45 minutes</span>.</p>
+</div>
+
+<div class="slide" id="cl-s61">
+  <h2>45 minutes pour savoir si <span class="accent">ta vie peut changer</span>.</h2>
+  <p class="sub">Tu peux trouver 45 minutes.</p>
+</div>
+
+<!-- Objection : J'ai peur que ce soit une arnaque -->
+
+<div class="slide" id="cl-s62">
+  <h2 class="quote">"J'ai peur que ce soit une <span class="accent">arnaque</span>"</h2>
+</div>
+
+<div class="slide" id="cl-s63">
+  <p>Je te comprends.</p>
+  <p style="margin-top:15px;">Internet est rempli de vendeurs de rêve.</p>
+</div>
+
+<div class="slide" id="cl-s64">
+  <p>Mais tu as vu les <span class="accent">témoignages</span>.</p>
+  <p style="margin-top:15px;">Tu as vu les <span class="accent">résultats</span>.</p>
+  <p style="margin-top:15px;">Tu as vu les <span class="accent">visages</span>.</p>
+  <div class="mosaic" style="margin-top:25px; grid-template-columns: repeat(5, 1fr);">
+    <div class="mosaic-item" style="height:120px;">T&eacute;moignage vid&eacute;o Kamil</div>
+    <div class="mosaic-item" style="height:120px;">T&eacute;moignage vid&eacute;o Brandon</div>
+    <div class="mosaic-item" style="height:120px;">T&eacute;moignage vid&eacute;o Florimond</div>
+    <div class="mosaic-item" style="height:120px;">T&eacute;moignage vid&eacute;o Dagan</div>
+    <div class="mosaic-item" style="height:120px;">T&eacute;moignage vid&eacute;o Elodie</div>
+  </div>
+</div>
+
+<div class="slide" id="cl-s65">
+  <h2>Ce ne sont pas des acteurs.</h2>
+</div>
+
+<div class="slide" id="cl-s66">
+  <p>Et si tu as encore un doute, tape mon nom sur Google.</p>
+</div>
+
+<div class="slide" id="cl-s67">
+  <h2>Tape <span class="accent">"Mathéo Cauwet"</span> sur Google.</h2>
+  <div class="mosaic" style="margin-top:20px; grid-template-columns: repeat(4, 1fr);">
+    <div class="mosaic-item">Résultat Google #1</div>
+    <div class="mosaic-item">Résultat Google #2</div>
+    <div class="mosaic-item">Résultat Google #3</div>
+    <div class="mosaic-item">Résultat Google #4</div>
+    <div class="mosaic-item">Article presse #1</div>
+    <div class="mosaic-item">Article presse #2</div>
+    <div class="mosaic-item">Vidéo YouTube #1</div>
+    <div class="mosaic-item">Vidéo YouTube #2</div>
+  </div>
+</div>
+
+<div class="slide" id="cl-s68">
+  <p>Regarde. C'est ce qui sort.</p>
+  <p style="margin-top:15px;">Tu verras que je ne suis pas un random qui est apparu hier.</p>
+</div>
+
+<div class="slide" id="cl-s69">
+  <p>Regarde.</p>
+  <div style="display:flex; gap:16px; margin-top:30px; justify-content:center; flex-wrap:wrap;">
+    <div class="placeholder small">P50a - Photo &eacute;v&eacute;nement Paris (groupe)</div>
+    <div class="placeholder small">P50b - Photo semaine au ski (groupe)</div>
+    <div class="placeholder small">P50c - Photo semi-marathon (groupe)</div>
+    <div class="placeholder small">P50d - Photo meetup membres</div>
+    <div class="placeholder small">P50e - Photo soir&eacute;e / d&icirc;ner &eacute;quipe</div>
+    <div class="placeholder small">P50f - Photo chalet tournage mars 2026</div>
+  </div>
+</div>
+
+<div class="slide" id="cl-s70">
+  <p>Ça, c'est une journée qu'on a faite tous ensemble à <span class="accent">Paris</span> avec les membres du programme.</p>
+</div>
+
+<div class="slide" id="cl-s71">
+  <p>Ça, c'est une semaine au <span class="accent">ski</span>.</p>
+</div>
+
+<div class="slide" id="cl-s72">
+  <p>Et ça, c'est un <span class="accent">semi-marathon</span> qu'on a couru ensemble.</p>
+</div>
+
+<div class="slide" id="cl-s73">
+  <h2>Ce sont de <span class="accent">vraies personnes</span>, de vrais moments, une vraie communauté.</h2>
+</div>
+
+<div class="slide" id="cl-s74">
+  <p>Et rappelle-toi : j'ai tout intérêt à ce que <span class="accent">tu réussisses</span>.</p>
+</div>
+
+<div class="slide" id="cl-s75">
+  <p>Parce que plus tu réussis, plus les créateurs gagnent, et plus <span class="accent">j'en gagne</span> sur les mises en relation.</p>
+  <div style="display:flex; gap:30px; margin-top:35px; justify-content:center; flex-wrap:wrap; max-width:1100px;">
+    <div style="flex:1; min-width:400px; background:rgba(27,167,255,0.08); border:2px solid rgba(27,167,255,0.3); border-radius:20px; padding:35px 30px; text-align:center;">
+      <p style="font-size:28px; color:rgba(255,255,255,0.6); margin-bottom:12px;">Si l'opérateur gagne</p>
+      <p style="font-size:44px; font-weight:800; color:#fff;">1 000 EUR/mois</p>
+      <p style="font-size:24px; color:rgba(255,255,255,0.5); margin:15px 0;">Je prends 5%</p>
+      <p style="font-size:40px; font-weight:700; color:#1BA7FF;">50 EUR/mois</p>
+    </div>
+    <div style="flex:1; min-width:400px; background:rgba(27,167,255,0.08); border:2px solid rgba(27,167,255,0.3); border-radius:20px; padding:35px 30px; text-align:center;">
+      <p style="font-size:28px; color:rgba(255,255,255,0.6); margin-bottom:12px;">Si l'opérateur gagne</p>
+      <p style="font-size:44px; font-weight:800; color:#fff;">50 000 EUR/mois</p>
+      <p style="font-size:24px; color:rgba(255,255,255,0.5); margin:15px 0;">Je prends 5%</p>
+      <p style="font-size:40px; font-weight:700; color:#1BA7FF;">2 500 EUR/mois</p>
+    </div>
+  </div>
+</div>
+
+<div class="slide" id="cl-s76">
+  <h2>On est dans le <span class="accent">même bateau</span>.</h2>
+</div>
+
+<!-- Objection : Je suis pas sûr que c'est pour moi -->
+
+<div class="slide" id="cl-s77">
+  <h2 class="quote">"Je suis pas sûr que c'est <span class="accent">pour moi</span>"</h2>
+</div>
+
+<div class="slide" id="cl-s78">
+  <p>C'est <span class="accent">exactement</span> pour ça que l'appel existe.</p>
+</div>
+
+<div class="slide" id="cl-s79">
+  <p>C'est pas un appel de vente agressive où on te force à signer.</p>
+</div>
+
+<div class="slide" id="cl-s80">
+  <h2>C'est une <span class="accent">conversation</span>.</h2>
+</div>
+
+<div class="slide" id="cl-s81">
+  <p>Si c'est pas pour toi, on te le dit.</p>
+</div>
+
+<div class="slide" id="cl-s82">
+  <p>On a <span class="accent">refusé</span> des gens par le passé.</p>
+  <p style="margin-top:15px;">On préfère un "non" honnête qu'un "oui" forcé.</p>
+</div>
+
+<!-- =============================== -->
+<!-- 5. CTA FINAL                    -->
+<!-- =============================== -->
+
+<div class="slide" id="cl-s83">
+  <h2>On arrive à la fin.</h2>
+</div>
+
+<div class="slide" id="cl-s84">
+  <h1>Et tu as <span class="accent">deux choix</span>.</h1>
+</div>
+
+<div class="slide" id="cl-s85">
+  <h2>Le premier :</h2>
+  <p style="margin-top:20px;">Tu fermes cette présentation, tu retournes à ta vie,</p>
+</div>
+
+<div class="slide" id="cl-s86">
+  <p>et dans 6 mois tu seras exactement au <span class="accent">même endroit</span> qu'aujourd'hui.</p>
+</div>
+
+<div class="slide" id="cl-s87">
+  <p>Même job, même salaire, <span class="accent">même frustration</span>.</p>
+</div>
+
+<div class="slide" id="cl-s88">
+  <h2>Le deuxième :</h2>
+</div>
+
+<div class="slide" id="cl-s89">
+  <p>Tu prends <span class="accent">30 secondes</span> pour cliquer sur le lien,</p>
+</div>
+
+<div class="slide" id="cl-s90">
+  <p>tu remplis le questionnaire, tu réserves ton créneau.</p>
+</div>
+
+<div class="slide" id="cl-s91">
+  <p>Et dans 6 mois, tu pourrais être celui qui raconte son histoire,</p>
+</div>
+
+<div class="slide" id="cl-s92">
+  <h2>comme Kamil, comme Brandon, comme <span class="accent">Florimond</span>.</h2>
+  <div style="display:flex; gap:16px; margin-top:30px; justify-content:center; flex-wrap:wrap;">
+    <div class="placeholder small" style="width:200px;height:200px;">Photo Kamil</div>
+    <div class="placeholder small" style="width:200px;height:200px;">Photo Brandon</div>
+    <div class="placeholder small" style="width:200px;height:200px;">Photo Florimond</div>
+  </div>
+</div>
+
+<div class="slide" id="cl-s93">
+  <div class="cta-box" style="box-shadow: 0 0 80px rgba(27,167,255,0.25);">
+    <p style="font-size:40px; font-weight:700; color:#fff; margin-bottom:25px;">Réserve ton appel maintenant</p>
+    <p class="cta-link" style="font-size:56px;">[LIEN BOOKING]</p>
+  </div>
+  <p class="sub" style="margin-top:30px;">Les places sont limitées. Si tu le sens, c'est maintenant.</p>
+</div>
+
+<div class="slide" id="cl-s94">
+  <p>Pour ceux qui sont encore là et qui hésitent :</p>
+</div>
+
+<div class="slide" id="cl-s95">
+  <p>La différence entre ceux qui réussissent et ceux qui ne réussissent pas,</p>
+</div>
+
+<div class="slide" id="cl-s96">
+  <p>c'est pas le talent, c'est pas l'intelligence, c'est pas l'argent.</p>
+</div>
+
+<div class="slide" id="cl-s97">
+  <h1 class="glow">C'est la <span class="accent">décision</span>.</h1>
+</div>
+
+<div class="slide" id="cl-s98">
+  <h2>La décision de passer à l'action au moment où <span class="accent">l'opportunité se présente</span>.</h2>
+</div>
+
+<div class="slide" id="cl-s99">
+  <h1 class="accent glow">Ce moment, c'est maintenant.</h1>
+</div>
+
+<div class="slide" id="cl-s100">
+  <h2>Maintenant, merci d'avoir regardé <span class="accent">cette présentation</span>.</h2>
+</div>
+
+<div class="slide" id="cl-s101">
+  <h1 class="accent glow">C'est votre moment.</h1>
+  <p class="sub" style="margin-top:25px;">Posez vos questions dans le chat.</p>
+</div>
+
+<div class="slide" id="cl-s102">
+  <p>Je vais répondre à <span class="accent">chacune d'entre elles</span>.</p>
+</div>
+
+<div class="slide" id="cl-s103">
+  <h2>Et si vous êtes prêts à passer à l'action,</h2>
+  <p style="margin-top:20px;">le lien pour réserver votre appel est <span class="accent">juste en dessous</span>.</p>
+</div>
+
+<div class="slide" id="cl-s104">
+  <div class="cta-box" style="box-shadow: 0 0 100px rgba(27,167,255,0.3);">
+    <p style="font-size:44px; font-weight:800; color:#fff; margin-bottom:30px;">Réservez votre appel maintenant</p>
+    <p class="cta-link" style="font-size:60px;">[LIEN BOOKING]</p>
+  </div>
+</div>
+
+<!-- =============================== -->
+<!-- LOGO + NAVIGATION                -->
+<!-- =============================== -->
+
+
+<div class="logo">STRATEGIE 30%</div>
+<div id="slide-num" style="position:fixed;bottom:20px;right:30px;font-size:14px;font-weight:500;color:rgba(255,255,255,0.3);z-index:100;">1</div>
+
+<div class="nav-arrow left" onclick="prevSlide()">
+  <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+</div>
+<div class="nav-arrow right" onclick="nextSlide()">
+  <svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>
+</div>
+
+<div class="pause-overlay" id="pauseOverlay">PAUSE</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+let current = 0;
+
+function showSlide(n) {
+  if (n < 0 || n >= slides.length) return;
+  slides[current].classList.remove('active');
+  current = n;
+  slides[current].classList.add('active');
+  document.getElementById('slide-num').textContent = (current + 1) + ' / 688';
+}
+
+function nextSlide() { showSlide(current + 1); }
+function prevSlide() { showSlide(current - 1); }
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter' || e.key === 'PageDown') {
+    e.preventDefault();
+    nextSlide();
+  } else if (e.key === 'ArrowLeft' || e.key === 'Backspace' || e.key === 'PageUp') {
+    e.preventDefault();
+    prevSlide();
+  } else if (e.key === 'Home') {
+    e.preventDefault();
+    showSlide(0);
+  } else if (e.key === 'End') {
+    e.preventDefault();
+    showSlide(slides.length - 1);
+  } else if (e.key === 'p' || e.key === 'P') {
+    const overlay = document.getElementById('pauseOverlay');
+    overlay.style.display = overlay.style.display === 'flex' ? 'none' : 'flex';
+  }
+});
+
+// Touch/swipe support for mobile
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener('touchstart', (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+}, false);
+
+document.addEventListener('touchend', (e) => {
+  touchEndX = e.changedTouches[0].screenX;
+  const diff = touchStartX - touchEndX;
+  if (Math.abs(diff) > 50) {
+    if (diff > 0) nextSlide();
+    else prevSlide();
+  }
+}, false);
+
+// Click on sides to navigate
+document.addEventListener('click', (e) => {
+  if (e.target.closest('.nav-arrow')) return;
+  const x = e.clientX;
+  const w = window.innerWidth;
+  if (x > w * 0.7) nextSlide();
+  else if (x < w * 0.3) prevSlide();
+});
+
+// Show initial slide counter
+document.getElementById('slide-num').textContent = '1 / 688';
+</script>
+
+</body>
+</html>
