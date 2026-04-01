@@ -625,14 +625,16 @@ body:hover .nav-arrow { opacity: 0.3; }
 
 <div class="slide" id="intro-s53">
   <p>Et je me suis associé avec tous les créateurs de contenu que tu vois s'afficher à ton écran.</p>
-  <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center;max-width:1100px;margin:20px auto;">
-    <div style="flex:1;min-width:200px;"><img src="assets/p7-1.png" style="width:100%;border-radius:10px;object-fit:contain;" alt=""></div>
-    <div style="flex:1;min-width:200px;"><img src="assets/p7-2.png" style="width:100%;border-radius:10px;object-fit:contain;" alt=""></div>
-    <div style="flex:1;min-width:200px;"><img src="assets/p7-3.png" style="width:100%;border-radius:10px;object-fit:contain;" alt=""></div>
-    <div style="flex:1;min-width:200px;"><img src="assets/p7-4.png" style="width:100%;border-radius:10px;object-fit:contain;" alt=""></div>
-    <div style="flex:1;min-width:200px;"><img src="assets/p7-5.png" style="width:100%;border-radius:10px;object-fit:contain;" alt=""></div>
-    <div style="flex:1;min-width:200px;"><img src="assets/p7-6.png" style="width:100%;border-radius:10px;object-fit:contain;" alt=""></div>
-</div>
+  <div style="display:flex; gap:15px; justify-content:center; flex-wrap:wrap;">
+    <div class="placeholder small">Screenshot profil createur niche 1 (nom + abonnes visibles)</div>
+    <div class="placeholder small">Screenshot profil createur niche 2 (nom + abonnes visibles)</div>
+    <div class="placeholder small">Screenshot profil createur niche 3 (nom + abonnes visibles)</div>
+  </div>
+  <div style="display:flex; gap:15px; justify-content:center; flex-wrap:wrap; margin-top:15px;">
+    <div class="placeholder small">Screenshot profil createur niche 4 (nom + abonnes visibles)</div>
+    <div class="placeholder small">Screenshot profil createur niche 5 (nom + abonnes visibles)</div>
+    <div class="placeholder small">Screenshot profil createur niche 6 (nom + abonnes visibles)</div>
+  </div>
   <p class="sub" style="margin-top:15px;">Apprentissage de langues, instruments de musique, relations amoureuses, triathlon, cyclisme, et des dizaines d'autres niches.</p>
 </div>
 
@@ -888,11 +890,10 @@ body:hover .nav-arrow { opacity: 0.3; }
 </div>
 
 <div class="slide" id="intro-s86">
-  <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center;max-width:1100px;margin:20px auto;">
-    <div style="flex:1;min-width:200px;"><img src="assets/p28-1.png" style="width:100%;border-radius:10px;object-fit:contain;" alt=""></div>
-    <div style="flex:1;min-width:200px;"><img src="assets/p28-2.png" style="width:100%;border-radius:10px;object-fit:contain;" alt=""></div>
-    <div style="flex:1;min-width:200px;"><img src="assets/p28-3.png" style="width:100%;border-radius:10px;object-fit:contain;" alt=""></div>
-</div>
+  <div style="display:flex;flex-wrap:wrap;gap:30px;justify-content:center;max-width:1100px;margin:20px auto;">
+    <img src="assets/p28-1.png" style="width:48%;max-width:520px;border-radius:10px;" alt="">
+    <img src="assets/p28-3.png" style="width:48%;max-width:520px;border-radius:10px;" alt="">
+  </div>
   <p class="sub" style="margin-top:20px;">Des vraies conversations. Des opérateurs connectés avec des créateurs. Tous les jours.</p>
 </div>
 
@@ -915,19 +916,25 @@ body:hover .nav-arrow { opacity: 0.3; }
 </div>
 
 <div class="slide" id="intro-s87c">
-  <div style="display:flex;gap:40px;justify-content:center;align-items:stretch;max-width:1100px;flex-wrap:wrap;">
-    <div style="flex:1;min-width:380px;background:rgba(27,167,255,0.08);border:2px solid rgba(27,167,255,0.25);border-radius:20px;padding:40px 36px;text-align:center;">
-      <p style="font-size:24px;color:rgba(255,255,255,0.5);margin-bottom:12px;">Si l'operateur gagne</p>
-      <h1 style="font-size:56px;font-weight:800;">1 000 <span class="accent">EUR</span>/mois</h1>
-      <p style="font-size:24px;color:rgba(255,255,255,0.5);margin-top:20px;">Je prends 5%</p>
-      <h2 style="margin-top:8px;font-size:40px;"><span class="accent">50 EUR</span>/mois</h2>
+  <div style="max-width:1000px;margin:0 auto;">
+    <p style="font-size:28px;color:rgba(255,255,255,0.7);margin-bottom:30px;text-align:center;">Je mets en relation un operateur avec un createur. Je prends <span class="accent" style="font-weight:700;">5%</span> sur ce que le createur genere.</p>
+    <div style="display:flex;gap:40px;justify-content:center;flex-wrap:wrap;">
+      <div style="flex:1;min-width:350px;background:rgba(27,167,255,0.08);border:2px solid rgba(27,167,255,0.25);border-radius:20px;padding:35px 30px;text-align:center;">
+        <p style="font-size:22px;color:rgba(255,255,255,0.5);">Le createur genere</p>
+        <h1 style="font-size:52px;font-weight:800;margin:10px 0;">1 000 <span class="accent">EUR</span>/mois</h1>
+        <div style="width:60px;height:2px;background:#1BA7FF;margin:15px auto;"></div>
+        <p style="font-size:20px;color:rgba(255,255,255,0.5);">Ma commission (5%)</p>
+        <h2 style="font-size:38px;margin-top:8px;"><span class="accent">50 EUR</span>/mois</h2>
+      </div>
+      <div style="flex:1;min-width:350px;background:rgba(27,167,255,0.15);border:2px solid #1BA7FF;border-radius:20px;padding:35px 30px;text-align:center;">
+        <p style="font-size:22px;color:rgba(255,255,255,0.5);">Le createur genere</p>
+        <h1 style="font-size:52px;font-weight:800;margin:10px 0;">50 000 <span class="accent">EUR</span>/mois</h1>
+        <div style="width:60px;height:2px;background:#1BA7FF;margin:15px auto;"></div>
+        <p style="font-size:20px;color:rgba(255,255,255,0.5);">Ma commission (5%)</p>
+        <h2 style="font-size:38px;margin-top:8px;"><span class="accent">2 500 EUR</span>/mois</h2>
+      </div>
     </div>
-    <div style="flex:1;min-width:380px;background:rgba(27,167,255,0.15);border:2px solid #1BA7FF;border-radius:20px;padding:40px 36px;text-align:center;">
-      <p style="font-size:24px;color:rgba(255,255,255,0.5);margin-bottom:12px;">Si l'operateur gagne</p>
-      <h1 style="font-size:56px;font-weight:800;">50 000 <span class="accent">EUR</span>/mois</h1>
-      <p style="font-size:24px;color:rgba(255,255,255,0.5);margin-top:20px;">Je prends 5%</p>
-      <h2 style="margin-top:8px;font-size:40px;"><span class="accent">2 500 EUR</span>/mois</h2>
-    </div>
+    <p style="font-size:28px;font-weight:600;color:#fff;margin-top:30px;text-align:center;">Tu comprends que j'ai <span class="accent">tout interet</span> a ce que mes operateurs soient excellents.</p>
   </div>
 </div>
 
@@ -1207,22 +1214,10 @@ body:hover .nav-arrow { opacity: 0.3; }
 <div class="slide" id="e1-s1">
   <h2>Les <span class="accent">4 étapes</span> pour lancer ton activité d'Opérateur de Croissance</h2>
   <div class="roadmap">
-    <div class="roadmap-step active-step">
-      <div class="step-num">Étape 1</div>
-      <div class="step-label">CHOISIS</div>
-    </div>
-    <div class="roadmap-step">
-      <div class="step-num">Étape 2</div>
-      <div class="step-label">SIGNE</div>
-    </div>
-    <div class="roadmap-step">
-      <div class="step-num">Étape 3</div>
-      <div class="step-label">CONSTRUIS</div>
-    </div>
-    <div class="roadmap-step">
-      <div class="step-num">Étape 4</div>
-      <div class="step-label">ENCAISSE</div>
-    </div>
+    <div class="step active-step">Étape 1<br/>CHOISIS</div>
+    <div class="step">Étape 2<br/>SIGNE</div>
+    <div class="step">Étape 3<br/>CONSTRUIS</div>
+    <div class="step">Étape 4<br/>ENCAISSE</div>
   </div>
 </div>
 
@@ -1717,6 +1712,30 @@ body:hover .nav-arrow { opacity: 0.3; }
   <p>Et je te comprends. Donc laisse-moi te montrer <span class="accent">un truc</span>.</p>
 </div>
 
+<div class="slide" id="e1-s101b">
+  <p><span class="accent">Kyle Koszuta</span>. Un createur de contenu sur le pickleball.</p>
+  <div class="placeholder" style="margin-top:30px;">Screenshot profil Kyle Koszuta — createur pickleball (nom + abonnes visibles)</div>
+</div>
+
+<div class="slide" id="e1-s101c">
+  <p>1 300 membres qui paient <span class="accent">49 dollars par mois</span> pour acceder a sa communaute.</p>
+  <p class="sub" style="margin-top:20px;">Soit environ <span class="accent">63 000 dollars par mois</span> de revenus recurrents. Avec du pickleball.</p>
+</div>
+
+<div class="slide" id="e1-s101d">
+  <p><span class="accent">JP Lavoie</span>. Un createur de contenu sur le barbecue au Quebec.</p>
+  <div class="placeholder" style="margin-top:30px;">Screenshot profil JP Lavoie — createur BBQ Quebec (nom + abonnes visibles)</div>
+</div>
+
+<div class="slide" id="e1-s101e">
+  <p><span class="accent">2 600 membres payants</span> dans sa communaute.</p>
+  <p class="sub" style="margin-top:20px;">Du barbecue. Pas de la tech. Pas de la finance. Du barbecue.</p>
+</div>
+
+<div class="slide" id="e1-s101f">
+  <p>Ces gens-la ne sont pas des stars. Personne ne les connait en dehors de leur niche. Et pourtant, ils generent des <span class="accent">dizaines de milliers d'euros par mois</span> avec une simple communaute.</p>
+</div>
+
 <div class="slide" id="e1-s102">
   <p>Regarde ce créateur. Personne ne le connait en dehors de sa niche.</p>
   <div class="placeholder" style="margin-top:30px;">[P14b] Screenshot petit créateur FR ~5-10K abonnés avec accompagnement lancé</div>
@@ -2101,22 +2120,10 @@ body:hover .nav-arrow { opacity: 0.3; }
 <div class="slide" id="e1-s178">
   <h2>Les <span class="accent">4 étapes</span> pour lancer ton activité d'Opérateur de Croissance</h2>
   <div class="roadmap">
-    <div class="roadmap-step done-step">
-      <div class="step-num">Étape 1</div>
-      <div class="step-label">CHOISIS</div>
-    </div>
-    <div class="roadmap-step active-step">
-      <div class="step-num">Étape 2</div>
-      <div class="step-label">SIGNE</div>
-    </div>
-    <div class="roadmap-step">
-      <div class="step-num">Étape 3</div>
-      <div class="step-label">CONSTRUIS</div>
-    </div>
-    <div class="roadmap-step">
-      <div class="step-num">Étape 4</div>
-      <div class="step-label">ENCAISSE</div>
-    </div>
+    <div class="step done">Étape 1<br/>CHOISIS</div>
+    <div class="step done">Étape 2<br/>SIGNE</div>
+    <div class="step active-step">Étape 3<br/>CONSTRUIS</div>
+    <div class="step">Étape 4<br/>ENCAISSE</div>
   </div>
 </div>
 
@@ -2212,7 +2219,7 @@ body:hover .nav-arrow { opacity: 0.3; }
 </div>
 
 <div class="slide" id="e2-s16">
-  <p>Ça change ta façon de voir les choses, <span class="accent">non ?</span></p>
+  <p>Ça change ta façon de voir les choses, <span class="accent" style="white-space:nowrap;">non ?</span></p>
 </div>
 
 <!-- =============================== -->
@@ -2716,11 +2723,27 @@ body:hover .nav-arrow { opacity: 0.3; }
 </div>
 
 <div class="slide" id="e3-s6">
-  <ul class="bullets">
-    <li><span class="accent">L'offre</span> : l'accompagnement que tu packages avec ton créateur</li>
-    <li><span class="accent">La page de vente</span> : l'endroit où les gens découvrent l'accompagnement et s'inscrivent</li>
-    <li><span class="accent">Le lancement</span> : le moment où tu annonces l'accompagnement à l'audience du créateur</li>
-  </ul>
+  <div style="background:rgba(27,167,255,0.1);border:2px solid rgba(27,167,255,0.3);border-radius:20px;padding:40px;text-align:center;max-width:700px;margin:20px auto;">
+    <div style="width:60px;height:60px;border-radius:50%;background:#1BA7FF;display:flex;align-items:center;justify-content:center;margin:0 auto 15px;font-size:28px;font-weight:800;color:#fff;">1</div>
+    <h2 style="font-size:40px;"><span class="accent">L'offre</span></h2>
+    <p style="font-size:28px;color:rgba(255,255,255,0.8);margin-top:15px;">L'accompagnement que tu packages avec ton createur</p>
+  </div>
+</div>
+
+<div class="slide" id="e3-s6b">
+  <div style="background:rgba(27,167,255,0.1);border:2px solid rgba(27,167,255,0.3);border-radius:20px;padding:40px;text-align:center;max-width:700px;margin:20px auto;">
+    <div style="width:60px;height:60px;border-radius:50%;background:#1BA7FF;display:flex;align-items:center;justify-content:center;margin:0 auto 15px;font-size:28px;font-weight:800;color:#fff;">2</div>
+    <h2 style="font-size:40px;"><span class="accent">La page de vente</span></h2>
+    <p style="font-size:28px;color:rgba(255,255,255,0.8);margin-top:15px;">L'endroit ou les gens decouvrent l'accompagnement et s'inscrivent</p>
+  </div>
+</div>
+
+<div class="slide" id="e3-s6c">
+  <div style="background:rgba(27,167,255,0.1);border:2px solid rgba(27,167,255,0.3);border-radius:20px;padding:40px;text-align:center;max-width:700px;margin:20px auto;">
+    <div style="width:60px;height:60px;border-radius:50%;background:#1BA7FF;display:flex;align-items:center;justify-content:center;margin:0 auto 15px;font-size:28px;font-weight:800;color:#fff;">3</div>
+    <h2 style="font-size:40px;"><span class="accent">Le lancement</span></h2>
+    <p style="font-size:28px;color:rgba(255,255,255,0.8);margin-top:15px;">Le moment ou tu annonces l'accompagnement a l'audience du createur</p>
+  </div>
 </div>
 
 <div class="slide" id="e3-s7">
@@ -3627,13 +3650,6 @@ body:hover .nav-arrow { opacity: 0.3; }
   <h2>Pour réserver ton appel, clique sur le lien qui s'affiche <span class="accent">dans le chat</span>.</h2>
 </div>
 
-<div class="slide" id="cl-s36">
-  <div class="cta-box">
-    <p style="font-size:36px; color:rgba(255,255,255,0.7); margin-bottom:20px;">Réserve ton appel gratuit</p>
-    <p class="cta-link">[LIEN BOOKING]</p>
-    <p class="sub" style="margin-top:25px;">Court questionnaire, puis tu choisis ton créneau.</p>
-  </div>
-</div>
 
 <div class="slide" id="cl-s37">
   <p>Tu vas tomber sur un <span class="accent">court questionnaire</span>.</p>
@@ -3840,20 +3856,25 @@ body:hover .nav-arrow { opacity: 0.3; }
 </div>
 
 <div class="slide" id="cl-s75">
-  <p>Parce que plus tu réussis, plus les créateurs gagnent, et plus <span class="accent">j'en gagne</span> sur les mises en relation.</p>
-  <div style="display:flex; gap:30px; margin-top:35px; justify-content:center; flex-wrap:wrap; max-width:1100px;">
-    <div style="flex:1; min-width:400px; background:rgba(27,167,255,0.08); border:2px solid rgba(27,167,255,0.3); border-radius:20px; padding:35px 30px; text-align:center;">
-      <p style="font-size:28px; color:rgba(255,255,255,0.6); margin-bottom:12px;">Si l'opérateur gagne</p>
-      <p style="font-size:44px; font-weight:800; color:#fff;">1 000 EUR/mois</p>
-      <p style="font-size:24px; color:rgba(255,255,255,0.5); margin:15px 0;">Je prends 5%</p>
-      <p style="font-size:40px; font-weight:700; color:#1BA7FF;">50 EUR/mois</p>
+  <div style="max-width:1000px;margin:0 auto;">
+    <p style="font-size:28px;color:rgba(255,255,255,0.7);margin-bottom:30px;text-align:center;">Je mets en relation un operateur avec un createur. Je prends <span class="accent" style="font-weight:700;">5%</span> sur ce que le createur genere.</p>
+    <div style="display:flex;gap:40px;justify-content:center;flex-wrap:wrap;">
+      <div style="flex:1;min-width:350px;background:rgba(27,167,255,0.08);border:2px solid rgba(27,167,255,0.25);border-radius:20px;padding:35px 30px;text-align:center;">
+        <p style="font-size:22px;color:rgba(255,255,255,0.5);">Le createur genere</p>
+        <h1 style="font-size:52px;font-weight:800;margin:10px 0;">1 000 <span class="accent">EUR</span>/mois</h1>
+        <div style="width:60px;height:2px;background:#1BA7FF;margin:15px auto;"></div>
+        <p style="font-size:20px;color:rgba(255,255,255,0.5);">Ma commission (5%)</p>
+        <h2 style="font-size:38px;margin-top:8px;"><span class="accent">50 EUR</span>/mois</h2>
+      </div>
+      <div style="flex:1;min-width:350px;background:rgba(27,167,255,0.15);border:2px solid #1BA7FF;border-radius:20px;padding:35px 30px;text-align:center;">
+        <p style="font-size:22px;color:rgba(255,255,255,0.5);">Le createur genere</p>
+        <h1 style="font-size:52px;font-weight:800;margin:10px 0;">50 000 <span class="accent">EUR</span>/mois</h1>
+        <div style="width:60px;height:2px;background:#1BA7FF;margin:15px auto;"></div>
+        <p style="font-size:20px;color:rgba(255,255,255,0.5);">Ma commission (5%)</p>
+        <h2 style="font-size:38px;margin-top:8px;"><span class="accent">2 500 EUR</span>/mois</h2>
+      </div>
     </div>
-    <div style="flex:1; min-width:400px; background:rgba(27,167,255,0.08); border:2px solid rgba(27,167,255,0.3); border-radius:20px; padding:35px 30px; text-align:center;">
-      <p style="font-size:28px; color:rgba(255,255,255,0.6); margin-bottom:12px;">Si l'opérateur gagne</p>
-      <p style="font-size:44px; font-weight:800; color:#fff;">50 000 EUR/mois</p>
-      <p style="font-size:24px; color:rgba(255,255,255,0.5); margin:15px 0;">Je prends 5%</p>
-      <p style="font-size:40px; font-weight:700; color:#1BA7FF;">2 500 EUR/mois</p>
-    </div>
+    <p style="font-size:28px;font-weight:600;color:#fff;margin-top:30px;text-align:center;">Tu comprends que j'ai <span class="accent">tout interet</span> a ce que mes operateurs soient excellents.</p>
   </div>
 </div>
 
@@ -3938,13 +3959,6 @@ body:hover .nav-arrow { opacity: 0.3; }
   </div>
 </div>
 
-<div class="slide" id="cl-s93">
-  <div class="cta-box" style="box-shadow: 0 0 80px rgba(27,167,255,0.25);">
-    <p style="font-size:40px; font-weight:700; color:#fff; margin-bottom:25px;">Réserve ton appel maintenant</p>
-    <p class="cta-link" style="font-size:56px;">[LIEN BOOKING]</p>
-  </div>
-  <p class="sub" style="margin-top:30px;">Les places sont limitées. Si tu le sens, c'est maintenant.</p>
-</div>
 
 <div class="slide" id="cl-s94">
   <p>Pour ceux qui sont encore là et qui hésitent :</p>
@@ -3988,12 +4002,6 @@ body:hover .nav-arrow { opacity: 0.3; }
   <p style="margin-top:20px;">le lien pour réserver votre appel est <span class="accent">juste en dessous</span>.</p>
 </div>
 
-<div class="slide" id="cl-s104">
-  <div class="cta-box" style="box-shadow: 0 0 100px rgba(27,167,255,0.3);">
-    <p style="font-size:44px; font-weight:800; color:#fff; margin-bottom:30px;">Réservez votre appel maintenant</p>
-    <p class="cta-link" style="font-size:60px;">[LIEN BOOKING]</p>
-  </div>
-</div>
 
 <!-- =============================== -->
 <!-- LOGO + NAVIGATION                -->
