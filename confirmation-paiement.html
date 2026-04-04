@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#E9FCFF">
+<title>Bienvenue - Stratégie 30%</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #E9FCFF;
+  color: #1a1a2e;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+a { color: inherit; text-decoration: none; }
+
+:root {
+  --bg: #E9FCFF;
+  --accent: #1BA7FF;
+  --cyan-border: rgba(135, 205, 221, 0.8);
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --card-shadow: rgba(0, 0, 0, 0.08) 0px 4px 16px;
+  --glow-color: rgb(142, 214, 234);
+  --text-dark: #1a1a2e;
+  --text-muted: #4a5568;
+  --max-width: 680px;
+}
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 20px; }
+.highlight { color: var(--accent); }
+
+/* ===== MAIN CONTENT ===== */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 0 40px;
+}
+
+/* ===== CHECKMARK ===== */
+.check-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #16a34a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 28px;
+  box-shadow: 0 4px 24px rgba(22, 163, 74, 0.3);
+}
+.check-circle svg { width: 40px; height: 40px; }
+
+/* ===== HEADLINE ===== */
+.headline-section { text-align: center; margin-bottom: 12px; }
+.headline-section h1 { font-size: 36px; font-weight: 900; line-height: 1.25; }
+.divider { width: 40%; height: 2px; background: var(--cyan-border); margin: 12px auto 24px; }
+.subtitle {
+  text-align: center;
+  font-size: 17px;
+  color: var(--text-muted);
+  max-width: 500px;
+  margin: 0 auto 40px;
+  line-height: 1.7;
+}
+
+/* ===== INFO CARD ===== */
+.info-card {
+  background: var(--card-bg);
+  border: 1px solid var(--cyan-border);
+  border-radius: 20px;
+  padding: 32px 28px;
+  margin-bottom: 24px;
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+.info-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  box-shadow: inset 0 0 0 1px rgba(135,205,221,0.8), inset 0 0 16px rgba(135,205,221,0.3), inset 0 8px 32px rgba(135,205,221,0.15);
+  pointer-events: none;
+}
+.info-card h2 {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.step-list { list-style: none; display: flex; flex-direction: column; gap: 18px; }
+.step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.step-number {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.step-text {
+  font-size: 15px;
+  line-height: 1.6;
+  padding-top: 4px;
+}
+.step-text strong { font-weight: 700; }
+
+/* ===== CONTACT CARD ===== */
+.contact-card {
+  background: var(--card-bg);
+  border: 1px solid var(--cyan-border);
+  border-radius: 20px;
+  padding: 24px 28px;
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.contact-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  box-shadow: inset 0 0 0 1px rgba(135,205,221,0.8), inset 0 0 16px rgba(135,205,221,0.3), inset 0 8px 32px rgba(135,205,221,0.15);
+  pointer-events: none;
+}
+.contact-card p {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.contact-card a {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ===== FOOTER ===== */
+.footer { padding: 40px 0; text-align: center; border-top: 1px solid var(--cyan-border); margin-top: auto; }
+.footer-disclaimer { font-size: 11px; color: var(--text-muted); line-height: 1.7; max-width: 700px; margin: 0 auto 16px; opacity: 0.7; }
+.footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 12px; }
+.footer-links a { font-size: 13px; color: var(--accent); font-weight: 500; }
+.footer-copy { font-size: 12px; color: var(--text-muted); opacity: 0.6; }
+
+/* ===== ELLIPSE GLOW ===== */
+.ellipse-glow {
+  position: fixed; bottom: -300px; right: -400px;
+  width: 1100px; height: 600px; border-radius: 50%;
+  background-color: var(--glow-color);
+  box-shadow: 0 0 100px rgba(170,245,253,1), 0 0 200px rgba(170,245,253,0.9), 0 0 400px rgba(170,245,253,0.7), 0 0 800px rgba(170,245,253,0.5);
+  z-index: -1; pointer-events: none;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .main-content { padding: 40px 0 30px; }
+  .headline-section h1 { font-size: 26px; }
+  .subtitle { font-size: 15px; margin-bottom: 30px; }
+  .info-card { padding: 24px 20px; }
+  .info-card h2 { font-size: 18px; }
+  .step-text { font-size: 14px; }
+  .contact-card { padding: 20px; }
+  .contact-card p { font-size: 14px; }
+  .container { padding: 0 16px; }
+  .check-circle { width: 68px; height: 68px; margin-bottom: 22px; }
+  .check-circle svg { width: 34px; height: 34px; }
+  .ellipse-glow { width: 900px; height: 800px; transform: translate(53%, 85%); }
+}
+</style>
+</head>
+<body>
+
+<div class="ellipse-glow"></div>
+
+<div class="main-content">
+  <div class="container">
+
+    <!-- CHECKMARK -->
+    <div class="check-circle">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+
+    <!-- HEADLINE -->
+    <div class="headline-section">
+      <h1>Merci pour ta <span class="highlight">confiance.</span></h1>
+    </div>
+    <div class="divider"></div>
+    <p class="subtitle">Ton paiement a bien été reçu. Bienvenue dans Stratégie 30%.</p>
+
+    <!-- NEXT STEPS -->
+    <div class="info-card">
+      <h2>Ce qu'il se passe <span class="highlight">maintenant</span></h2>
+      <ul class="step-list">
+        <li class="step-item">
+          <div class="step-number">1</div>
+          <div class="step-text"><strong>Tu vas recevoir un email</strong> avec tes accès au programme (Skool + communauté). Vérifie tes spams si tu ne le vois pas dans les prochaines minutes.</div>
+        </li>
+        <li class="step-item">
+          <div class="step-number">2</div>
+          <div class="step-text"><strong>Ton coach va te contacter</strong> pour planifier ton premier appel d'onboarding et définir ton plan d'action personnalisé.</div>
+        </li>
+        <li class="step-item">
+          <div class="step-number">3</div>
+          <div class="step-text"><strong>Tout va t'être expliqué</strong> étape par étape. Tu n'as rien à préparer pour l'instant, on s'occupe de tout.</div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="contact-card">
+      <p>Une question ? Écris-nous à <a href="mailto:contact@strategie30.com">contact@strategie30.com</a></p>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="container">
+    <p class="footer-disclaimer">Stratégie 30% et toutes les personnes affiliées à cette organisation n'assument aucune responsabilité quant au résultat ou au succès des services. Le succès dépend du temps consacré et de la mise en oeuvre des stratégies. Contenus à des fins éducatives uniquement.</p>
+    <p class="footer-disclaimer">Ce site n'est pas une partie du site Meta/Facebook ou de Meta, Inc. Ce site n'est PAS approuvé par Meta.</p>
+    <div class="footer-links">
+      <a href="#">Politique de confidentialité</a>
+      <a href="#">Conditions d'utilisation</a>
+      <a href="#">Contact</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 ForCyclers LLC. Tous droits réservés.</p>
+  </div>
+</div>
+
+</body>
+</html>
