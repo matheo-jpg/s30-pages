@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1BA7FF">
+<title>Stratégie 30% — Récapitulatif</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #E9FCFF;
+  color: #1a1a2e;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; height: auto; display: block; }
+
+:root {
+  --bg: #E9FCFF;
+  --accent: #1BA7FF;
+  --accent-dark: #0d8de0;
+  --accent-glow: rgba(27,167,255,0.35);
+  --cyan-border: rgba(135, 205, 221, 0.8);
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --card-shadow: rgba(0, 0, 0, 0.08) 0px 4px 16px;
+  --glow-color: rgb(142, 214, 234);
+  --text-dark: #1a1a2e;
+  --text-muted: #4a5568;
+  --max-width: 720px;
+  --red: #CC0000;
+  --green: #16a34a;
+}
+
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 20px; }
+.highlight { color: var(--accent); }
+
+/* ===== ELLIPSE GLOW ===== */
+.ellipse-glow {
+  position: fixed; bottom: -300px; right: -400px;
+  width: 1100px; height: 600px; border-radius: 50%;
+  background-color: var(--glow-color);
+  box-shadow: 0 0 100px rgba(170,245,253,1), 0 0 200px rgba(170,245,253,0.9), 0 0 400px rgba(170,245,253,0.7), 0 0 800px rgba(170,245,253,0.5);
+  z-index: -1; pointer-events: none;
+}
+
+/* ===== TOPBAR ===== */
+.topbar {
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(135,205,221,0.4);
+  padding: 12px 20px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.topbar-text {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-dark);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* ===== HERO ===== */
+.hero {
+  text-align: center;
+  padding: 48px 0 32px;
+}
+.hero h1 {
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 1.25;
+  margin-bottom: 16px;
+}
+.hero-sub {
+  font-size: 16px;
+  color: var(--text-muted);
+  max-width: 540px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+.divider {
+  width: 40%;
+  height: 2px;
+  background: var(--cyan-border);
+  margin: 24px auto;
+}
+
+/* ===== CARDS ===== */
+.glass-card {
+  background: var(--card-bg);
+  border: 1px solid var(--cyan-border);
+  border-radius: 20px;
+  padding: 30px 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+.glass-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  box-shadow: inset 0 0 0 1px rgba(135,205,221,0.8), inset 0 0 16px rgba(135,205,221,0.3), inset 0 8px 32px rgba(135,205,221,0.15);
+  pointer-events: none;
+}
+.card-title {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+/* ===== SECTION TITLES ===== */
+.section-title { text-align: center; font-size: 28px; font-weight: 900; margin-bottom: 8px; }
+.section-subtitle { text-align: center; font-size: 15px; color: var(--text-muted); margin-bottom: 28px; line-height: 1.5; }
+.section-divider { width: 100%; height: 1px; background: var(--cyan-border); margin: 40px 0; }
+
+/* ===== STEP PILLS ===== */
+.step-pill {
+  display: inline-block;
+  background: #fff;
+  border: 1px solid rgba(135,205,221,0.6);
+  border-radius: 50px;
+  padding: 10px 24px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+/* ===== MODEL DIAGRAM ===== */
+.model-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: center;
+  margin: 20px 0;
+}
+.model-box {
+  background: #fff;
+  border: 2px solid var(--cyan-border);
+  border-radius: 16px;
+  padding: 20px 24px;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+.model-box-accent {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.model-box h3 {
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+.model-box p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+.model-box-accent p { color: rgba(255,255,255,0.9); }
+.model-arrow {
+  width: 2px;
+  height: 28px;
+  background: var(--cyan-border);
+  position: relative;
+}
+.model-arrow::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid var(--cyan-border);
+}
+.model-result {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* ===== PILLAR GRID ===== */
+.pillar-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+.pillar-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: #fff;
+  border: 1px solid rgba(135,205,221,0.4);
+  border-radius: 14px;
+  padding: 20px;
+}
+.pillar-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 900;
+}
+.pillar-content h4 {
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+.pillar-content p {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ===== LEVELS ===== */
+.level-track {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.level-item {
+  display: flex;
+  align-items: stretch;
+  gap: 16px;
+}
+.level-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 36px;
+  flex-shrink: 0;
+}
+.level-dot {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.level-connector {
+  width: 2px;
+  flex: 1;
+  background: rgba(135,205,221,0.5);
+  min-height: 16px;
+}
+.level-content {
+  padding-bottom: 20px;
+  padding-top: 6px;
+}
+.level-content h4 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.level-content p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ===== STAT BAR ===== */
+.stat-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 24px 0;
+}
+.stat-item {
+  text-align: center;
+  background: #fff;
+  border: 1px solid rgba(135,205,221,0.4);
+  border-radius: 14px;
+  padding: 16px 8px;
+}
+.stat-number {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--accent);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ===== VIDEO ===== */
+.video-wrapper {
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  margin-bottom: 16px;
+}
+.video-wrapper iframe {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border: none;
+  display: block;
+}
+.video-caption {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: 8px;
+}
+
+/* ===== SCREENSHOTS ===== */
+.screenshot-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+.screenshot-card {
+  position: relative;
+}
+.screenshot-card img {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid var(--cyan-border);
+  box-shadow: var(--card-shadow);
+}
+.screenshot-badge {
+  position: absolute;
+  top: -10px;
+  right: 16px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(27,167,255,0.4);
+}
+
+/* ===== GUARANTEE ===== */
+.guarantee-card {
+  background: rgba(22, 163, 74, 0.06);
+  border: 2px solid rgba(22, 163, 74, 0.3);
+  border-radius: 20px;
+  padding: 30px 24px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+.guarantee-title {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: var(--green);
+}
+.guarantee-text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-dark);
+}
+
+/* ===== QUOTE ===== */
+.quote-block {
+  border-left: 3px solid var(--accent);
+  padding: 16px 20px;
+  background: rgba(27,167,255,0.05);
+  border-radius: 0 12px 12px 0;
+  margin: 20px 0;
+}
+.quote-text {
+  font-size: 15px;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--text-dark);
+}
+.quote-author {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-top: 8px;
+}
+
+/* ===== CHECKLIST ===== */
+.check-list { list-style: none; }
+.check-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(135,205,221,0.3);
+  font-size: 15px;
+  font-weight: 600;
+}
+.check-list li:last-child { border-bottom: none; }
+.check-icon {
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  background: var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.check-icon svg { width: 16px; height: 16px; }
+
+/* ===== FOOTER ===== */
+.footer {
+  padding: 40px 0;
+  text-align: center;
+  border-top: 1px solid var(--cyan-border);
+  margin-top: 20px;
+}
+.footer-disclaimer {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto 16px;
+  opacity: 0.7;
+}
+.footer-copy {
+  font-size: 12px;
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 24px; }
+  .hero { padding: 32px 0 24px; }
+  .section-title { font-size: 22px; }
+  .card-title { font-size: 18px; }
+  .glass-card { padding: 24px 18px; }
+  .stat-bar { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .stat-number { font-size: 22px; }
+  .stat-label { font-size: 10px; }
+  .pillar-item { padding: 16px; }
+  .container { padding: 0 16px; }
+  .model-box { padding: 16px 18px; }
+  .ellipse-glow { width: 900px; height: 800px; transform: translate(53%, 85%); }
+}
+</style>
+</head>
+<body>
+
+<div class="ellipse-glow"></div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span class="topbar-text">Stratégie 30%</span>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="container">
+    <h1>Voici exactement <span class="highlight">ce qu'on a construit</span> pour toi</h1>
+    <p class="hero-sub">Tout ce dont tu as besoin pour passer de salarié à opérateur de croissance. Pas de théorie vide. Un système complet, une communauté, et un accompagnement réel.</p>
+    <div class="divider"></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- SECTION 1 — LE MODÈLE -->
+  <div style="text-align:center;"><span class="step-pill">Le modèle</span></div>
+  <h2 class="section-title">L'Opération de <span class="highlight">Croissance</span></h2>
+  <p class="section-subtitle">Tu deviens le bras droit business d'un créateur de contenu. Il crée le contenu, toi tu construis tout ce qui génère du chiffre d'affaires. Tu prends un pourcentage sur chaque vente.</p>
+
+  <div class="glass-card">
+    <div class="model-flow">
+      <div class="model-box">
+        <h3>Le créateur</h3>
+        <p>Il a une audience, du contenu, et de la crédibilité dans sa niche</p>
+      </div>
+      <div class="model-arrow"></div>
+      <div class="model-box model-box-accent">
+        <h3>Toi, l'opérateur</h3>
+        <p>Tu construis l'offre, les pages, les pubs, le système de vente. Tout ce qui transforme l'audience en clients.</p>
+      </div>
+      <div class="model-arrow"></div>
+      <div class="model-box">
+        <h3>Les ventes arrivent</h3>
+        <p>Le créateur vend grâce à ton système. Tu prends 20 à 30% sur chaque vente.</p>
+      </div>
+    </div>
+    <p class="model-result">Pas de création de contenu. Pas de personal branding. Juste un système qui génère du CA.</p>
+  </div>
+
+  <div class="quote-block">
+    <p class="quote-text">"J'ai fait passer une créatrice de 0 à 70 000 EUR par mois en 6 mois. Je prenais plus de 15 000 EUR par mois. C'est exactement ce qu'on t'apprend à faire."</p>
+    <p class="quote-author">— Mathéo Cauwet, fondateur</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- SECTION 2 — CE QUE TU REÇOIS -->
+  <div style="text-align:center;"><span class="step-pill">Ce que tu reçois</span></div>
+  <h2 class="section-title">Un accompagnement <span class="highlight">complet</span></h2>
+  <p class="section-subtitle">Pas une formation où tu te débrouilles seul. Un écosystème entier construit pour que tu réussisses.</p>
+
+  <div class="pillar-grid">
+    <div class="pillar-item">
+      <div class="pillar-icon">1</div>
+      <div class="pillar-content">
+        <h4>Un programme structuré par niveaux</h4>
+        <p>Des modules vidéo qui se débloquent au fur et à mesure de tes résultats. Chaque étape a un objectif clair : signer ton créateur, lancer, puis passer à l'échelle.</p>
+      </div>
+    </div>
+    <div class="pillar-item">
+      <div class="pillar-icon">2</div>
+      <div class="pillar-content">
+        <h4>5 appels de groupe par semaine</h4>
+        <p>Avec des experts spécialisés : copywriting, publicité, vente, prospection, setting Instagram. Tu poses tes questions, on t'aide en direct.</p>
+      </div>
+    </div>
+    <div class="pillar-item">
+      <div class="pillar-icon">3</div>
+      <div class="pillar-content">
+        <h4>Une communauté de 200 membres</h4>
+        <p>Des gens qui font la même chose que toi. Tu échanges, tu avances ensemble, tu n'es jamais seul. C'est ce que nos membres citent comme la plus grosse surprise du programme.</p>
+      </div>
+    </div>
+    <div class="pillar-item">
+      <div class="pillar-icon">4</div>
+      <div class="pillar-content">
+        <h4>Des outils et des process prêts à l'emploi</h4>
+        <p>Des templates, des scripts, des systèmes que tu copies et que tu adaptes. Pas besoin de tout réinventer, on te donne ce qui marche déjà.</p>
+      </div>
+    </div>
+    <div class="pillar-item">
+      <div class="pillar-icon">5</div>
+      <div class="pillar-content">
+        <h4>Mise en relation avec des créateurs</h4>
+        <p>On ne te laisse pas chercher seul. On t'aide à trouver et à contacter les créateurs qui correspondent à ton profil.</p>
+      </div>
+    </div>
+    <div class="pillar-item">
+      <div class="pillar-icon">6</div>
+      <div class="pillar-content">
+        <h4>La pratique dès le jour 1</h4>
+        <p>Tu ne passes pas 3 mois à regarder des vidéos. Dès le premier niveau, tu es dans l'action : trouver un créateur, le contacter, le signer.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- SECTION 3 — LE PARCOURS -->
+  <div style="text-align:center;"><span class="step-pill">Le parcours</span></div>
+  <h2 class="section-title">4 niveaux pour aller <span class="highlight">de 0 à 10 000 EUR/mois</span></h2>
+  <p class="section-subtitle">Chaque niveau se débloque quand tu atteins un résultat concret. Pas de temps perdu sur de la théorie inutile.</p>
+
+  <div class="glass-card">
+    <div class="level-track">
+      <div class="level-item">
+        <div class="level-line">
+          <div class="level-dot">1</div>
+          <div class="level-connector"></div>
+        </div>
+        <div class="level-content">
+          <h4>Trouver et signer ton créateur</h4>
+          <p>Tu apprends à identifier le bon créateur, à le contacter, et à le convaincre de travailler avec toi. Objectif : signature.</p>
+        </div>
+      </div>
+      <div class="level-item">
+        <div class="level-line">
+          <div class="level-dot">2</div>
+          <div class="level-connector"></div>
+        </div>
+        <div class="level-content">
+          <h4>Lancer ton premier créateur</h4>
+          <p>Tu construis l'offre, les pages, le système de vente. Tu lances et tu fais les premières ventes ensemble.</p>
+        </div>
+      </div>
+      <div class="level-item">
+        <div class="level-line">
+          <div class="level-dot">3</div>
+          <div class="level-connector"></div>
+        </div>
+        <div class="level-content">
+          <h4>Passer à l'échelle</h4>
+          <p>Tu optimises ce qui marche, tu augmentes les résultats, tu systématises. C'est là que les revenus décollent vraiment.</p>
+        </div>
+      </div>
+      <div class="level-item">
+        <div class="level-line">
+          <div class="level-dot">4</div>
+          <div class="level-connector"></div>
+        </div>
+        <div class="level-content">
+          <h4>5 000 EUR/mois et au-delà</h4>
+          <p>Tu es opérateur confirmé. Tu peux prendre de nouveaux créateurs, augmenter tes pourcentages, et continuer à grandir.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- SECTION 4 — LA COMMUNAUTÉ -->
+  <div style="text-align:center;"><span class="step-pill">La communauté</span></div>
+  <h2 class="section-title">Tu n'avances <span class="highlight">jamais seul</span></h2>
+  <p class="section-subtitle">C'est la chose que nos membres citent le plus souvent comme la plus grosse surprise quand ils rejoignent le programme.</p>
+
+  <div class="stat-bar">
+    <div class="stat-item">
+      <div class="stat-number">200+</div>
+      <div class="stat-label">Membres actifs</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">5</div>
+      <div class="stat-label">Calls / semaine</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">13</div>
+      <div class="stat-label">Études de cas</div>
+    </div>
+  </div>
+
+  <div class="quote-block">
+    <p class="quote-text">"Au-delà du contenu, c'est l'aspect communautaire. C'est enrichissant d'être entouré de personnes qui sont dedans, de pouvoir échanger avec eux à chaque étape."</p>
+    <p class="quote-author">— Zakaria, membre</p>
+  </div>
+
+  <div class="quote-block" style="margin-top: 12px;">
+    <p class="quote-text">"Ce que j'attends le plus, c'est un chemin tout tracé vers la réussite. Et ce que j'ai découvert, c'est qu'on est tous une équipe qui s'entraide."</p>
+    <p class="quote-author">— Clément, membre</p>
+  </div>
+
+  <!-- VIDEO YOUTUBE — Études de cas / communauté -->
+  <div style="margin-top: 24px;">
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/c0SCLoA38sc?rel=0&modestbranding=1" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <p class="video-caption">Découvre le parcours de nos membres en détail</p>
+  </div>
+
+  <!-- TODO: Ajouter d'autres vidéos YouTube ici si besoin -->
+  <!--
+  <div style="margin-top: 20px;">
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID_2?rel=0&modestbranding=1" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <p class="video-caption">Deuxième étude de cas</p>
+  </div>
+  -->
+
+  <div class="section-divider"></div>
+
+  <!-- SECTION 5 — RÉSULTATS -->
+  <div style="text-align:center;"><span class="step-pill">Résultats</span></div>
+  <h2 class="section-title">Ce que nos <span class="highlight">membres</span> accomplissent</h2>
+  <p class="section-subtitle">Des résultats réels, pas des promesses.</p>
+
+  <div class="screenshot-grid">
+    <div class="screenshot-card">
+      <span class="screenshot-badge">50 000 EUR en 1 mois</span>
+      <img src="https://matheo-jpg.github.io/s30-pages/skool-proofs/skool-4.png" alt="Brandon — 50k en 1 mois">
+    </div>
+    <div class="screenshot-card">
+      <span class="screenshot-badge">8 800 EUR en 1 semaine</span>
+      <img src="https://matheo-jpg.github.io/s30-pages/skool-proofs/skool-1.png" alt="Seraphin — 8.8k en 1 semaine">
+    </div>
+    <div class="screenshot-card">
+      <span class="screenshot-badge">7 300 EUR en 3 jours</span>
+      <img src="https://matheo-jpg.github.io/s30-pages/skool-proofs/skool-12.png" alt="Eden — 7300 EUR en 3 jours">
+    </div>
+    <div class="screenshot-card">
+      <span class="screenshot-badge">6 000 EUR en 1 journée</span>
+      <img src="https://matheo-jpg.github.io/s30-pages/skool-proofs/skool-6.png" alt="Antoine — 6k en 1 journee">
+    </div>
+    <div class="screenshot-card">
+      <span class="screenshot-badge">2 créateurs signés en 1 semaine</span>
+      <img src="https://matheo-jpg.github.io/s30-pages/skool-proofs/skool-8.png" alt="Diana — 2 creas en 1 semaine">
+    </div>
+    <div class="screenshot-card">
+      <span class="screenshot-badge">Premier paiement à 19 ans</span>
+      <img src="https://matheo-jpg.github.io/s30-pages/skool-proofs/skool-7.png" alt="Bradley — premier paiement a 19 ans">
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- SECTION 6 — GARANTIE -->
+  <div style="text-align:center;"><span class="step-pill">Garantie</span></div>
+
+  <div class="guarantee-card">
+    <div class="guarantee-title">Garantie : remboursé si pas de retour sur investissement</div>
+    <p class="guarantee-text">Si tu suis les étapes du programme pendant 6 mois et que tu n'as pas généré un retour sur ton investissement, on te rembourse. On assume le risque à ta place, parce qu'on sait que le système fonctionne.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- SECTION 7 — RÉCAP -->
+  <div style="text-align:center;"><span class="step-pill">En résumé</span></div>
+  <h2 class="section-title">Tout ce que tu reçois <span class="highlight">en rejoignant</span></h2>
+
+  <div class="glass-card">
+    <ul class="check-list">
+      <li>
+        <span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+        Programme vidéo structuré en 4 niveaux
+      </li>
+      <li>
+        <span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+        5 appels de groupe par semaine avec des experts
+      </li>
+      <li>
+        <span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+        Communauté privée de 200+ membres
+      </li>
+      <li>
+        <span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+        Templates, scripts et outils prêts à l'emploi
+      </li>
+      <li>
+        <span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+        Mise en relation avec des créateurs de contenu
+      </li>
+      <li>
+        <span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+        Action dès le jour 1, pas 3 mois de théorie
+      </li>
+      <li>
+        <span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+        Garantie remboursement sur 6 mois
+      </li>
+    </ul>
+  </div>
+
+  <div style="text-align: center; margin: 32px 0 16px;">
+    <p style="font-size: 16px; font-weight: 700; color: var(--text-dark); line-height: 1.5;">Tu as des questions avant ton prochain appel ?<br>Envoie un message à ton conseiller, il est là pour toi.</p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="container">
+    <p class="footer-disclaimer">Stratégie 30% et toutes les personnes affiliées à cette organisation n'assument aucune responsabilité quant au résultat ou au succès des services. Le succès dépend du temps consacré et de la mise en oeuvre des stratégies. Contenus à des fins éducatives uniquement.</p>
+    <p class="footer-disclaimer">Ce site n'est pas une partie du site Meta/Facebook ou de Meta, Inc. Ce site n'est PAS approuvé par Meta.</p>
+    <p class="footer-copy">&copy; 2026 ForCyclers LLC. Tous droits réservés.</p>
+  </div>
+</div>
+
+</body>
+</html>
