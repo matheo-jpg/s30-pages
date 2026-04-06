@@ -324,12 +324,15 @@ textarea::placeholder { color: #9ca3af; }
     <strong>Comment ca marche :</strong> Colle la transcription d'un appel de coaching, clique sur Generer, selectionne les clips a garder, et envoie-les sur Notion pour Kelly.
   </div>
 
-  <!-- Step 1: Transcript -->
+  <!-- Step 1: Rush link + Transcript -->
   <div class="step" id="step1">
     <div class="step-header">
       <div class="step-number">1</div>
-      <div class="step-title">Colle la transcription</div>
+      <div class="step-title">Lien des rushs + transcription</div>
     </div>
+    <label style="font-size: 13px; font-weight: 600; color: #4b5563; display: block; margin-bottom: 6px;">Lien Google Drive des rushs (video brute)</label>
+    <input type="url" id="rushLink" placeholder="https://drive.google.com/file/d/..." style="width: 100%; padding: 12px 14px; border: 2px solid #e5e7eb; border-radius: 10px; font-family: 'Inter', sans-serif; font-size: 14px; margin-bottom: 16px; transition: border-color 0.2s;" onfocus="this.style.borderColor='#2563eb'" onblur="this.style.borderColor='#e5e7eb'">
+    <label style="font-size: 13px; font-weight: 600; color: #4b5563; display: block; margin-bottom: 6px;">Transcription de l'appel</label>
     <textarea id="transcript" placeholder="Colle ici la transcription de l'appel de coaching avec les timestamps...
 
 Exemple :
@@ -534,7 +537,7 @@ async function sendToNotion() {
     const response = await fetch(PROXY_URL + '/notion', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ clips: selected })
+      body: JSON.stringify({ clips: selected, rush_link: document.getElementById('rushLink').value.trim() })
     });
 
     if (!response.ok) {
