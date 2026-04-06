@@ -32,7 +32,7 @@ body {
   text-transform: uppercase;
   letter-spacing: 1px;
 }
-.container { max-width: 900px; margin: 0 auto; padding: 32px 20px; }
+.container { max-width: 960px; margin: 0 auto; padding: 32px 20px; }
 
 /* Steps */
 .step {
@@ -76,31 +76,8 @@ textarea {
   resize: vertical;
   transition: border-color 0.2s;
 }
-textarea:focus {
-  outline: none;
-  border-color: #2563eb;
-}
+textarea:focus { outline: none; border-color: #2563eb; }
 textarea::placeholder { color: #9ca3af; }
-
-/* File upload */
-.upload-zone {
-  border: 2px dashed #d1d5db;
-  border-radius: 10px;
-  padding: 24px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.2s;
-  margin-bottom: 12px;
-}
-.upload-zone:hover { border-color: #2563eb; background: #f0f4ff; }
-.upload-zone.active { border-color: #2563eb; background: #eff6ff; }
-.upload-zone p { font-size: 14px; color: #6b7280; }
-.upload-zone .filename {
-  font-size: 14px;
-  font-weight: 600;
-  color: #2563eb;
-  margin-top: 8px;
-}
 
 /* Button */
 .btn {
@@ -117,32 +94,20 @@ textarea::placeholder { color: #9ca3af; }
   transition: all 0.2s;
   width: 100%;
 }
-.btn-primary {
-  background: #2563eb;
-  color: #fff;
-}
+.btn-primary { background: #2563eb; color: #fff; }
 .btn-primary:hover { background: #1d4ed8; }
-.btn-primary:disabled {
-  background: #93c5fd;
-  cursor: not-allowed;
-}
-.btn-copy {
-  background: #1a1a2e;
-  color: #fff;
-  margin-top: 12px;
-}
+.btn-primary:disabled { background: #93c5fd; cursor: not-allowed; }
+.btn-notion { background: #059669; color: #fff; }
+.btn-notion:hover { background: #047857; }
+.btn-notion:disabled { background: #6ee7b7; cursor: not-allowed; }
+.btn-copy { background: #1a1a2e; color: #fff; margin-top: 12px; }
 .btn-copy:hover { background: #2d2d4a; }
 
 /* Loading */
-.loading {
-  display: none;
-  text-align: center;
-  padding: 40px;
-}
+.loading { display: none; text-align: center; padding: 40px; }
 .loading.active { display: block; }
 .spinner {
-  width: 40px;
-  height: 40px;
+  width: 40px; height: 40px;
   border: 4px solid #e5e7eb;
   border-top-color: #2563eb;
   border-radius: 50%;
@@ -151,24 +116,6 @@ textarea::placeholder { color: #9ca3af; }
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 .loading p { font-size: 14px; color: #6b7280; }
-
-/* Output */
-.output {
-  display: none;
-  background: #fff;
-  border: 2px solid #2563eb;
-  border-radius: 14px;
-  padding: 28px;
-  margin-top: 24px;
-}
-.output.active { display: block; }
-.output pre {
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  line-height: 1.8;
-}
 
 /* Error */
 .error {
@@ -183,39 +130,6 @@ textarea::placeholder { color: #9ca3af; }
 }
 .error.active { display: block; }
 
-/* Settings */
-.settings {
-  background: #f0f4ff;
-  border: 1px solid #dbeafe;
-  border-radius: 10px;
-  padding: 16px;
-  margin-bottom: 16px;
-}
-.settings label {
-  font-size: 13px;
-  font-weight: 600;
-  color: #4b5563;
-  display: block;
-  margin-bottom: 6px;
-}
-.settings input {
-  width: 100%;
-  padding: 10px 14px;
-  border: 2px solid #e5e7eb;
-  border-radius: 8px;
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-}
-.settings input:focus {
-  outline: none;
-  border-color: #2563eb;
-}
-.settings .hint {
-  font-size: 11px;
-  color: #9ca3af;
-  margin-top: 4px;
-}
-
 /* Info banner */
 .info-banner {
   background: #fefce8;
@@ -227,6 +141,174 @@ textarea::placeholder { color: #9ca3af; }
   line-height: 1.6;
   margin-bottom: 24px;
 }
+
+/* Clip cards */
+.clips-container { display: none; margin-top: 24px; }
+.clips-container.active { display: block; }
+
+.clips-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.clips-toolbar .count {
+  font-size: 14px;
+  font-weight: 600;
+  color: #4b5563;
+}
+.clips-toolbar .actions {
+  display: flex;
+  gap: 8px;
+}
+.clips-toolbar button {
+  padding: 8px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.clips-toolbar button:hover { background: #f3f4f6; border-color: #9ca3af; }
+
+.clip-card {
+  background: #fff;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 12px;
+  transition: all 0.15s;
+  cursor: pointer;
+  position: relative;
+}
+.clip-card:hover { border-color: #93c5fd; }
+.clip-card.selected { border-color: #2563eb; background: #f0f4ff; }
+
+.clip-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.clip-checkbox {
+  width: 22px;
+  height: 22px;
+  border: 2px solid #d1d5db;
+  border-radius: 6px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+.clip-card.selected .clip-checkbox {
+  background: #2563eb;
+  border-color: #2563eb;
+}
+.clip-card.selected .clip-checkbox::after {
+  content: '';
+  width: 6px;
+  height: 10px;
+  border: solid #fff;
+  border-width: 0 2.5px 2.5px 0;
+  transform: rotate(45deg);
+  margin-bottom: 2px;
+}
+
+.clip-info { flex: 1; min-width: 0; }
+.clip-number {
+  font-size: 11px;
+  font-weight: 700;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+.clip-hook {
+  font-size: 16px;
+  font-weight: 800;
+  color: #1a1a2e;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+.clip-meta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.clip-tag {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: #f3f4f6;
+  color: #4b5563;
+}
+.clip-tag.pilier-identite { background: #dbeafe; color: #1e40af; }
+.clip-tag.pilier-communaute { background: #d1fae5; color: #065f46; }
+.clip-tag.pilier-confrontation { background: #fee2e2; color: #991b1b; }
+.clip-tag.pilier-lifestyle { background: #fef3c7; color: #92400e; }
+.clip-tag.pilier-proof { background: #ede9fe; color: #5b21b6; }
+
+.clip-phrases {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #4b5563;
+  margin-top: 8px;
+}
+.clip-phrases strong { color: #1a1a2e; }
+.clip-context {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-top: 6px;
+  font-style: italic;
+}
+
+/* Bottom bar */
+.bottom-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-top: 2px solid #e5e7eb;
+  padding: 16px 32px;
+  z-index: 100;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+}
+.bottom-bar.active { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.bottom-bar .selected-count {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a2e;
+  white-space: nowrap;
+}
+.bottom-bar .btn { width: auto; padding: 14px 40px; }
+
+/* Success */
+.success-banner {
+  display: none;
+  background: #ecfdf5;
+  border: 2px solid #34d399;
+  border-radius: 14px;
+  padding: 24px;
+  margin-top: 24px;
+  text-align: center;
+}
+.success-banner.active { display: block; }
+.success-banner h3 { font-size: 18px; font-weight: 800; color: #065f46; margin-bottom: 8px; }
+.success-banner p { font-size: 14px; color: #047857; }
+
+/* Spacer for fixed bottom bar */
+.bottom-spacer { height: 80px; display: none; }
+.bottom-spacer.active { display: block; }
 </style>
 </head>
 <body>
@@ -239,11 +321,11 @@ textarea::placeholder { color: #9ca3af; }
 <div class="container">
 
   <div class="info-banner">
-    <strong>Comment ca marche :</strong> Colle la transcription d'un appel de coaching, clique sur Generer, et recois un brief monteur avec les clips a couper (timestamps, phrases de debut/fin, hooks texte).
+    <strong>Comment ca marche :</strong> Colle la transcription d'un appel de coaching, clique sur Generer, selectionne les clips a garder, et envoie-les sur Notion pour Kelly.
   </div>
 
   <!-- Step 1: Transcript -->
-  <div class="step">
+  <div class="step" id="step1">
     <div class="step-header">
       <div class="step-number">1</div>
       <div class="step-title">Colle la transcription</div>
@@ -255,17 +337,17 @@ Exemple :
 [00:05] comme vous savez on revient du ski
 ...
 
-Ou sans timestamps :
-matheo cauwet: les gars je vais commencer
-matheo cauwet: comme vous savez on revient du ski
+Ou format Fathom :
+@0:06 - matheo cauwet
+les gars je vais commencer
 ..."></textarea>
   </div>
 
   <!-- Step 2: Generate -->
-  <div class="step">
+  <div class="step" id="step2">
     <div class="step-header">
       <div class="step-number" style="background: #059669;">2</div>
-      <div class="step-title">Generer le brief monteur</div>
+      <div class="step-title">Generer les clips</div>
     </div>
     <button class="btn btn-primary" id="generateBtn" onclick="generate()">Generer les clips</button>
   </div>
@@ -273,34 +355,56 @@ matheo cauwet: comme vous savez on revient du ski
   <!-- Loading -->
   <div class="loading" id="loading">
     <div class="spinner"></div>
-    <p>Analyse en cours... (30-60 secondes)</p>
+    <p>Analyse de la transcription en cours... (30 a 90 secondes)</p>
   </div>
 
   <!-- Error -->
   <div class="error" id="error"></div>
 
-  <!-- Output -->
-  <div class="output" id="output">
+  <!-- Step 3: Select clips -->
+  <div class="clips-container" id="clipsContainer">
     <div class="step-header">
       <div class="step-number" style="background: #059669;">3</div>
-      <div class="step-title">Brief monteur</div>
+      <div class="step-title">Selectionne les clips a envoyer au monteur</div>
     </div>
-    <pre id="result"></pre>
-    <button class="btn btn-copy" onclick="copyResult()">Copier le brief</button>
+
+    <div class="clips-toolbar">
+      <span class="count" id="clipsCount"></span>
+      <div class="actions">
+        <button onclick="selectAll()">Tout selectionner</button>
+        <button onclick="deselectAll()">Tout deselectionner</button>
+        <button onclick="copyBrief()">Copier le brief</button>
+      </div>
+    </div>
+
+    <div id="clipsList"></div>
+
+    <div class="success-banner" id="successBanner">
+      <h3>Cartes creees sur Notion</h3>
+      <p id="successMsg"></p>
+    </div>
   </div>
 
+  <div class="bottom-spacer" id="bottomSpacer"></div>
+
+</div>
+
+<!-- Fixed bottom bar -->
+<div class="bottom-bar" id="bottomBar">
+  <span class="selected-count" id="selectedCount">0 clips selectionnes</span>
+  <button class="btn btn-notion" id="notionBtn" onclick="sendToNotion()">Valider et envoyer sur Notion</button>
 </div>
 
 <script>
 const PROXY_URL = 'https://45.55.64.78:8042';
+let clipsData = [];
 
 async function generate() {
   const transcript = document.getElementById('transcript').value.trim();
   const btn = document.getElementById('generateBtn');
   const loading = document.getElementById('loading');
-  const output = document.getElementById('output');
   const error = document.getElementById('error');
-  const result = document.getElementById('result');
+  const clipsContainer = document.getElementById('clipsContainer');
 
   if (!transcript || transcript.length < 500) {
     error.textContent = 'La transcription est trop courte. Colle la transcription complete de l\'appel.';
@@ -309,7 +413,10 @@ async function generate() {
   }
 
   error.classList.remove('active');
-  output.classList.remove('active');
+  clipsContainer.classList.remove('active');
+  document.getElementById('bottomBar').classList.remove('active');
+  document.getElementById('bottomSpacer').classList.remove('active');
+  document.getElementById('successBanner').classList.remove('active');
   loading.classList.add('active');
   btn.disabled = true;
   btn.textContent = 'Generation en cours...';
@@ -327,8 +434,21 @@ async function generate() {
     }
 
     const data = await response.json();
-    result.textContent = data.result;
-    output.classList.add('active');
+    clipsData = data.clips || [];
+
+    if (clipsData.length === 0) {
+      error.textContent = 'Aucun clip exploitable trouve dans cette transcription.';
+      error.classList.add('active');
+      return;
+    }
+
+    renderClips();
+    clipsContainer.classList.add('active');
+    document.getElementById('bottomBar').classList.add('active');
+    document.getElementById('bottomSpacer').classList.add('active');
+    updateSelectedCount();
+
+    clipsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
   } catch (err) {
     error.textContent = err.message;
@@ -340,12 +460,140 @@ async function generate() {
   }
 }
 
-function copyResult() {
-  const text = document.getElementById('result').textContent;
-  navigator.clipboard.writeText(text).then(() => {
-    const btn = document.querySelector('.btn-copy');
-    btn.textContent = 'Copie !';
-    setTimeout(() => { btn.textContent = 'Copier le brief'; }, 2000);
+function renderClips() {
+  const list = document.getElementById('clipsList');
+  list.innerHTML = '';
+  document.getElementById('clipsCount').textContent = clipsData.length + ' clips trouves';
+
+  clipsData.forEach((clip, i) => {
+    const card = document.createElement('div');
+    card.className = 'clip-card selected';
+    card.dataset.index = i;
+    card.onclick = () => toggleClip(card);
+
+    const pilierClass = 'pilier-' + (clip.pilier || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+    card.innerHTML = `
+      <div class="clip-card-header">
+        <div class="clip-checkbox"></div>
+        <div class="clip-info">
+          <div class="clip-number">Clip ${clip.number || i + 1} — ${clip.timestamp_start || ''} → ${clip.timestamp_end || ''} (~${clip.duration || '?'}s)</div>
+          <div class="clip-hook">"${clip.hook || ''}"</div>
+          <div class="clip-meta">
+            <span class="clip-tag ${pilierClass}">${clip.pilier || ''}</span>
+            <span class="clip-tag">~${clip.duration || '?'}s</span>
+          </div>
+          <div class="clip-phrases">
+            <strong>DEBUT →</strong> "${clip.debut || ''}"<br>
+            <strong>FIN →</strong> "${clip.fin || ''}"
+          </div>
+          <div class="clip-context">${clip.contexte || ''}</div>
+        </div>
+      </div>
+    `;
+    list.appendChild(card);
+  });
+}
+
+function toggleClip(card) {
+  card.classList.toggle('selected');
+  updateSelectedCount();
+}
+
+function selectAll() {
+  document.querySelectorAll('.clip-card').forEach(c => c.classList.add('selected'));
+  updateSelectedCount();
+}
+
+function deselectAll() {
+  document.querySelectorAll('.clip-card').forEach(c => c.classList.remove('selected'));
+  updateSelectedCount();
+}
+
+function updateSelectedCount() {
+  const selected = document.querySelectorAll('.clip-card.selected').length;
+  const total = clipsData.length;
+  document.getElementById('selectedCount').textContent = selected + ' / ' + total + ' clips selectionnes';
+  document.getElementById('notionBtn').disabled = selected === 0;
+}
+
+function getSelectedClips() {
+  const selectedCards = document.querySelectorAll('.clip-card.selected');
+  return Array.from(selectedCards).map(card => clipsData[parseInt(card.dataset.index)]);
+}
+
+async function sendToNotion() {
+  const selected = getSelectedClips();
+  if (selected.length === 0) return;
+
+  const btn = document.getElementById('notionBtn');
+  btn.disabled = true;
+  btn.textContent = 'Envoi en cours...';
+
+  try {
+    const response = await fetch(PROXY_URL + '/notion', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ clips: selected })
+    });
+
+    if (!response.ok) {
+      const errData = await response.json().catch(() => ({}));
+      throw new Error(errData.error || 'Erreur Notion : ' + response.status);
+    }
+
+    const data = await response.json();
+    const banner = document.getElementById('successBanner');
+    document.getElementById('successMsg').textContent = data.created + ' cartes creees dans Organic OS (statut : A monter)';
+    banner.classList.add('active');
+
+    document.getElementById('bottomBar').classList.remove('active');
+    document.getElementById('bottomSpacer').classList.remove('active');
+
+    banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+  } catch (err) {
+    const error = document.getElementById('error');
+    error.textContent = err.message;
+    error.classList.add('active');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Valider et envoyer sur Notion';
+  }
+}
+
+function copyBrief() {
+  const selected = getSelectedClips();
+  if (selected.length === 0) {
+    const all = clipsData;
+    var clips = all;
+  } else {
+    var clips = selected;
+  }
+
+  let brief = 'BRIEF MONTEUR\n';
+  brief += 'Nombre de clips : ' + clips.length + '\n';
+  brief += 'Duree par clip : 10 a 50 secondes. Sweet spot 20-35s.\n';
+  brief += 'Les timecodes sont approximatifs. Utilise les phrases de debut/fin pour trouver le bon moment dans le rush.\n\n';
+
+  clips.forEach((clip, i) => {
+    brief += '---\n';
+    brief += 'CLIP ' + (clip.number || i + 1) + '\n';
+    brief += 'Timestamp : ' + (clip.timestamp_start || '') + ' → ' + (clip.timestamp_end || '') + ' (approximatif)\n';
+    brief += 'Duree estimee : ~' + (clip.duration || '?') + 's\n';
+    brief += 'Pilier : ' + (clip.pilier || '') + '\n';
+    brief += 'Hook texte : "' + (clip.hook || '') + '"\n\n';
+    brief += 'DEBUT → "' + (clip.debut || '') + '"\n';
+    brief += 'FIN → "' + (clip.fin || '') + '"\n\n';
+    brief += 'Contexte : ' + (clip.contexte || '') + '\n';
+    brief += '---\n\n';
+  });
+
+  navigator.clipboard.writeText(brief).then(() => {
+    const btns = document.querySelectorAll('.clips-toolbar button');
+    const copyBtn = btns[btns.length - 1];
+    copyBtn.textContent = 'Copie !';
+    setTimeout(() => { copyBtn.textContent = 'Copier le brief'; }, 2000);
   });
 }
 </script>
