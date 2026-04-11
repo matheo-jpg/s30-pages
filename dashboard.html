@@ -99,10 +99,11 @@
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 24px;
-    padding: 44px 20px 36px;
     text-align: center;
     position: relative;
     overflow: hidden;
+    cursor: pointer;
+    user-select: none;
   }
   .hero::before {
     content: "";
@@ -112,6 +113,9 @@
     opacity: 0.18;
     pointer-events: none;
     transition: background 0.4s;
+  }
+  .hero-main {
+    padding: 44px 20px 24px;
   }
   .hero .value {
     font-size: 108px;
@@ -135,6 +139,67 @@
     letter-spacing: 0.22em;
     color: var(--text-mid);
     text-transform: uppercase;
+  }
+  .hero .chev {
+    display: inline-block;
+    margin-top: 14px;
+    width: 22px;
+    height: 22px;
+    border-right: 2px solid var(--text-dim);
+    border-bottom: 2px solid var(--text-dim);
+    transform: rotate(45deg) translate(-3px, -3px);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0.6;
+  }
+  .hero.expanded .chev {
+    transform: rotate(-135deg) translate(-3px, -3px);
+  }
+
+  /* Expand-in-place details */
+  .hero-details {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .hero.expanded .hero-details {
+    grid-template-rows: 1fr;
+  }
+  .details-inner {
+    overflow: hidden;
+  }
+  .details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    margin-top: 18px;
+    border-top: 1px solid var(--border);
+  }
+  .detail {
+    background: var(--bg-card);
+    padding: 22px 18px;
+    text-align: left;
+  }
+  .detail .dlbl {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--text-mid);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .detail .dval {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .detail .dval .cur {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-mid);
+    margin-right: 2px;
   }
 
   /* Stats row */
@@ -203,8 +268,33 @@
   </nav>
 
   <section class="hero" id="hero">
-    <div class="value" id="roas">—</div>
-    <div class="label">ROAS</div>
+    <div class="hero-main">
+      <div class="value" id="roas">—</div>
+      <div class="label">ROAS</div>
+      <div class="chev" aria-hidden="true"></div>
+    </div>
+    <div class="hero-details">
+      <div class="details-inner">
+        <div class="details-grid">
+          <div class="detail">
+            <div class="dlbl">Coût / Call</div>
+            <div class="dval"><span class="cur">€</span><span id="cost-call">—</span></div>
+          </div>
+          <div class="detail">
+            <div class="dlbl">Coût / Acq</div>
+            <div class="dval"><span class="cur">€</span><span id="cost-acq">—</span></div>
+          </div>
+          <div class="detail">
+            <div class="dlbl">Closes</div>
+            <div class="dval"><span id="closes">—</span></div>
+          </div>
+          <div class="detail">
+            <div class="dlbl">Panier moyen</div>
+            <div class="dval"><span class="cur">€</span><span id="aov">—</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <div class="row">
@@ -262,6 +352,11 @@
     document.getElementById("cash").textContent  = fmtInt(p.cash);
     document.getElementById("calls").textContent = fmtInt(p.calls);
 
+    document.getElementById("cost-call").textContent = fmtInt(p.cost_per_call);
+    document.getElementById("cost-acq").textContent  = fmtInt(p.cost_per_acq);
+    document.getElementById("closes").textContent    = fmtInt(p.closes);
+    document.getElementById("aov").textContent       = fmtInt(p.aov);
+
     var d = new Date(state.data.updated_at);
     if (!isNaN(d.getTime())) {
       var h = String(d.getHours()).padStart(2, "0");
@@ -280,6 +375,11 @@
 
   document.querySelectorAll("#toggle button").forEach(function (b) {
     b.addEventListener("click", function () { setPeriod(b.dataset.period); });
+  });
+
+  // Tap hero to expand/collapse details (Whoop-style)
+  document.getElementById("hero").addEventListener("click", function () {
+    this.classList.toggle("expanded");
   });
 
   function load() {
