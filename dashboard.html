@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="S30 Pulse" />
+<meta name="theme-color" content="#000000" />
+<link rel="apple-touch-icon" href="s30-logo.png" />
+<title>S30 Pulse</title>
+<style>
+  :root {
+    --bg: #000;
+    --bg-card: #0B0B0B;
+    --border: #1A1A1A;
+    --text: #FFFFFF;
+    --text-dim: #5A5A5A;
+    --text-mid: #8F8F8F;
+    --green: #00E676;
+    --yellow: #FFDE00;
+    --red: #FF2E4D;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", system-ui, sans-serif;
+    font-weight: 500;
+    -webkit-font-smoothing: antialiased;
+    overscroll-behavior: none;
+  }
+  body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+  .wrap {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 20px 20px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 4px 0;
+  }
+  .brand {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--text-mid);
+    text-transform: uppercase;
+  }
+  .updated {
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+
+  /* Period toggle */
+  .toggle {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+    padding: 6px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+  }
+  .toggle button {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: var(--text-mid);
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px 0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.18s, color 0.18s;
+  }
+  .toggle button.active {
+    background: #fff;
+    color: #000;
+  }
+
+  /* ROAS hero */
+  .hero {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 44px 20px 36px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, var(--glow, transparent) 0%, transparent 60%);
+    opacity: 0.18;
+    pointer-events: none;
+    transition: background 0.4s;
+  }
+  .hero .value {
+    font-size: 108px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    color: var(--accent, #fff);
+    font-variant-numeric: tabular-nums;
+    transition: color 0.4s;
+  }
+  .hero .value .x {
+    font-size: 56px;
+    font-weight: 700;
+    margin-left: 4px;
+    opacity: 0.85;
+  }
+  .hero .label {
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    color: var(--text-mid);
+    text-transform: uppercase;
+  }
+
+  /* Stats row */
+  .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 22px 20px;
+  }
+  .card.full { grid-column: 1 / -1; }
+  .card .lbl {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--text-mid);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .card .num {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .card .num .cur {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-mid);
+    margin-right: 2px;
+  }
+
+  /* Loading / error states */
+  .loading .num, .loading .value { opacity: 0.3; }
+  .error {
+    text-align: center;
+    color: var(--red);
+    font-size: 13px;
+    padding: 20px;
+  }
+
+  @media (max-width: 360px) {
+    .hero .value { font-size: 88px; }
+    .card .num { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">Strategie 30 · Pulse</div>
+    <div class="updated" id="updated">—</div>
+  </header>
+
+  <nav class="toggle" id="toggle">
+    <button data-period="yesterday">Hier</button>
+    <button data-period="today" class="active">Auj.</button>
+    <button data-period="7d">7J</button>
+    <button data-period="14d">14J</button>
+    <button data-period="30d">30J</button>
+  </nav>
+
+  <section class="hero" id="hero">
+    <div class="value" id="roas">—</div>
+    <div class="label">ROAS</div>
+  </section>
+
+  <div class="row">
+    <div class="card">
+      <div class="lbl">Dépensé</div>
+      <div class="num"><span class="cur">€</span><span id="spent">—</span></div>
+    </div>
+    <div class="card">
+      <div class="lbl">Encaissé</div>
+      <div class="num"><span class="cur">€</span><span id="cash">—</span></div>
+    </div>
+  </div>
+
+  <div class="card full">
+    <div class="lbl">Calls bookés</div>
+    <div class="num" id="calls">—</div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var DATA_URL = "dashboard.json?t=" + Date.now();
+  var state = { data: null, period: "today" };
+
+  function fmtInt(n) {
+    if (n == null || isNaN(n)) return "—";
+    return Math.round(n).toLocaleString("fr-FR").replace(/\s/g, "\u202f");
+  }
+
+  function roasColor(roas) {
+    if (!roas || roas <= 0) return { c: "#FFFFFF", g: "transparent" };
+    if (roas < 1.5) return { c: "#FF2E4D", g: "rgba(255,46,77,0.55)" };
+    if (roas <= 3)  return { c: "#FFDE00", g: "rgba(255,222,0,0.45)" };
+    return { c: "#00E676", g: "rgba(0,230,118,0.45)" };
+  }
+
+  function render() {
+    if (!state.data) return;
+    var p = state.data.periods[state.period];
+    if (!p) return;
+
+    var roasEl = document.getElementById("roas");
+    var heroEl = document.getElementById("hero");
+
+    if (p.roas > 0) {
+      roasEl.innerHTML = p.roas.toFixed(2).replace(".", ",") + '<span class="x">×</span>';
+    } else {
+      roasEl.textContent = "—";
+    }
+    var col = roasColor(p.roas);
+    heroEl.style.setProperty("--accent", col.c);
+    heroEl.style.setProperty("--glow", col.g);
+
+    document.getElementById("spent").textContent = fmtInt(p.spent);
+    document.getElementById("cash").textContent  = fmtInt(p.cash);
+    document.getElementById("calls").textContent = fmtInt(p.calls);
+
+    var d = new Date(state.data.updated_at);
+    if (!isNaN(d.getTime())) {
+      var h = String(d.getHours()).padStart(2, "0");
+      var m = String(d.getMinutes()).padStart(2, "0");
+      document.getElementById("updated").textContent = "MAJ " + h + ":" + m;
+    }
+  }
+
+  function setPeriod(period) {
+    state.period = period;
+    document.querySelectorAll("#toggle button").forEach(function (b) {
+      b.classList.toggle("active", b.dataset.period === period);
+    });
+    render();
+  }
+
+  document.querySelectorAll("#toggle button").forEach(function (b) {
+    b.addEventListener("click", function () { setPeriod(b.dataset.period); });
+  });
+
+  function load() {
+    fetch(DATA_URL, { cache: "no-store" })
+      .then(function (r) { return r.json(); })
+      .then(function (json) {
+        state.data = json;
+        render();
+      })
+      .catch(function (e) {
+        document.getElementById("roas").textContent = "ERR";
+        console.error(e);
+      });
+  }
+
+  load();
+  // Refresh when tab returns to foreground
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "visible") load();
+  });
+})();
+</script>
+</body>
+</html>
