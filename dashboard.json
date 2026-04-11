@@ -1,0 +1,36 @@
+{
+  "updated_at": "2026-04-11T08:37:41.471712+02:00",
+  "usd_eur_rate": 0.8533,
+  "periods": {
+    "yesterday": {
+      "spent": 509,
+      "cash": 2000,
+      "roas": 3.93,
+      "calls": 2
+    },
+    "today": {
+      "spent": 248,
+      "cash": 0,
+      "roas": 0.0,
+      "calls": 0
+    },
+    "7d": {
+      "spent": 3465,
+      "cash": 6993,
+      "roas": 2.02,
+      "calls": 36
+    },
+    "14d": {
+      "spent": 6993,
+      "cash": 18652,
+      "roas": 2.67,
+      "calls": 84
+    },
+    "30d": {
+      "spent": 17833,
+      "cash": 54034,
+      "roas": 3.03,
+      "calls": 227
+    }
+  }
+}
