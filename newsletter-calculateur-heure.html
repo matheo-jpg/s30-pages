@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calcule le prix de ton heure - Stratégie 30%</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body style="margin:0;padding:0;background:#0a0e1a;font-family:'Inter',sans-serif;color:#fff;-webkit-font-smoothing:antialiased;">
+
+<div style="max-width:720px;margin:0 auto;padding:60px 20px 40px;">
+
+  <!-- HEADER -->
+  <div style="text-align:center;margin-bottom:48px;">
+    <h1 style="font-size:32px;font-weight:800;margin:0 0 12px;line-height:1.2;color:#fff;">Calcule le prix de ton heure</h1>
+    <p style="font-size:17px;font-weight:400;color:#b0b8d1;margin:0;">Deux chiffres. 10 secondes. Tu vas voir.</p>
+  </div>
+
+  <!-- SECTION 1 — INPUTS -->
+  <div style="background:linear-gradient(145deg,#131829,#0f1322);border:1px solid #1e2540;border-radius:16px;padding:32px;margin-bottom:24px;">
+
+    <div style="margin-bottom:20px;">
+      <label style="display:block;font-size:14px;font-weight:600;color:#b0b8d1;margin-bottom:8px;">Ton salaire mensuel net (EUR)</label>
+      <input type="number" id="salary" placeholder="Ex : 1 500" style="width:100%;box-sizing:border-box;background:#0f1322;border:1px solid #1e2540;color:#fff;border-radius:8px;padding:12px 16px;font-family:'Inter',sans-serif;font-size:16px;outline:none;">
+    </div>
+
+    <div style="margin-bottom:24px;">
+      <label style="display:block;font-size:14px;font-weight:600;color:#b0b8d1;margin-bottom:8px;">Tes heures de travail par semaine</label>
+      <input type="number" id="hours" placeholder="Ex : 35" style="width:100%;box-sizing:border-box;background:#0f1322;border:1px solid #1e2540;color:#fff;border-radius:8px;padding:12px 16px;font-family:'Inter',sans-serif;font-size:16px;outline:none;">
+    </div>
+
+    <div style="text-align:center;">
+      <button onclick="calculate()" style="background:#2563eb;color:#fff;border:none;border-radius:8px;padding:14px 28px;font-family:'Inter',sans-serif;font-size:16px;font-weight:700;cursor:pointer;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Calculer</button>
+    </div>
+
+    <p id="error" style="display:none;color:#f87171;font-size:14px;text-align:center;margin:16px 0 0;"></p>
+
+  </div>
+
+  <!-- SECTION 2 — RÉSULTATS -->
+  <div id="results" style="display:none;opacity:0;transition:opacity 0.4s;">
+
+    <!-- Bloc A — Ton heure actuelle -->
+    <div style="background:linear-gradient(145deg,#131829,#0f1322);border:1px solid #1e2540;border-radius:16px;padding:32px;margin-bottom:16px;">
+      <p style="font-size:14px;font-weight:600;color:#b0b8d1;margin:0 0 12px;text-transform:uppercase;letter-spacing:1px;">Ce que tu vends en ce moment</p>
+      <p style="font-size:36px;font-weight:800;color:#60a5fa;margin:0;line-height:1.2;">Tu vends ton heure <span id="current-rate">0</span> EUR</p>
+    </div>
+
+    <!-- Bloc B — Ce que tu pourrais valoir -->
+    <div style="background:linear-gradient(145deg,#131829,#0f1322);border:1px solid #1e2540;border-radius:16px;padding:32px;margin-bottom:16px;">
+      <p style="font-size:14px;font-weight:600;color:#b0b8d1;margin:0 0 12px;text-transform:uppercase;letter-spacing:1px;">Ce que tu pourrais valoir</p>
+      <p style="font-size:15px;font-weight:400;color:#b0b8d1;margin:0 0 16px;line-height:1.6;">Un créateur qui génère 15 000 EUR/mois. Tu prends 25%. Soit 3 750 EUR pour environ 15h de travail par semaine.</p>
+      <p style="font-size:36px;font-weight:800;color:#4ade80;margin:0;line-height:1.2;">62 EUR/heure</p>
+    </div>
+
+    <!-- Bloc C — Comparaison visuelle -->
+    <div style="background:linear-gradient(145deg,#131829,#0f1322);border:1px solid #1e2540;border-radius:16px;padding:32px;margin-bottom:24px;">
+      <p style="font-size:14px;font-weight:600;color:#b0b8d1;margin:0 0 20px;text-transform:uppercase;letter-spacing:1px;">Comparaison</p>
+
+      <div style="margin-bottom:16px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+          <span style="font-size:14px;font-weight:500;color:#b0b8d1;">Ton heure aujourd'hui</span>
+          <span id="bar-label-current" style="font-size:14px;font-weight:700;color:#b0b8d1;">0 EUR</span>
+        </div>
+        <div style="background:#1e2540;border-radius:6px;height:28px;overflow:hidden;">
+          <div id="bar-current" style="background:#b0b8d1;height:100%;border-radius:6px;transition:width 0.6s ease;width:0%;"></div>
+        </div>
+      </div>
+
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+          <span style="font-size:14px;font-weight:500;color:#4ade80;">Ton heure en opérant</span>
+          <span style="font-size:14px;font-weight:700;color:#4ade80;">62 EUR</span>
+        </div>
+        <div style="background:#1e2540;border-radius:6px;height:28px;overflow:hidden;">
+          <div id="bar-operator" style="background:#4ade80;height:100%;border-radius:6px;transition:width 0.6s ease;width:0%;"></div>
+        </div>
+      </div>
+
+      <p id="multiplier" style="text-align:center;margin:20px 0 0;font-size:18px;font-weight:700;color:#4ade80;"></p>
+    </div>
+
+    <!-- Section 3 — CTA -->
+    <div style="text-align:center;padding:8px 0 0;">
+      <p style="font-size:17px;font-weight:500;color:#b0b8d1;margin:0 0 24px;line-height:1.6;">La différence, c'est pas une question de talent. C'est une question de modèle.</p>
+      <a href="https://app.iclosed.io/e/strategie30/appel-decouverte-strategie-email?el=newsletter_calculateur" style="display:inline-block;background:#4ade80;color:#0a0e1a;font-size:16px;font-weight:700;padding:16px 32px;border-radius:12px;text-decoration:none;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Prends un rendez-vous</a>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div style="text-align:center;margin-top:60px;padding-top:24px;border-top:1px solid #1e2540;">
+    <p style="font-size:14px;font-weight:500;color:#b0b8d1;margin:0;">Stratégie 30% — Mathéo Cauwet</p>
+  </div>
+
+</div>
+
+<script>
+function calculate() {
+  var salary = parseFloat(document.getElementById('salary').value);
+  var hours = parseFloat(document.getElementById('hours').value);
+  var errorEl = document.getElementById('error');
+
+  if (!salary || !hours || salary <= 0 || hours <= 0) {
+    errorEl.textContent = 'Rentre ton salaire et tes heures pour voir le résultat.';
+    errorEl.style.display = 'block';
+    return;
+  }
+
+  errorEl.style.display = 'none';
+
+  var annualSalary = salary * 12;
+  var annualHours = hours * 52;
+  var hourlyRate = annualSalary / annualHours;
+  var rounded = Math.round(hourlyRate * 100) / 100;
+  var operatorRate = 62;
+
+  document.getElementById('current-rate').textContent = rounded.toFixed(2).replace('.', ',');
+  document.getElementById('bar-label-current').textContent = rounded.toFixed(2).replace('.', ',') + ' EUR';
+
+  var results = document.getElementById('results');
+  results.style.display = 'block';
+  setTimeout(function() { results.style.opacity = '1'; }, 20);
+
+  var maxRate = Math.max(rounded, operatorRate);
+  setTimeout(function() {
+    document.getElementById('bar-current').style.width = Math.round((rounded / maxRate) * 100) + '%';
+    document.getElementById('bar-operator').style.width = Math.round((operatorRate / maxRate) * 100) + '%';
+  }, 100);
+
+  if (rounded > 0) {
+    var mult = Math.round((operatorRate / rounded) * 10) / 10;
+    document.getElementById('multiplier').textContent = 'x' + mult.toString().replace('.', ',') + ' la valeur de ton heure';
+  }
+
+  setTimeout(function() {
+    results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 200);
+}
+</script>
+
+</body>
+</html>
