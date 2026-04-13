@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quel type de mec tu es ? - Stratégie 30%</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body style="margin:0;padding:0;background:#0a0e1a;font-family:'Inter',sans-serif;color:#fff;-webkit-font-smoothing:antialiased;">
+
+<div style="max-width:720px;margin:0 auto;padding:60px 20px 40px;">
+
+  <!-- HEADER -->
+  <div style="text-align:center;margin-bottom:48px;">
+    <h1 style="font-size:36px;font-weight:800;margin:0 0 12px;line-height:1.2;color:#fff;">Quel type de mec tu es ?</h1>
+    <p style="font-size:17px;font-weight:400;color:#b0b8d1;margin:0;">Réponds honnêtement. Ça prend 10 secondes.</p>
+  </div>
+
+  <!-- PROFILS -->
+  <div id="profiles" style="display:flex;flex-direction:column;gap:16px;">
+
+    <!-- Profil A -->
+    <button onclick="showResult('a')" style="background:#1e2540;border:1px solid #2d3660;border-radius:12px;padding:24px;text-align:left;cursor:pointer;transition:border-color 0.2s;font-family:'Inter',sans-serif;width:100%;box-sizing:border-box;" onmouseover="this.style.borderColor='#2563eb'" onmouseout="this.style.borderColor='#2d3660'">
+      <p style="font-size:18px;font-weight:700;color:#fff;margin:0 0 8px;">J'ai déjà essayé</p>
+      <p style="font-size:15px;font-weight:400;color:#b0b8d1;margin:0;line-height:1.5;">T'as tenté le drop, le trading, la SMMA. Rien n'a vraiment collé. Tu commences à te demander si c'est toi le problème.</p>
+    </button>
+
+    <!-- Profil B -->
+    <button onclick="showResult('b')" style="background:#1e2540;border:1px solid #2d3660;border-radius:12px;padding:24px;text-align:left;cursor:pointer;transition:border-color 0.2s;font-family:'Inter',sans-serif;width:100%;box-sizing:border-box;" onmouseover="this.style.borderColor='#2563eb'" onmouseout="this.style.borderColor='#2d3660'">
+      <p style="font-size:18px;font-weight:700;color:#fff;margin:0 0 8px;">Je cherche encore</p>
+      <p style="font-size:15px;font-weight:400;color:#b0b8d1;margin:0;line-height:1.5;">T'es en CDI ou en alternance. Tu vois des mecs de ton âge qui s'en sortent en ligne. Tu sais que tu veux autre chose, mais t'as jamais sauté.</p>
+    </button>
+
+    <!-- Profil C -->
+    <button onclick="showResult('c')" style="background:#1e2540;border:1px solid #2d3660;border-radius:12px;padding:24px;text-align:left;cursor:pointer;transition:border-color 0.2s;font-family:'Inter',sans-serif;width:100%;box-sizing:border-box;" onmouseover="this.style.borderColor='#2563eb'" onmouseout="this.style.borderColor='#2d3660'">
+      <p style="font-size:18px;font-weight:700;color:#fff;margin:0 0 8px;">Je suis convaincu mais je procrastine</p>
+      <p style="font-size:15px;font-weight:400;color:#b0b8d1;margin:0;line-height:1.5;">Tu suis Mathéo depuis des mois. T'as regardé les vidéos, lu les emails. Mais t'as toujours pas pris de décision concrète.</p>
+    </button>
+
+  </div>
+
+  <!-- RÉSULTATS -->
+  <div id="result-a" style="display:none;opacity:0;transition:opacity 0.4s;">
+    <div style="background:linear-gradient(145deg,#131829,#0f1322);border:1px solid #1e2540;border-radius:16px;padding:32px;margin-top:8px;">
+      <p style="font-size:14px;font-weight:600;color:#60a5fa;margin:0 0 16px;text-transform:uppercase;letter-spacing:1px;">Ton profil</p>
+      <p style="font-size:24px;font-weight:800;color:#fff;margin:0 0 20px;line-height:1.3;">T'as essayé ce qui existait. Le problème c'est pas toi, c'est le modèle.</p>
+      <p style="font-size:16px;font-weight:400;color:#b0b8d1;margin:0 0 12px;line-height:1.7;">T'as testé des trucs. T'as mis du temps, de l'énergie, peut-être de l'argent. Et à chaque fois, au bout de quelques semaines ou quelques mois, t'as compris que ça tiendrait pas sur le long terme.</p>
+      <p style="font-size:16px;font-weight:400;color:#b0b8d1;margin:0 0 12px;line-height:1.7;">T'as pas échoué. T'as juste testé des modèles qui marchent pour une minorité de gens et qui laissent tous les autres sur le carreau. C'est pas un problème de compétence. C'est un problème de véhicule.</p>
+      <p style="font-size:16px;font-weight:400;color:#b0b8d1;margin:0 0 12px;line-height:1.7;">Le vrai problème c'est que t'as jamais eu un modèle où ta valeur augmente avec le temps. Où chaque mois passé te rend meilleur et plus cher. Pas un modèle où tu repars de zéro à chaque fois.</p>
+      <p style="font-size:16px;font-weight:400;color:#b0b8d1;margin:0 0 12px;line-height:1.7;">Et le truc que personne te dit : ton expérience passée, même ratée, c'est un avantage. T'as déjà compris comment le business en ligne fonctionne. T'as juste besoin d'appliquer ça au bon endroit.</p>
+      <p style="font-size:16px;font-weight:400;color:#b0b8d1;margin:0 0 32px;line-height:1.7;">Prends 45 minutes pour en parler avec l'équipe. Tu expliques ce que t'as fait, on te dit concrètement si t'as le profil et par où commencer.</p>
+      <div style="text-align:center;"><a href="https://app.iclosed.io/e/strategie30/appel-decouverte-strategie-email?el=newsletter_quiz_a" style="display:inline-block;background:#4ade80;color:#0a0e1a;font-size:16px;font-weight:700;padding:16px 32px;border-radius:12px;text-decoration:none;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Prends un rendez-vous</a></div>
+    </div>
+  </div>
+
+  <div id="result-b" style="display:none;opacity:0;transition:opacity 0.4s;">
+    <div style="background:linear-gradient(145deg,#131829,#0f1322);border:1px solid #1e2540;border-radius:16px;padding:32px;margin-top:8px;">
+      <p style="font-size:14px;font-weight:600;color:#60a5fa;margin:0 0 16px;text-transform:uppercase;letter-spacing:1px;">Ton profil</p>
+      <p style="font-size:24px;font-weight:800;color:#fff;margin:0 0 20px;line-height:1.3;">T'as jamais sauté parce que t'avais pas de plan clair. C'est corrigeable.</p>
+      <p style="font-size:16px;font-weight:400;color:#b0b8d1;margin:0 0 12px;line-height:1.7;">Tu te lèves le matin, tu vas bosser, tu rentres. Tu fais ce qu'on te demande. T'es pas malheureux, mais tu sais que c'est pas ça ta vie.</p>
+      <p style="font-size:16px;font-weight:400;color:#b0b8d1;margin:0 0 12px;line-height:1.7;">Le truc c'est que t'as jamais sauté, pas parce que t'as pas les couilles. Mais parce que sauter vers quoi ? T'as vu 200 vidéos YouTube avec 200 modèles différents. Chacun te dit que le sien est le meilleur. Résultat : tu fais rien.</p>
+      <p style="font-size:16px;font-weight:400;color:#b0b8d1;margin:0 0 12px;line-height:1.7;">C'est normal. Quand t'as pas de chemin clair avec des étapes concrètes, ton cerveau préfère rester dans le confort. Même si le confort c'est un taf qui te plaît pas.</p>
+      <p style="font-size:16px;font-weight:400;color:#b0b8d1;margin:0 0 12px;line-height:1.7;">Ce qu'il te faut c'est quelqu'un qui te pose les bonnes questions, qui regarde ta situation, et qui te dit : voilà exactement ce que tu fais en premier, en deuxième et en troisième. Pas un cours en ligne de 47 heures. Un plan.</p>
+      <p style="font-size:16px;font-weight:400;color:#b0b8d1;margin:0 0 32px;line-height:1.7;">Prends 45 minutes avec l'équipe. Tu expliques où t'en es, on te montre à quoi ça ressemble concrètement. Si c'est pas pour toi, on te le dira.</p>
+      <div style="text-align:center;"><a href="https://app.iclosed.io/e/strategie30/appel-decouverte-strategie-email?el=newsletter_quiz_b" style="display:inline-block;background:#4ade80;color:#0a0e1a;font-size:16px;font-weight:700;padding:16px 32px;border-radius:12px;text-decoration:none;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Prends un rendez-vous</a></div>
+    </div>
+  </div>
+
+  <div id="result-c" style="display:none;opacity:0;transition:opacity 0.4s;">
+    <div style="background:linear-gradient(145deg,#131829,#0f1322);border:1px solid #1e2540;border-radius:16px;padding:32px;margin-top:8px;">
+      <p style="font-size:14px;font-weight:600;color:#60a5fa;margin:0 0 16px;text-transform:uppercase;letter-spacing:1px;">Ton profil</p>
+      <p style="font-size:24px;font-weight:800;color:#fff;margin:0 0 20px;line-height:1.3;">Tu procrastines pas par manque d'information. Tu procrastines parce que t'as pas encore décidé.</p>
+      <p style="font-size:16px;font-weight:400;color:#b0b8d1;margin:0 0 12px;line-height:1.7;">Soyons honnêtes. T'as regardé la vidéo. T'as lu les emails. T'as peut-être même checké les témoignages. T'as toutes les infos qu'il te faut pour prendre une décision.</p>
+      <p style="font-size:16px;font-weight:400;color:#b0b8d1;margin:0 0 12px;line-height:1.7;">Mais t'as pas pris de décision. Et tu te dis que c'est parce que t'as besoin de "plus d'infos" ou de "réfléchir encore un peu". En vrai, c'est pas ça.</p>
+      <p style="font-size:16px;font-weight:400;color:#b0b8d1;margin:0 0 12px;line-height:1.7;">C'est que décider, ça fait peur. Parce que si tu prends l'appel et que c'est le bon truc, t'as plus d'excuse. Tu peux plus te dire "un jour je ferai". T'es face à un choix réel.</p>
+      <p style="font-size:16px;font-weight:400;color:#b0b8d1;margin:0 0 12px;line-height:1.7;">Et le problème de repousser, c'est que ta situation change pas. Dans 3 mois tu seras au même endroit, à lire le même genre d'email, en te disant "cette fois j'y vais". Sauf que cette fois ressemble à toutes les autres.</p>
+      <p style="font-size:16px;font-weight:400;color:#b0b8d1;margin:0 0 32px;line-height:1.7;">Prends 45 minutes avec l'équipe. C'est un appel gratuit. Soit c'est fait pour toi et on t'explique comment ça marche, soit c'est pas fait pour toi et on te le dit. Dans les deux cas, t'avances.</p>
+      <div style="text-align:center;"><a href="https://app.iclosed.io/e/strategie30/appel-decouverte-strategie-email?el=newsletter_quiz_c" style="display:inline-block;background:#4ade80;color:#0a0e1a;font-size:16px;font-weight:700;padding:16px 32px;border-radius:12px;text-decoration:none;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Prends un rendez-vous</a></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div style="text-align:center;margin-top:60px;padding-top:24px;border-top:1px solid #1e2540;">
+    <p style="font-size:14px;font-weight:500;color:#b0b8d1;margin:0;">Stratégie 30% — Mathéo Cauwet</p>
+  </div>
+
+</div>
+
+<script>
+function showResult(profile) {
+  document.getElementById('profiles').style.display = 'none';
+  var result = document.getElementById('result-' + profile);
+  result.style.display = 'block';
+  setTimeout(function() {
+    result.style.opacity = '1';
+  }, 20);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
