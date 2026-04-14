@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Framework VSL — Les 10 Questions d'Evaldo</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0f;
+    color: #e0e0e0;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* HEADER */
+  .header {
+    text-align: center;
+    padding: 60px 20px 30px;
+    position: relative;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #f59e0b, transparent);
+  }
+  .header h1 {
+    font-size: 2.4rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #f59e0b, #f97316);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 12px;
+    letter-spacing: -1px;
+  }
+  .header p {
+    font-size: 1.05rem;
+    color: #888;
+    max-width: 640px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* ONE BELIEF */
+  .one-belief {
+    max-width: 800px;
+    margin: 40px auto 20px;
+    padding: 0 20px;
+  }
+  .one-belief-box {
+    background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(245,158,11,0.02));
+    border: 1px solid rgba(245,158,11,0.25);
+    border-radius: 20px;
+    padding: 32px 36px;
+    text-align: center;
+  }
+  .one-belief-box .label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #f59e0b;
+    margin-bottom: 16px;
+  }
+  .one-belief-box .formula {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #f0f0f0;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .one-belief-box .formula span.highlight {
+    color: #fbbf24;
+    text-transform: uppercase;
+  }
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .pillar {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid #1e1e2a;
+    border-radius: 12px;
+    padding: 14px 12px;
+    text-align: left;
+  }
+  .pillar .pillar-name {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fbbf24;
+    margin-bottom: 6px;
+  }
+  .pillar .pillar-desc {
+    font-size: 0.75rem;
+    color: #888;
+    line-height: 1.5;
+  }
+
+  /* MACHINE CONTAINER */
+  .machine {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+    position: relative;
+  }
+
+  /* PHASE LABELS */
+  .phase {
+    margin-bottom: 50px;
+  }
+  .phase-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+  .phase-attention .phase-label { background: rgba(59,130,246,0.15); color: #60a5fa; border: 1px solid rgba(59,130,246,0.3); }
+  .phase-conviction .phase-label { background: rgba(168,85,247,0.15); color: #c084fc; border: 1px solid rgba(168,85,247,0.3); }
+  .phase-action .phase-label { background: rgba(245,158,11,0.15); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); }
+
+  .phase-subtitle {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 20px;
+    padding-left: 4px;
+  }
+
+  /* GEAR GRID */
+  .gear-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+  }
+
+  /* INDIVIDUAL GEAR */
+  .gear {
+    position: relative;
+    background: #13131a;
+    border: 1px solid #1e1e2a;
+    border-radius: 16px;
+    padding: 20px 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+  .gear::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 16px 16px 0 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .gear:hover::before { opacity: 1; }
+  .gear:hover {
+    border-color: #2a2a3a;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  }
+
+  .phase-attention .gear::before { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+  .phase-conviction .gear::before { background: linear-gradient(90deg, #a855f7, #c084fc); }
+  .phase-action .gear::before { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+
+  .gear-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+  .phase-attention .gear-number { background: rgba(59,130,246,0.15); color: #60a5fa; }
+  .phase-conviction .gear-number { background: rgba(168,85,247,0.15); color: #c084fc; }
+  .phase-action .gear-number { background: rgba(245,158,11,0.15); color: #fbbf24; }
+
+  .gear-question {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #f0f0f0;
+    margin-bottom: 6px;
+    line-height: 1.3;
+    font-style: italic;
+  }
+  .gear-role {
+    font-size: 0.72rem;
+    color: #666;
+    line-height: 1.4;
+  }
+
+  /* COG ICON */
+  .cog-icon {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 20px;
+    height: 20px;
+    opacity: 0.12;
+    transition: all 0.5s ease;
+  }
+  .gear:hover .cog-icon {
+    opacity: 0.3;
+    animation: spin 3s linear infinite;
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* CONNECTORS */
+  .connectors {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    padding: 10px 0;
+  }
+  .connector-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #2a2a3a;
+  }
+
+  /* BREAK SIMULATION */
+  .break-section {
+    max-width: 1100px;
+    margin: 60px auto 40px;
+    padding: 0 20px;
+  }
+  .break-box {
+    background: linear-gradient(135deg, rgba(239,68,68,0.08), rgba(239,68,68,0.02));
+    border: 1px solid rgba(239,68,68,0.2);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+  }
+  .break-box h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #ef4444;
+    margin-bottom: 12px;
+  }
+  .break-box p {
+    color: #999;
+    font-size: 0.95rem;
+    max-width: 600px;
+    margin: 0 auto 24px;
+    line-height: 1.6;
+  }
+
+  /* TOGGLE BUTTONS */
+  .toggle-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  .toggle-btn {
+    padding: 8px 14px;
+    border-radius: 10px;
+    border: 1px solid #2a2a3a;
+    background: #13131a;
+    color: #ccc;
+    font-size: 0.72rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Inter', sans-serif;
+  }
+  .toggle-btn:hover {
+    border-color: #ef4444;
+    color: #ef4444;
+  }
+  .toggle-btn.broken {
+    background: rgba(239,68,68,0.15);
+    border-color: #ef4444;
+    color: #ef4444;
+    text-decoration: line-through;
+  }
+
+  /* CHAIN VISUAL */
+  .chain-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0;
+    margin: 30px auto 16px;
+    max-width: 900px;
+  }
+  .chain-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    font-weight: 800;
+    transition: all 0.4s ease;
+    position: relative;
+  }
+  .chain-link.attention { background: rgba(59,130,246,0.2); color: #60a5fa; }
+  .chain-link.conviction { background: rgba(168,85,247,0.2); color: #c084fc; }
+  .chain-link.action { background: rgba(245,158,11,0.2); color: #fbbf24; }
+
+  .chain-link.broken-link {
+    background: rgba(239,68,68,0.3) !important;
+    color: #ef4444 !important;
+    animation: shake 0.5s ease;
+    transform: scale(0.7);
+    opacity: 0.4;
+  }
+  @keyframes shake {
+    0%, 100% { transform: scale(0.7) rotate(0deg); }
+    25% { transform: scale(0.7) rotate(-5deg); }
+    75% { transform: scale(0.7) rotate(5deg); }
+  }
+
+  .chain-connector {
+    width: 20px;
+    height: 2px;
+    background: #2a2a3a;
+    transition: all 0.4s;
+  }
+  .chain-connector.broken-connector {
+    background: #ef4444;
+    height: 2px;
+    opacity: 0.3;
+    width: 20px;
+    background: repeating-linear-gradient(90deg, #ef4444 0px, #ef4444 3px, transparent 3px, transparent 6px);
+  }
+
+  .chain-status {
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    min-height: 24px;
+    transition: all 0.3s;
+  }
+  .chain-status.ok { color: #22c55e; }
+  .chain-status.broken-status { color: #ef4444; }
+
+  /* DETAIL MODAL */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal {
+    background: #13131a;
+    border: 1px solid #2a2a3a;
+    border-radius: 20px;
+    max-width: 580px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 36px;
+    position: relative;
+  }
+  .modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .modal-close:hover { color: #fff; }
+  .modal h3 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 6px;
+    color: #f0f0f0;
+  }
+  .modal .modal-num {
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 8px;
+  }
+  .modal .modal-num.attention { background: rgba(59,130,246,0.15); color: #60a5fa; }
+  .modal .modal-num.conviction { background: rgba(168,85,247,0.15); color: #c084fc; }
+  .modal .modal-num.action { background: rgba(245,158,11,0.15); color: #fbbf24; }
+  .modal p, .modal li {
+    font-size: 0.88rem;
+    color: #aaa;
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .modal ul { padding-left: 18px; }
+  .modal .rule {
+    background: rgba(239,68,68,0.08);
+    border-left: 3px solid #ef4444;
+    padding: 10px 14px;
+    border-radius: 0 10px 10px 0;
+    margin: 14px 0;
+    font-size: 0.82rem;
+    color: #ef4444;
+  }
+  .modal .tip {
+    background: rgba(34,197,94,0.08);
+    border-left: 3px solid #22c55e;
+    padding: 10px 14px;
+    border-radius: 0 10px 10px 0;
+    margin: 14px 0;
+    font-size: 0.82rem;
+    color: #22c55e;
+  }
+  .modal .evaldo-quote {
+    background: rgba(245,158,11,0.06);
+    border-left: 3px solid #f59e0b;
+    padding: 12px 14px;
+    border-radius: 0 10px 10px 0;
+    margin: 14px 0;
+    font-size: 0.82rem;
+    color: #fbbf24;
+    font-style: italic;
+    line-height: 1.6;
+  }
+  .modal .evaldo-quote .author {
+    display: block;
+    font-style: normal;
+    font-weight: 600;
+    margin-top: 6px;
+    font-size: 0.72rem;
+    color: #d97706;
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: #444;
+    font-size: 0.75rem;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .header h1 { font-size: 1.6rem; }
+    .gear-grid { grid-template-columns: repeat(2, 1fr); }
+    .chain-link { width: 36px; height: 36px; font-size: 0.65rem; }
+    .chain-connector { width: 10px; }
+    .break-box { padding: 24px 16px; }
+    .pillars { grid-template-columns: 1fr; }
+    .one-belief-box { padding: 24px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Les 10 Questions d'Evaldo</h1>
+  <p>Chaque question est une question que ton prospect se pose. Réponds-y dans l'ordre, et ta VSL convertit. Saute une question, et le prospect décroche.</p>
+</div>
+
+<!-- ONE BELIEF -->
+<div class="one-belief">
+  <div class="one-belief-box">
+    <div class="label">La One Belief -- Le point de départ</div>
+    <div class="formula">"Cette <span class="highlight">nouvelle opportunité</span> est la clé pour obtenir <span class="highlight">ce qu'ils désirent</span>, et elle n'est atteignable qu'à travers <span class="highlight">mon nouveau mécanisme</span>."</div>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-name">New Opportunity</div>
+        <div class="pillar-desc">Ce qui rend ton idée UNIQUE. Si tu ne peux pas l'identifier, ton idée ne vaut pas la peine d'être testée.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Their Desire</div>
+        <div class="pillar-desc">Les bénéfices concrets que le prospect veut : liberté financière, statut, sécurité, fierté.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">New Mechanism</div>
+        <div class="pillar-desc">Le COMMENT. Le véhicule qui délivre ta nouvelle opportunité. Ton "secret sauce".</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QUESTIONS -->
+<div class="machine">
+
+  <!-- PHASE 1: ATTENTION -->
+  <div class="phase phase-attention">
+    <div class="phase-label">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      Capter l'attention
+    </div>
+    <div class="phase-subtitle">Q1 et Q2 doivent être réglées dans la première minute. Sinon, le prospect part.</div>
+    <div class="gear-grid">
+
+      <div class="gear" onclick="openModal(0)">
+        <svg class="cog-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64L19.43 12.97Z"/></svg>
+        <div class="gear-number">Q1</div>
+        <div class="gear-question">"En quoi c'est différent ?"</div>
+        <div class="gear-role">Pattern interrupt -- déclencher la dopamine via la nouveauté</div>
+      </div>
+
+      <div class="gear" onclick="openModal(1)">
+        <svg class="cog-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64L19.43 12.97Z"/></svg>
+        <div class="gear-number">Q2</div>
+        <div class="gear-question">"Qu'est-ce que j'y gagne ?"</div>
+        <div class="gear-role">Big promise + bullet points de curiosité</div>
+      </div>
+
+      <div class="gear" onclick="openModal(2)">
+        <svg class="cog-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64L19.43 12.97Z"/></svg>
+        <div class="gear-number">Q3</div>
+        <div class="gear-question">"Comment je sais que c'est réel ?"</div>
+        <div class="gear-role">Preuves emballées dans du storytelling (ABT)</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="connectors"><div class="connector-dot"></div><div class="connector-dot"></div><div class="connector-dot"></div></div>
+
+  <!-- PHASE 2: CONVICTION -->
+  <div class="phase phase-conviction">
+    <div class="phase-label">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      Construire la conviction
+    </div>
+    <div class="phase-subtitle">Le prospect reste. Maintenant, tu dois le convaincre que ta solution est LA bonne.</div>
+    <div class="gear-grid">
+
+      <div class="gear" onclick="openModal(3)">
+        <svg class="cog-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64L19.43 12.97Z"/></svg>
+        <div class="gear-number">Q4</div>
+        <div class="gear-question">"Qu'est-ce qui m'a bloqué ?"</div>
+        <div class="gear-role">MUP -- justifier l'échec passé (pas sa faute)</div>
+      </div>
+
+      <div class="gear" onclick="openModal(4)">
+        <svg class="cog-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64L19.43 12.97Z"/></svg>
+        <div class="gear-number">Q5</div>
+        <div class="gear-question">"C'est la faute de qui ?"</div>
+        <div class="gear-role">Ennemi commun -- Us vs. Them</div>
+      </div>
+
+      <div class="gear" onclick="openModal(5)">
+        <svg class="cog-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64L19.43 12.97Z"/></svg>
+        <div class="gear-number">Q6</div>
+        <div class="gear-question">"Pourquoi maintenant ?"</div>
+        <div class="gear-role">Détruire l'inertie -- FOMO réel</div>
+      </div>
+
+      <div class="gear" onclick="openModal(6)">
+        <svg class="cog-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64L19.43 12.97Z"/></svg>
+        <div class="gear-number">Q7</div>
+        <div class="gear-question">"Pourquoi te faire confiance ?"</div>
+        <div class="gear-role">Crédibilité -- les 3 storylines</div>
+      </div>
+
+      <div class="gear" onclick="openModal(7)">
+        <svg class="cog-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64L19.43 12.97Z"/></svg>
+        <div class="gear-number">Q8</div>
+        <div class="gear-question">"Comment ça marche ?"</div>
+        <div class="gear-role">MUS -- le mécanisme expliqué (sans tout révéler)</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="connectors"><div class="connector-dot"></div><div class="connector-dot"></div><div class="connector-dot"></div></div>
+
+  <!-- PHASE 3: ACTION -->
+  <div class="phase phase-action">
+    <div class="phase-label">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      Passer à l'action
+    </div>
+    <div class="phase-subtitle">Le prospect est convaincu. Il faut maintenant le faire agir.</div>
+    <div class="gear-grid">
+
+      <div class="gear" onclick="openModal(8)">
+        <svg class="cog-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64L19.43 12.97Z"/></svg>
+        <div class="gear-number">Q9</div>
+        <div class="gear-question">"Comment je commence ?"</div>
+        <div class="gear-role">L'offre no-brainer + CTA</div>
+      </div>
+
+      <div class="gear" onclick="openModal(9)">
+        <svg class="cog-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64L19.43 12.97Z"/></svg>
+        <div class="gear-number">Q10</div>
+        <div class="gear-question">"Qu'est-ce que je risque ?"</div>
+        <div class="gear-role">Close non-needy -- les 3 options</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- BREAK SIMULATION -->
+<div class="break-section">
+  <div class="break-box">
+    <h2>Saute une question, le prospect décroche</h2>
+    <p>Clique sur une question pour la retirer. Regarde ce qui arrive à la chaîne de conviction.</p>
+
+    <div class="chain-visual" id="chainVisual"></div>
+    <div class="chain-status ok" id="chainStatus">Les 10 questions sont couvertes. La VSL convertit.</div>
+
+    <div class="toggle-grid" id="toggleGrid"></div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modalContent">
+    <button class="modal-close" onclick="closeModal(event, true)">&times;</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<div class="footer">Framework VSL -- "The 16-Word Sales Letter" par Evaldo Albuquerque -- VSL System by Stratégie 30%</div>
+
+<script>
+const sections = [
+  {
+    num: "Q1", title: "En quoi c'est différent ?", phase: "attention",
+    detail: `
+      <div class="evaldo-quote">"L'attention est donnée quand la nouveauté de l'information est élevée, et elle dérive quand la nouveauté est faible. Le cerveau consacre 60 à 80% de ses ressources à la détection du changement."<span class="author">-- Evaldo Albuquerque</span></div>
+      <p><strong>Objectif :</strong> Déclencher la dopamine via la nouveauté (pattern interrupt).</p>
+      <p><strong>Science :</strong> Le cerveau a un "centre de la nouveauté" (substantia nigra) qui ne s'active que face à quelque chose de COMPLÈTEMENT nouveau -- libère de la dopamine -- mode "exploration".</p>
+      <div class="rule">Ton USP doit être dans ton headline et au tout début de ta VSL. Tu as 3-5 secondes.</div>
+      <div class="tip">Statistique choc, déclaration contre-intuitive, affirmation qui casse les schémas. Pas de "Tu n'arrives pas à..." qui met le prospect sur la défensive.</div>
+    `
+  },
+  {
+    num: "Q2", title: "Qu'est-ce que j'y gagne ?", phase: "attention",
+    detail: `
+      <div class="evaldo-quote">"Le mot le plus important dans une sales letter, c'est 'TOI'. Les gens ne lisent pas ta lettre pour te faire plaisir. Ils cherchent une raison de NE PAS lire. Réponds à Q1 et Q2 dès la première page, ou ils partent."<span class="author">-- Evaldo Albuquerque</span></div>
+      <p><strong>Objectif :</strong> Big promise immédiate liée aux désirs du prospect.</p>
+      <p><strong>Règle :</strong> Tout est sur l'autre personne. S'intéresser à EUX. Peindre le résultat qu'ils désirent.</p>
+      <div class="tip">"Dans les prochaines minutes, tu vas découvrir [Big Idea] qui a permis à [résultat concret]." + 3-5 bullet points de curiosité qui donnent envie de rester SANS donner la réponse.</div>
+      <div class="rule">Si un bullet point révèle la solution, il tue la curiosité. Le prospect n'a plus de raison de rester.</div>
+    `
+  },
+  {
+    num: "Q3", title: "Comment je sais que c'est réel ?", phase: "attention",
+    detail: `
+      <div class="evaldo-quote">"Dans une étude de Carnegie Mellon, une histoire seule a généré $2.38 de dons. Une histoire + des faits : $1.43. Des faits seuls : $1.14. Les faits mettent le cerveau en mode analytique, ce qui RÉDUIT l'émotion. Emballe toujours tes preuves dans du storytelling."<span class="author">-- Evaldo Albuquerque</span></div>
+      <p><strong>Objectif :</strong> Prouver que ce n'est pas du bullshit.</p>
+      <p><strong>Framework ABT</strong> (And, But, Therefore) :</p>
+      <ul>
+        <li><strong>And</strong> = pose le contexte</li>
+        <li><strong>But</strong> = crée le conflit/tension</li>
+        <li><strong>Therefore</strong> = donne la résolution</li>
+      </ul>
+      <div class="rule">Jamais des faits bruts. Toujours emballés dans du storytelling.</div>
+      <div class="tip">Crédibilité courte (1-3 lignes de résultats, pas de CV) + storytelling en scènes narratives si le créateur a une histoire forte.</div>
+    `
+  },
+  {
+    num: "Q4", title: "Qu'est-ce qui m'a bloqué ?", phase: "conviction",
+    detail: `
+      <div class="evaldo-quote">"Si tu n'as pas réussi jusqu'ici, ce n'est pas ta faute. C'est parce que [vrai problème que seul ton mécanisme résout]. Des millions de gens cherchent quelqu'un pour retirer la responsabilité de leurs épaules."<span class="author">-- Evaldo Albuquerque</span></div>
+      <p><strong>Objectif :</strong> Justifier l'échec passé du prospect -- ce n'était PAS sa faute.</p>
+      <p><strong>Méthode :</strong> Reverse-engineer la Q1 pour trouver le "vrai problème".</p>
+      <div class="tip">C'est ton Mécanisme Unique du Problème (MUP). Donne-lui un nom mémorable. Le prospect doit avoir un moment "aha" -- il comprend enfin pourquoi il était bloqué.</div>
+      <div class="rule">Ça retire la culpabilité, la place sur les anciennes solutions, et plante l'espoir.</div>
+    `
+  },
+  {
+    num: "Q5", title: "C'est la faute de qui ?", phase: "conviction",
+    detail: `
+      <div class="evaldo-quote">"L'instinct tribal est câblé dans notre cerveau. Un ennemi commun libère de l'ocytocine -- le sentiment d'appartenance. Mais ne crée JAMAIS un ennemi de nulle part. Utilise les croyances que ton prospect a DÉJÀ."<span class="author">-- Evaldo Albuquerque</span></div>
+      <p><strong>Objectif :</strong> Créer un ennemi commun (Us vs. Them).</p>
+      <p><strong>Règle :</strong> Leverager les CROYANCES EXISTANTES du prospect pour trouver un ennemi crédible.</p>
+      <div class="tip">S'intègre naturellement dans le MUP. L'ennemi explique POURQUOI le prospect est bloqué. Ce n'est pas sa faute, c'est la faute de [ennemi].</div>
+    `
+  },
+  {
+    num: "Q6", title: "Pourquoi maintenant ?", phase: "conviction",
+    detail: `
+      <div class="evaldo-quote">"La résistance la plus sournoise n'est pas le scepticisme. C'est l'inertie. Le prospect se dit 'je verrai plus tard'. La technique Either-Or élimine toute option intermédiaire : soit tu agis maintenant, soit tu rates cette opportunité."<span class="author">-- Evaldo Albuquerque</span></div>
+      <p><strong>Objectif :</strong> Détruire l'inertie.</p>
+      <p><strong>Les 4 niveaux de résistance :</strong></p>
+      <ul>
+        <li>Réactance (perte de liberté de choix)</li>
+        <li>Méfiance (scepticisme)</li>
+        <li>Examen critique (veut des preuves logiques)</li>
+        <li>Inertie (rester immobile > changer)</li>
+      </ul>
+      <div class="rule">Juste mettre une date limite ne suffit pas. Il faut déclencher le FOMO réel.</div>
+      <div class="tip">Montre ce que le prospect perd chaque jour/semaine qu'il n'agit pas. Conséquences concrètes et chiffrées.</div>
+    `
+  },
+  {
+    num: "Q7", title: "Pourquoi te faire confiance ?", phase: "conviction",
+    detail: `
+      <div class="evaldo-quote">"Il y a 3 storylines de crédibilité qui marchent : 'J'ai été à ta place' (la plus puissante), 'Robin Hood' (tu voles un secret aux puissants pour le donner au prospect), et 'L'Expert' (livres, passages TV, accomplissements). Tu peux les combiner."<span class="author">-- Evaldo Albuquerque</span></div>
+      <p><strong>Objectif :</strong> Construire la confiance.</p>
+      <p><strong>Les 3 storylines :</strong></p>
+      <ul>
+        <li><strong>"J'ai été à ta place"</strong> -- Le créateur a traversé les mêmes galères. La plus puissante.</li>
+        <li><strong>"Robin Hood"</strong> -- Le créateur "vole" un secret aux puissants pour le donner au prospect.</li>
+        <li><strong>"L'Expert"</strong> -- Résultats concrets, track record, accomplissements.</li>
+      </ul>
+      <div class="tip">Story du créateur en scènes narratives + résultats clients concrets. Show don't tell.</div>
+    `
+  },
+  {
+    num: "Q8", title: "Comment ça marche ?", phase: "conviction",
+    detail: `
+      <div class="evaldo-quote">"L'explication du mécanisme EST du copy. Elle ne peut PAS être ennuyeuse. Emballe-la toujours dans du storytelling ABT. Le prospect doit penser 'ah oui, ça fait sens'. À la fin, il est pré-vendu."<span class="author">-- Evaldo Albuquerque</span></div>
+      <p><strong>Objectif :</strong> Expliquer le mécanisme de façon logique et convaincante.</p>
+      <p><strong>Deux approches :</strong></p>
+      <ul>
+        <li><strong>Exploiter une croyance existante</strong> -- Ancrer dans ce que le prospect croit déjà</li>
+        <li><strong>Logique irréfutable</strong> -- "Ah oui, ça fait sens"</li>
+      </ul>
+      <div class="tip">C'est ton Mécanisme Unique de la Solution (MUS). Comment ta méthode fonctionne, pourquoi c'est différent.</div>
+      <div class="rule">Ne pas tout révéler. Le prospect doit comprendre la logique mais vouloir en savoir plus.</div>
+    `
+  },
+  {
+    num: "Q9", title: "Comment je commence ?", phase: "action",
+    detail: `
+      <div class="evaldo-quote">"Le produit est plus puissant que la plume. Si l'offre est assez bonne, même un copy moyen convertit. Ne BAISSE JAMAIS le prix -- ça réduit la valeur perçue. Baisser le prix, c'est pour les perdants. Augmente la VALEUR."<span class="author">-- Evaldo Albuquerque</span></div>
+      <p><strong>Objectif :</strong> Offre no-brainer = GAP énorme entre valeur perçue et prix.</p>
+      <p><strong>Template :</strong> Transition naturelle -- Offre principale -- Bonus stratégiques -- Value Stack -- Témoignages -- Garantie -- CTA clair.</p>
+      <p><strong>Techniques pour augmenter la valeur :</strong></p>
+      <ul>
+        <li>Ancrage par comparaison</li>
+        <li>Rareté réelle (places limitées si c'est vrai)</li>
+        <li>Bonus S.I.N. (Superior, Irresistible, No-brainer)</li>
+        <li>Future pacing (projeter le prospect dans sa vie transformée)</li>
+      </ul>
+      <div class="rule">Chaque élément de l'offre = un bénéfice, pas une feature. "12 modules vidéo" ne veut rien dire. "Le système complet pour [résultat] en [délai]" donne envie.</div>
+    `
+  },
+  {
+    num: "Q10", title: "Qu'est-ce que je risque ?", phase: "action",
+    detail: `
+      <div class="evaldo-quote">"Ne supplie JAMAIS. Les gens courent après ce qui s'éloigne d'eux. Sépare les rêveurs des gens d'action. Présente les options SANS essayer de convaincre. 'Seul toi peux décider.'"<span class="author">-- Evaldo Albuquerque</span></div>
+      <p><strong>Objectif :</strong> Closer sans être needy.</p>
+      <p><strong>Technique Push-Pull :</strong></p>
+      <ul>
+        <li><strong>PUSH</strong> = faire sentir au prospect qu'il est en contrôle. "C'est TA décision."</li>
+        <li><strong>PULL</strong> = rappeler ce qu'il a à perdre s'il n'agit pas</li>
+      </ul>
+      <p><strong>Framework des 3 Options :</strong></p>
+      <ul>
+        <li>Option 1 : Ne rien faire. Rester où tu es.</li>
+        <li>Option 2 : Le faire toi-même. Possible mais long et difficile.</li>
+        <li>Option 3 : Laisser [créateur] faire le gros du travail pour toi.</li>
+      </ul>
+      <div class="tip">Urgence vraie (pas de fausse rareté) + coût de l'inaction chiffré + CTA final clair et direct.</div>
+    `
+  }
+];
+
+const brokenSet = new Set();
+
+function buildChain() {
+  const chain = document.getElementById('chainVisual');
+  chain.innerHTML = '';
+  for (let i = 0; i < sections.length; i++) {
+    const link = document.createElement('div');
+    link.className = `chain-link ${sections[i].phase}`;
+    if (brokenSet.has(i)) link.classList.add('broken-link');
+    link.textContent = sections[i].num;
+    chain.appendChild(link);
+    if (i < sections.length - 1) {
+      const conn = document.createElement('div');
+      conn.className = 'chain-connector';
+      if (brokenSet.has(i) || brokenSet.has(i + 1)) conn.classList.add('broken-connector');
+      chain.appendChild(conn);
+    }
+  }
+  const status = document.getElementById('chainStatus');
+  if (brokenSet.size === 0) {
+    status.className = 'chain-status ok';
+    status.textContent = 'Les 10 questions sont couvertes. La VSL convertit.';
+  } else {
+    const names = [...brokenSet].map(i => `${sections[i].num}`).join(', ');
+    status.className = 'chain-status broken-status';
+    status.textContent = `Question(s) manquante(s) : ${names}. Le prospect décroche.`;
+  }
+}
+
+function buildToggles() {
+  const grid = document.getElementById('toggleGrid');
+  grid.innerHTML = '';
+  sections.forEach((s, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'toggle-btn' + (brokenSet.has(i) ? ' broken' : '');
+    btn.textContent = `${s.num}`;
+    btn.onclick = () => {
+      if (brokenSet.has(i)) brokenSet.delete(i); else brokenSet.add(i);
+      buildChain();
+      buildToggles();
+    };
+    grid.appendChild(btn);
+  });
+}
+
+function openModal(idx) {
+  const s = sections[idx];
+  document.getElementById('modalBody').innerHTML = `
+    <span class="modal-num ${s.phase}">${s.num}</span>
+    <h3>"${s.title}"</h3>
+    ${s.detail}
+  `;
+  document.getElementById('modalOverlay').classList.add('active');
+}
+
+function closeModal(e, force) {
+  if (force || e.target === document.getElementById('modalOverlay')) {
+    document.getElementById('modalOverlay').classList.remove('active');
+  }
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') document.getElementById('modalOverlay').classList.remove('active'); });
+
+buildChain();
+buildToggles();
+</script>
+</body>
+</html>
