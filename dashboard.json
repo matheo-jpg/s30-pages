@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-20T05:07:01.675776+02:00",
+  "updated_at": "2026-04-20T06:07:01.496155+02:00",
   "usd_eur_rate": 0.8511,
   "periods": {
     "yesterday": {
@@ -13,7 +13,7 @@
       "cost_per_acq": 0
     },
     "today": {
-      "spent": 260,
+      "spent": 269,
       "cash": 0,
       "roas": 0.0,
       "calls": 0,
@@ -23,34 +23,34 @@
       "cost_per_acq": 0
     },
     "7d": {
-      "spent": 3956,
+      "spent": 3965,
       "cash": 13275,
-      "roas": 3.36,
+      "roas": 3.35,
       "calls": 32,
       "closes": 2,
       "aov": 2400,
       "cost_per_call": 124,
-      "cost_per_acq": 1978
+      "cost_per_acq": 1983
     },
     "14d": {
-      "spent": 7776,
+      "spent": 7785,
       "cash": 28780,
       "roas": 3.7,
       "calls": 75,
       "closes": 8,
       "aov": 1725,
       "cost_per_call": 104,
-      "cost_per_acq": 972
+      "cost_per_acq": 973
     },
     "30d": {
-      "spent": 16062,
+      "spent": 16071,
       "cash": 70247,
       "roas": 4.37,
       "calls": 223,
       "closes": 22,
       "aov": 1395,
       "cost_per_call": 72,
-      "cost_per_acq": 730
+      "cost_per_acq": 731
     }
   }
 }
