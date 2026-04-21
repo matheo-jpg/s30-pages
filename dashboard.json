@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-21T21:07:01.835705+02:00",
+  "updated_at": "2026-04-21T22:07:01.864900+02:00",
   "usd_eur_rate": 0.849,
   "periods": {
     "yesterday": {
@@ -40,7 +40,7 @@
       "closes": 8,
       "aov": 1725,
       "cost_per_call": 112,
-      "cost_per_acq": 1010
+      "cost_per_acq": 1011
     },
     "30d": {
       "spent": 16349,
