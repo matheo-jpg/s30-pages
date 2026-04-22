@@ -83,6 +83,36 @@ body {
   box-shadow: 0 4px 32px rgba(27,167,255,0.15);
 }
 
+/* Testimonials */
+.cc-temoignages { width: 100%; display: flex; flex-direction: column; gap: 16px; }
+.cc-temoignage-label {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  text-align: center;
+}
+.cc-temoignage-card {
+  width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(27,167,255,0.12);
+}
+.cc-temoignage-card iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16/9;
+  border: none;
+}
+.cc-temoignage-caption {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 6px;
+}
+
 /* Steps */
 .cc-steps {
   width: 100%;
@@ -133,7 +163,7 @@ body {
   border-radius: 14px;
   padding: 18px 20px;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 14px;
   text-align: left;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
@@ -142,6 +172,8 @@ body {
   font-size: 24px;
   flex-shrink: 0;
   line-height: 1;
+  display: flex;
+  align-items: center;
 }
 .cc-alert-text {
   font-size: 14px;
@@ -184,12 +216,29 @@ body {
 
   <!-- HEADLINE -->
   <h1 class="cc-headline">Voici ce qui va se passer maintenant.</h1>
-  <p class="cc-sub">Regarde cette courte vidéo — elle t'explique les prochaines étapes en moins de 2 minutes.</p>
+  <p class="cc-sub">Regarde cette courte vidéo, elle t'explique les prochaines étapes en moins de 2 minutes.</p>
 
   <!-- VIDEO -->
   <!-- REMPLACER : ID Vidalytics de la vidéo confirmation créateurs -->
   <div class="cc-vsl">
     <div id="vidalytics_embed_AVIwRQ0Qg23qaTCm" style="width:100%;position:relative;padding-top:56.25%;"></div>
+  </div>
+
+  <!-- TEMOIGNAGES -->
+  <div class="cc-temoignages">
+    <p class="cc-temoignage-label">Ils ont déjà trouvé leur opérateur</p>
+    <div>
+      <div class="cc-temoignage-card">
+        <iframe src="https://www.youtube.com/embed/D8rbrdyX5K0" allowfullscreen loading="lazy" title="Vincent x Clément"></iframe>
+      </div>
+      <p class="cc-temoignage-caption">Vincent x Clément</p>
+    </div>
+    <div>
+      <div class="cc-temoignage-card">
+        <iframe src="https://www.youtube.com/embed/UHTUtaehm6A" allowfullscreen loading="lazy" title="Alexis x César"></iframe>
+      </div>
+      <p class="cc-temoignage-caption">Alexis x César</p>
+    </div>
   </div>
 
   <!-- STEPS -->
@@ -226,7 +275,7 @@ body {
   <div class="cc-alert">
     <div class="cc-alert-icon">&#128241;</div>
     <div class="cc-alert-text">
-      Tout ce process prend <strong>maximum 72h</strong>. Garde un oeil sur ton <span>WhatsApp</span> — c'est par là qu'on te recontactera.
+      Tout ce process prend <strong>maximum 72h</strong>. Garde un oeil sur ton <span>WhatsApp</span> : c'est par là qu'on te recontactera.
     </div>
   </div>
 
