@@ -59,24 +59,21 @@ body {
 .pill {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   background: #fff;
   border: 1.5px solid var(--cyan-border);
   border-radius: 50px;
-  padding: 8px 20px 8px 8px;
+  padding: 10px 20px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.06);
 }
-.pill-avatars {
-  display: flex;
-}
-.pill-avatars img {
-  width: 28px; height: 28px;
+.pill-icon {
+  width: 18px; height: 18px;
   border-radius: 50%;
-  border: 2px solid #fff;
-  margin-left: -8px;
-  object-fit: cover;
+  background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
 }
-.pill-avatars img:first-child { margin-left: 0; }
+.pill-icon svg { width: 11px; height: 11px; color: #fff; }
 .pill-text {
   font-size: 13px;
   font-weight: 800;
@@ -99,12 +96,6 @@ body {
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 32px rgba(27,167,255,0.15);
-}
-.vsl-inner {
-  position: relative;
-  width: 100%;
-  padding-top: 56.25%;
-  background: #0f172a;
 }
 
 /* CTA */
@@ -153,7 +144,8 @@ body {
   opacity: 0.6;
   line-height: 1.7;
   text-align: center;
-  padding-top: 8px;
+  margin-top: 16px;
+  padding-bottom: 16px;
 }
 
 /* Mobile tweaks */
@@ -173,12 +165,8 @@ body {
 
   <!-- PILL -->
   <div class="pill">
-    <div class="pill-avatars">
-      <img src="https://i.pravatar.cc/56?img=12" alt="">
-      <img src="https://i.pravatar.cc/56?img=33" alt="">
-      <img src="https://i.pravatar.cc/56?img=47" alt="">
-      <img src="https://i.pravatar.cc/56?img=52" alt="">
-      <img src="https://i.pravatar.cc/56?img=68" alt="">
+    <div class="pill-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
     </div>
     <span class="pill-text">Pour les créateurs de contenu uniquement</span>
   </div>
@@ -189,13 +177,9 @@ body {
   </h1>
 
   <!-- VSL -->
-  <!-- REMPLACER : mettre l'ID Vidalytics de la VSL créateurs ci-dessous -->
   <div class="vsl-wrap">
-    <div class="vsl-inner">
-      <div id="vidalytics_embed_A2QkFyFmCE95QtfD" style="width:100%;position:absolute;top:0;left:0;height:100%;"></div>
-    </div>
+    <div id="vidalytics_embed_A2QkFyFmCE95QtfD" style="width:100%;position:relative;padding-top:56.25%;"></div>
   </div>
-  <!-- FIN PLACEHOLDER VSL -->
 
   <!-- CTA -->
   <!-- REMPLACER : mettre l'URL du formulaire Tally ci-dessous -->
