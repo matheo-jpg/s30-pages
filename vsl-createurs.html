@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#E9FCFF">
+<title>Mise en relation créateurs — Stratégie 30%</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+a { color: inherit; text-decoration: none; }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: #E9FCFF;
+  color: #1a1a2e;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+:root {
+  --accent: #1BA7FF;
+  --accent-glow: rgba(27,167,255,0.35);
+  --cyan-border: rgba(135,205,221,0.8);
+  --text-dark: #1a1a2e;
+  --text-muted: #4a5568;
+  --glow-color: rgb(142,214,234);
+}
+
+/* Glow background */
+.ellipse-glow {
+  position: fixed;
+  bottom: -300px; right: -400px;
+  width: 1100px; height: 600px;
+  border-radius: 50%;
+  background-color: var(--glow-color);
+  box-shadow:
+    0 0 100px rgba(170,245,253,1),
+    0 0 200px rgba(170,245,253,0.9),
+    0 0 400px rgba(170,245,253,0.7);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Main wrapper */
+.page {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 40px 20px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  text-align: center;
+}
+
+/* Pill */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  border: 1.5px solid var(--cyan-border);
+  border-radius: 50px;
+  padding: 8px 20px 8px 8px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.pill-avatars {
+  display: flex;
+}
+.pill-avatars img {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  margin-left: -8px;
+  object-fit: cover;
+}
+.pill-avatars img:first-child { margin-left: 0; }
+.pill-text {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: 0.2px;
+}
+
+/* Headline */
+.headline {
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1.18;
+  color: var(--text-dark);
+}
+.headline .hl { color: var(--accent); }
+
+/* VSL */
+.vsl-wrap {
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 32px rgba(27,167,255,0.15);
+}
+.vsl-inner {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  background: #0f172a;
+}
+
+/* CTA */
+.cta {
+  display: block;
+  width: 100%;
+  background: linear-gradient(135deg, var(--accent), #38bdf8);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 900;
+  padding: 22px 24px;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  box-shadow: 0 6px 32px var(--accent-glow);
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+.cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 40px rgba(27,167,255,0.5);
+}
+.cta::after {
+  content: '';
+  position: absolute;
+  top: -50%; left: -60%;
+  width: 200%; height: 200%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.18) 50%, transparent 100%);
+  transform: rotate(25deg);
+  animation: shine 4s ease-in-out infinite;
+}
+@keyframes shine {
+  0%   { left: -60%; }
+  20%  { left: 120%; }
+  100% { left: 120%; }
+}
+
+/* Footer */
+.footer {
+  font-size: 11px;
+  color: var(--text-muted);
+  opacity: 0.6;
+  line-height: 1.7;
+  text-align: center;
+  padding-top: 8px;
+}
+
+/* Mobile tweaks */
+@media (max-width: 400px) {
+  .page { padding: 32px 16px 40px; gap: 24px; }
+  .headline { font-size: 22px; }
+  .cta { font-size: 16px; padding: 20px 20px; }
+  .pill-text { font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<div class="ellipse-glow"></div>
+
+<div class="page">
+
+  <!-- PILL -->
+  <div class="pill">
+    <div class="pill-avatars">
+      <img src="https://i.pravatar.cc/56?img=12" alt="">
+      <img src="https://i.pravatar.cc/56?img=33" alt="">
+      <img src="https://i.pravatar.cc/56?img=47" alt="">
+      <img src="https://i.pravatar.cc/56?img=52" alt="">
+      <img src="https://i.pravatar.cc/56?img=68" alt="">
+    </div>
+    <span class="pill-text">Pour les créateurs de contenu uniquement</span>
+  </div>
+
+  <!-- HEADLINE -->
+  <h1 class="headline">
+    Comment monétiser ton audience avec quelqu'un payé <span class="hl">uniquement sur tes résultats</span>, sans débourser un centime
+  </h1>
+
+  <!-- VSL -->
+  <!-- REMPLACER : mettre l'ID Vidalytics de la VSL créateurs ci-dessous -->
+  <div class="vsl-wrap">
+    <div class="vsl-inner">
+      <div id="vidalytics_embed_REMPLACER_VIDALYTICS_ID" style="width:100%;position:absolute;top:0;left:0;height:100%;"></div>
+    </div>
+  </div>
+  <!-- FIN PLACEHOLDER VSL -->
+
+  <!-- CTA -->
+  <!-- REMPLACER : mettre l'URL du formulaire Tally ci-dessous -->
+  <a class="cta" href="REMPLACER_URL_TALLY" target="_blank" rel="noopener">
+    Je remplis le formulaire (2 minutes)
+  </a>
+
+  <!-- FOOTER -->
+  <p class="footer">
+    ForCyclers LLC &mdash; Tous droits réservés 2026<br>
+    Les résultats présentés sont réels mais non typiques. Ils dépendent de ton engagement et de ta situation.
+  </p>
+
+</div>
+
+<!-- VIDALYTICS SCRIPT -->
+<!-- REMPLACER : mettre le bon ID dans les deux occurrences ci-dessous -->
+<script type="text/javascript">
+(function(){
+  var vd = document.createElement('script');
+  vd.type = 'text/javascript';
+  vd.async = true;
+  vd.src = 'https://app.vidalytics.com/embeds/REMPLACER_VIDALYTICS_ID/REMPLACER_VIDALYTICS_ID.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(vd);
+})();
+</script>
+
+</body>
+</html>
