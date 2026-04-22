@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#E9FCFF">
+<title>Demande enregistrée — Stratégie 30%</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: #E9FCFF;
+  color: #1a1a2e;
+  overflow-x: hidden;
+}
+:root {
+  --accent: #1BA7FF;
+  --accent-glow: rgba(27,167,255,0.35);
+  --cyan-border: rgba(135,205,221,0.8);
+  --text-dark: #1a1a2e;
+  --text-muted: #4a5568;
+}
+
+.page {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 48px 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  text-align: center;
+}
+
+/* Pill confirmation */
+.cc-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1.5px solid rgba(52,199,89,0.5);
+  border-radius: 50px;
+  padding: 10px 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.cc-pill-icon {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: #34C759;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.cc-pill-icon svg { width: 12px; height: 12px; color: #fff; }
+.cc-pill-text {
+  font-size: 13px;
+  font-weight: 800;
+  color: #34C759;
+}
+
+/* Headline */
+.cc-headline {
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 1.2;
+  color: var(--text-dark);
+}
+.cc-sub {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-top: -16px;
+}
+
+/* Video */
+.cc-vsl {
+  width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 32px rgba(27,167,255,0.15);
+}
+
+/* Steps */
+.cc-steps {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+.cc-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: #fff;
+  border: 1.5px solid var(--cyan-border);
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.cc-step-num {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.cc-step-body {}
+.cc-step-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+.cc-step-desc {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* WhatsApp alert */
+.cc-alert {
+  width: 100%;
+  background: #fff;
+  border: 1.5px solid rgba(37,211,102,0.4);
+  border-radius: 14px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  text-align: left;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.cc-alert-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.cc-alert-text {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1.5;
+}
+.cc-alert-text span {
+  color: #25D366;
+}
+
+/* Footer */
+.cc-footer {
+  font-size: 11px;
+  color: var(--text-muted);
+  opacity: 0.6;
+  line-height: 1.7;
+  margin-top: 80px;
+  padding-bottom: 40px;
+}
+
+@media (max-width: 400px) {
+  .page { padding: 32px 16px 0; gap: 24px; }
+  .cc-headline { font-size: 22px; }
+  .cc-step { padding: 14px 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- PILL -->
+  <div class="cc-pill">
+    <div class="cc-pill-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+    </div>
+    <span class="cc-pill-text">Demande bien enregistrée</span>
+  </div>
+
+  <!-- HEADLINE -->
+  <h1 class="cc-headline">Voici ce qui va se passer maintenant.</h1>
+  <p class="cc-sub">Regarde cette courte vidéo — elle t'explique les prochaines étapes en moins de 2 minutes.</p>
+
+  <!-- VIDEO -->
+  <!-- REMPLACER : ID Vidalytics de la vidéo confirmation créateurs -->
+  <div class="cc-vsl">
+    <div id="vidalytics_embed_REMPLACER_ID_CONFIRMATION" style="width:100%;position:relative;padding-top:56.25%;"></div>
+  </div>
+
+  <!-- STEPS -->
+  <div class="cc-steps">
+
+    <div class="cc-step">
+      <div class="cc-step-num">1</div>
+      <div class="cc-step-body">
+        <div class="cc-step-title">On analyse ton profil</div>
+        <div class="cc-step-desc">Ta niche, ton audience, tes objectifs. On prend le temps de comprendre ta situation pour trouver le meilleur fit possible.</div>
+      </div>
+    </div>
+
+    <div class="cc-step">
+      <div class="cc-step-num">2</div>
+      <div class="cc-step-body">
+        <!-- REMPLACER : mettre le bon chiffre d'opérateurs formés -->
+        <div class="cc-step-title">On publie ton profil dans notre communauté</div>
+        <div class="cc-step-desc">Plus de REMPLACER_NB_OPERATEURS opérateurs formés, chacun avec des spécialités différentes. On sélectionne celui qui correspond le mieux à ta niche et à tes ambitions.</div>
+      </div>
+    </div>
+
+    <div class="cc-step">
+      <div class="cc-step-num">3</div>
+      <div class="cc-step-body">
+        <div class="cc-step-title">On crée un groupe WhatsApp avec toi et l'opérateur</div>
+        <div class="cc-step-desc">Vous prenez un appel ensemble, vous échangez. Si ça matche, vous démarrez. Sinon, on te propose un autre profil.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ALERTE WHATSAPP -->
+  <div class="cc-alert">
+    <div class="cc-alert-icon">&#128241;</div>
+    <div class="cc-alert-text">
+      Tout ce process prend <strong>maximum 72h</strong>. Garde un oeil sur ton <span>WhatsApp</span> — c'est par là qu'on te recontactera.
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <p class="cc-footer">
+    ForCyclers LLC &mdash; Tous droits réservés 2026<br>
+    Les résultats présentés sont réels mais non typiques. Ils dépendent de ton engagement et de ta situation.
+  </p>
+
+</div>
+
+<!-- VIDALYTICS SCRIPT -->
+<!-- REMPLACER : mettre le bon ID dans les deux occurrences -->
+<script type="text/javascript">
+(function (v, i, d, a, l, y, t, c, s) {
+    y='_'+d.toLowerCase();c=d+'L';if(!v[d]){v[d]={};}if(!v[c]){v[c]={};}if(!v[y]){v[y]={};}var vl='Loader',vli=v[y][vl],vsl=v[c][vl + 'Script'],vlf=v[c][vl + 'Loaded'],ve='Embed';
+    if (!vsl){vsl=function(u,cb){
+        if(t){cb();return;}s=i.createElement("script");s.type="text/javascript";s.async=1;s.src=u;
+        if(s.readyState){s.onreadystatechange=function(){if(s.readyState==="loaded"||s.readyState=="complete"){s.onreadystatechange=null;vlf=1;cb();}};}else{s.onload=function(){vlf=1;cb();};}
+        i.getElementsByTagName("head")[0].appendChild(s);
+    };}
+    vsl(l+'loader.min.js',function(){if(!vli){var vlc=v[c][vl];vli=new vlc();}vli.loadScript(l+'player.min.js',function(){var vec=v[d][ve];t=new vec();t.run(a);});});
+})(window, document, 'Vidalytics', 'vidalytics_embed_REMPLACER_ID_CONFIRMATION', 'https://fast.vidalytics.com/embeds/j3d1vxJQ/REMPLACER_ID_CONFIRMATION/');
+</script>
+
+</body>
+</html>
