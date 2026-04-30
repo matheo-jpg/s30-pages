@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-30T19:07:02.183797+02:00",
+  "updated_at": "2026-04-30T20:07:01.507171+02:00",
   "usd_eur_rate": 0.8556,
   "periods": {
     "yesterday": {
@@ -15,7 +15,7 @@
     "today": {
       "spent": 282,
       "cash": 6445,
-      "roas": 22.87,
+      "roas": 22.84,
       "calls": 3,
       "closes": 0,
       "aov": 0,
@@ -43,7 +43,7 @@
       "cost_per_acq": 1080
     },
     "30d": {
-      "spent": 16412,
+      "spent": 16413,
       "cash": 81176,
       "roas": 4.95,
       "calls": 170,
