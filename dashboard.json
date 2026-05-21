@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-21T21:07:01.293171+02:00",
+  "updated_at": "2026-05-21T22:07:01.347653+02:00",
   "usd_eur_rate": 0.8612,
   "periods": {
     "yesterday": {
@@ -15,7 +15,7 @@
     "today": {
       "spent": 485,
       "cash": 7549,
-      "roas": 15.58,
+      "roas": 15.57,
       "calls": 4,
       "closes": 3,
       "aov": 1767,
