@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-06-13T02:07:01.855377+02:00",
-  "usd_eur_rate": 0.8657,
+  "updated_at": "2026-06-13T03:07:02.104429+02:00",
+  "usd_eur_rate": 0.8644,
   "periods": {
     "yesterday": {
       "spent": 0,
@@ -43,14 +43,14 @@
       "cost_per_acq": 0
     },
     "30d": {
-      "spent": 6169,
+      "spent": 6160,
       "cash": 47343,
-      "roas": 7.67,
+      "roas": 7.69,
       "calls": 59,
       "closes": 12,
       "aov": 1466,
-      "cost_per_call": 105,
-      "cost_per_acq": 514
+      "cost_per_call": 104,
+      "cost_per_acq": 513
     }
   }
 }
