@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-24T03:07:02.121367+02:00",
+  "updated_at": "2026-06-24T04:07:02.323865+02:00",
   "usd_eur_rate": 0.878,
   "periods": {
     "yesterday": {
@@ -34,7 +34,7 @@
     },
     "14d": {
       "spent": 0,
-      "cash": 12262,
+      "cash": 12311,
       "roas": 0.0,
       "calls": 1,
       "closes": 0,
@@ -44,7 +44,7 @@
     },
     "30d": {
       "spent": 0,
-      "cash": 27759,
+      "cash": 27808,
       "roas": 0.0,
       "calls": 12,
       "closes": 3,
