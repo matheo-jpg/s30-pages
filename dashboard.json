@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-07T16:07:01.302176+02:00",
+  "updated_at": "2026-08-07T17:07:01.424716+02:00",
   "usd_eur_rate": 0.8673,
   "periods": {
     "yesterday": {
@@ -14,7 +14,7 @@
     },
     "today": {
       "spent": 0,
-      "cash": 49,
+      "cash": 98,
       "roas": 0.0,
       "calls": 0,
       "closes": 0,
@@ -24,7 +24,7 @@
     },
     "7d": {
       "spent": 0,
-      "cash": 4148,
+      "cash": 4197,
       "roas": 0.0,
       "calls": 0,
       "closes": 0,
@@ -34,7 +34,7 @@
     },
     "14d": {
       "spent": 0,
-      "cash": 6595,
+      "cash": 6644,
       "roas": 0.0,
       "calls": 0,
       "closes": 0,
@@ -44,7 +44,7 @@
     },
     "30d": {
       "spent": 0,
-      "cash": 13086,
+      "cash": 13135,
       "roas": 0.0,
       "calls": 0,
       "closes": 1,
